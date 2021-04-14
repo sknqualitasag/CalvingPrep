@@ -178,11 +178,11 @@ string calvingDataMap::verifyBreed(string breedstr, string indstr){
     return "HO";
   }
   else if(breedstr =="BV" || breedstr == "BS"){
-    simpleDebug("verifyBreed()_Plausible breed "+breedstr, indstr);
+    simpleDebug("verifyBreed()_Plausible breed (BS will be set to BV) "+breedstr, indstr);
     return "BV";
   }
   else if(breedstr =="OB" || breedstr =="ROB") {
-    simpleDebug("verifyBreed()_Plausible breed "+breedstr, indstr);
+    simpleDebug("verifyBreed()_Plausible breed (ROB will be set to OB) "+breedstr, indstr);
     return "OB";
   }
   else if(breedstr =="JE") {
