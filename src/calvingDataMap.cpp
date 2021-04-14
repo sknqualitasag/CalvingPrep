@@ -140,6 +140,9 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     string fbreedstr = verifySireBreed(colData[16], fstr);
     string herdstr = verifyHerd(colData[17], idstr);
     string mandatestr = verifyMandate(colData[18], idstr);
+    simpleDebug("inputData()_Call contructor date for insemmotherstartdate " + colData[19], idstr);
+    date insemmotherstartdate = date(colData[19], lastYearToConsiderData, psRunningMode, idstr);
+
 
 
 
