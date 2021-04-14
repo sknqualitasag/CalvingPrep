@@ -5,6 +5,7 @@
 #include <Rcpp.h>
 #include "parmMap.h"
 #include "calvingDataMap.h"
+#include "animalMap.h"
 #include <plog/Log.h>
 #include <plog/Formatters/MessageOnlyFormatter.h>
 #include "constants.h"
@@ -47,6 +48,7 @@ int CalvingPrep_main(std::string paramFileName) {
 
   //Declare Map
   calvingDataMap cMap;
+  animalMap aMap;
 
 
   //Create DEBUG-File
