@@ -3,6 +3,8 @@
 #include <chrono>
 #include <ctime>
 #include <Rcpp.h>
+#include "parmMap.h"
+
 
 
 
@@ -29,6 +31,16 @@ int CalvingPrep_main(std::string paramFileName) {
   std::cout << "START CalvingPrepare_main() at " << std::ctime(&start_time) << std::endl;
   std::cout<<"-----------------------------------------------------------------"<< std::endl;
 
+
+  //Read parameter-file
+  ParmMap parmMap;
+  parmMap.fileName = paramFileName;
+  parmMap.inputParms();
+
+  std::string dataFile                                = parmMap.getString("dataFileName");
+  unsigned numberDataFiles                            = parmMap.getUnsigned("numberDataFiles");
+  int lastYearToConsiderData                          = parmMap.getInteger("lastYearToConsiderData");
+  std::string parRunMode                              = parmMap.getString("DEBUG");//yes = turn on debugging
 
 
 
