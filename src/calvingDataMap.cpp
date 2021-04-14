@@ -132,6 +132,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     int abortint = verifyAbort(colData[10],idstr);
     int calvingscoreint = verifyCalvingscore(colData[11],idstr);
     int stillbirthint = verifyStillbirth(colData[12], calvingdate, idstr);
+    int prematurebirthint = verifyPrematurity(colData[13],idstr);
 
 
 
@@ -352,4 +353,17 @@ int calvingDataMap::verifyStillbirth(string stillbirthstr, date calvingdate, str
 
   return stillbirthint;
 
+}
+
+
+int calvingDataMap::verifyPrematurity(string prematuritystr, string indstr){
+
+  int prematurityint = atoi(prematuritystr.c_str());
+  if(prematurityint < 0 || prematurityint > 1){
+    simpleDebug("verifyPrematurity()_Setting prematuritystr to missing, because prematuritystr "+prematuritystr+" is bellow 0 or higher 1", indstr);
+    return CONSTANTS::INT_NA;
+  }else{
+    simpleDebug("verifyPrematurity()_Plausible prematuritystr "+prematuritystr, indstr);
+  }
+  return prematurityint;
 }
