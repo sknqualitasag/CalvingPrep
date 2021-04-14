@@ -52,12 +52,12 @@ date::date(string datestr, int lastYearToConsiderData, string psRunningMode, str
     DayStr = datestr.substr(6,2).c_str();
     DayInt=atoi(DayStr.c_str());
     if(DayInt<1 || DayInt>31) {
+      dateDebug("date()_Constructor called, DayInt " + to_string(DayInt)+" higer than 31 or lower to 1, so setting DayInt to missing ", id, psRunningMode);
+      dateDebug("date()_Constructor called, DayStr "+ DayStr+" higer than 31 or lower to 1, so setting DayStr to missing as well as isValid to false", id, psRunningMode);
+
       DayInt = CONSTANTS::INT_NA;
       DayStr = CONSTANTS::STRING_NA;
       isValid = false;
-
-      dateDebug("date()_Constructor called, DayInt " + to_string(DayInt)+" higer than 31 or lower to 1, so setting DayInt to missing ", id, psRunningMode);
-      dateDebug("date()_Constructor called, DayStr "+ DayStr+" higer than 31 or lower to 1, so setting DayStr to missing as well as isValid to false", id, psRunningMode);
 
     }else{
       dateDebug("date()_Constructor called, plausibel DayInt " + to_string(DayInt), id, psRunningMode);

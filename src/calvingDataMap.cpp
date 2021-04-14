@@ -115,12 +115,16 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     string psRunningMode = getRunningMode();
 
 
+    simpleDebug("inputData()_getVerifiedTvdNr of dam",colData[0]);
     string mstr = getVerifiedTvdNr(colData[0]);
     string mbreedstr = verifyBreed(colData[1],mstr);
     string mvbreedstr = verifyBreed(colData[2],"");
     string idsexstr = verifySexBirth(colData[3],colData[6]);
     simpleDebug("inputData()_Call contructor date for mbirthdate " + colData[4], mstr);
     date mbirthdate = date(colData[4], lastYearToConsiderData, psRunningMode, mstr);
+    simpleDebug("inputData()_Call contructor date for calvingdate " + colData[5], colData[6]);
+    date calvingdate = date(colData[5], lastYearToConsiderData, psRunningMode, colData[6]);
+    simpleDebug("inputData()_getVerifiedTvdNr of animal",colData[6]);
     string idstr = getVerifiedTvdNr(colData[6]);
 
 
