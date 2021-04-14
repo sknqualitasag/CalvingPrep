@@ -166,6 +166,8 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     string damIDstr = verifyAnimNr(colData[35], mstr);
     simpleDebug("inputData()_verifyAnimNr of sire",fstr);
     string sireIDstr = verifyAnimNr(colData[36], fstr);
+    simpleDebug("inputData()_Call contructor date for deathcalfdate", idstr);
+    date deathcalfdate = date(colData[37], lastYearToConsiderData, psRunningMode, idstr);
 
   }
 
