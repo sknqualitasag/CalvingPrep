@@ -133,6 +133,10 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     int calvingscoreint = verifyCalvingscore(colData[11],idstr);
     int stillbirthint = verifyStillbirth(colData[12], calvingdate, idstr);
     int prematurebirthint = verifyPrematurity(colData[13],idstr);
+    simpleDebug("inputData()_getVerifiedTvdNr of geneticmother",colData[14]);
+    string geneticmotherstr = getVerifiedTvdNr(colData[14]);
+    simpleDebug("inputData()_getVerifiedTvdNr of sire",colData[15]);
+    string fstr = getVerifiedTvdNr(colData[15]);
 
 
 
