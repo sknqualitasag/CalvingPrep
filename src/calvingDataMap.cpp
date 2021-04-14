@@ -156,7 +156,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     date firstcalvingdate = date(colData[26], lastYearToConsiderData, psRunningMode, idstr);
     string afterbirthsexstr = colData[27];
     int recordtypinsemint = verifyRecordTypIns(colData[28], idstr);
-
+    string insemnumberstr = colData[29];
 
   }
 
