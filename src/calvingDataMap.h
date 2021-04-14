@@ -39,6 +39,7 @@ public:
   double verifyBirthWeight(string birthweightstr, string indstr);
   string verifyMultiple(string multiplesstr, string indstr);
   int verifyAbort(string abortstr, string indstr);
+  int verifyCalvingscore(string calvingscorestr, string indstr);
 
 
 
