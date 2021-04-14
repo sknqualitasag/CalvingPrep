@@ -45,6 +45,7 @@ public:
   string verifySireBreed(string fbreedstr, string fstr);
   string verifyHerd(string herdstr, string indstr);
   string verifyMandate(string mandatestr, string idstr);
+  int verifyLactationNumber(string lactnumberstr, string indstr);
 
 
 

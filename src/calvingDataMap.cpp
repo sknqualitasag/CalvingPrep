@@ -144,6 +144,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     date insemmotherstartdate = date(colData[19], lastYearToConsiderData, psRunningMode, idstr);
     simpleDebug("inputData()_Call contructor date for insemmotherenddate " + colData[20], idstr);
     date insemmotherenddate = date(colData[20], lastYearToConsiderData, psRunningMode, idstr);
+    int lnint = verifyLactationNumber(colData[21],idstr);
 
 
 
@@ -456,4 +457,17 @@ string calvingDataMap::verifyMandate(string mandatestr, string idstr){
     simpleDebug("verifyMandate()_Plausible mandatestr "+ mandatestr, idstr);
   }
 
+}
+
+
+int calvingDataMap::verifyLactationNumber(string lactnumberstr, string indstr){
+
+  int lactnumberstrint = atoi(lactnumberstr.c_str());
+  if(lactnumberstrint<1 || lactnumberstrint>19){
+    simpleDebug("verifyLactationNumber()_Setting lactnumberstr to missing, because lactnumberstr "+lactnumberstr+" is bellow 1 or higher 19", indstr);
+    return CONSTANTS::INT_NA;
+  }else{
+    simpleDebug("verifyLactationNumber()_plausible lactnumberstr "+lactnumberstr, indstr);
+  }
+  return lactnumberstrint;
 }
