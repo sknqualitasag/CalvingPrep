@@ -46,6 +46,7 @@ public:
   string verifyHerd(string herdstr, string indstr);
   string verifyMandate(string mandatestr, string idstr);
   int verifyLactationNumber(string lactnumberstr, string indstr);
+  int verifyET(string ETstr, string idstr);
 
 
 

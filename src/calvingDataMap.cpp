@@ -149,6 +149,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     date deathmotherdate = date(colData[22], lastYearToConsiderData, psRunningMode, idstr);
     simpleDebug("inputData()_Call contructor date for deathmothertvddate", idstr);
     date deathmothertvddate = date(colData[23], lastYearToConsiderData, psRunningMode, idstr);
+    int ETint = verifyET(colData[24], idstr);
 
 
   }
@@ -471,4 +472,20 @@ int calvingDataMap::verifyLactationNumber(string lactnumberstr, string indstr){
     simpleDebug("verifyLactationNumber()_plausible lactnumberstr "+lactnumberstr, indstr);
   }
   return lactnumberstrint;
+}
+
+
+int calvingDataMap::verifyET(string ETstr, string idstr){
+
+  int ETint = atoi(ETstr.c_str());
+
+  if(ETint < 0 || ETint > 1) {
+    simpleDebug("verifyET()_Setting ETint to missing, because ETint "+to_string(ETint)+" is bellow 0 or higher 1", idstr);
+    return CONSTANTS::INT_NA;
+  }else{
+    simpleDebug("verifyET()_Plausible ETint "+to_string(ETint), idstr);
+  }
+
+  return ETint;
+
 }
