@@ -127,6 +127,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     simpleDebug("inputData()_getVerifiedTvdNr of animal",colData[6]);
     string idstr = getVerifiedTvdNr(colData[6]);
     string idbreedstr = verifyBreed(colData[7],idstr);
+    double idbirthweightdbl = verifyBirthWeight(colData[8],idstr);
 
 
 
@@ -262,4 +263,18 @@ string calvingDataMap::verifySexBirth(string sexstr, string indstr){
   }
   simpleDebug("verifySexBirth()_Setting sexstr to missing, because sex at birth "+sexstr+" is not male/female", indstr);
   return CONSTANTS::STRING_NA;
+}
+
+
+double calvingDataMap::verifyBirthWeight(string birthweightstr, string indstr){
+  double bw;
+  bw = atoi(birthweightstr.c_str());
+  if(bw <= 10. || bw >= 80.) {
+    simpleDebug("verifyBirthWeight()_Setting birthweightstr to missing, because birthweightstr "+to_string(bw)+" is bellow 10 or higher 80", indstr);
+    bw =  -9999.;
+  }else{
+    simpleDebug("verifyBirthWeight()_Plausible birthweightstr "+to_string(bw), indstr);
+  }
+
+  return bw;
 }

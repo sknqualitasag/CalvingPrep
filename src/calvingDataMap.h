@@ -36,6 +36,7 @@ public:
   string getVerifiedTvdNr(string id);
   string verifyBreed(string breedstr, string indstr);
   string verifySexBirth(string sexstr, string indstr);
+  double verifyBirthWeight(string birthweightstr, string indstr);
 
 
 
