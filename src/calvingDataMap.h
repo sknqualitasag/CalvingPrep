@@ -44,6 +44,7 @@ public:
   int verifyPrematurity(string prematuritystr, string indstr);
   string verifySireBreed(string fbreedstr, string fstr);
   string verifyHerd(string herdstr, string indstr);
+  string verifyMandate(string mandatestr, string idstr);
 
 
 

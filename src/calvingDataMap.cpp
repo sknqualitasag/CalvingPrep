@@ -139,6 +139,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     string fstr = getVerifiedTvdNr(colData[15]);
     string fbreedstr = verifySireBreed(colData[16], fstr);
     string herdstr = verifyHerd(colData[17], idstr);
+    string mandatestr = verifyMandate(colData[18], idstr);
 
 
 
@@ -437,5 +438,17 @@ string calvingDataMap::verifyHerd(string herdstr, string idstr){
   }
 
   return herdstr;
+
+}
+
+
+string calvingDataMap::verifyMandate(string mandatestr, string idstr){
+
+  if(mandatestr != "3230" && mandatestr != "1893" && mandatestr != "2077"){
+    simpleDebug("verifyMandate()_Setting mandatestr to missing, because mandatestr is not 3230 or 1893 or 2077 but "+ mandatestr, idstr);
+    return CONSTANTS::STRING_NA;
+  }else{
+    simpleDebug("verifyMandate()_Plausible mandatestr "+ mandatestr, idstr);
+  }
 
 }
