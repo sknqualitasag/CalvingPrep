@@ -113,6 +113,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     simpleDebug("inputData()_Input Line inputStr " + inputStr, "");
 
 
+    string mstr = getVerifiedTvdNr(colData[0]);
     string idstr = getVerifiedTvdNr(colData[6]);
 
 
