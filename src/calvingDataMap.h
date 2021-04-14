@@ -47,6 +47,7 @@ public:
   string verifyMandate(string mandatestr, string idstr);
   int verifyLactationNumber(string lactnumberstr, string indstr);
   int verifyET(string ETstr, string idstr);
+  int verifyRecordTypIns(string recordtypinsemstr, string idstr);
 
 
 

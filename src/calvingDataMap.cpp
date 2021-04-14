@@ -155,6 +155,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     simpleDebug("inputData()_Call contructor date for firstcalvingdate", idstr);
     date firstcalvingdate = date(colData[26], lastYearToConsiderData, psRunningMode, idstr);
     string afterbirthsexstr = colData[27];
+    int recordtypinsemint = verifyRecordTypIns(colData[28], idstr);
 
 
   }
@@ -492,5 +493,29 @@ int calvingDataMap::verifyET(string ETstr, string idstr){
   }
 
   return ETint;
+
+}
+
+
+int calvingDataMap::verifyRecordTypIns(string recordtypinsemstr, string idstr){
+
+  int recordtypinsemint = atoi(recordtypinsemstr.c_str());
+
+  // Erfassungsart der Belegung, Indexbedeutung gemäss vms-633:
+  // 1 = manuelle Erfassung (Sachberarbeiter)
+  // 2 = elektronische Erfassung (über redonline, von KBOs)
+  // 3 = Erfassung über Geburtsmeldung
+  // 4 = intern (Zusammenlegung bei der Migration im 2015 von VMS zu Qualitas)
+  // 5 = extern (Sachbearbeiter von Schafen und Ziegen)
+  // 6 = Automatischer Eintrag (VMS mit automatische Belegung)
+  // 7 = DVS Erfassung (Smartcow)
+  if(recordtypinsemint < 0 || recordtypinsemint > 7) {
+    simpleDebug("verifyRecordTypIns()_Setting recordtypinsemint to missing, because recordtypinsemstr "+recordtypinsemstr+" is bellow 0 or higher 7", idstr);
+    return CONSTANTS::INT_NA;
+  }else{
+    simpleDebug("verifyRecordTypIns()_Plausible recordtypinsemint "+to_string(recordtypinsemint), idstr);
+  }
+
+  return recordtypinsemint;
 
 }
