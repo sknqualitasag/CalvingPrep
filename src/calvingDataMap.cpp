@@ -138,9 +138,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     simpleDebug("inputData()_getVerifiedTvdNr of sire",colData[15]);
     string fstr = getVerifiedTvdNr(colData[15]);
     string fbreedstr = verifySireBreed(colData[16], fstr);
-
-
-
+    string herdstr = verifyHerd(colData[17], idstr);
 
 
 
@@ -425,5 +423,19 @@ string calvingDataMap::verifySireBreed(string fbreedstr, string fstr){
     simpleDebug("verifySireBreed()_Setting sire breed to missing, because sire breed "+fbreedstr +" is not in the sire breed list (SI,OB,ROB,AN,AU,CH,LM,HH,AL,BD,SL,PI)", fstr);
     return CONSTANTS::STRING_NA;
   }
+
+}
+
+
+string calvingDataMap::verifyHerd(string herdstr, string idstr){
+
+  if(herdstr ==""){
+    simpleDebug("verifyHerd()_Setting herdstr to missing, because herdstr is missing", idstr);
+    return CONSTANTS::STRING_NA;
+  }else{
+    simpleDebug("verifyHerd()_Plausible herdstr "+ herdstr, idstr);
+  }
+
+  return herdstr;
 
 }
