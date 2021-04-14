@@ -150,7 +150,8 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     simpleDebug("inputData()_Call contructor date for deathmothertvddate", idstr);
     date deathmothertvddate = date(colData[23], lastYearToConsiderData, psRunningMode, idstr);
     int ETint = verifyET(colData[24], idstr);
-
+    simpleDebug("inputData()_Call contructor date for calfbefore_calvingdate", idstr);
+    date calfbefore_calvingdate = date(colData[25], lastYearToConsiderData, psRunningMode, idstr);
 
   }
 
