@@ -20,12 +20,26 @@ using namespace Rcpp;
 // [[Rcpp::export]]
 int CalvingPrep_main(std::string paramFileName) {
 
+  //Time tracking
+  std::chrono::time_point<std::chrono::system_clock> start, end;
+  start = std::chrono::system_clock::now();
+  time_t start_time = std::chrono::system_clock::to_time_t(start);
+
   std::cout<<"-----------------------------------------------------------------"<< std::endl;
-  std::cout << "START CalvingPrepare_main() " << std::endl;
+  std::cout << "START CalvingPrepare_main() at " << std::ctime(&start_time) << std::endl;
   std::cout<<"-----------------------------------------------------------------"<< std::endl;
 
+
+
+
+  //Time tracking
+  end = std::chrono::system_clock::now();
+  std::chrono::duration<double> elapsed_seconds = end-start;
+  std::time_t end_time = std::chrono::system_clock::to_time_t(end);
+
   std::cout<<"\n-----------------------------------------------------------------"<< std::endl;
-  std::cout << "END CalvingPrepare_main() " << std::endl;
+  std::cout << "END CalvingPrepare_main() at " << std::ctime(&end_time)
+            << "elapsed time: " << elapsed_seconds.count() << " s"<<std::endl;
   std::cout<<"-----------------------------------------------------------------"<< std::endl;
 
 
