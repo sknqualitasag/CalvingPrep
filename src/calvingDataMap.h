@@ -42,6 +42,7 @@ public:
   int verifyCalvingscore(string calvingscorestr, string indstr);
   int verifyStillbirth(string stillbirthstr, date calvingdate, string idstr);
   int verifyPrematurity(string prematuritystr, string indstr);
+  string verifySireBreed(string fbreedstr, string fstr);
 
 
 
