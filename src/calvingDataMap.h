@@ -49,6 +49,7 @@ public:
   int verifyET(string ETstr, string idstr);
   int verifyRecordTypIns(string recordtypinsemstr, string idstr);
   int verifySpermaTraitment(string spermatraitmentstr, string idstr);
+  string verifyAnimNr(string animIDstr, string idstr);
 
 
 

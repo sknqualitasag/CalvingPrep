@@ -160,6 +160,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     int spermatraitmentint = verifySpermaTraitment(colData[30], idstr);
     string inseminatorstr = colData[31];
     string insemorganisation = colData[32];
+    string animIDstr = verifyAnimNr(colData[33], idstr);
 
   }
 
@@ -547,5 +548,23 @@ int calvingDataMap::verifySpermaTraitment(string spermatraitmentstr, string idst
   }
 
   return spermatraitmentint;
+
+}
+
+
+string calvingDataMap::verifyAnimNr(string animIDstr, string idstr){
+
+  if(animIDstr == ""){
+    simpleDebug("verifyAnimNr()_Setting animIDstr " + animIDstr +" to missing, because it is empty", idstr);
+    return CONSTANTS::STRING_NA;
+  }
+  // check if it is only numeric
+  else if (strspn(animIDstr.c_str(), CONSTANTS::NUMBERS) != animIDstr.length()){
+    simpleDebug("verifyAnimNr()_Setting animIDstr " + animIDstr +" to missing, because it is not numeric", idstr);
+    return CONSTANTS::STRING_NA;
+  }else{
+    simpleDebug("verifyAnimNr()_Plausible animIDstr " + animIDstr, idstr);
+    return animIDstr;
+  }
 
 }
