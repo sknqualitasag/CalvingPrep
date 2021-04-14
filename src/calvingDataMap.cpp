@@ -84,5 +84,32 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
   string inputStr;
   unsigned lineNumber=0, numCols, rec=0;
   Tokenizer colData;
+  while (getline(datafile,inputStr)){
+    string newInputStr = colData.processSemikolon(inputStr);
+    cout<<"newInputStr: "<<newInputStr<<endl;
+    colData.getTokens(newInputStr,sep);
+
+
+    for(int i=0; i<colData.size(); i++){
+      cout<<"i: "<<i<<" colData : "<<colData[i]<<endl;
+    }
+
+
+    lineNumber++;
+    if(lineNumber%200000==0){
+      cout<<lineNumber<<" records processed \r";
+      cout.flush();
+    }
+    if(lineNumber==1){
+      numCols = colData.size();
+      continue;
+    }
+    else if(colData.size() != numCols){
+      cout<<"inputData(): Number of columns on line "<<lineNumber<<" in file "<<fname<<" is "<<colData.size()<<", but the header of the files has "<<numCols<<" labels."<<endl;
+      exit(19);
+    }
+
+
+  }
 
 }
