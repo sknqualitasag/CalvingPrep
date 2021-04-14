@@ -12,3 +12,7 @@ Encoding: UTF-8
 LazyData: true
 Imports: Rcpp (>= 1.0.6)
 LinkingTo: Rcpp
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
