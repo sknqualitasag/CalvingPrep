@@ -48,6 +48,7 @@ public:
   int verifyLactationNumber(string lactnumberstr, string indstr);
   int verifyET(string ETstr, string idstr);
   int verifyRecordTypIns(string recordtypinsemstr, string idstr);
+  int verifySpermaTraitment(string spermatraitmentstr, string idstr);
 
 
 

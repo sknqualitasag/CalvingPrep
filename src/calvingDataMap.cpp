@@ -157,6 +157,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     string afterbirthsexstr = colData[27];
     int recordtypinsemint = verifyRecordTypIns(colData[28], idstr);
     string insemnumberstr = colData[29];
+    int spermatraitmentint = verifySpermaTraitment(colData[30], idstr);
 
   }
 
@@ -517,5 +518,32 @@ int calvingDataMap::verifyRecordTypIns(string recordtypinsemstr, string idstr){
   }
 
   return recordtypinsemint;
+
+}
+
+
+int calvingDataMap::verifySpermaTraitment(string spermatraitmentstr, string idstr){
+
+  int spermatraitmentint = atoi(spermatraitmentstr.c_str());
+
+  // Sperma Behandlungen (Inhalt Sexingmethode)
+  // 0 = unbehandelt
+  // 1 = gesext, Beltsville-Technologie
+  // 2 = bovitel
+  // 3 = heifer plus oder bull plus
+  // 4 = affirm
+  // 5 = spermvital
+  // 6 = unbekannte Sexingmethode
+  // 7 = Sexcel
+  // 8 = SexedULTRA 4M
+
+  if(spermatraitmentint < 0 || spermatraitmentint > 8) {
+    simpleDebug("verifySpermaTraitment()_Setting spermatraitmentint to missing, because spermatraitmentint "+to_string(spermatraitmentint)+" is bellow 0 or higher 8", idstr);
+    return CONSTANTS::INT_NA;
+  }else{
+    simpleDebug("verifySpermaTraitment()_Plausible spermatraitmentint "+to_string(spermatraitmentint), idstr);
+  }
+
+  return spermatraitmentint;
 
 }
