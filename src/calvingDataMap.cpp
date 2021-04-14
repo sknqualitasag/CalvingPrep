@@ -378,51 +378,51 @@ int calvingDataMap::verifyPrematurity(string prematuritystr, string indstr){
 string calvingDataMap::verifySireBreed(string fbreedstr, string fstr){
 
   if(fbreedstr =="SI") {
-    simpleDebug("verifyBreed()_Plausible sire breed "+fbreedstr, fstr);
+    simpleDebug("verifySireBreed()_Plausible sire breed "+fbreedstr, fstr);
     return "SI";
   }
   else if(fbreedstr =="OB" || fbreedstr =="ROB") {
-    simpleDebug("verifyBreed()_Plausible sire breed (set ROB to OB) "+fbreedstr, fstr);
+    simpleDebug("verifySireBreed()_Plausible sire breed (set ROB to OB) "+fbreedstr, fstr);
     return "OB";
   }
   else if(fbreedstr =="AN") {
-    simpleDebug("verifyBreed()_Plausible sire breed "+fbreedstr, fstr);
+    simpleDebug("verifySireBreed()_Plausible sire breed "+fbreedstr, fstr);
     return "AN";
   }
   else if(fbreedstr =="AU") {
-    simpleDebug("verifyBreed()_Plausible sire breed "+fbreedstr, fstr);
+    simpleDebug("verifySireBreed()_Plausible sire breed "+fbreedstr, fstr);
     return "AU";
   }
   else if(fbreedstr =="CH") {
-    simpleDebug("verifyBreed()_Plausible sire breed "+fbreedstr, fstr);
+    simpleDebug("verifySireBreed()_Plausible sire breed "+fbreedstr, fstr);
     return "CH";
   }
   else if(fbreedstr =="LM") {
-    simpleDebug("verifyBreed()_Plausible sire breed "+fbreedstr, fstr);
+    simpleDebug("verifySireBreed()_Plausible sire breed "+fbreedstr, fstr);
     return "LM";
   }
   else if(fbreedstr == "HH") {
-    simpleDebug("verifyBreed()_Plausible sire breed "+fbreedstr, fstr);
+    simpleDebug("verifySireBreed()_Plausible sire breed "+fbreedstr, fstr);
     return "HH";
   }
   else if(fbreedstr == "AL") {
-    simpleDebug("verifyBreed()_Plausible sire breed "+fbreedstr, fstr);
+    simpleDebug("verifySireBreed()_Plausible sire breed "+fbreedstr, fstr);
     return "AL";
   }
   else if(fbreedstr =="BD") {
-    simpleDebug("verifyBreed()_Plausible sire breed "+fbreedstr, fstr);
+    simpleDebug("verifySireBreed()_Plausible sire breed "+fbreedstr, fstr);
     return "BD";
   }
   else if(fbreedstr =="SL") {
-    simpleDebug("verifyBreed()_Plausible sire breed "+fbreedstr, fstr);
+    simpleDebug("verifySireBreed()_Plausible sire breed "+fbreedstr, fstr);
     return "SL";
   }
   else if(fbreedstr =="PI") {
-    simpleDebug("verifyBreed()_Plausible sire breed "+fbreedstr, fstr);
+    simpleDebug("verifySireBreed()_Plausible sire breed "+fbreedstr, fstr);
     return "PI";
   }
   else{
-    simpleDebug("verifyBreed()_Setting breed to missing, because sire breed "+fbreedstr +" is not in the sire breed list (SI,OB,ROB,AN,AU,CH,LM,HH,AL,BD,SL,PI)", fstr);
+    simpleDebug("verifySireBreed()_Setting sire breed to missing, because sire breed "+fbreedstr +" is not in the sire breed list (SI,OB,ROB,AN,AU,CH,LM,HH,AL,BD,SL,PI)", fstr);
     return CONSTANTS::STRING_NA;
   }
 
