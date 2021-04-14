@@ -7,6 +7,7 @@
 
 using namespace std;
 
+long julDate(string yyyy, string mm, string dd);
 
 class Tokenizer:public vector<string> {
 public:

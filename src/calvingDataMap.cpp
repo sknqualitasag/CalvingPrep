@@ -17,6 +17,7 @@
 #include "calvingData.h"
 #include <plog/Log.h>
 #include "constants.h"
+#include "date.h"
 
 
 
@@ -111,12 +112,15 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
 
 
     simpleDebug("inputData()_Input Line inputStr " + inputStr, "");
+    string psRunningMode = getRunningMode();
 
 
     string mstr = getVerifiedTvdNr(colData[0]);
     string mbreedstr = verifyBreed(colData[1],mstr);
     string mvbreedstr = verifyBreed(colData[2],"");
     string idsexstr = verifySexBirth(colData[3],colData[6]);
+    simpleDebug("inputData()_Call contructor date for mbirthdate " + colData[4], mstr);
+    date mbirthdate = date(colData[4], lastYearToConsiderData, psRunningMode, mstr);
     string idstr = getVerifiedTvdNr(colData[6]);
 
 

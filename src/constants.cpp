@@ -17,3 +17,5 @@ const unsigned CONSTANTS::COUNTRY_CODE_LENGTH = 2;
 const char CONSTANTS::LETTERS[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 //' string corresponding to all numbers
 const char CONSTANTS::NUMBERS[] = "0123456789";
+//' missing value code as integer
+const int CONSTANTS::INT_NA = -9999;

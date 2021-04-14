@@ -18,6 +18,8 @@ public:
   static const char LETTERS[];
   // string corresponding to all numbers
   static const char NUMBERS[];
+  //' missing value code as integer
+  static const int INT_NA;
 
 };
 
