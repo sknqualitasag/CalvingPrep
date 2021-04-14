@@ -25,6 +25,11 @@ public:
   // running mode indicating whether debug information should be printed or not
   string runningMode;
 
+
+  // functions for reading calving-data-file
+  string getFileName(unsigned i, string name);
+
+
 };
 
 

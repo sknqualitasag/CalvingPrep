@@ -45,16 +45,21 @@ int CalvingPrep_main(std::string paramFileName) {
   std::string parRunMode                              = parmMap.getString("DEBUG");//yes = turn on debugging
 
 
-  //Declaration Map
+  //Declare Map
   calvingDataMap cMap;
 
 
-  //DEBUG-File
+  //Create DEBUG-File
   if (parRunMode == CONSTANTS::DEBUG){
     plog::init(plog::debug, "DEBUG_CalvingPrepare.txt");
     cMap.setRunningMode(CONSTANTS::RUNNING_DEBUGALL);
   }
 
+
+  //Read raw calving-data and check the field of the data-record
+  for(unsigned i=0; i<numberDataFiles; i++){
+    string fileName = cMap.getFileName(i,dataFile);
+  }
 
   //Time tracking
   end = std::chrono::system_clock::now();

@@ -49,3 +49,19 @@ void calvingDataMap::simpleDebug(string message, string tvdid){
     LOGD <<"Message "<<message<<" of animal "<<tvdid;
   }
 }
+
+
+string calvingDataMap::getFileName(unsigned i, string name){
+  string fileName;
+  if(i<10){
+    fileName = name+"00"+std::to_string(i)+".csv";
+  }
+  else if(i<100){
+    fileName = name+"0"+std::to_string(i)+".csv";
+  }
+  else if(i<1000){
+    fileName = name+std::to_string(i)+".csv";
+  }
+  else fileName = "Junk";
+  return fileName;
+}
