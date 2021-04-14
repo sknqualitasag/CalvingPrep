@@ -128,6 +128,8 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     string idstr = getVerifiedTvdNr(colData[6]);
     string idbreedstr = verifyBreed(colData[7],idstr);
     double idbirthweightdbl = verifyBirthWeight(colData[8],idstr);
+    string multiplestr = verifyMultiple(colData[9],idstr);
+
 
 
 
@@ -277,4 +279,17 @@ double calvingDataMap::verifyBirthWeight(string birthweightstr, string indstr){
   }
 
   return bw;
+}
+
+
+string calvingDataMap::verifyMultiple(string multiplesstr, string indstr){
+
+  int multiplesint = atoi(multiplesstr.c_str());
+  if(multiplesint < 0 || multiplesint > 1){
+    simpleDebug("verifyMultiple()_Setting multiplesstr to missing, because multiplesstr "+multiplesstr+" is bellow 0 or higher 1", indstr);
+    return CONSTANTS::STRING_NA;
+  }else{
+    simpleDebug("verifyMultiple()_Plausible multiplesstr "+multiplesstr, indstr);
+  }
+  return multiplesstr;
 }

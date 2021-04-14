@@ -37,6 +37,7 @@ public:
   string verifyBreed(string breedstr, string indstr);
   string verifySexBirth(string sexstr, string indstr);
   double verifyBirthWeight(string birthweightstr, string indstr);
+  string verifyMultiple(string multiplesstr, string indstr);
 
 
 
