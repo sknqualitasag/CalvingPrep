@@ -142,6 +142,8 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     string mandatestr = verifyMandate(colData[18], idstr);
     simpleDebug("inputData()_Call contructor date for insemmotherstartdate " + colData[19], idstr);
     date insemmotherstartdate = date(colData[19], lastYearToConsiderData, psRunningMode, idstr);
+    simpleDebug("inputData()_Call contructor date for insemmotherenddate " + colData[20], idstr);
+    date insemmotherenddate = date(colData[20], lastYearToConsiderData, psRunningMode, idstr);
 
 
 
