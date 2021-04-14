@@ -152,6 +152,8 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     int ETint = verifyET(colData[24], idstr);
     simpleDebug("inputData()_Call contructor date for calfbefore_calvingdate", idstr);
     date calfbefore_calvingdate = date(colData[25], lastYearToConsiderData, psRunningMode, idstr);
+    simpleDebug("inputData()_Call contructor date for firstcalvingdate", idstr);
+    date firstcalvingdate = date(colData[26], lastYearToConsiderData, psRunningMode, idstr);
 
   }
 
