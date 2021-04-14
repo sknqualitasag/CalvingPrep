@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <set>
 #include "calvingData.h"
+#include "animalMap.h"
 
 
 
@@ -28,6 +29,7 @@ public:
 
   // functions for reading calving-data-file
   string getFileName(unsigned i, string name);
+  void inputCalvingData(string fname, animalMap  &AMap, int lastYearToConsiderData);
 
 
 };

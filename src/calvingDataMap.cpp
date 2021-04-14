@@ -65,3 +65,17 @@ string calvingDataMap::getFileName(unsigned i, string name){
   else fileName = "Junk";
   return fileName;
 }
+
+
+void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYearToConsiderData){
+
+  ifstream datafile(fname.c_str());
+  if(!datafile){
+    cout<< "inputCalvingData(): Cannot open file "<<fname<<endl;
+    exit(8);
+  }
+
+  cout<<"\ninputCalvingData(): Reading file "<<fname<<endl;
+  cout<<"*****************************************************************"<< endl;
+
+}
