@@ -40,6 +40,7 @@ public:
   string verifyMultiple(string multiplesstr, string indstr);
   int verifyAbort(string abortstr, string indstr);
   int verifyCalvingscore(string calvingscorestr, string indstr);
+  int verifyStillbirth(string stillbirthstr, date calvingdate, string idstr);
 
 
 

@@ -131,6 +131,8 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     string multiplestr = verifyMultiple(colData[9],idstr);
     int abortint = verifyAbort(colData[10],idstr);
     int calvingscoreint = verifyCalvingscore(colData[11],idstr);
+    int stillbirthint = verifyStillbirth(colData[12], calvingdate, idstr);
+
 
 
 
@@ -326,5 +328,28 @@ int calvingDataMap::verifyCalvingscore(string calvingscorestr, string indstr){
   }
 
   return calvingscoreint;
+
+}
+
+
+int calvingDataMap::verifyStillbirth(string stillbirthstr, date calvingdate, string idstr){
+
+  int stillbirthint = atoi(stillbirthstr.c_str());
+
+  // Transfer of calving date to TVD since autumn 2005
+  if(calvingdate.YearInt>2005) {
+    if(stillbirthint < 1 || stillbirthint > 4) {
+      simpleDebug("verifyStillbirth()_Setting stillbirthint to missing, because stillbirthint "+to_string(stillbirthint)+" is bellow 1 or higher 4", idstr);
+      stillbirthint = CONSTANTS::INT_NA;
+    }else{
+      simpleDebug("verifyStillbirth()_Plausible stillbirthint "+ to_string(stillbirthint), idstr);
+    }
+  }
+  else {
+    simpleDebug("verifyStillbirth()_Setting stillbirthint to missing, because calvingdate.YearInt is bellow 2005", idstr);
+    stillbirthint = CONSTANTS::INT_NA;
+  }
+
+  return stillbirthint;
 
 }
