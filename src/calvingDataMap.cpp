@@ -158,6 +158,8 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     int recordtypinsemint = verifyRecordTypIns(colData[28], idstr);
     string insemnumberstr = colData[29];
     int spermatraitmentint = verifySpermaTraitment(colData[30], idstr);
+    string inseminatorstr = colData[31];
+    string insemorganisation = colData[32];
 
   }
 
