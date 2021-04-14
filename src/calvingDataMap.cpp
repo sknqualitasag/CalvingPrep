@@ -110,6 +110,9 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     }
 
 
+    simpleDebug("inputData()_Input Line inputStr " + inputStr, "");
+
+
   }
 
 }
