@@ -113,6 +113,45 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     simpleDebug("inputData()_Input Line inputStr " + inputStr, "");
 
 
+    string idstr = getVerifiedTvdNr(colData[6]);
+
+
   }
 
 }
+
+
+
+string calvingDataMap::getVerifiedTvdNr(string id){
+
+  // check for length of TVD-Nr
+  if (id.size() != CONSTANTS::TVD_NR_LENGTH){
+    simpleDebug("getVerifiedTvdNr()_Setting id to missing, because TVD_NR_LENGTH is not correct", id);
+    return CONSTANTS::STRING_NA;
+  }else{
+    simpleDebug("getVerifiedTvdNr()_Plausible length of TVD-Nr ", id);
+  }
+
+  // check whether first two positions of id are letters
+  string countryCode = id.substr(0,CONSTANTS::COUNTRY_CODE_LENGTH);
+  // countryCode should not be numeric
+  if (strspn(countryCode.c_str(), CONSTANTS::LETTERS) != CONSTANTS::COUNTRY_CODE_LENGTH){
+    simpleDebug("getVerifiedTvdNr()_Setting id to missing, because country code are not letters", id);
+    return CONSTANTS::STRING_NA;
+  }else{
+    simpleDebug("getVerifiedTvdNr()_Plausible first two positions of TVD-Nr ", id);
+  }
+
+  // check whether second parts is only numeric
+  string aniMM = id.substr(CONSTANTS::COUNTRY_CODE_LENGTH);
+  // aniMM must be all numbers
+  if (strspn(aniMM.c_str(), CONSTANTS::NUMBERS) != (CONSTANTS::TVD_NR_LENGTH - CONSTANTS::COUNTRY_CODE_LENGTH)){
+    simpleDebug("getVerifiedTvdNr()_Setting id to missing, because numeric part is not numeric", id);
+    return CONSTANTS::STRING_NA;
+  }else{
+    simpleDebug("getVerifiedTvdNr()_Plausible second numeric part of TVD-Nr ", id);
+  }
+
+  return id;
+}
+

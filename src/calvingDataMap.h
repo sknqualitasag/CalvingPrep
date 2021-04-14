@@ -31,6 +31,9 @@ public:
   // functions for reading calving-data-file
   string getFileName(unsigned i, string name);
   void inputCalvingData(string fname, animalMap  &AMap, int lastYearToConsiderData);
+  // functions to verify, transform, set, calculate before put in constructor
+  string getVerifiedTvdNr(string id);
+
 
 
 };
