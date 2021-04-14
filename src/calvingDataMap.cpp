@@ -11,6 +11,7 @@
 #include <map>
 #include <vector>
 #include <set>
+#include "util.h"
 #include <cstring>
 #include "calvingDataMap.h"
 #include "calvingData.h"
@@ -77,5 +78,11 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
 
   cout<<"\ninputCalvingData(): Reading file "<<fname<<endl;
   cout<<"*****************************************************************"<< endl;
+
+
+  string sep(";");
+  string inputStr;
+  unsigned lineNumber=0, numCols, rec=0;
+  Tokenizer colData;
 
 }
