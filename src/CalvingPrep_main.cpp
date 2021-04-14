@@ -5,9 +5,9 @@
 #include <Rcpp.h>
 #include "parmMap.h"
 #include "calvingDataMap.h"
-
-
-
+#include <plog/Log.h>
+#include <plog/Formatters/MessageOnlyFormatter.h>
+#include "constants.h"
 
 
 using namespace Rcpp;
@@ -47,6 +47,14 @@ int CalvingPrep_main(std::string paramFileName) {
 
   //Declaration Map
   calvingDataMap cMap;
+
+
+  //DEBUG-File
+  if (parRunMode == CONSTANTS::DEBUG){
+    plog::init(plog::debug, "DEBUG_CalvingPrepare.txt");
+    cMap.setRunningMode(CONSTANTS::RUNNING_DEBUGALL);
+  }
+
 
   //Time tracking
   end = std::chrono::system_clock::now();

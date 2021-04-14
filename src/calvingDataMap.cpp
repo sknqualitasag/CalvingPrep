@@ -14,6 +14,8 @@
 #include <cstring>
 #include "calvingDataMap.h"
 #include "calvingData.h"
+#include <plog/Log.h>
+#include "constants.h"
 
 
 
@@ -24,4 +26,26 @@ calvingDataMap::calvingDataMap(){
   cout<<"\ncalvingDataMap(): calvingDataMap "<<endl;
   cout<<"*****************************************************************"<< endl;
 
+}
+
+
+// setter for running mode
+void calvingDataMap::setRunningMode(string psRunningMode){
+  runningMode = psRunningMode;
+}
+
+
+// getter for running mode
+string calvingDataMap::getRunningMode(){
+  return runningMode;
+}
+
+
+// simple debug File
+void calvingDataMap::simpleDebug(string message, string tvdid){
+  string localRunningMode = getRunningMode();
+  if(localRunningMode == CONSTANTS::RUNNING_DEBUGALL){
+    //here Debug-Output-Logfile
+    LOGD <<"Message "<<message<<" of animal "<<tvdid;
+  }
 }

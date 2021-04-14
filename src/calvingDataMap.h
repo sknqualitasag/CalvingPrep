@@ -18,6 +18,13 @@ class calvingDataMap : public map<string, calvingData*> {
 public:
   calvingDataMap(void);
 
+  // functions for debugging
+  void setRunningMode(string psRunningMode);
+  string getRunningMode();
+  void simpleDebug(string message, string tvdid);
+  // running mode indicating whether debug information should be printed or not
+  string runningMode;
+
 };
 
 
