@@ -4,6 +4,8 @@
 #include <ctime>
 #include <Rcpp.h>
 #include "parmMap.h"
+#include "calvingDataMap.h"
+
 
 
 
@@ -43,6 +45,8 @@ int CalvingPrep_main(std::string paramFileName) {
   std::string parRunMode                              = parmMap.getString("DEBUG");//yes = turn on debugging
 
 
+  //Declaration Map
+  calvingDataMap cMap;
 
   //Time tracking
   end = std::chrono::system_clock::now();
