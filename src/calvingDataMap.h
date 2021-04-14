@@ -50,6 +50,7 @@ public:
   int verifyRecordTypIns(string recordtypinsemstr, string idstr);
   int verifySpermaTraitment(string spermatraitmentstr, string idstr);
   string verifyAnimNr(string animIDstr, string idstr);
+  string getVerifiedITBNr(string itb, string indstr);
 
 
 

@@ -20,6 +20,11 @@ public:
   static const char NUMBERS[];
   //' missing value code as integer
   static const int INT_NA;
+  //' length of ITB-Nr in number of characters
+  static const unsigned ITB_NR_LENGTH;
+  //' length of breed,country and sex code in ITB-NR
+  static const unsigned BREED_COUNTRY_SEX_CODE_LENGTH;
+
 
 };
 

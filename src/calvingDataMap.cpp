@@ -161,6 +161,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     string inseminatorstr = colData[31];
     string insemorganisation = colData[32];
     string animIDstr = verifyAnimNr(colData[33], idstr);
+    string itbIDstr = getVerifiedITBNr(colData[34], idstr);
 
   }
 
@@ -566,5 +567,40 @@ string calvingDataMap::verifyAnimNr(string animIDstr, string idstr){
     simpleDebug("verifyAnimNr()_Plausible animIDstr " + animIDstr, idstr);
     return animIDstr;
   }
+
+}
+
+
+string calvingDataMap::getVerifiedITBNr(string itb, string indstr){
+
+  // check for length of ITB-Nr
+  if (itb.size() != CONSTANTS::ITB_NR_LENGTH){
+    simpleDebug("getVerifiedITBNr()_Setting itb to missing, because ITB_NR_LENGTH is not correct", indstr);
+    return CONSTANTS::STRING_NA;
+  }else{
+    simpleDebug("getVerifiedITBNr()_Plausible itb "+itb+" considering ITB_NR_LENGTH ", indstr);
+  }
+
+  // check whether first six positions of id are letters
+  string breedCountrySexCode = itb.substr(0,CONSTANTS::BREED_COUNTRY_SEX_CODE_LENGTH);
+  // countryCode should not be numeric
+  if (strspn(breedCountrySexCode.c_str(), CONSTANTS::LETTERS) != CONSTANTS::BREED_COUNTRY_SEX_CODE_LENGTH){
+    simpleDebug("getVerifiedITBNr()_Setting itb to missing, because first part (breed/country/sex) are not letters", indstr);
+    return CONSTANTS::STRING_NA;
+  }else{
+    simpleDebug("getVerifiedITBNr()_Plausible itb "+itb+" considering first part (breed/country/sex)", indstr);
+  }
+
+  // check whether second parts is only numeric
+  string aniMM = itb.substr(CONSTANTS::BREED_COUNTRY_SEX_CODE_LENGTH);
+  // aniMM must be all numbers
+  if (strspn(aniMM.c_str(), CONSTANTS::NUMBERS) != (CONSTANTS::ITB_NR_LENGTH - CONSTANTS::BREED_COUNTRY_SEX_CODE_LENGTH)){
+    simpleDebug("getVerifiedITBNr()_Setting itb to missing, because numeric part is not numeric", indstr);
+    return CONSTANTS::STRING_NA;
+  }else{
+    simpleDebug("getVerifiedITBNr()_Plausible itb "+itb+" considering numeric part", indstr);
+  }
+
+  return itb;
 
 }

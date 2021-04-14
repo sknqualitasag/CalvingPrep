@@ -19,3 +19,7 @@ const char CONSTANTS::LETTERS[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const char CONSTANTS::NUMBERS[] = "0123456789";
 //' missing value code as integer
 const int CONSTANTS::INT_NA = -9999;
+//' length of ITB-Nr in number of characters
+const unsigned CONSTANTS::ITB_NR_LENGTH = 19;
+//' length of breed,country and sex code in ITB-NR
+const unsigned CONSTANTS::BREED_COUNTRY_SEX_CODE_LENGTH = 7;
