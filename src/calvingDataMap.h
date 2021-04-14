@@ -38,6 +38,7 @@ public:
   string verifySexBirth(string sexstr, string indstr);
   double verifyBirthWeight(string birthweightstr, string indstr);
   string verifyMultiple(string multiplesstr, string indstr);
+  int verifyAbort(string abortstr, string indstr);
 
 
 
