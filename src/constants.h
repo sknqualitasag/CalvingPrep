@@ -6,8 +6,8 @@ class CONSTANTS {
 public:
   // string corresponding to debuging
   static const char DEBUG[];
-  //' string corresponding to debuging all animal
-  static const char DEBUGALL[];
+  // string corresponding to running debug all animal
+  static const char RUNNING_DEBUGALL[];
 
 };
 

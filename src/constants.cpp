@@ -5,5 +5,5 @@ using namespace Rcpp;
 
 //' string corresponding to debuging
 const char CONSTANTS::DEBUG[] = "yes";
-//' string corresponding to debuging all animal
-const char CONSTANTS::DEBUGALL[] = "all";
+// string corresponding to running debug all animal
+const char CONSTANTS::RUNNING_DEBUGALL[] = "all";
