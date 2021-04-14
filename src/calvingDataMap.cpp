@@ -145,7 +145,8 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     simpleDebug("inputData()_Call contructor date for insemmotherenddate " + colData[20], idstr);
     date insemmotherenddate = date(colData[20], lastYearToConsiderData, psRunningMode, idstr);
     int lnint = verifyLactationNumber(colData[21],idstr);
-
+    simpleDebug("inputData()_Call contructor date for deathmotherdate " + colData[22], idstr);
+    date deathmotherdate = date(colData[22], lastYearToConsiderData, psRunningMode, idstr);
 
 
 
