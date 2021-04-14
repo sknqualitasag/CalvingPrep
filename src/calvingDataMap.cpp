@@ -162,10 +162,6 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     string insemorganisation = colData[32];
     string animIDstr = verifyAnimNr(colData[33], idstr);
     string itbIDstr = getVerifiedITBNr(colData[34], idstr);
-    simpleDebug("inputData()_verifyAnimNr of dam",mstr);
-    string damIDstr = verifyAnimNr(colData[35], mstr);
-    simpleDebug("inputData()_verifyAnimNr of sire",fstr);
-    string sireIDstr = verifyAnimNr(colData[36], fstr);
 
   }
 
