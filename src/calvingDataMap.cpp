@@ -126,6 +126,8 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     date calvingdate = date(colData[5], lastYearToConsiderData, psRunningMode, colData[6]);
     simpleDebug("inputData()_getVerifiedTvdNr of animal",colData[6]);
     string idstr = getVerifiedTvdNr(colData[6]);
+    string idbreedstr = verifyBreed(colData[7],idstr);
+
 
 
   }
