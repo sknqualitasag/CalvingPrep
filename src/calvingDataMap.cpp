@@ -116,6 +116,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     string mstr = getVerifiedTvdNr(colData[0]);
     string mbreedstr = verifyBreed(colData[1],mstr);
     string mvbreedstr = verifyBreed(colData[2],"");
+    string idsexstr = verifySexBirth(colData[3],colData[6]);
     string idstr = getVerifiedTvdNr(colData[6]);
 
 
@@ -237,4 +238,18 @@ string calvingDataMap::verifyBreed(string breedstr, string indstr){
     return CONSTANTS::STRING_NA;
   }
 
+}
+
+
+string calvingDataMap::verifySexBirth(string sexstr, string indstr){
+  if(sexstr == "M") {
+    simpleDebug("verifySexBirth()_Plausible sexstr "+sexstr, indstr);
+    return "M";
+  }
+  else if(sexstr == "F") {
+    simpleDebug("verifySexBirth()_Plausible sexstr "+sexstr, indstr);
+    return "F";
+  }
+  simpleDebug("verifySexBirth()_Setting sexstr to missing, because sex at birth "+sexstr+" is not male/female", indstr);
+  return CONSTANTS::STRING_NA;
 }

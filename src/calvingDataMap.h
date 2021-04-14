@@ -34,6 +34,7 @@ public:
   // functions to verify, transform, set, calculate before put in constructor
   string getVerifiedTvdNr(string id);
   string verifyBreed(string breedstr, string indstr);
+  string verifySexBirth(string sexstr, string indstr);
 
 
 
