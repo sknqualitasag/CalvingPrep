@@ -32,7 +32,7 @@ public:
   // functions for reading calving-data-file
   string getFileName(unsigned i, string name);
   void inputCalvingData(string fname, animalMap  &AMap, int lastYearToConsiderData);
-  // functions to verify, transform, set, calculate before put in constructor
+  // functions to first verification, transform, calculate
   string getVerifiedTvdNr(string id);
   string verifyBreed(string breedstr, string indstr);
   string verifySexBirth(string sexstr, string indstr);
@@ -55,6 +55,8 @@ public:
   date verifyCalvingDate(date calvingdate, string idstr);
   date verifyInsemStart(date insemmotherstartdate, string idstr);
   date verifyInsemEnd(date insemmotherenddate, string idstr);
+  // function for setting a new field in dependency to other already declared fields
+  bool setSourceVMS(string mandatestr, string idstr);
 
 
 

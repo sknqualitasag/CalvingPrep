@@ -175,6 +175,9 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     insemmotherstartdate = verifyInsemStart(insemmotherstartdate, idstr);
     insemmotherenddate = verifyInsemEnd(insemmotherenddate, idstr);
 
+    // Set a new field in dependency to other already declared fields
+    bool sourceMKS = setSourceVMS(mandatestr, idstr);
+
   }
 
 }
@@ -680,5 +683,18 @@ date calvingDataMap::verifyInsemEnd(date insemmotherenddate, string idstr){
   }
 
   return insemmotherenddate;
+
+}
+
+
+bool calvingDataMap::setSourceVMS(string mandatestr, string idstr){
+
+  if(mandatestr == "3230"){
+    simpleDebug("setSourceVMS()_Setting source VMS to true, because mandatestr VMS is 3230 = "+mandatestr, idstr);
+    return true;
+  }else{
+    simpleDebug("setSourceVMS()_Setting source VMS to false, because mandatestr: "+mandatestr, idstr);
+    return false;
+  }
 
 }
