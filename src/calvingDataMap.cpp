@@ -28,6 +28,84 @@ calvingDataMap::calvingDataMap(){
   cout<<"\ncalvingDataMap(): calvingDataMap "<<endl;
   cout<<"*****************************************************************"<< endl;
 
+  // dummySires content male and female to skip
+  dummySires.insert("CH900080500000");//-
+  dummySires.insert("CH900080700000");// FLHB/HBBV LM M
+  dummySires.insert("CH900087000000");//-
+  dummySires.insert("CH900900000000");//-
+  dummySires.insert("CH900900600008");// FLHB/HBBV OB M
+  dummySires.insert("CH900080400000");//-
+  dummySires.insert("CH110804000013");// CHAROLAIS-NH M
+  dummySires.insert("CH110804000020");// ** F
+  dummySires.insert("CH110805000012");// ANGUS-NHB M
+  dummySires.insert("CH110805000029");// ** F
+  dummySires.insert("CH110807000010");// LIMOUSIN-NHB M
+  dummySires.insert("CH110807000027");// LIMOUSIN-NHB F
+  dummySires.insert("CH110808000019");// BLONDE-D-NHB M
+  dummySires.insert("CH110808000026");// ** F
+  dummySires.insert("CH110809000018");// BLEU BEL-NHB M
+  dummySires.insert("CH110809000025");// ** F
+  dummySires.insert("CH110810000014");// ERINGER-NHB M
+  dummySires.insert("CH110810000021");// ERINGER F
+  dummySires.insert("CH110811000013");// ROTFLECK-NHB M
+  dummySires.insert("CH110811000020");// ROTFLECK F
+  dummySires.insert("CH110811000037");// SIMMENTA-NHB M
+  dummySires.insert("CH110811000044");// SIMMENTALER F
+  dummySires.insert("CH110811000068");// -
+  dummySires.insert("CH110811000082");// -
+  dummySires.insert("CH110820000011");// FLEISCH M
+  dummySires.insert("CH110820000028");// FLEISCH F
+  dummySires.insert("CH110825000016");// GRAUVIEH M
+  dummySires.insert("CH110825000023");// GRAUVIEH F
+  dummySires.insert("CH110827000014");// EVOLENER M
+  dummySires.insert("CH110827000021");// EVOLENER F
+  dummySires.insert("CH111910000010");// BV-STIER M
+  dummySires.insert("CH111910000027");// BV-KUH F
+  dummySires.insert("CH111910000034");// OB-STIER M
+  dummySires.insert("CH111910000041");// OB-KUH F
+  dummySires.insert("CH111910000058");// BS-STIER M
+  dummySires.insert("CH111910000065");// BS-KUH F
+  dummySires.insert("CH111960000015");// ET-TRAEG. M
+  dummySires.insert("CH111960000022");// Scoglio Top TI Schwarzfleck ET-TRAEG. M
+  dummySires.insert("CH111995000011");// *UFO* M
+  dummySires.insert("CH119005000013");// JERSEY M
+  dummySires.insert("CH119005000020");// JERSEYKUH F
+
+  // FIKTIVE FLHB-STIERE (Liste 26.02.2019)
+  dummySires.insert("CH900900000006");
+  dummySires.insert("CH900900600015");
+  dummySires.insert("CH900091900000");
+  dummySires.insert("CH900080500006");
+  dummySires.insert("CH900900800002");
+  dummySires.insert("CH900080800007");
+  dummySires.insert("CH900901500000");
+  dummySires.insert("CH900080400009");
+  dummySires.insert("CH900901900008");
+  dummySires.insert("CH900901000005");
+  dummySires.insert("CH900900700005");
+  dummySires.insert("CH900902400002");
+  dummySires.insert("CH900080900004");
+  dummySires.insert("CH900900100003");
+  dummySires.insert("CH900900900009");
+  dummySires.insert("CH900902300005");
+  dummySires.insert("CH900902200008");
+  dummySires.insert("CH900900200000");
+  dummySires.insert("CH900901300006");
+  dummySires.insert("CH900901400003");
+  dummySires.insert("CH900099000009");
+  dummySires.insert("CH900902000004");
+  dummySires.insert("CH900901100002");
+  dummySires.insert("CH900900400004");
+  dummySires.insert("CH900900500001");
+  dummySires.insert("CH900087000004");
+  dummySires.insert("CH900087000011");
+  dummySires.insert("CH900901800001");
+  dummySires.insert("CH900901200009");
+  dummySires.insert("CH900901700004");
+  dummySires.insert("CH900901600007");
+  dummySires.insert("CH900902100001");
+  dummySires.insert("CH900900300007");
+
 }
 
 
@@ -191,6 +269,30 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
 
     // Transform field by creating a new field
     int transformedcalvingscoreint = transformCalvingScore(calvingscoreint, idstr);
+
+
+    rec++;
+    if(rec%100000==0){
+      cout<<rec<<" records processed \r"
+      cout.flush();
+    }
+
+    set<string>::iterator dsit = dummySires.find(fstr);
+    if(dsit!=dummySires.end()){
+      fstr = CONSTANTS::STRING_NA;
+      simpleDebug("inputData()_sire in dummySires so set sire to missing", idstr);
+    }
+    dsit = dummySires.find(mstr);
+    if(dsit!=dummySires.end()){
+      mstr = CONSTANTS::STRING_NA;
+      simpleDebug("inputData()_dam in dummySires so set dam to missing", idstr);
+    }
+    dsit = dummySires.find(idstr);
+    if(dsit!=dummySires.end()){
+      simpleDebug("inputData()_animal in dummySires so continue", idstr);
+      continue;
+    }
+
 
   }
 

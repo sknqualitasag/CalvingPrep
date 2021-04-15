@@ -20,6 +20,7 @@ class calvingDataMap : public map<string, calvingData*> {
 
 public:
   calvingDataMap(void);
+  set<string> dummySires;
 
   // functions for debugging
   void setRunningMode(string psRunningMode);
