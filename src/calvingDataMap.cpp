@@ -863,6 +863,7 @@ long int calvingDataMap::calculateCalvingInterval(date calvingdate, date calfbef
 
   if(calvingdate.DateInDays != CONSTANTS::INT_NA && calfbefore_calvingdate.DateInDays != CONSTANTS::INT_NA){
     calvingInterval = calvingdate.DateInDays - calfbefore_calvingdate.DateInDays;
+    simpleDebug("calculateCalvingInterval()_calvingInterval is "+to_string(calvingInterval), idstr);
   }
   else{
     simpleDebug("calculateCalvingInterval()_calvingdate and calfbefore_calvingdate are not available, so calvingInterval is set to missing", idstr);
