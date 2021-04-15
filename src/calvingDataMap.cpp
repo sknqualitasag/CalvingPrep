@@ -881,7 +881,7 @@ long int calvingDataMap::calculateFirstCalvingAge(date mbirthdate, date firstcal
   long int firstCalvingAge;
 
   if(mbirthdate.DateInDays != CONSTANTS::INT_NA && firstcalvingdate.DateInDays != CONSTANTS::INT_NA){
-    firstCalvingAge = mbirthdate.DateInDays - firstcalvingdate.DateInDays;
+    firstCalvingAge = firstcalvingdate.DateInDays - mbirthdate.DateInDays;
     simpleDebug("calculateFirstCalvingAge()_firstCalvingAge is "+to_string(firstCalvingAge), idstr);
   }
   else{
