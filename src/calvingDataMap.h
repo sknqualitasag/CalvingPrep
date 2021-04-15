@@ -54,6 +54,7 @@ public:
   // functions for second verification
   date verifyCalvingDate(date calvingdate, string idstr);
   date verifyInsemStart(date insemmotherstartdate, string idstr);
+  date verifyInsemEnd(date insemmotherenddate, string idstr);
 
 
 
