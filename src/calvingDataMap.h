@@ -57,6 +57,8 @@ public:
   date verifyInsemEnd(date insemmotherenddate, string idstr);
   // function for setting a new field in dependency to other already declared fields
   bool setSourceVMS(string mandatestr, string idstr);
+  string setBreedComb(string mbreedstr, string fbreedstr, string idstr);
+
 
 
 

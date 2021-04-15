@@ -178,7 +178,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     // Set a new field in dependency to other already declared fields
     bool sourceMKS = setSourceVMS(mandatestr, idstr);
     simpleDebug("inputData()_after setSourceVMS, new field sourceMKS is "+to_string(sourceMKS),idstr);
-
+    string breedCombstr = setBreedComb(mbreedstr, fbreedstr, idstr);
 
   }
 
@@ -699,5 +699,22 @@ bool calvingDataMap::setSourceVMS(string mandatestr, string idstr){
     simpleDebug("setSourceVMS()_Setting source VMS to false, because mandatestr: "+mandatestr, idstr);
     return false;
   }
+
+}
+
+
+string calvingDataMap::setBreedComb(string mbreedstr, string fbreedstr, string idstr){
+
+  string breedCombstr;
+
+  if(mbreedstr != CONSTANTS::STRING_NA && fbreedstr != CONSTANTS::STRING_NA){
+    breedCombstr = fbreedstr + "*" + mbreedstr;
+    simpleDebug("setBreedComb()_Setting breedCombstr (father * mother) " + breedCombstr, idstr);
+  }else{
+    breedCombstr = CONSTANTS::STRING_NA;
+    simpleDebug("setBreedComb()_Setting breedCombstr to missing, because mother- or father breed is missing", idstr);
+  }
+
+  return breedCombstr;
 
 }
