@@ -492,6 +492,7 @@ string calvingDataMap::verifyMandate(string mandatestr, string idstr){
     return CONSTANTS::STRING_NA;
   }else{
     simpleDebug("verifyMandate()_Plausible mandatestr "+ mandatestr, idstr);
+    return mandatestr;
   }
 
 }
