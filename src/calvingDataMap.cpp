@@ -177,7 +177,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
 
     // Set a new field in dependency to other already declared fields
     bool sourceMKS = setSourceVMS(mandatestr, idstr);
-    simpleDebug("inputData()_after setSourceVMS to"+to_string(sourceMKS),idstr);
+    simpleDebug("inputData()_after setSourceVMS, new field sourceMKS is "+to_string(sourceMKS),idstr);
 
 
   }
