@@ -187,6 +187,9 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     // Third verification of calculate fields
     gestationLengthInDays = verifyGL(gestationLengthInDays, idstr);
 
+    // Transform field by creating a new field
+    int transformedcalvingscoreint = transformCalvingScore(calvingscoreint, idstr);
+
   }
 
 }
@@ -820,5 +823,33 @@ long int calvingDataMap::calculateCalvingAge(date calvingdate, date mbirthdate, 
   }
 
   return calvingAge;
+
+}
+
+
+int calvingDataMap::transformCalvingScore(int calvingscoreint, string indstr){
+
+  if(calvingscoreint == 1){
+    simpleDebug("transformCalvingScore()_Transforming calvingscorestr to 3, because calvingscorestr is 1 ", indstr);
+    return 3;
+  }
+  else if(calvingscoreint == 2){
+    simpleDebug("transformCalvingScore()_Transforming calvingscorestr to 2, because calvingscorestr is 2 ", indstr);
+    return 2;
+  }
+  else if(calvingscoreint == 3){
+    simpleDebug("transformCalvingScore()_Transforming calvingscorestr to 1, because calvingscorestr is 3 ", indstr);
+    return 1;
+  }
+  else if(calvingscoreint == 4){
+    simpleDebug("transformCalvingScore()_Transforming calvingscorestr to 1, because calvingscorestr is 4 ", indstr);
+    return 1;
+  }
+  else{
+    return CONSTANTS::INT_NA;
+  }
+
+  return calvingscoreint;
+
 
 }

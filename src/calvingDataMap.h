@@ -64,6 +64,8 @@ public:
   // Third verification of calculate fields
   long int verifyGL(long int gestationLength, string idstr);
   long int verifyCalvingAge(long int calvingAgeInDays, int laktNrDamInt, string idstr);
+  // Transform field by creating a new field
+  int transformCalvingScore(int calvingscoreint, string idstr);
 
 
 
