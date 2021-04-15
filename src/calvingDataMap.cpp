@@ -183,6 +183,8 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     // Calculate a new field in dependency with other already declared fields
     long int gestationLengthInDays = calculateGL(insemmotherstartdate, insemmotherenddate, calvingdate, idstr);
 
+    // Third verification of declared fields
+    gestationLengthInDays = verifyGL(gestationLengthInDays, idstr);
 
   }
 
@@ -761,5 +763,18 @@ long int calvingDataMap::calculateGL(date insemmotherstartdate, date insemmother
   }
 
   return gestationLength;
+
+}
+
+
+long int calvingDataMap::verifyGL(long int gestationLength, string idstr){
+
+  if(gestationLength < 260 || gestationLength > 310){
+    simpleDebug("verifyGL()_Setting gestationLength to missing, because gestationLength "+to_string(gestationLength)+" lower than 260 or higher than 310", idstr);
+    return CONSTANTS::INT_NA;
+  }else{
+    simpleDebug("verifyGL()_gestationLength "+to_string(gestationLength)+" is in the range 260>=x<=310", idstr);
+    return gestationLength;
+  }
 
 }
