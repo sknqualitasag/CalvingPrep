@@ -168,6 +168,10 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
   unsigned herdNotRead=0;
   unsigned sireNotRead=0;
   unsigned mandantNotRead=0;
+  unsigned calvingScoreNotRead=0;
+  unsigned birthweightNotRead=0;
+  unsigned stillbirthNotRead=0;
+  unsigned gestationLenghtNotRead=0;
 
 
 
@@ -351,6 +355,27 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
       mandantNotRead++;
       continue;
     }
+    if(calvingscoreint == CONSTANTS::INT_NA){
+      simpleDebug("inputData()_Animal is not read in calvingDataMap, because calvingscoreint is missing", idstr);
+      calvingScoreNotRead++;
+      continue;
+    }
+    if(idbirthweightdbl == CONSTANTS::DOUBLE_NA){
+      simpleDebug("inputData()_Animal is not read in calvingDataMap, because idbirthweightdbl is missing", idstr);
+      birthweightNotRead++;
+      continue;
+    }
+    if(stillbirthint == CONSTANTS::INT_NA){
+      simpleDebug("inputData()_Animal is not read in calvingDataMap, because stillbirthint is missing", idstr);
+      stillbirthNotRead++;
+      continue;
+    }
+    if(gestationLengthInDays == CONSTANTS::INT_NA){
+      simpleDebug("inputData()_Animal is not read in calvingDataMap, because gestationLengthInDays is missing", idstr);
+      gestationLenghtNotRead++;
+      continue;
+    }
+
 
 
 
