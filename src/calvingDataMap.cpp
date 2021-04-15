@@ -140,7 +140,11 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     string fstr = getVerifiedTvdNr(colData[15]);
     string fbreedstr = verifySireBreed(colData[16], fstr);
     string herdstr = verifyHerd(colData[17], idstr);
+
+    simpleDebug("inputData()_before verifyMandate "+colData[18],idstr);
     string mandatestr = verifyMandate(colData[18], idstr);
+    simpleDebug("inputData()_after verifyMandate "+mandatestr,idstr);
+
     simpleDebug("inputData()_Call contructor date for insemmotherstartdate " + colData[19], idstr);
     date insemmotherstartdate = date(colData[19], lastYearToConsiderData, psRunningMode, idstr);
     simpleDebug("inputData()_Call contructor date for insemmotherenddate " + colData[20], idstr);
@@ -176,7 +180,10 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     insemmotherenddate = verifyInsemEnd(insemmotherenddate, idstr);
 
     // Set a new field in dependency to other already declared fields
+    simpleDebug("inputData()_before setSourceVMS "+mandatestr,idstr);
     bool sourceMKS = setSourceVMS(mandatestr, idstr);
+    simpleDebug("inputData()_after setSourceVMS "+mandatestr,idstr);
+
 
   }
 
@@ -477,6 +484,8 @@ string calvingDataMap::verifyHerd(string herdstr, string idstr){
 
 
 string calvingDataMap::verifyMandate(string mandatestr, string idstr){
+
+  simpleDebug("verifyMandate()_mandatestr is "+ mandatestr, idstr);
 
   if(mandatestr != "3230" && mandatestr != "1893" && mandatestr != "2077"){
     simpleDebug("verifyMandate()_Setting mandatestr to missing, because mandatestr is not 3230 or 1893 or 2077 but "+ mandatestr, idstr);
