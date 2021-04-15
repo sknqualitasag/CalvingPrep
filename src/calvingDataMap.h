@@ -32,7 +32,7 @@ public:
   // functions for reading calving-data-file
   string getFileName(unsigned i, string name);
   void inputCalvingData(string fname, animalMap  &AMap, int lastYearToConsiderData);
-  // functions to first verification, transform, calculate
+  // Verification function of the reading fields
   string getVerifiedTvdNr(string id);
   string verifyBreed(string breedstr, string indstr);
   string verifySexBirth(string sexstr, string indstr);
@@ -51,7 +51,7 @@ public:
   int verifySpermaTraitment(string spermatraitmentstr, string idstr);
   string verifyAnimNr(string animIDstr, string idstr);
   string getVerifiedITBNr(string itb, string indstr);
-  // functions for second verification
+  // Second verification functions
   date verifyCalvingDate(date calvingdate, string idstr);
   date verifyInsemStart(date insemmotherstartdate, string idstr);
   date verifyInsemEnd(date insemmotherenddate, string idstr);
@@ -62,7 +62,8 @@ public:
   long int calculateGL(date insemmotherstartdate, date insemmotherenddate, date calvingdate, string idstr);
   long int calculateCalvingAge(date calvingdate, date mbirthdate, int lnint, string idstr);
   long int calculateCalvingInterval(date calvingdate, date calfbefore_calvingdate, string idstr);
-  // Third verification of calculate fields
+  long int calculateFirstCalvingAge(date mbirthdate, date firstcalvingdate, string idstr);
+  // Verification of calculate fields
   long int verifyGL(long int gestationLength, string idstr);
   long int verifyCalvingAge(long int calvingAgeInDays, int laktNrDamInt, string idstr);
   // Transform field by creating a new field

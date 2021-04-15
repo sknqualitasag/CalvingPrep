@@ -115,7 +115,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     string psRunningMode = getRunningMode();
 
 
-    // First verification for fields as colData as well as declaration
+    // Verification for fields as colData
     simpleDebug("inputData()_getVerifiedTvdNr of dam",colData[0]);
     string mstr = getVerifiedTvdNr(colData[0]);
     string mbreedstr = verifyBreed(colData[1],mstr);
@@ -184,8 +184,9 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     long int gestationLengthInDays = calculateGL(insemmotherstartdate, insemmotherenddate, calvingdate, idstr);
     long int calvingAgeInDays =  calculateCalvingAge(calvingdate, mbirthdate, lnint, idstr);
     long int calvingIntervalInDays = calculateCalvingInterval(calvingdate, calfbefore_calvingdate, idstr);
+    long int firstCalvingAgeInDays = calculateFirstCalvingAge(mbirthdate, firstcalvingdate, idstr);
 
-    // Third verification of calculate fields
+    // Verification of calculate fields
     gestationLengthInDays = verifyGL(gestationLengthInDays, idstr);
 
     // Transform field by creating a new field
@@ -871,5 +872,23 @@ long int calvingDataMap::calculateCalvingInterval(date calvingdate, date calfbef
   }
 
   return calvingInterval;
+
+}
+
+
+long int calvingDataMap::calculateFirstCalvingAge(date mbirthdate, date firstcalvingdate, string idstr){
+
+  long int firstCalvingAge;
+
+  if(mbirthdate.DateInDays != CONSTANTS::INT_NA && firstcalvingdate.DateInDays != CONSTANTS::INT_NA){
+    firstCalvingAge = mbirthdate.DateInDays - firstcalvingdate.DateInDays;
+    simpleDebug("calculateFirstCalvingAge()_firstCalvingAge is "+to_string(firstCalvingAge), idstr);
+  }
+  else{
+    simpleDebug("calculateFirstCalvingAge()_mbirthdate and firstcalvingdate are not available, so firstCalvingAge is set to missing", idstr);
+    firstCalvingAge = CONSTANTS::INT_NA;
+  }
+
+  return firstCalvingAge;
 
 }
