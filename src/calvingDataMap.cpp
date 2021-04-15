@@ -166,8 +166,8 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
   unsigned calvingAgeInDaysNotRead=0;
   unsigned breedCombNotRead=0;
   unsigned herdNotRead=0;
-
-
+  unsigned sireNotRead=0;
+  unsigned mandantNotRead=0;
 
 
 
@@ -339,6 +339,16 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     if(herdstr == CONSTANTS::STRING_NA){
       simpleDebug("inputData()_Animal is not read in calvingDataMap, because herdstr is missing", idstr);
       herdNotRead++;
+      continue;
+    }
+    if(fstr == CONSTANTS::STRING_NA){
+      simpleDebug("inputData()_Animal is not read in calvingDataMap, because fstr is missing", idstr);
+      sireNotRead++;
+      continue;
+    }
+    if(mandatestr == CONSTANTS::STRING_NA){
+      simpleDebug("inputData()_Animal is not read in calvingDataMap, because mandatestr is missing", idstr);
+      mandantNotRead++;
       continue;
     }
 
