@@ -183,6 +183,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     // Calculate a new field in dependency with other already declared fields
     long int gestationLengthInDays = calculateGL(insemmotherstartdate, insemmotherenddate, calvingdate, idstr);
     long int calvingAgeInDays =  calculateCalvingAge(calvingdate, mbirthdate, lnint, idstr);
+    long int calvingIntervalInDays = calculateCalvingInterval(calvingdate, calfbefore_calvingdate, idstr);
 
     // Third verification of calculate fields
     gestationLengthInDays = verifyGL(gestationLengthInDays, idstr);
@@ -852,5 +853,22 @@ int calvingDataMap::transformCalvingScore(int calvingscoreint, string indstr){
 
   return calvingscoreint;
 
+
+}
+
+
+long int calvingDataMap::calculateCalvingInterval(date calvingdate, date calfbefore_calvingdate, string idstr){
+
+  long int calvingInterval;
+
+  if(calvingdate.DateInDays != CONSTANTS::INT_NA && calfbefore_calvingdate.DateInDays != CONSTANTS::INT_NA){
+    calvingInterval = calvingdate.DateInDays - calfbefore_calvingdate.DateInDays;
+  }
+  else{
+    simpleDebug("calculateCalvingInterval()_calvingdate and calfbefore_calvingdate are not available, so calvingInterval is set to missing", idstr);
+    calvingInterval = CONSTANTS::INT_NA;
+  }
+
+  return calvingInterval;
 
 }
