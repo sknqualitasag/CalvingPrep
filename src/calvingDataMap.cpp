@@ -172,6 +172,9 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
   unsigned birthweightNotRead=0;
   unsigned stillbirthNotRead=0;
   unsigned gestationLenghtNotRead=0;
+  unsigned AbortNotRead=0;
+  unsigned ETNotRead=0;
+
 
 
 
@@ -373,6 +376,16 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     if(gestationLengthInDays == CONSTANTS::INT_NA){
       simpleDebug("inputData()_Animal is not read in calvingDataMap, because gestationLengthInDays is missing", idstr);
       gestationLenghtNotRead++;
+      continue;
+    }
+    if(abortint == 1){
+      simpleDebug("inputData()_Animal is not read in calvingDataMap, because it is an abortint", idstr);
+      AbortNotRead++;
+      continue;
+    }
+    if(ETint == 1){
+      simpleDebug("inputData()_Animal is not read in calvingDataMap, because it is an ETint", idstr);
+      ETNotRead++;
       continue;
     }
 
