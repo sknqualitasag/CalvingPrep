@@ -37,3 +37,5 @@ const int CONSTANTS::MAX_CALVING_INTERVAL = 18;
 const int CONSTANTS::TRANSFORM_IN_DAYS = 31;
 //' integer for first lactation
 const int CONSTANTS::FIRST_LACTATION = 1;
+//' missing value code as string
+const double CONSTANTS::DOUBLE_NA = -9999.;

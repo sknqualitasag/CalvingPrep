@@ -38,6 +38,8 @@ public:
   static const int TRANSFORM_IN_DAYS;
   //' integer for first lactation
   static const int FIRST_LACTATION;
+  //' missing value code as double
+  static const double DOUBLE_NA;
 
 
 };
