@@ -23,3 +23,5 @@ const int CONSTANTS::INT_NA = -9999;
 const unsigned CONSTANTS::ITB_NR_LENGTH = 19;
 //' length of breed,country and sex code in ITB-NR
 const unsigned CONSTANTS::BREED_COUNTRY_SEX_CODE_LENGTH = 7;
+//' string corresponding to firstYearData
+const char CONSTANTS::FIRSTYEARDATA[] = "1994";

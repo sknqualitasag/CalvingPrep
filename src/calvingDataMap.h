@@ -51,6 +51,8 @@ public:
   int verifySpermaTraitment(string spermatraitmentstr, string idstr);
   string verifyAnimNr(string animIDstr, string idstr);
   string getVerifiedITBNr(string itb, string indstr);
+  // functions for second verification
+  date verifyCalvingDate(date calvingdate, string idstr);
 
 
 

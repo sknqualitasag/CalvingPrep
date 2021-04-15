@@ -24,6 +24,8 @@ public:
   static const unsigned ITB_NR_LENGTH;
   //' length of breed,country and sex code in ITB-NR
   static const unsigned BREED_COUNTRY_SEX_CODE_LENGTH;
+  //' string corresponding to firstYearData
+  static const char FIRSTYEARDATA[];
 
 
 };

@@ -115,6 +115,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     string psRunningMode = getRunningMode();
 
 
+    // First verification for fields as colData as well as declaration
     simpleDebug("inputData()_getVerifiedTvdNr of dam",colData[0]);
     string mstr = getVerifiedTvdNr(colData[0]);
     string mbreedstr = verifyBreed(colData[1],mstr);
@@ -168,6 +169,10 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     string sireIDstr = verifyAnimNr(colData[36], fstr);
     simpleDebug("inputData()_Call contructor date for deathcalfdate", idstr);
     date deathcalfdate = date(colData[37], lastYearToConsiderData, psRunningMode, idstr);
+
+    // Second verification of declared fields
+    calvingdate = verifyCalvingDate(calvingdate,idstr);
+
 
   }
 
@@ -608,5 +613,27 @@ string calvingDataMap::getVerifiedITBNr(string itb, string indstr){
   }
 
   return itb;
+
+}
+
+
+date calvingDataMap::verifyCalvingDate(date calvingdate, string idstr){
+
+  if (calvingdate.YearStr < CONSTANTS::FIRSTYEARDATA){
+
+    simpleDebug("verifyCalvingDate()_Setting calvingdate to missing, because calvingdate.YearStr "+calvingdate.YearStr+" < CONSTANTS::FIRSTYEARDATA "+CONSTANTS::FIRSTYEARDATA, idstr);
+
+    calvingdate.DayInt = CONSTANTS::INT_NA;
+    calvingdate.DayStr = CONSTANTS::STRING_NA;
+    calvingdate.MonthInt = CONSTANTS::INT_NA;
+    calvingdate.MonthStr = CONSTANTS::STRING_NA;
+    calvingdate.YearInt = CONSTANTS::INT_NA;
+    calvingdate.YearStr = CONSTANTS::STRING_NA;
+    calvingdate.isValid = false;
+  }else{
+    simpleDebug("verifyCalvingDate()_Plausible calvingdate", idstr);
+  }
+
+  return calvingdate;
 
 }
