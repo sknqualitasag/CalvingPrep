@@ -159,6 +159,9 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
   cout<<"*****************************************************************"<< endl;
 
 
+  unsigned sexBirthNotRead=0;
+
+
   string sep(";");
   string inputStr;
   unsigned lineNumber=0, numCols, rec=0;
@@ -292,6 +295,14 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
       simpleDebug("inputData()_animal in dummySires so continue", idstr);
       continue;
     }
+
+
+    if(idsexstr == CONSTANTS::STRING_NA){
+      simpleDebug("inputData()_Animal is not read in calvingDataMap, because sexbirth is missing", idstr);
+      sexBirthNotRead++;
+      continue;
+    }
+
 
 
   }
