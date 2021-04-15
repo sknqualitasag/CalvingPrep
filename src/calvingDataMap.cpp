@@ -182,8 +182,9 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
 
     // Calculate a new field in dependency with other already declared fields
     long int gestationLengthInDays = calculateGL(insemmotherstartdate, insemmotherenddate, calvingdate, idstr);
+    long int calvingAgeInDays =  calculateCalvingAge(calvingdate, mbirthdate, lnint, idstr);
 
-    // Third verification of declared fields
+    // Third verification of calculate fields
     gestationLengthInDays = verifyGL(gestationLengthInDays, idstr);
 
   }
@@ -776,5 +777,48 @@ long int calvingDataMap::verifyGL(long int gestationLength, string idstr){
     simpleDebug("verifyGL()_gestationLength "+to_string(gestationLength)+" is in the range 260>=x<=310", idstr);
     return gestationLength;
   }
+
+}
+
+
+long int calvingDataMap::verifyCalvingAge(long int calvingAgeInDays, int laktNrDamInt, string idstr){
+
+  int ug = CONSTANTS::MIN_FIRST_AGE_AT_CALVING + (CONSTANTS::MIN_CALVING_INTERVAL*(laktNrDamInt-CONSTANTS::FIRST_LACTATION));
+  int og = CONSTANTS::MAX_FIRST_AGE_AT_CALVING + (CONSTANTS::MAX_CALVING_INTERVAL*(laktNrDamInt-CONSTANTS::FIRST_LACTATION));
+
+  simpleDebug("verifyCalvingAge()_calvingAgeInDays "+to_string(calvingAgeInDays)+" with lactationnumber "+to_string(laktNrDamInt)+" should be check with ug: "+to_string(ug)+" and og:"+to_string(og), idstr);
+
+  if(calvingAgeInDays >=ug*CONSTANTS::TRANSFORM_IN_DAYS && calvingAgeInDays <= og*CONSTANTS::TRANSFORM_IN_DAYS){
+    simpleDebug("verifyCalvingAge()_calvingAgeInDays "+to_string(calvingAgeInDays)+" is verified", idstr);
+    return calvingAgeInDays;
+
+  }
+  else{
+    simpleDebug("verifyCalvingAge()_calvingAgeInDays is bellow the ug and higher og, so calvingAgeInDays is set to missing", idstr);
+    return CONSTANTS::INT_NA;
+  }
+}
+
+
+long int calvingDataMap::calculateCalvingAge(date calvingdate, date mbirthdate, int lnint, string idstr){
+
+  long int calvingAge;
+
+  if(calvingdate.DateInDays != CONSTANTS::INT_NA && mbirthdate.DateInDays != CONSTANTS::INT_NA){
+    calvingAge = calvingdate.DateInDays - mbirthdate.DateInDays;
+    if(lnint != CONSTANTS::INT_NA){
+      simpleDebug("calculateCalvingAge()_calvingdate, mbirthdate and lactationnumber are available, so we can calculate calvingAge", idstr);
+      calvingAge = verifyCalvingAge(calvingAge, lnint, idstr);
+    }else{
+      simpleDebug("calculateCalvingAge()_calvingdate, mbirthdate are available, however lactationnumber not, so calvingAge is set to missing", idstr);
+      calvingAge = CONSTANTS::INT_NA;
+    }
+  }
+  else{
+    simpleDebug("calculateCalvingAge()_calvingdate and mbirthdate are not available, so calvingAge is set to missing", idstr);
+    calvingAge = CONSTANTS::INT_NA;
+  }
+
+  return calvingAge;
 
 }

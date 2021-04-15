@@ -25,3 +25,15 @@ const unsigned CONSTANTS::ITB_NR_LENGTH = 19;
 const unsigned CONSTANTS::BREED_COUNTRY_SEX_CODE_LENGTH = 7;
 //' string corresponding to firstYearData
 const char CONSTANTS::FIRSTYEARDATA[] = "1994";
+//' integer for min first age at calving is 17 months
+const int CONSTANTS::MIN_FIRST_AGE_AT_CALVING = 17;
+//' integer for max first age at calving is 50 months
+const int CONSTANTS::MAX_FIRST_AGE_AT_CALVING = 50;
+//' integer for min first age at calving is 11 months
+const int CONSTANTS::MIN_CALVING_INTERVAL = 11;
+//' integer for max first age at calving is 18 months
+const int CONSTANTS::MAX_CALVING_INTERVAL = 18;
+//' integer for transforming in days
+const int CONSTANTS::TRANSFORM_IN_DAYS = 31;
+//' integer for first lactation
+const int CONSTANTS::FIRST_LACTATION = 1;

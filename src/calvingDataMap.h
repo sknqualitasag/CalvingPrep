@@ -60,8 +60,11 @@ public:
   string setBreedComb(string mbreedstr, string fbreedstr, string idstr);
   // Calculate a new field in dependency with other already declared fields
   long int calculateGL(date insemmotherstartdate, date insemmotherenddate, date calvingdate, string idstr);
-  // Third verification of declared fields
+  long int calculateCalvingAge(date calvingdate, date mbirthdate, int lnint, string idstr);
+  // Third verification of calculate fields
   long int verifyGL(long int gestationLength, string idstr);
+  long int verifyCalvingAge(long int calvingAgeInDays, int laktNrDamInt, string idstr);
+
 
 
 

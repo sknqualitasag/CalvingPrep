@@ -26,6 +26,18 @@ public:
   static const unsigned BREED_COUNTRY_SEX_CODE_LENGTH;
   //' string corresponding to firstYearData
   static const char FIRSTYEARDATA[];
+  //' integer for min first age at calving is 17 months
+  static const int MIN_FIRST_AGE_AT_CALVING;
+  //' integer for max first age at calving is 50 months
+  static const int MAX_FIRST_AGE_AT_CALVING;
+  //' integer for min first age at calving is 11 months
+  static const int MIN_CALVING_INTERVAL;
+  //' integer for max first age at calving is 18 months
+  static const int MAX_CALVING_INTERVAL;
+  //' integer for transforming in days
+  static const int TRANSFORM_IN_DAYS;
+  //' integer for first lactation
+  static const int FIRST_LACTATION;
 
 
 };
