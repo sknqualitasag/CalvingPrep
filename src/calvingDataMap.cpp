@@ -712,7 +712,7 @@ string calvingDataMap::setBreedComb(string mbreedstr, string fbreedstr, string i
     simpleDebug("setBreedComb()_Setting breedCombstr (father * mother) " + breedCombstr, idstr);
   }else{
     breedCombstr = CONSTANTS::STRING_NA;
-    simpleDebug("setBreedComb()_Setting breedCombstr to missing, because mother- or father breed is missing", idstr);
+    simpleDebug("setBreedComb()_Setting breedCombstr to missing, because fatherbreed ("+fbreedstr+") or motherbreed ("+mbreedstr+") is missing", idstr);
   }
 
   return breedCombstr;
