@@ -273,7 +273,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
 
     rec++;
     if(rec%100000==0){
-      cout<<rec<<" records processed \r"
+      cout<<rec<<" records processed \r";
       cout.flush();
     }
 
