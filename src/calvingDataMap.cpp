@@ -180,6 +180,10 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     simpleDebug("inputData()_after setSourceVMS, new field sourceMKS is "+to_string(sourceMKS),idstr);
     string breedCombstr = setBreedComb(mbreedstr, fbreedstr, idstr);
 
+    // Calculate a new field in dependency with other already declared fields
+    long int gestationLengthInDays = calculateGL(insemmotherstartdate, insemmotherenddate, calvingdate, idstr);
+
+
   }
 
 }
@@ -716,5 +720,46 @@ string calvingDataMap::setBreedComb(string mbreedstr, string fbreedstr, string i
   }
 
   return breedCombstr;
+
+}
+
+
+long int calvingDataMap::calculateGL(date insemmotherstartdate, date insemmotherenddate, date calvingdate, string idstr){
+
+  long int gestationLength;
+
+  if(insemmotherstartdate.DateInDays == insemmotherenddate.DateInDays){
+    if(insemmotherstartdate.isValid){
+      if(calvingdate.DateInDays > 0 && insemmotherstartdate.DateInDays > 0 && insemmotherstartdate.DateInDays < calvingdate.DateInDays){
+        gestationLength = calvingdate.DateInDays - insemmotherstartdate.DateInDays;
+        simpleDebug("calculateGL()_Calculate gestationLength "+to_string(gestationLength)+" (case insemmotherstartdate=insemmotherenddate, insemmotherstartdate.isValid)", idstr);
+      } else {
+        simpleDebug("calculateGL()_Setting gestationLength to missing,  (case insemmotherstartdate=insemmotherenddate, insemmotherstartdate.isValid, but not the conditions calvingdate.DateInDays > 0 && insemmotherstartdate.DateInDays > 0 && insemmotherstartdate.DateInDays < calvingdate.DateInDays)", idstr);
+        gestationLength = CONSTANTS::INT_NA;
+      }
+    } else{
+      simpleDebug("calculateGL()_Setting gestationLength to missing,  (case insemmotherstartdate=insemmotherenddate, but insemmotherstartdate.isValid false)", idstr);
+      gestationLength = CONSTANTS::INT_NA;
+    }
+  }
+  else if(!insemmotherenddate.isValid){
+    if(calvingdate.DateInDays > 0 && insemmotherstartdate.DateInDays > 0 && insemmotherstartdate.DateInDays < calvingdate.DateInDays){
+      gestationLength = calvingdate.DateInDays - insemmotherstartdate.DateInDays;
+      simpleDebug("calculateGL()_Calculate gestationLength "+to_string(gestationLength)+" (case !insemmotherenddate.isValid)", idstr);
+    } else {
+      simpleDebug("calculateGL()_Setting gestationLength to missing,  (case !insemmotherenddate.isValid, but not the conditions calvingdate.DateInDays > 0 && insemmotherstartdate.DateInDays > 0 && insemmotherstartdate.DateInDays < calvingdate.DateInDays)", idstr);
+      gestationLength = CONSTANTS::INT_NA;
+    }
+  }
+  else if(!insemmotherstartdate.isValid){
+    simpleDebug("calculateGL()_Setting gestationLength to missing,  (case !insemmotherstartdate.isValid)", idstr);
+    gestationLength = CONSTANTS::INT_NA;
+  }
+  else{
+    simpleDebug("calculateGL()_Setting gestationLength to missing", idstr);
+    gestationLength = CONSTANTS::INT_NA;
+  }
+
+  return gestationLength;
 
 }

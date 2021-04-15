@@ -58,6 +58,9 @@ public:
   // function for setting a new field in dependency to other already declared fields
   bool setSourceVMS(string mandatestr, string idstr);
   string setBreedComb(string mbreedstr, string fbreedstr, string idstr);
+  // Calculate a new field in dependency with other already declared fields
+  long int calculateGL(date insemmotherstartdate, date insemmotherenddate, date calvingdate, string idstr);
+
 
 
 
