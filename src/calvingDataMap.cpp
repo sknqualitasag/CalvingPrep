@@ -160,6 +160,9 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
 
 
   unsigned sexBirthNotRead=0;
+  unsigned calvingMonthNotRead=0;
+  unsigned calvingYearNotRead=0;
+
 
 
   string sep(";");
@@ -302,6 +305,17 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
       sexBirthNotRead++;
       continue;
     }
+    if(calvingdate.MonthStr == CONSTANTS::STRING_NA){
+      simpleDebug("inputData()_Animal is not read in calvingDataMap, because calvingdate.MonthStr is missing", idstr);
+      calvingMonthNotRead++;
+      continue;
+    }
+    if(calvingdate.YearStr == CONSTANTS::STRING_NA){
+      simpleDebug("inputData()_Animal is not read in calvingDataMap, because calvingdate.YearStr is missing", idstr);
+      calvingYearNotRead++;
+      continue;
+    }
+
 
 
 
