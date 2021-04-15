@@ -53,6 +53,7 @@ public:
   string getVerifiedITBNr(string itb, string indstr);
   // functions for second verification
   date verifyCalvingDate(date calvingdate, string idstr);
+  date verifyInsemStart(date insemmotherstartdate, string idstr);
 
 
 

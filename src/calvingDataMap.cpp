@@ -172,6 +172,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
 
     // Second verification of declared fields
     calvingdate = verifyCalvingDate(calvingdate,idstr);
+    insemmotherstartdate = verifyInsemStart(insemmotherstartdate, idstr);
 
 
   }
@@ -635,5 +636,27 @@ date calvingDataMap::verifyCalvingDate(date calvingdate, string idstr){
   }
 
   return calvingdate;
+
+}
+
+
+date calvingDataMap::verifyInsemStart(date insemmotherstartdate, string idstr){
+
+  if(insemmotherstartdate.YearStr < CONSTANTS::FIRSTYEARDATA-2){
+
+    simpleDebug("verifyInsemStart()_Setting insemmotherstartdate to missing, because insemmotherstartdate.YearStr "+insemmotherstartdate.YearStr+" < CONSTANTS::FIRSTYEARDATA-2 "+(CONSTANTS::FIRSTYEARDATA-2), idstr);
+
+    insemmotherstartdate.DayInt = CONSTANTS::INT_NA;
+    insemmotherstartdate.DayStr = CONSTANTS::STRING_NA;
+    insemmotherstartdate.MonthInt = CONSTANTS::INT_NA;
+    insemmotherstartdate.MonthStr = CONSTANTS::STRING_NA;
+    insemmotherstartdate.YearInt  = CONSTANTS::INT_NA;
+    insemmotherstartdate.YearStr = CONSTANTS::STRING_NA;
+    insemmotherstartdate.isValid = false;
+  }else{
+    simpleDebug("verifyInsemStart()_Plausible insemmotherstartdate", idstr);
+  }
+
+  return insemmotherstartdate;
 
 }
