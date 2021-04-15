@@ -689,6 +689,8 @@ date calvingDataMap::verifyInsemEnd(date insemmotherenddate, string idstr){
 
 bool calvingDataMap::setSourceVMS(string mandatestr, string idstr){
 
+  simpleDebug("setSourceVMS()_mandatestr is "+mandatestr, idstr);
+
   if(mandatestr == "3230"){
     simpleDebug("setSourceVMS()_Setting source VMS to true, because mandatestr VMS is 3230 = "+mandatestr, idstr);
     return true;
