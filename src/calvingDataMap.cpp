@@ -176,12 +176,11 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
   unsigned ETNotRead=0;
 
 
-
-
   string sep(";");
   string inputStr;
   unsigned lineNumber=0, numCols, rec=0;
   Tokenizer colData;
+  // Start reading line by line
   while (getline(datafile,inputStr)){
     string newInputStr = colData.processSemikolon(inputStr);
     cout<<"newInputStr: "<<newInputStr<<endl;
@@ -313,76 +312,92 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     }
 
 
+    // Following field has to be available, otherwise the record is removed
+    // idsexstr is used to build a fix effect
     if(idsexstr == CONSTANTS::STRING_NA){
       simpleDebug("inputData()_Animal is not read in calvingDataMap, because sexbirth is missing", idstr);
       sexBirthNotRead++;
       continue;
     }
+    // calvingdate.MonthStr is used to build a fix effect
     if(calvingdate.MonthStr == CONSTANTS::STRING_NA){
       simpleDebug("inputData()_Animal is not read in calvingDataMap, because calvingdate.MonthStr is missing", idstr);
       calvingMonthNotRead++;
       continue;
     }
+    // calvingdate.YearStr is used to build a fix effect
     if(calvingdate.YearStr == CONSTANTS::STRING_NA){
       simpleDebug("inputData()_Animal is not read in calvingDataMap, because calvingdate.YearStr is missing", idstr);
       calvingYearNotRead++;
       continue;
     }
+    // lnint is used to build a fix effect
     if(lnint == CONSTANTS::INT_NA){
       simpleDebug("inputData()_Animal is not read in calvingDataMap, because lnint is missing", idstr);
       lacationNumberNotRead++;
       continue;
     }
+    // calvingAgeInDays is used to build a fix effect
     if(calvingAgeInDays == CONSTANTS::INT_NA){
       simpleDebug("inputData()_Animal is not read in calvingDataMap, because calvingAgeInDays is missing", idstr);
       calvingAgeInDaysNotRead++;
       continue;
     }
+    // breedCombstr is used to build a fix effect
     if(breedCombstr == CONSTANTS::STRING_NA){
       simpleDebug("inputData()_Animal is not read in calvingDataMap, because breedCombstr is missing", idstr);
       breedCombNotRead++;
       continue;
     }
+    // herdstr is used to build a random effect
     if(herdstr == CONSTANTS::STRING_NA){
       simpleDebug("inputData()_Animal is not read in calvingDataMap, because herdstr is missing", idstr);
       herdNotRead++;
       continue;
     }
+    // fstr is used to build a random effect for the sire model
     if(fstr == CONSTANTS::STRING_NA){
       simpleDebug("inputData()_Animal is not read in calvingDataMap, because fstr is missing", idstr);
       sireNotRead++;
       continue;
     }
+    // mandatestr is used to define the trait
     if(mandatestr == CONSTANTS::STRING_NA){
       simpleDebug("inputData()_Animal is not read in calvingDataMap, because mandatestr is missing", idstr);
       mandantNotRead++;
       continue;
     }
+    // calvingscoreint is a trait
     if(calvingscoreint == CONSTANTS::INT_NA){
       simpleDebug("inputData()_Animal is not read in calvingDataMap, because calvingscoreint is missing", idstr);
       calvingScoreNotRead++;
       continue;
     }
+    // idbirthweightdbl is a trait
     if(idbirthweightdbl == CONSTANTS::DOUBLE_NA){
       simpleDebug("inputData()_Animal is not read in calvingDataMap, because idbirthweightdbl is missing", idstr);
       birthweightNotRead++;
       continue;
     }
+    // stillbirthint is a trait
     if(stillbirthint == CONSTANTS::INT_NA){
       simpleDebug("inputData()_Animal is not read in calvingDataMap, because stillbirthint is missing", idstr);
       stillbirthNotRead++;
       continue;
     }
+    // gestationLengthInDays is a trait
     if(gestationLengthInDays == CONSTANTS::INT_NA){
       simpleDebug("inputData()_Animal is not read in calvingDataMap, because gestationLengthInDays is missing", idstr);
       gestationLenghtNotRead++;
       continue;
     }
+    // abortint not considered
     if(abortint == 1){
       simpleDebug("inputData()_Animal is not read in calvingDataMap, because it is an abortint", idstr);
       AbortNotRead++;
       continue;
     }
+    // ETint not considered
     if(ETint == 1){
       simpleDebug("inputData()_Animal is not read in calvingDataMap, because it is an ETint", idstr);
       ETNotRead++;
