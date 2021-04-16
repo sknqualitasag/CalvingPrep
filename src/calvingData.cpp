@@ -148,6 +148,15 @@ calvingData::calvingData(string idstr, string idbreedstr, string mstr, string mb
   gestationLengthInDays = pgestationLengthInDays;
   constructorDebug("constructor calvingData()_gestationLengthInDays " + to_string(gestationLengthInDays), idStr, psRunningMode);
 
+  calvingAgeInDays = pcalvingAgeInDays;
+  constructorDebug("constructor calvingData()_calvingAgeInDays " + to_string(calvingAgeInDays), idStr, psRunningMode);
+
+  calvingIntervalInDays = pcalvingIntervalInDays;
+  constructorDebug("constructor calvingData()_calvingIntervalInDays " + to_string(calvingIntervalInDays), idStr, psRunningMode);
+
+  firstCalvingAgeInDays = pfirstCalvingAgeInDays;
+  constructorDebug("constructor calvingData()_firstCalvingAgeInDayss " + to_string(firstCalvingAgeInDays), idStr, psRunningMode);
+
 
 }
 
