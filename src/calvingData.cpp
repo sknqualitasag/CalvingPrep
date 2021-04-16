@@ -155,10 +155,17 @@ calvingData::calvingData(string idstr, string idbreedstr, string mstr, string mb
   constructorDebug("constructor calvingData()_calvingIntervalInDays " + to_string(calvingIntervalInDays), idStr, psRunningMode);
 
   firstCalvingAgeInDays = pfirstCalvingAgeInDays;
-  constructorDebug("constructor calvingData()_firstCalvingAgeInDayss " + to_string(firstCalvingAgeInDays), idStr, psRunningMode);
+  constructorDebug("constructor calvingData()_firstCalvingAgeInDays " + to_string(firstCalvingAgeInDays), idStr, psRunningMode);
 
   sourceBeefOrDairyStr = sourceBeefOrDairystr;
   constructorDebug("constructor calvingData()_sourceBeefOrDairyStr " + sourceBeefOrDairyStr, idStr, psRunningMode);
+
+  spermaTraitmentInt = spermatraitmentint;
+  constructorDebug("constructor calvingData()_spermatraitmentInt " + to_string(spermaTraitmentInt), idStr, psRunningMode);
+
+  recordTypInsemInt = recordtypinsemint;
+  constructorDebug("constructor calvingData()_recordTypInsemInt " + to_string(recordTypInsemInt), idStr, psRunningMode);
+
 
 }
 
