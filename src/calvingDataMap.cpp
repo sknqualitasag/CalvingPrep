@@ -165,6 +165,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
   unsigned lacationNumberNotRead=0;
   unsigned calvingAgeInDaysNotRead=0;
   unsigned breedCombNotRead=0;
+  unsigned sourceBeefOrDairyNotRead=0;
   unsigned herdNotRead=0;
   unsigned sireNotRead=0;
   unsigned mandantNotRead=0;
@@ -275,6 +276,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     bool sourceMKS = setSourceVMS(mandatestr, idstr);
     simpleDebug("inputData()_after setSourceVMS, new field sourceMKS is "+to_string(sourceMKS),idstr);
     string breedCombstr = setBreedComb(mbreedstr, fbreedstr, idstr);
+    string sourceBeefOrDairystr = setSourceBeefOrDairy(mbreedstr, idstr);
 
     // Calculate a new field in dependency with other already declared fields
     long int gestationLengthInDays = calculateGL(insemmotherstartdate, insemmotherenddate, calvingdate, idstr);
@@ -347,6 +349,12 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     if(breedCombstr == CONSTANTS::STRING_NA){
       simpleDebug("inputData()_Animal is not read in calvingDataMap, because breedCombstr is missing", idstr);
       breedCombNotRead++;
+      continue;
+    }
+    // sourceBeefOrDairystr is used to define the trait
+    if(sourceBeefOrDairystr == CONSTANTS::STRING_NA){
+      simpleDebug("inputData()_Animal is not read in calvingDataMap, because sourceBeefOrDairystr is missing", idstr);
+      sourceBeefOrDairyNotRead++;
       continue;
     }
     // herdstr is used to build a random effect
@@ -946,6 +954,88 @@ string calvingDataMap::setBreedComb(string mbreedstr, string fbreedstr, string i
   }
 
   return breedCombstr;
+
+}
+
+
+string calvingDataMap::setSourceBeefOrDairy(string mbreedstr, string idstr){
+
+  if(mbreedstr == "KR"){
+    simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
+    return "beef";
+  }
+  else if(mbreedstr == "SI"){
+    simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
+    return "beef";
+  }
+  else if(mbreedstr == "SF"){
+    simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to dairy", idstr);
+    return "dairy";
+  }
+  else if(mbreedstr == "HO"){
+    simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to dairy", idstr);
+    return "dairy";
+  }
+  else if(mbreedstr == "BV"){
+    simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to dairy", idstr);
+    return "dairy";
+  }
+  else if(mbreedstr == "OB"){
+    simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
+    return "beef";
+  }
+  else if(mbreedstr == "JE"){
+    simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to dairy", idstr);
+    return "dairy";
+  }
+  else if(mbreedstr == "MO"){
+    simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to dairy", idstr);
+    return "dairy";
+  }
+  else if(mbreedstr == "AN"){
+    simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
+    return "beef";
+  }
+  else if(mbreedstr == "AU"){
+    simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
+    return "beef";
+  }
+  else if(mbreedstr == "CH"){
+    simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
+    return "beef";
+  }
+  else if(mbreedstr == "LM"){
+    simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
+    return "beef";
+  }
+  else if(mbreedstr == "HH"){
+    simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
+    return "beef";
+  }
+  else if(mbreedstr == "AL"){
+    simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
+    return "beef";
+  }
+  else if(mbreedstr == "BD"){
+    simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
+    return "beef";
+  }
+  else if(mbreedstr == "SL"){
+    simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
+    return "beef";
+  }
+  else if(mbreedstr == "PI"){
+    simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
+    return "beef";
+  }
+  else if(mbreedstr == "HR"){
+    simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
+    return "beef";
+  }
+  else{
+    simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to missing", idstr);
+    return CONSTANTS::STRING_NA;
+  }
 
 }
 
