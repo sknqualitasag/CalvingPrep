@@ -139,6 +139,15 @@ calvingData::calvingData(string idstr, string idbreedstr, string mstr, string mb
   constructorDebug("constructor calvingData()_insemmotherenddate.DateInDays " + to_string(insemmotherenddate.DateInDays), idStr, psRunningMode);
   constructorDebug("constructor calvingData()_insemmotherenddate.isValid " + to_string(insemmotherenddate.isValid), idStr, psRunningMode);
 
+  breedCombStr = breedCombstr;
+  constructorDebug("constructor calvingData()_breedCombStr " + breedCombStr, idStr, psRunningMode);
+
+  sourceMKS = psourceMKS;
+  constructorDebug("constructor calvingData()_sourceMKS " + to_string(sourceMKS), idStr, psRunningMode);
+
+  gestationLengthInDays = pgestationLengthInDays;
+  constructorDebug("constructor calvingData()_gestationLengthInDays " + to_string(gestationLengthInDays), idStr, psRunningMode);
+
 
 }
 
