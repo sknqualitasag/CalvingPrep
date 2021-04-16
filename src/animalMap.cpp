@@ -36,6 +36,12 @@ void animalMap::addAnimal(calvingData *ptr){
 
   animal *aptr = new animal(ptr);
 
+  map<string, animal*>::iterator ait = this->find(ptr->idStr);
+  if(ait == this->end()){
+    (*this)[ptr->idStr]= aptr;
+
+    constructorDebug("addAnimal()_Build animalMap ", aptr->idStr, aptr->psRunningModeStr);
+  }
 
 };
 
