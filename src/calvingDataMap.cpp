@@ -147,6 +147,20 @@ string calvingDataMap::getFileName(unsigned i, string name){
 }
 
 
+void calvingDataMap::outputDebug(string message, string tvdid){
+  string localRunningMode = getRunningMode();
+  if(localRunningMode == CONSTANTS::RUNNING_DEBUGALL){
+    for(map<string,calvingData*>::iterator it = this->begin();it != this->end(); it++){
+      calvingData *cPtr =(*it).second;
+      if(cPtr->idStr == tvdid){
+        //here Develop-Output-Logfile
+        LOGD <<"Message "<<message<<" of animal "<<tvdid;
+      }
+    }
+  }
+}
+
+
 void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYearToConsiderData){
 
   ifstream datafile(fname.c_str());
@@ -178,6 +192,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
   unsigned ETNotRead=0;
   unsigned inconsistentRepeatedRecs1=0;
   unsigned numconsistentRecsButMissingIDs=0;
+
 
 
 
@@ -441,7 +456,6 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
        (*this)[key] = ptr;
        outputDebug("inputCalvingData()_The key " + key + " is in calvingDataMap before checking if idStr is available", ptr->idStr);
 
-
        if(ptr->idStr != CONSTANTS::STRING_NA) {
          outputDebug("inputCalvingData()_idStr " + ptr->idStr + " is available and will be setting in offspringIds", ptr->idStr);
 
@@ -459,10 +473,9 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
          }
        }
        else{
+         // In case of stillbirth, mostly idStr is missing
          numconsistentRecsButMissingIDs++;
        }
-
-
 
       }
 
@@ -1248,18 +1261,4 @@ long int calvingDataMap::calculateFirstCalvingAge(date mbirthdate, date firstcal
 
   return firstCalvingAge;
 
-}
-
-
-void calvingDataMap::outputDebug(string message, string tvdid){
-  string localRunningMode = getRunningMode();
-  if(localRunningMode == CONSTANTS::RUNNING_DEBUGALL){
-    for(map<string,calvingData*>::iterator it = this->begin();it != this->end(); it++){
-      calvingData *cPtr =(*it).second;
-      if(cPtr->idStr == tvdid){
-        //here Develop-Output-Logfile
-        LOGD <<"Message "<<message<<" of animal "<<tvdid;
-      }
-    }
-  }
 }
