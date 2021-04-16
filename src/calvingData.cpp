@@ -98,6 +98,21 @@ calvingData::calvingData(string idstr, string idbreedstr, string mstr, string mb
   stillbirthInt = stillbirthint;
   constructorDebug("constructor calvingData()_stillbirthInt " + to_string(stillbirthInt), idStr, psRunningMode);
 
+  prematurityInt = prematurebirthint;
+  constructorDebug("constructor calvingData()_prematurityInt " + to_string(prematurityInt), idStr, psRunningMode);
+
+  geneticDamStr = geneticmotherstr;
+  constructorDebug("constructor calvingData()_geneticDamStr " + geneticDamStr, idStr, psRunningMode);
+
+  sireStr = fstr;
+  constructorDebug("constructor calvingData()_sireStr " + sireStr, idStr, psRunningMode);
+
+  sireBreedStr = fbreedstr;
+  constructorDebug("constructor calvingData()_sireBreedStr " + sireBreedStr, idStr, psRunningMode);
+
+  herdStr = herdstr;
+  constructorDebug("constructor calvingData()_herdStr " + herdStr, idStr, psRunningMode);
+
 
 }
 
