@@ -157,6 +157,8 @@ calvingData::calvingData(string idstr, string idbreedstr, string mstr, string mb
   firstCalvingAgeInDays = pfirstCalvingAgeInDays;
   constructorDebug("constructor calvingData()_firstCalvingAgeInDayss " + to_string(firstCalvingAgeInDays), idStr, psRunningMode);
 
+  sourceBeefOrDairyStr = sourceBeefOrDairystr;
+  constructorDebug("constructor calvingData()_sourceBeefOrDairyStr " + sourceBeefOrDairyStr, idStr, psRunningMode);
 
 }
 

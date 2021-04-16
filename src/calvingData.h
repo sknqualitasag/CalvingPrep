@@ -23,6 +23,7 @@ public:
   long int gestationLengthInDays, calvingAgeInDays, calvingIntervalInDays, firstCalvingAgeInDays;
   string idStr, idBreedStr, damStr, damBreedStr, mgsBreedStr, idSexStr, multipleStr;
   string geneticDamStr, sireStr, sireBreedStr, herdStr, mandateStr, breedCombStr;
+  string sourceBeefOrDairyStr;
   date mbirthdate, calvingdate, insemmotherstartdate, insemmotherenddate;
   double birthWeightDbl;
   bool sourceMKS;
