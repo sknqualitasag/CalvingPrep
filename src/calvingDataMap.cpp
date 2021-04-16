@@ -420,6 +420,17 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     }
 
 
+    // Calling constructor calvingData
+    calvingData *ptr = new calvingData (idstr, idbreedstr, mstr, mbreedstr, mvbreedstr, idsexstr,\
+                                        mbirthdate, calvingdate, idbirthweightdbl, multiplestr,\
+                                        calvingscoreint, transformedcalvingscoreint, stillbirthint,\
+                                        prematurebirthint, geneticmotherstr, fstr, fbreedstr, herdstr,
+                                        mandatestr, lnint, insemmotherstartdate, insemmotherenddate,\
+                                        psRunningMode, breedCombstr, sourceMKS, gestationLengthInDays,\
+                                        calvingAgeInDays, calvingIntervalInDays, firstCalvingAgeInDays,\
+                                        sourceBeefOrDairystr, spermatraitmentint,recordtypinsemint,\
+                                        animIDstr, itbIDstr, damIDstr, sireIDstr);
+
 
 
 
