@@ -431,9 +431,13 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
                                         sourceBeefOrDairystr, spermatraitmentint,recordtypinsemint,\
                                         animIDstr, itbIDstr, damIDstr, sireIDstr);
 
-
-
-
+    // Building cMap
+     string key = ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr;
+     map<string, calvingData*>::iterator cit = this->find(key);
+     if(cit == this->end()){
+       (*this)[key] = ptr;
+       outputDebug("inputCalvingData()_The key " + key + " is in calvingDataMap before checking if idStr is available", ptr->idStr);
+      }
 
 
   }
@@ -1217,4 +1221,18 @@ long int calvingDataMap::calculateFirstCalvingAge(date mbirthdate, date firstcal
 
   return firstCalvingAge;
 
+}
+
+
+void calvingDataMap::outputDebug(string message, string tvdid){
+  string localRunningMode = getRunningMode();
+  if(localRunningMode == CONSTANTS::RUNNING_DEBUGALL){
+    for(map<string,calvingData*>::iterator it = this->begin();it != this->end(); it++){
+      calvingData *cPtr =(*it).second;
+      if(cPtr->idStr == tvdid){
+        //here Develop-Output-Logfile
+        LOGD <<"Message "<<message<<" of animal "<<tvdid;
+      }
+    }
+  }
 }

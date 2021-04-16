@@ -26,6 +26,7 @@ public:
   void setRunningMode(string psRunningMode);
   string getRunningMode();
   void simpleDebug(string message, string tvdid);
+  void outputDebug(string message, string tvdid);
   // running mode indicating whether debug information should be printed or not
   string runningMode;
 
