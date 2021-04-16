@@ -192,6 +192,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
   unsigned ETNotRead=0;
   unsigned inconsistentRepeatedRecs1=0;
   unsigned numconsistentRecsButMissingIDs=0;
+  unsigned numRepRecs=0;
 
 
 
@@ -481,11 +482,35 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
      }
      else{
        cout<<"The key "<<key<<" is already in Cmap, so not taken in account."<<endl;
+       numRepRecs++;
      }
 
   }
   datafile.close();
 
+
+  cout<<"\nNumber of records in raw data:                                                          "<<rec<<endl;
+  cout<<"Number of consistent duplicate records or multiple birth (same dam, same calvingdate).    "<<numRepRecs<<endl;
+  cout<<"Number of consistent records but a missing ID.                                            "<<numconsistentRecsButMissingIDs<<endl;
+  cout<<"Number of consistent offspring Ids occuring more than once in "<<fname<<" :               "<<inconsistentRepeatedRecs1<<endl;
+  cout<<"Number of animal record with missing sex: "<<sexBirthNotRead<<endl;
+  cout<<"Number of animal record with missing calvingMonth: "<<calvingMonthNotRead<<endl;
+  cout<<"Number of animal record with missing calvingYear: "<<calvingYearNotRead<<endl;
+  cout<<"Number of animal record with missing lactationNumber: "<<lacationNumberNotRead<<endl;
+  cout<<"Number of animal record with missing calvingAgeInDays: "<<calvingAgeInDaysNotRead<<endl;
+  cout<<"Number of animal record with missing breedComb: "<<breedCombNotRead<<endl;
+  cout<<"Number of animal record with missing sourceBeefOrDairy: "<<sourceBeefOrDairyNotRead<<endl;
+  cout<<"Number of animal record with missing herd: "<<herdNotRead<<endl;
+  cout<<"Number of animal record with missing sire: "<<sireNotRead<<endl;
+  cout<<"Number of animal record with missing dam: "<<damNotRead<<endl;
+  cout<<"Number of animal record with missing mandant: "<<mandantNotRead<<endl;
+  cout<<"Number of animal record with missing calvingScore: "<<calvingScoreNotRead<<endl;
+  cout<<"Number of animal record with missing birthweight: "<<birthweightNotRead<<endl;
+  cout<<"Number of animal record with missing stillbirth: "<<stillbirthNotRead<<endl;
+  cout<<"Number of animal record with missing gestationLength: "<<gestationLenghtNotRead<<endl;
+  cout<<"Number of animal record as abort: "<<AbortNotRead<<endl;
+  cout<<"Number of animal record as ET: "<<ETNotRead<<endl;
+  cout<<"\nNumber of records which are stored in Cmap:                                              "<<this->size()<<endl;
 
 
 }
