@@ -89,6 +89,14 @@ calvingData::calvingData(string idstr, string idbreedstr, string mstr, string mb
   multipleStr = multiplestr;
   constructorDebug("constructor calvingData()_multipleStr " + multipleStr, idStr, psRunningMode);
 
+  calvingScoreInt = calvingscoreint;
+  constructorDebug("constructor calvingData()_calvingScoreInt " + to_string(calvingScoreInt), idStr, psRunningMode);
+
+  transformedCalvingScoreInt = transformedcalvingscoreint;
+  constructorDebug("constructor calvingData()_transformedCalvingScoreInt " + to_string(transformedCalvingScoreInt), idStr, psRunningMode);
+
+  stillbirthInt = stillbirthint;
+  constructorDebug("constructor calvingData()_stillbirthInt " + to_string(stillbirthInt), idStr, psRunningMode);
 
 
 }
