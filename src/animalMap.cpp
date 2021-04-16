@@ -34,6 +34,8 @@ void animalMap::addAnimal(calvingData *ptr){
 
   constructorDebug("addAnimal()_ptr of calvingData is used to build up the animal constructor", ptr->idStr, ptr->psRunningModeStr);
 
+  animal *aptr = new animal(ptr);
+
 
 };
 

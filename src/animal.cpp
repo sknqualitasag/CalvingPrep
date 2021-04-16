@@ -22,4 +22,14 @@
 using namespace std;
 
 
-animal::animal(){};
+animal::animal(calvingData *ptr){
+
+  idCode=-1;
+  sireCode=-1;
+  damCode=-1;
+
+  psRunningModeStr = ptr->psRunningModeStr;
+
+
+
+};

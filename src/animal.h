@@ -2,6 +2,8 @@
 #define Animal_h
 #include <string>
 #include "calvingData.h"
+#include "date.h"
+
 
 
 using namespace std;
@@ -9,7 +11,10 @@ using namespace std;
 class animal {
 public:
 
-  animal();
+  string psRunningModeStr;
+  int idCode, sireCode, damCode;
+
+  animal(calvingData *ptr);
 
 };
 
