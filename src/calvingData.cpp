@@ -166,6 +166,17 @@ calvingData::calvingData(string idstr, string idbreedstr, string mstr, string mb
   recordTypInsemInt = recordtypinsemint;
   constructorDebug("constructor calvingData()_recordTypInsemInt " + to_string(recordTypInsemInt), idStr, psRunningMode);
 
+  animIDStr = animIDstr;
+  constructorDebug("constructor calvingData()_animIDStr " + animIDStr, idStr, psRunningMode);
+
+  itbIDStr = itbIDstr;
+  constructorDebug("constructor calvingData()_itbIDStr " + itbIDStr, idStr, psRunningMode);
+
+  damIDStr = damIDstr;
+  constructorDebug("constructor calvingData()_damIDStr " + damIDStr, idStr, psRunningMode);
+
+  sireIDStr = sireIDstr;
+  constructorDebug("constructor calvingData()_sireIDStr " + sireIDStr, idStr, psRunningMode);
 
 }
 
