@@ -176,6 +176,8 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
   unsigned gestationLenghtNotRead=0;
   unsigned AbortNotRead=0;
   unsigned ETNotRead=0;
+  unsigned inconsistentRepeatedRecs1=0;
+
 
 
   string sep(";");
@@ -437,6 +439,27 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
      if(cit == this->end()){
        (*this)[key] = ptr;
        outputDebug("inputCalvingData()_The key " + key + " is in calvingDataMap before checking if idStr is available", ptr->idStr);
+
+
+       if(ptr->idStr != CONSTANTS::STRING_NA) {
+         outputDebug("inputCalvingData()_idStr " + ptr->idStr + " is available and will be setting in offspringIds", ptr->idStr);
+
+         set<string>::iterator idit = offspringIds.find(ptr->idStr);
+         if(idit == offspringIds.end()) {
+           offspringIds.insert(ptr->idStr);
+           //AMap.addAnimal(ptr);
+         }
+         else{
+           outputDebug("inputCalvingData()_idStr is already in offspringIds, so delete the record", ptr->idStr);
+           this->erase(key);
+           delete (ptr);
+           offspringIdsToDelete.insert(ptr->idStr);
+           inconsistentRepeatedRecs1++;
+         }
+       }
+
+
+
       }
 
 
