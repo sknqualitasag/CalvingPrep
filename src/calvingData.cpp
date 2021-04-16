@@ -113,6 +113,32 @@ calvingData::calvingData(string idstr, string idbreedstr, string mstr, string mb
   herdStr = herdstr;
   constructorDebug("constructor calvingData()_herdStr " + herdStr, idStr, psRunningMode);
 
+  mandateStr = mandatestr;
+  constructorDebug("constructor calvingData()_mandateStr " + mandateStr, idStr, psRunningMode);
+
+  lnInt = lnint;
+  constructorDebug("constructor calvingData()_lnInt " + to_string(lnInt), idStr, psRunningMode);
+
+  insemmotherstartdate = pinsemmotherstartdate;
+  constructorDebug("constructor calvingData()_insemmotherstartdate.YearInt " + to_string(insemmotherstartdate.YearInt), idStr, psRunningMode);
+  constructorDebug("constructor calvingData()_insemmotherstartdate.YearStr " + insemmotherstartdate.YearStr, idStr, psRunningMode);
+  constructorDebug("constructor calvingData()_insemmotherstartdate.MonthInt " + to_string(insemmotherstartdate.MonthInt), idStr, psRunningMode);
+  constructorDebug("constructor calvingData()_insemmotherstartdate.MonthStr " + insemmotherstartdate.MonthStr, idStr, psRunningMode);
+  constructorDebug("constructor calvingData()_insemmotherstartdate.DayInt " + to_string(insemmotherstartdate.DayInt), idStr, psRunningMode);
+  constructorDebug("constructor calvingData()_insemmotherstartdate.DayStr " + insemmotherstartdate.DayStr, idStr, psRunningMode);
+  constructorDebug("constructor calvingData()_insemmotherstartdate.DateInDays " + to_string(insemmotherstartdate.DateInDays), idStr, psRunningMode);
+  constructorDebug("constructor calvingData()_insemmotherstartdate.isValid " + to_string(insemmotherstartdate.isValid), idStr, psRunningMode);
+
+  insemmotherenddate = pinsemmotherenddate;
+  constructorDebug("constructor calvingData()_insemmotherenddate.YearInt " + to_string(insemmotherenddate.YearInt), idStr, psRunningMode);
+  constructorDebug("constructor calvingData()_insemmotherenddate.YearStr " + insemmotherenddate.YearStr, idStr, psRunningMode);
+  constructorDebug("constructor calvingData()_insemmotherenddate.MonthInt " + to_string(insemmotherenddate.MonthInt), idStr, psRunningMode);
+  constructorDebug("constructor calvingData()_insemmotherenddate.MonthStr " + insemmotherenddate.MonthStr, idStr, psRunningMode);
+  constructorDebug("constructor calvingData()_insemmotherenddate.DayInt " + to_string(insemmotherenddate.DayInt), idStr, psRunningMode);
+  constructorDebug("constructor calvingData()_insemmotherenddate.DayStr " + insemmotherenddate.DayStr, idStr, psRunningMode);
+  constructorDebug("constructor calvingData()_insemmotherenddate.DateInDays " + to_string(insemmotherenddate.DateInDays), idStr, psRunningMode);
+  constructorDebug("constructor calvingData()_insemmotherenddate.isValid " + to_string(insemmotherenddate.isValid), idStr, psRunningMode);
+
 
 }
 

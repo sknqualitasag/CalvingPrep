@@ -19,9 +19,10 @@ public:
 
   int sexCode, herdYearCode, yearCode, yearMonthCode, breedLNCode, LNAgeCode;
   int calvingScoreInt, transformedCalvingScoreInt, stillbirthInt, prematurityInt;
+  int lnInt;
   string idStr, idBreedStr, damStr, damBreedStr, mgsBreedStr, idSexStr, multipleStr;
-  string geneticDamStr, sireStr, sireBreedStr, herdStr;
-  date mbirthdate, calvingdate;
+  string geneticDamStr, sireStr, sireBreedStr, herdStr, mandateStr;
+  date mbirthdate, calvingdate, insemmotherstartdate, insemmotherenddate;
   double birthWeightDbl;
 
 
