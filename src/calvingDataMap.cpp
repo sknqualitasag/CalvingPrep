@@ -204,13 +204,13 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
   // Start reading line by line
   while (getline(datafile,inputStr)){
     string newInputStr = colData.processSemikolon(inputStr);
-    cout<<"newInputStr: "<<newInputStr<<endl;
+//    cout<<"newInputStr: "<<newInputStr<<endl;
     colData.getTokens(newInputStr,sep);
 
 
-    for(int i=0; i<colData.size(); i++){
-      cout<<"i: "<<i<<" colData : "<<colData[i]<<endl;
-    }
+//    for(int i=0; i<colData.size(); i++){
+//      cout<<"i: "<<i<<" colData : "<<colData[i]<<endl;
+//    }
 
 
     lineNumber++;
