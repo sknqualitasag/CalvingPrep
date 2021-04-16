@@ -17,6 +17,8 @@
 #include "calvingData.h"
 #include "date.h"
 #include "constants.h"
+#include <plog/Log.h>
+#include <plog/Formatters/MessageOnlyFormatter.h>
 
 
 
@@ -31,4 +33,19 @@ calvingData::calvingData(string idstr, string idbreedstr, string mstr, string mb
                          string psRunningMode, string breedCombstr, bool psourceMKS, long int pgestationLengthInDays,\
                          long int pcalvingAgeInDays, long int pcalvingIntervalInDays, long int pfirstCalvingAgeInDays, \
                          string sourceBeefOrDairystr, int spermatraitmentint, int recordtypinsemint, \
-                         string animIDstr, string itbIDstr, string damIDstr, string sireIDstr){}
+                         string animIDstr, string itbIDstr, string damIDstr, string sireIDstr){
+
+  psRunningModeStr = psRunningMode;
+
+
+}
+
+
+// simple debug File
+void calvingData::constructorDebug(string message, string tvdid, string psRunningMode){
+  string localRunningMode = psRunningMode;
+  if(localRunningMode == CONSTANTS::RUNNING_DEBUGALL){
+    //here Develop-Output-Logfile
+    LOGD <<"Message "<<message<<" of animal "<<tvdid;
+  }
+}

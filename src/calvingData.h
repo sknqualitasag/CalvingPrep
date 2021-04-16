@@ -13,6 +13,10 @@ using namespace std;
 
 class calvingData {
 public:
+  // running mode indicating whether debug information should be printed or not
+  string runningMode, psRunningModeStr;
+  void constructorDebug(string message, string tvdid, string psRunningMode);
+
 
   calvingData(string idstr, string idbreedstr, string mstr, string mbreedstr, string mvbreedstr, string idsexstr,\
               date pmbirthdate, date pcalvingdate, double idbirthweightdbl, string multiplestr,\
