@@ -45,6 +45,24 @@ calvingData::calvingData(string idstr, string idbreedstr, string mstr, string mb
   breedLNCode = -1;
   LNAgeCode = -1;
 
+  idStr = idstr;
+  constructorDebug("constructor calvingData()_Constructor called with idStr", idStr, psRunningMode);
+
+  idBreedStr = idbreedstr;
+  constructorDebug("constructor calvingData()_idBreedStr " + idBreedStr, idStr, psRunningMode);
+
+  damStr = mstr;
+  constructorDebug("constructor calvingData()_damStr " + damStr, idStr, psRunningMode);
+
+  damBreedStr = mbreedstr;
+  constructorDebug("constructor calvingData()_damBreedStr " + damBreedStr, idStr, psRunningMode);
+
+  mgsBreedStr = mvbreedstr;
+  constructorDebug("constructor calvingData()_mgsBreedStr " + mgsBreedStr, idStr, psRunningMode);
+
+  idSexStr = idsexstr;
+  constructorDebug("constructor calvingData()_idSexStr " + idSexStr, idStr, psRunningMode);
+
 
 
 
