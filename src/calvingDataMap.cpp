@@ -473,14 +473,20 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
          }
        }
        else{
+         outputDebug("inputCalvingData()_idStr is missing, stillbirth is "+to_string(ptr->stillbirthInt), ptr->idStr);
          // In case of stillbirth, mostly idStr is missing
          numconsistentRecsButMissingIDs++;
        }
 
-      }
-
+     }
+     else{
+       cout<<"The key "<<key<<" is already in Cmap, so not taken in account."<<endl;
+     }
 
   }
+  datafile.close();
+
+
 
 }
 
