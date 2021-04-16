@@ -15,6 +15,8 @@ public:
   animalMap();
   void addAnimal(calvingData *ptr);
 
+  // Debugging function
+  void constructorDebug(string message, string tvdid, string psRunningMode);
 
 };
 

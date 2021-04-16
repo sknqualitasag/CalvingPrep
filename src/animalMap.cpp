@@ -30,4 +30,18 @@ using namespace std;
 animalMap::animalMap(){}
 
 
-void animalMap::addAnimal(calvingData *ptr){};
+void animalMap::addAnimal(calvingData *ptr){
+
+  constructorDebug("addAnimal()_ptr of calvingData is used to build up the animal constructor", ptr->idStr, ptr->psRunningModeStr);
+
+
+};
+
+
+void animalMap::constructorDebug(string message, string tvdid, string psRunningMode){
+  string localRunningMode = psRunningMode;
+  if(localRunningMode == CONSTANTS::RUNNING_DEBUGALL){
+    //here Develop-Output-Logfile
+    LOGD <<"Message "<<message<<" of animal "<<tvdid;
+  }
+}
