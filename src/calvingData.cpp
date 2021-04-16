@@ -63,6 +63,31 @@ calvingData::calvingData(string idstr, string idbreedstr, string mstr, string mb
   idSexStr = idsexstr;
   constructorDebug("constructor calvingData()_idSexStr " + idSexStr, idStr, psRunningMode);
 
+  mbirthdate = pmbirthdate;
+  constructorDebug("constructor calvingData()_mbirthdate.YearInt " + to_string(mbirthdate.YearInt), idStr, psRunningMode);
+  constructorDebug("constructor calvingData()_mbirthdate.YearStr " + mbirthdate.YearStr, idStr, psRunningMode);
+  constructorDebug("constructor calvingData()_mbirthdate.MonthInt " + to_string(mbirthdate.MonthInt), idStr, psRunningMode);
+  constructorDebug("constructor calvingData()_mbirthdate.MonthStr " + mbirthdate.MonthStr, idStr, psRunningMode);
+  constructorDebug("constructor calvingData()_mbirthdate.DayInt " + to_string(mbirthdate.DayInt), idStr, psRunningMode);
+  constructorDebug("constructor calvingData()_mbirthdate.DayStr " + mbirthdate.DayStr, idStr, psRunningMode);
+  constructorDebug("constructor calvingData()_mbirthdate.DateInDays " + to_string(mbirthdate.DateInDays), idStr, psRunningMode);
+  constructorDebug("constructor calvingData()_mbirthdate.isValid " + to_string(mbirthdate.isValid), idStr, psRunningMode);
+
+  calvingdate = pcalvingdate;
+  constructorDebug("constructor calvingData()_calvingdate.YearInt " + to_string(calvingdate.YearInt), idStr, psRunningMode);
+  constructorDebug("constructor calvingData()_calvingdate.YearStr " + calvingdate.YearStr, idStr, psRunningMode);
+  constructorDebug("constructor calvingData()_calvingdate.MonthInt " + to_string(calvingdate.MonthInt), idStr, psRunningMode);
+  constructorDebug("constructor calvingData()_calvingdate.MonthStr " + calvingdate.MonthStr, idStr, psRunningMode);
+  constructorDebug("constructor calvingData()_calvingdate.DayInt " + to_string(calvingdate.DayInt), idStr, psRunningMode);
+  constructorDebug("constructor calvingData()_calvingdate.DayStr " + calvingdate.DayStr, idStr, psRunningMode);
+  constructorDebug("constructor calvingData()_calvingdate.DateInDays " + to_string(calvingdate.DateInDays), idStr, psRunningMode);
+  constructorDebug("constructor calvingData()_calvingdate.isValid " + to_string(calvingdate.isValid), idStr, psRunningMode);
+
+  birthWeightDbl=idbirthweightdbl;
+  constructorDebug("constructor calvingData()_birthWeightDbl " + to_string(birthWeightDbl), idStr, psRunningMode);
+
+  multipleStr = multiplestr;
+  constructorDebug("constructor calvingData()_multipleStr " + multipleStr, idStr, psRunningMode);
 
 
 

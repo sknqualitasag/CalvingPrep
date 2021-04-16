@@ -18,7 +18,10 @@ public:
   void constructorDebug(string message, string tvdid, string psRunningMode);
 
   int sexCode, herdYearCode, yearCode, yearMonthCode, breedLNCode, LNAgeCode;
-  string idStr, idBreedStr, damStr, damBreedStr, mgsBreedStr, idSexStr;
+  string idStr, idBreedStr, damStr, damBreedStr, mgsBreedStr, idSexStr, multipleStr;
+  date mbirthdate, calvingdate;
+  double birthWeightDbl;
+
 
 
   calvingData(string idstr, string idbreedstr, string mstr, string mbreedstr, string mvbreedstr, string idsexstr,\
