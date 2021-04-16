@@ -37,6 +37,16 @@ calvingData::calvingData(string idstr, string idbreedstr, string mstr, string mb
 
   psRunningModeStr = psRunningMode;
 
+  // Initializing Code for fixed effect
+  sexCode = -1;
+  herdYearCode = -1;
+  yearCode = -1;
+  yearMonthCode = -1;
+  breedLNCode = -1;
+  LNAgeCode = -1;
+
+
+
 
 }
 

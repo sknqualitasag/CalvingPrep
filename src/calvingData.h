@@ -17,6 +17,8 @@ public:
   string runningMode, psRunningModeStr;
   void constructorDebug(string message, string tvdid, string psRunningMode);
 
+  int sexCode, herdYearCode, yearCode, yearMonthCode, breedLNCode, LNAgeCode;
+
 
   calvingData(string idstr, string idbreedstr, string mstr, string mbreedstr, string mvbreedstr, string idsexstr,\
               date pmbirthdate, date pcalvingdate, double idbirthweightdbl, string multiplestr,\
