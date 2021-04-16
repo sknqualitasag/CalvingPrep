@@ -168,6 +168,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
   unsigned sourceBeefOrDairyNotRead=0;
   unsigned herdNotRead=0;
   unsigned sireNotRead=0;
+  unsigned damNotRead=0;
   unsigned mandantNotRead=0;
   unsigned calvingScoreNotRead=0;
   unsigned birthweightNotRead=0;
@@ -367,6 +368,12 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     if(fstr == CONSTANTS::STRING_NA){
       simpleDebug("inputData()_Animal is not read in calvingDataMap, because fstr is missing", idstr);
       sireNotRead++;
+      continue;
+    }
+    // mstr could be used for maternal effect
+    if(mstr == CONSTANTS::STRING_NA){
+      simpleDebug("inputData()_Animal is not read in calvingDataMap, because mstr is missing", idstr);
+      damNotRead++;
       continue;
     }
     // mandatestr is used to define the trait
