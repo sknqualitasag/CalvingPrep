@@ -28,3 +28,6 @@ using namespace std;
 
 
 animalMap::animalMap(){}
+
+
+void animalMap::addAnimal(calvingData *ptr){};

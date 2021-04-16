@@ -177,6 +177,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
   unsigned AbortNotRead=0;
   unsigned ETNotRead=0;
   unsigned inconsistentRepeatedRecs1=0;
+  unsigned numconsistentRecsButMissingIDs=0;
 
 
 
@@ -447,7 +448,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
          set<string>::iterator idit = offspringIds.find(ptr->idStr);
          if(idit == offspringIds.end()) {
            offspringIds.insert(ptr->idStr);
-           //AMap.addAnimal(ptr);
+           AMap.addAnimal(ptr);
          }
          else{
            outputDebug("inputCalvingData()_idStr is already in offspringIds, so delete the record", ptr->idStr);
@@ -456,6 +457,9 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
            offspringIdsToDelete.insert(ptr->idStr);
            inconsistentRepeatedRecs1++;
          }
+       }
+       else{
+         numconsistentRecsButMissingIDs++;
        }
 
 

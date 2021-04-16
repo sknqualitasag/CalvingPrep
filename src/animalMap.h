@@ -13,6 +13,8 @@ class animalMap : public map<string, animal*>{
 public:
 
   animalMap();
+  void addAnimal(calvingData *ptr);
+
 
 };
 
