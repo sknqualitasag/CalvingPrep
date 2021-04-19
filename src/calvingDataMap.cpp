@@ -307,6 +307,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
 
     // Verification of calculate fields
     gestationLengthInDays = verifyGL(gestationLengthInDays, idstr);
+    calvingIntervalInDays = verifyIV(calvingIntervalInDays, idstr);
 
     // Transform field by creating a new field
     int transformedcalvingscoreint = transformCalvingScore(calvingscoreint, idstr);
@@ -1280,6 +1281,19 @@ long int calvingDataMap::calculateCalvingInterval(date calvingdate, date calfbef
   }
 
   return calvingInterval;
+
+}
+
+
+long int calvingDataMap::verifyIV(long int calvingIntervalInDays, string idstr){
+
+  if(calvingIntervalInDays > 750){
+    simpleDebug("verifyIV()_Setting calvingIntervalInDays to missing, because calvingIntervalInDays "+to_string(calvingIntervalInDays)+" higher than 750", idstr);
+    return CONSTANTS::INT_NA;
+  }else{
+    simpleDebug("verifyIV()_calvingIntervalInDays "+to_string(calvingIntervalInDays)+" is in the range x<=750", idstr);
+    return calvingIntervalInDays;
+  }
 
 }
 
