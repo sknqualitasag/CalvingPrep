@@ -308,6 +308,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     // Verification of calculate fields
     gestationLengthInDays = verifyGL(gestationLengthInDays, idstr);
     calvingIntervalInDays = verifyIV(calvingIntervalInDays, idstr);
+    firstCalvingAgeInDays = verifyFirstAge(firstCalvingAgeInDays, idstr);
 
     // Transform field by creating a new field
     int transformedcalvingscoreint = transformCalvingScore(calvingscoreint, idstr);
@@ -1312,6 +1313,20 @@ long int calvingDataMap::calculateFirstCalvingAge(date mbirthdate, date firstcal
   }
 
   return firstCalvingAge;
+
+}
+
+
+long int verifyFirstAge(long int firstCalvingAgeInDays, string idstr){
+
+  if(firstCalvingAgeInDays < 500 || firstCalvingAgeInDays > 1460){
+    simpleDebug("verifyFirstAge()_Setting firstCalvingAgeInDays to missing, because firstCalvingAgeInDays "+to_string(firstCalvingAgeInDays)+" lower than 500 or higher than 1460", idstr);
+    return CONSTANTS::INT_NA;
+  }else{
+    simpleDebug("verifyFirstAge()_firstCalvingAgeInDays "+to_string(firstCalvingAgeInDays)+" is in the range 500>=x<=1460", idstr);
+    return firstCalvingAgeInDays;
+  }
+
 
 }
 
