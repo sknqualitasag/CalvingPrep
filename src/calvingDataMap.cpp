@@ -1300,3 +1300,60 @@ long int calvingDataMap::calculateFirstCalvingAge(date mbirthdate, date firstcal
   return firstCalvingAge;
 
 }
+
+
+void calvingDataMap::pheno_out(){
+
+  ofstream inputDataAmap("PhenoOutput.csv");
+
+  cout<<"\npheno_out: PHENOTYPIC FILE IN CMAP ..."<<endl;
+  cout<<"*****************************************************************"<< endl;
+
+  inputDataAmap<<"idStr;idBreedStr;mgsBreedStr;damBreedStr;sireBreedStr;damStr;geneticDamStr;sireStr;breedCombStr;idSexStr;mbirthdate;";
+  inputDataAmap<<"calvingdate;birthWeightDbl;calvingScoreInt;transformedCalvingScoreInt;stillbirthInt;prematurityInt;herdStr;mandateStr;";
+  inputDataAmap<<"sourceMKS;sourceBeefOrDairyStr;lnInt;insemmotherstartdate;insemmotherenddate;gestationLengthInDays;calvingAgeInDays;";
+  inputDataAmap<<"calvingIntervalInDays;firstCalvingAgeInDays;recordTypInsemInt;spermaTraitmentInt;animIDStr;itbIDStr;damIDStr;sireIDStr"<<endl;
+
+
+
+  for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
+    calvingData *ptr = (*it).second;
+
+    inputDataAmap <<ptr->idStr <<";"
+                  <<ptr->idBreedStr<<";"
+                  <<ptr->mgsBreedStr<<";"
+                  <<ptr->damBreedStr<<";"
+                  <<ptr->sireBreedStr<<";"
+                  <<ptr->damStr<<";"
+                  <<ptr->geneticDamStr<<";"
+                  <<ptr->sireStr<<";"
+                  <<ptr->breedCombStr<<";"
+                  <<ptr->idSexStr<<";"
+                  <<ptr->mbirthdate.YearStr<<ptr->mbirthdate.MonthStr<<ptr->mbirthdate.DayStr<<";"
+                  <<ptr->calvingdate.YearStr<<ptr->calvingdate.MonthStr<<ptr->calvingdate.DayStr<<";"
+                  <<ptr->birthWeightDbl<<";"
+                  <<ptr->calvingScoreInt<<";"
+                  <<ptr->transformedCalvingScoreInt<<";"
+                  <<ptr->stillbirthInt<<";"
+                  <<ptr->prematurityInt<<";"
+                  <<ptr->herdStr<<";"
+                  <<ptr->mandateStr<<";"
+                  <<ptr->sourceMKS<<";"
+                  <<ptr->sourceBeefOrDairyStr<<";"
+                  <<ptr->lnInt<<";"
+                  <<ptr->insemmotherstartdate.YearStr<<ptr->insemmotherstartdate.MonthStr<<ptr->insemmotherstartdate.DayStr<<";"
+                  <<ptr->insemmotherenddate.YearStr<<ptr->insemmotherenddate.MonthStr<<ptr->insemmotherenddate.DayStr<<";"
+                  <<ptr->gestationLengthInDays<<";"
+                  <<ptr->calvingAgeInDays<<";"
+                  <<ptr->calvingIntervalInDays<<";"
+                  <<ptr->firstCalvingAgeInDays<<";"
+                  <<ptr->recordTypInsemInt<<";"
+                  <<ptr->spermaTraitmentInt<<";"
+                  <<ptr->animIDStr<<";"
+                  <<ptr->itbIDStr<<";"
+                  <<ptr->damIDStr<<";"
+                  <<ptr->sireIDStr<<endl;
+
+
+  }
+}

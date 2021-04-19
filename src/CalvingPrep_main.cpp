@@ -64,6 +64,11 @@ int CalvingPrep_main(std::string paramFileName) {
     cMap.inputCalvingData(fileName, aMap, lastYearToConsiderData);
   }
 
+
+  //Phenotyp Output
+  cMap.pheno_out();
+
+
   //Time tracking
   end = std::chrono::system_clock::now();
   std::chrono::duration<double> elapsed_seconds = end-start;

@@ -73,6 +73,8 @@ public:
   int transformCalvingScore(int calvingscoreint, string idstr);
 
 
+  //output function
+  void pheno_out();
 
 
 
