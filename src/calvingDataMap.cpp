@@ -488,7 +488,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
 
      }
      else{
-       cout<<"The key "<<key<<" is already in Cmap, so not taken in account."<<endl;
+       cout<<"The key "<<key<<" is already in Cmap, so "+ptr->idStr+" not taken in account."<<endl;
        numRepRecs++;
      }
 
