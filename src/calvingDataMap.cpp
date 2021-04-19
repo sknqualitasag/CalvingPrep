@@ -188,6 +188,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
   unsigned birthweightNotRead=0;
   unsigned stillbirthNotRead=0;
   unsigned gestationLenghtNotRead=0;
+  unsigned RecordTypNotRead=0;
   unsigned MultipleNotRead=0;
   unsigned AbortNotRead=0;
   unsigned ETNotRead=0;
@@ -426,6 +427,12 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     if(gestationLengthInDays == CONSTANTS::INT_NA){
       simpleDebug("inputData()_Animal is not read in calvingDataMap, because gestationLengthInDays is missing", idstr);
       gestationLenghtNotRead++;
+      continue;
+    }
+    // recordtypinsemint "Automatischer Eintrag" not considered
+    if(recordtypinsemint == 6){
+      simpleDebug("inputData()_Animal is not read in calvingDataMap, because it is a recordtypinsemint==6", idstr);
+      RecordTypNotRead++;
       continue;
     }
     // multiple not considered
