@@ -1317,7 +1317,7 @@ long int calvingDataMap::calculateFirstCalvingAge(date mbirthdate, date firstcal
 }
 
 
-long int verifyFirstAge(long int firstCalvingAgeInDays, string idstr){
+long int calvingDataMap::verifyFirstAge(long int firstCalvingAgeInDays, string idstr){
 
   if(firstCalvingAgeInDays < 500 || firstCalvingAgeInDays > 1460){
     simpleDebug("verifyFirstAge()_Setting firstCalvingAgeInDays to missing, because firstCalvingAgeInDays "+to_string(firstCalvingAgeInDays)+" lower than 500 or higher than 1460", idstr);
