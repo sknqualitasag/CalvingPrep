@@ -35,8 +35,7 @@ animal::animal(calvingData *ptr){
   if(ptr->idStr != CONSTANTS::STRING_NA){
     idStr=ptr->idStr;
     constructorDebug("constructor animal()_idStr is set", idStr, psRunningModeStr);
-  }
-  else {
+  }else {
     idStr=CONSTANTS::STRING_NA;
     cout<<"Something is wrong, trying to generate an animal with a missing ID!"<<endl;
     exit(7);

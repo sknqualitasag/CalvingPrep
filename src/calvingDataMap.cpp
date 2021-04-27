@@ -135,14 +135,14 @@ string calvingDataMap::getFileName(unsigned i, string name){
   string fileName;
   if(i<10){
     fileName = name+"00"+std::to_string(i)+".csv";
-  }
-  else if(i<100){
+  }else if(i<100){
     fileName = name+"0"+std::to_string(i)+".csv";
-  }
-  else if(i<1000){
+  }else if(i<1000){
     fileName = name+std::to_string(i)+".csv";
+  }else{
+    fileName = "Junk";
   }
-  else fileName = "Junk";
+
   return fileName;
 }
 
@@ -223,8 +223,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     if(lineNumber==1){
       numCols = colData.size();
       continue;
-    }
-    else if(colData.size() != numCols){
+    }else if(colData.size() != numCols){
       cout<<"inputData(): Number of columns on line "<<lineNumber<<" in file "<<fname<<" is "<<colData.size()<<", but the header of the files has "<<numCols<<" labels."<<endl;
       exit(19);
     }
@@ -480,23 +479,20 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
          if(idit == offspringIds.end()) {
            offspringIds.insert(ptr->idStr);
            AMap.addAnimal(ptr);
-         }
-         else{
+         }else{
            outputDebug("inputCalvingData()_idStr is already in offspringIds, so delete the record", ptr->idStr);
            this->erase(key);
            delete (ptr);
            offspringIdsToDelete.insert(ptr->idStr);
            inconsistentRepeatedRecs1++;
          }
-       }
-       else{
+       }else{
          outputDebug("inputCalvingData()_idStr is missing, stillbirth is "+to_string(ptr->stillbirthInt), ptr->idStr);
          // In case of stillbirth, mostly idStr is missing
          numconsistentRecsButMissingIDs++;
        }
 
-     }
-     else{
+     }else{
        cout<<"The key "<<key<<" is already in Cmap, so "+ptr->idStr+" not taken in account."<<endl;
        numRepRecs++;
      }
@@ -572,75 +568,57 @@ string calvingDataMap::verifyBreed(string breedstr, string indstr){
   if(breedstr == "KR") {
     simpleDebug("verifyBreed()_Plausible breed "+breedstr, indstr);
     return "KR";
-  }
-  else if(breedstr =="SI") {
+  }else if(breedstr =="SI") {
     simpleDebug("verifyBreed()_Plausible breed "+breedstr, indstr);
     return "SI";
-  }
-  else if(breedstr =="SF") {
+  }else if(breedstr =="SF") {
     simpleDebug("verifyBreed()_Plausible breed "+breedstr, indstr);
     return "SF";
-  }
-  else if(breedstr == "HO") {
+  }else if(breedstr == "HO") {
     simpleDebug("verifyBreed()_Plausible breed "+breedstr, indstr);
     return "HO";
-  }
-  else if(breedstr =="BV" || breedstr == "BS"){
+  }else if(breedstr =="BV" || breedstr == "BS"){
     simpleDebug("verifyBreed()_Plausible breed (BS will be set to BV) "+breedstr, indstr);
     return "BV";
-  }
-  else if(breedstr =="OB" || breedstr =="ROB") {
+  }else if(breedstr =="OB" || breedstr =="ROB") {
     simpleDebug("verifyBreed()_Plausible breed (ROB will be set to OB) "+breedstr, indstr);
     return "OB";
-  }
-  else if(breedstr =="JE") {
+  }else if(breedstr =="JE") {
     simpleDebug("verifyBreed()_Plausible breed "+breedstr, indstr);
     return "JE";
-  }
-  else if(breedstr =="MO") {
+  }else if(breedstr =="MO") {
     simpleDebug("verifyBreed()_Plausible breed "+breedstr, indstr);
     return "MO";
-  }
-  else if(breedstr =="AN") {
+  }else if(breedstr =="AN") {
     simpleDebug("verifyBreed()_Plausible breed "+breedstr, indstr);
     return "AN";
-  }
-  else if(breedstr =="AU") {
+  }else if(breedstr =="AU") {
     simpleDebug("verifyBreed()_Plausible breed "+breedstr, indstr);
     return "AU";
-  }
-  else if(breedstr =="CH") {
+  }else if(breedstr =="CH") {
     simpleDebug("verifyBreed()_Plausible breed "+breedstr, indstr);
     return "CH";
-  }
-  else if(breedstr =="LM") {
+  }else if(breedstr =="LM") {
     simpleDebug("verifyBreed()_Plausible breed "+breedstr, indstr);
     return "LM";
-  }
-  else if(breedstr == "HH") {
+  }else if(breedstr == "HH") {
     simpleDebug("verifyBreed()_Plausible breed "+breedstr, indstr);
     return "HH";
-  }
-  else if(breedstr == "AL") {
+  }else if(breedstr == "AL") {
     simpleDebug("verifyBreed()_Plausible breed "+breedstr, indstr);
     return "AL";
-  }
-  else if(breedstr =="BD") {
+  }else if(breedstr =="BD") {
     simpleDebug("verifyBreed()_Plausible breed "+breedstr, indstr);
     return "BD";
-  }
-  else if(breedstr =="SL") {
+  }else if(breedstr =="SL") {
     simpleDebug("verifyBreed()_Plausible breed "+breedstr, indstr);
     return "SL";
-  }
-  else if(breedstr =="PI") {
+  }else if(breedstr =="PI") {
     simpleDebug("verifyBreed()_Plausible breed "+breedstr, indstr);
     return "PI";
-  }
-  else if(breedstr =="HR") { //Eringer
+  }else if(breedstr =="HR") { //Eringer
     return "HR";
-  }
-  else{
+  }else{
     simpleDebug("verifyBreed()_Setting breed to missing, because breed "+breedstr +" is not in the breed list (KR,SI,SF,HO,BV,BS,OB,ROB,JE,MO,AN,AU,CH,LM,HH,AL,BD,SL,PI)", indstr);
     return CONSTANTS::STRING_NA;
   }
@@ -652,8 +630,7 @@ string calvingDataMap::verifySexBirth(string sexstr, string indstr){
   if(sexstr == "M") {
     simpleDebug("verifySexBirth()_Plausible sexstr "+sexstr, indstr);
     return "M";
-  }
-  else if(sexstr == "F") {
+  }else if(sexstr == "F") {
     simpleDebug("verifySexBirth()_Plausible sexstr "+sexstr, indstr);
     return "F";
   }
@@ -733,8 +710,7 @@ int calvingDataMap::verifyStillbirth(string stillbirthstr, date calvingdate, str
     }else{
       simpleDebug("verifyStillbirth()_Plausible stillbirthint "+ to_string(stillbirthint), idstr);
     }
-  }
-  else {
+  }else {
     simpleDebug("verifyStillbirth()_Setting stillbirthint to missing, because calvingdate.YearInt is bellow 2005", idstr);
     stillbirthint = CONSTANTS::INT_NA;
   }
@@ -762,48 +738,37 @@ string calvingDataMap::verifySireBreed(string fbreedstr, string fstr){
   if(fbreedstr =="SI") {
     simpleDebug("verifySireBreed()_Plausible sire breed "+fbreedstr, fstr);
     return "SI";
-  }
-  else if(fbreedstr =="OB" || fbreedstr =="ROB") {
+  }else if(fbreedstr =="OB" || fbreedstr =="ROB") {
     simpleDebug("verifySireBreed()_Plausible sire breed (set ROB to OB) "+fbreedstr, fstr);
     return "OB";
-  }
-  else if(fbreedstr =="AN") {
+  }else if(fbreedstr =="AN") {
     simpleDebug("verifySireBreed()_Plausible sire breed "+fbreedstr, fstr);
     return "AN";
-  }
-  else if(fbreedstr =="AU") {
+  }else if(fbreedstr =="AU") {
     simpleDebug("verifySireBreed()_Plausible sire breed "+fbreedstr, fstr);
     return "AU";
-  }
-  else if(fbreedstr =="CH") {
+  }else if(fbreedstr =="CH") {
     simpleDebug("verifySireBreed()_Plausible sire breed "+fbreedstr, fstr);
     return "CH";
-  }
-  else if(fbreedstr =="LM") {
+  }else if(fbreedstr =="LM") {
     simpleDebug("verifySireBreed()_Plausible sire breed "+fbreedstr, fstr);
     return "LM";
-  }
-  else if(fbreedstr == "HH") {
+  }else if(fbreedstr == "HH") {
     simpleDebug("verifySireBreed()_Plausible sire breed "+fbreedstr, fstr);
     return "HH";
-  }
-  else if(fbreedstr == "AL") {
+  }else if(fbreedstr == "AL") {
     simpleDebug("verifySireBreed()_Plausible sire breed "+fbreedstr, fstr);
     return "AL";
-  }
-  else if(fbreedstr =="BD") {
+  }else if(fbreedstr =="BD") {
     simpleDebug("verifySireBreed()_Plausible sire breed "+fbreedstr, fstr);
     return "BD";
-  }
-  else if(fbreedstr =="SL") {
+  }else if(fbreedstr =="SL") {
     simpleDebug("verifySireBreed()_Plausible sire breed "+fbreedstr, fstr);
     return "SL";
-  }
-  else if(fbreedstr =="PI") {
+  }else if(fbreedstr =="PI") {
     simpleDebug("verifySireBreed()_Plausible sire breed "+fbreedstr, fstr);
     return "PI";
-  }
-  else{
+  }else{
     simpleDebug("verifySireBreed()_Setting sire breed to missing, because sire breed "+fbreedstr +" is not in the sire breed list (SI,OB,ROB,AN,AU,CH,LM,HH,AL,BD,SL,PI)", fstr);
     return CONSTANTS::STRING_NA;
   }
@@ -1072,76 +1037,58 @@ string calvingDataMap::setSourceBeefOrDairy(string mbreedstr, string idstr){
   if(mbreedstr == "KR"){
     simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
     return "beef";
-  }
-  else if(mbreedstr == "SI"){
+  }else if(mbreedstr == "SI"){
     simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
     return "beef";
-  }
-  else if(mbreedstr == "SF"){
+  }else if(mbreedstr == "SF"){
     simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to dairy", idstr);
     return "dairy";
-  }
-  else if(mbreedstr == "HO"){
+  }else if(mbreedstr == "HO"){
     simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to dairy", idstr);
     return "dairy";
-  }
-  else if(mbreedstr == "BV"){
+  }else if(mbreedstr == "BV"){
     simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to dairy", idstr);
     return "dairy";
-  }
-  else if(mbreedstr == "OB"){
+  }else if(mbreedstr == "OB"){
     simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
     return "beef";
-  }
-  else if(mbreedstr == "JE"){
+  }else if(mbreedstr == "JE"){
     simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to dairy", idstr);
     return "dairy";
-  }
-  else if(mbreedstr == "MO"){
+  }else if(mbreedstr == "MO"){
     simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to dairy", idstr);
     return "dairy";
-  }
-  else if(mbreedstr == "AN"){
+  }else if(mbreedstr == "AN"){
     simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
     return "beef";
-  }
-  else if(mbreedstr == "AU"){
+  }else if(mbreedstr == "AU"){
     simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
     return "beef";
-  }
-  else if(mbreedstr == "CH"){
+  }else if(mbreedstr == "CH"){
     simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
     return "beef";
-  }
-  else if(mbreedstr == "LM"){
+  }else if(mbreedstr == "LM"){
     simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
     return "beef";
-  }
-  else if(mbreedstr == "HH"){
+  }else if(mbreedstr == "HH"){
     simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
     return "beef";
-  }
-  else if(mbreedstr == "AL"){
+  }else if(mbreedstr == "AL"){
     simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
     return "beef";
-  }
-  else if(mbreedstr == "BD"){
+  }else if(mbreedstr == "BD"){
     simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
     return "beef";
-  }
-  else if(mbreedstr == "SL"){
+  }else if(mbreedstr == "SL"){
     simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
     return "beef";
-  }
-  else if(mbreedstr == "PI"){
+  }else if(mbreedstr == "PI"){
     simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
     return "beef";
-  }
-  else if(mbreedstr == "HR"){
+  }else if(mbreedstr == "HR"){
     simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
     return "beef";
-  }
-  else{
+  }else{
     simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to missing", idstr);
     return CONSTANTS::STRING_NA;
   }
@@ -1166,8 +1113,7 @@ long int calvingDataMap::calculateGL(date insemmotherstartdate, date insemmother
       simpleDebug("calculateGL()_Setting gestationLength to missing,  (case insemmotherstartdate=insemmotherenddate, but insemmotherstartdate.isValid false)", idstr);
       gestationLength = CONSTANTS::INT_NA;
     }
-  }
-  else if(!insemmotherenddate.isValid){
+  }else if(!insemmotherenddate.isValid){
     if(calvingdate.DateInDays > 0 && insemmotherstartdate.DateInDays > 0 && insemmotherstartdate.DateInDays < calvingdate.DateInDays){
       gestationLength = calvingdate.DateInDays - insemmotherstartdate.DateInDays;
       simpleDebug("calculateGL()_Calculate gestationLength "+to_string(gestationLength)+" (case !insemmotherenddate.isValid)", idstr);
@@ -1175,12 +1121,10 @@ long int calvingDataMap::calculateGL(date insemmotherstartdate, date insemmother
       simpleDebug("calculateGL()_Setting gestationLength to missing,  (case !insemmotherenddate.isValid, but not the conditions calvingdate.DateInDays > 0 && insemmotherstartdate.DateInDays > 0 && insemmotherstartdate.DateInDays < calvingdate.DateInDays)", idstr);
       gestationLength = CONSTANTS::INT_NA;
     }
-  }
-  else if(!insemmotherstartdate.isValid){
+  }else if(!insemmotherstartdate.isValid){
     simpleDebug("calculateGL()_Setting gestationLength to missing,  (case !insemmotherstartdate.isValid)", idstr);
     gestationLength = CONSTANTS::INT_NA;
-  }
-  else{
+  }else{
     simpleDebug("calculateGL()_Setting gestationLength to missing", idstr);
     gestationLength = CONSTANTS::INT_NA;
   }
@@ -1214,8 +1158,7 @@ long int calvingDataMap::verifyCalvingAge(long int calvingAgeInDays, int laktNrD
     simpleDebug("verifyCalvingAge()_calvingAgeInDays "+to_string(calvingAgeInDays)+" is verified", idstr);
     return calvingAgeInDays;
 
-  }
-  else{
+  }else{
     simpleDebug("verifyCalvingAge()_calvingAgeInDays is bellow the ug and higher og, so calvingAgeInDays is set to missing", idstr);
     return CONSTANTS::INT_NA;
   }
@@ -1235,8 +1178,7 @@ long int calvingDataMap::calculateCalvingAge(date calvingdate, date mbirthdate, 
       simpleDebug("calculateCalvingAge()_calvingdate, mbirthdate are available, however lactationnumber not, so calvingAge is set to missing", idstr);
       calvingAge = CONSTANTS::INT_NA;
     }
-  }
-  else{
+  }else{
     simpleDebug("calculateCalvingAge()_calvingdate and mbirthdate are not available, so calvingAge is set to missing", idstr);
     calvingAge = CONSTANTS::INT_NA;
   }
@@ -1251,20 +1193,16 @@ int calvingDataMap::transformCalvingScore(int calvingscoreint, string indstr){
   if(calvingscoreint == 1){
     simpleDebug("transformCalvingScore()_Transforming calvingscorestr to 3, because calvingscorestr is 1 ", indstr);
     return 3;
-  }
-  else if(calvingscoreint == 2){
+  }else if(calvingscoreint == 2){
     simpleDebug("transformCalvingScore()_Transforming calvingscorestr to 2, because calvingscorestr is 2 ", indstr);
     return 2;
-  }
-  else if(calvingscoreint == 3){
+  }else if(calvingscoreint == 3){
     simpleDebug("transformCalvingScore()_Transforming calvingscorestr to 1, because calvingscorestr is 3 ", indstr);
     return 1;
-  }
-  else if(calvingscoreint == 4){
+  }else if(calvingscoreint == 4){
     simpleDebug("transformCalvingScore()_Transforming calvingscorestr to 1, because calvingscorestr is 4 ", indstr);
     return 1;
-  }
-  else{
+  }else{
     simpleDebug("transformCalvingScore()_Transforming calvingscorestr to missing", indstr);
     return CONSTANTS::INT_NA;
   }
@@ -1282,8 +1220,7 @@ long int calvingDataMap::calculateCalvingInterval(date calvingdate, date calfbef
   if(calvingdate.DateInDays != CONSTANTS::INT_NA && calfbefore_calvingdate.DateInDays != CONSTANTS::INT_NA){
     calvingInterval = calvingdate.DateInDays - calfbefore_calvingdate.DateInDays;
     simpleDebug("calculateCalvingInterval()_calvingInterval is "+to_string(calvingInterval), idstr);
-  }
-  else{
+  }else{
     simpleDebug("calculateCalvingInterval()_calvingdate and calfbefore_calvingdate are not available, so calvingInterval is set to missing", idstr);
     calvingInterval = CONSTANTS::INT_NA;
   }
@@ -1313,8 +1250,7 @@ long int calvingDataMap::calculateFirstCalvingAge(date mbirthdate, date firstcal
   if(mbirthdate.DateInDays != CONSTANTS::INT_NA && firstcalvingdate.DateInDays != CONSTANTS::INT_NA){
     firstCalvingAge = firstcalvingdate.DateInDays - mbirthdate.DateInDays;
     simpleDebug("calculateFirstCalvingAge()_firstCalvingAge is "+to_string(firstCalvingAge), idstr);
-  }
-  else{
+  }else{
     simpleDebug("calculateFirstCalvingAge()_mbirthdate and firstcalvingdate are not available, so firstCalvingAge is set to missing", idstr);
     firstCalvingAge = CONSTANTS::INT_NA;
   }
