@@ -665,7 +665,7 @@ string calvingDataMap::verifySexBirth(string sexstr, string indstr){
 double calvingDataMap::verifyBirthWeight(string birthweightstr, string indstr){
   double bw;
   bw = atoi(birthweightstr.c_str());
-  if(bw <= 10. || bw >= 80.) {
+  if(bw < 10. || bw > 80.) {
     simpleDebug("verifyBirthWeight()_Setting birthweightstr to missing, because birthweightstr "+to_string(bw)+" is bellow 10 or higher 80", indstr);
     bw =  -9999.;
   }else{
