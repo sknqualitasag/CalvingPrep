@@ -442,7 +442,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
       continue;
     }
     // prematurebirthint not considered
-    if(abortint == 1){
+    if(prematurebirthint == 1){
       simpleDebug("inputData()_Animal is not read in calvingDataMap, because it is an prematurebirthint", idstr);
       PrematureNotRead++;
       continue;
