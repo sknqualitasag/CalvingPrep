@@ -191,6 +191,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
   unsigned RecordTypNotRead=0;
   unsigned MultipleNotRead=0;
   unsigned AbortNotRead=0;
+  unsigned PrematureNotRead=0;
   unsigned ETNotRead=0;
   unsigned inconsistentRepeatedRecs1=0;
   unsigned numconsistentRecsButMissingIDs=0;
@@ -440,6 +441,12 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
       MultipleNotRead++;
       continue;
     }
+    // prematurebirthint not considered
+    if(abortint == 1){
+      simpleDebug("inputData()_Animal is not read in calvingDataMap, because it is an prematurebirthint", idstr);
+      PrematureNotRead++;
+      continue;
+    }
     // abortint not considered
     if(abortint == 1){
       simpleDebug("inputData()_Animal is not read in calvingDataMap, because it is an abortint", idstr);
@@ -521,6 +528,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
   cout<<"Number of animal record with missing stillbirth: "<<stillbirthNotRead<<endl;
   cout<<"Number of animal record with missing gestationLength: "<<gestationLenghtNotRead<<endl;
   cout<<"Number of animal record as abort: "<<AbortNotRead<<endl;
+  cout<<"Number of animal record as premature: "<<PrematureNotRead<<endl;
   cout<<"Number of animal record as ET: "<<ETNotRead<<endl;
   cout<<"\nNumber of records which are stored in Cmap:                                              "<<this->size()<<endl;
 
