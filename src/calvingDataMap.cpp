@@ -173,7 +173,6 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
   cout<<"*****************************************************************"<< endl;
 
 
-  unsigned sexBirthNotRead=0;
   unsigned calvingMonthNotRead=0;
   unsigned calvingYearNotRead=0;
   unsigned lacationNumberNotRead=0;
@@ -339,12 +338,8 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
 
 
     // Following field has to be available, otherwise the record is removed
-    // idsexstr is used to build a fix effect
-    if(idsexstr == CONSTANTS::STRING_NA){
-      simpleDebug("inputData()_Animal is not read in calvingDataMap, because sexbirth is missing", idstr);
-      sexBirthNotRead++;
-      continue;
-    }
+    // Ideal should the field idsexstr be full because it will be used to build a fix effect
+    // however a lot calves have missing sex, so it is still kept
     // calvingdate.MonthStr is used to build a fix effect
     if(calvingdate.MonthStr == CONSTANTS::STRING_NA){
       simpleDebug("inputData()_Animal is not read in calvingDataMap, because calvingdate.MonthStr is missing", idstr);
@@ -514,7 +509,6 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
   cout<<"Number of consistent duplicate records or multiple birth (same dam, same calvingdate).    "<<numRepRecs<<endl;
   cout<<"Number of consistent records but a missing ID.                                            "<<numconsistentRecsButMissingIDs<<endl;
   cout<<"Number of consistent offspring Ids occuring more than once in "<<fname<<" :               "<<inconsistentRepeatedRecs1<<endl;
-  cout<<"Number of animal record with missing sex: "<<sexBirthNotRead<<endl;
   cout<<"Number of animal record with missing calvingMonth: "<<calvingMonthNotRead<<endl;
   cout<<"Number of animal record with missing calvingYear: "<<calvingYearNotRead<<endl;
   cout<<"Number of animal record with missing lactationNumber: "<<lacationNumberNotRead<<endl;
