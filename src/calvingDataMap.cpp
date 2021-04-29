@@ -178,7 +178,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
   unsigned calvingYearNotRead=0;
   unsigned lacationNumberNotRead=0;
   unsigned calvingAgeInDaysNotRead=0;
-  unsigned breedCombNotRead=0;
+  unsigned breedNotRead=0;
   unsigned sourceBeefOrDairyNotRead=0;
   unsigned herdNotRead=0;
   unsigned sireNotRead=0;
@@ -370,9 +370,11 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
       continue;
     }
     // breedCombstr is used to build a fix effect
-    if(breedCombstr == CONSTANTS::STRING_NA){
-      simpleDebug("inputData()_Animal is not read in calvingDataMap, because breedCombstr is missing", idstr);
-      breedCombNotRead++;
+    // a minimum number per breedComb should be available, otherwise record removed
+    // but at this stage first check about animal breed which should correspond to the major breed of interest
+    if(idbreedstr == CONSTANTS::STRING_NA){
+      simpleDebug("inputData()_Animal is not read in calvingDataMap, because idbreedstr is missing", idstr);
+      breedNotRead++;
       continue;
     }
     // sourceBeefOrDairystr is used to define the trait
@@ -517,7 +519,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
   cout<<"Number of animal record with missing calvingYear: "<<calvingYearNotRead<<endl;
   cout<<"Number of animal record with missing lactationNumber: "<<lacationNumberNotRead<<endl;
   cout<<"Number of animal record with missing calvingAgeInDays: "<<calvingAgeInDaysNotRead<<endl;
-  cout<<"Number of animal record with missing breedComb: "<<breedCombNotRead<<endl;
+  cout<<"Number of animal record with missing calf breed: "<<breedNotRead<<endl;
   cout<<"Number of animal record with missing sourceBeefOrDairy: "<<sourceBeefOrDairyNotRead<<endl;
   cout<<"Number of animal record with missing herd: "<<herdNotRead<<endl;
   cout<<"Number of animal record with missing sire: "<<sireNotRead<<endl;
