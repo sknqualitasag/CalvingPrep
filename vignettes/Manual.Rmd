@@ -1,0 +1,36 @@
+---
+title: "Manual"
+author: "Sophie Kunz"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Manual}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Compilieren ab der Console
+```{r}
+#R CMD build --no-build-vignettes CalvingPrep
+#R CMD INSTALL CalvingPrep_0.1.0.tar.gz
+```
+
+## Ausführen ab der Console
+```{r}
+#Rscript -e "CalvingPrep::CalvingPrep_main(\"GA_parmStep1.ip\")" > log_CalvingPrep&
+```
+
+# Session Info
+```{r}
+sessionInfo()
+```
+
+# Latest Update
+`r paste(Sys.time(),paste0("(", Sys.info()[["user"]],")" ))`
