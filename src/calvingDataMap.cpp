@@ -183,10 +183,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
   unsigned sireNotRead=0;
   unsigned damNotRead=0;
   unsigned mandantNotRead=0;
-  unsigned calvingScoreNotRead=0;
-  unsigned birthweightNotRead=0;
-  unsigned stillbirthNotRead=0;
-  unsigned gestationLenghtNotRead=0;
+  unsigned traitNotRead=0;
   unsigned RecordTypNotRead=0;
   unsigned MultipleNotRead=0;
   unsigned AbortNotRead=0;
@@ -402,36 +399,18 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
       mandantNotRead++;
       continue;
     }
-    // calvingscoreint is a trait
-    if(calvingscoreint == CONSTANTS::INT_NA){
-      simpleDebug("inputData()_Animal is not read in calvingDataMap, because calvingscoreint is missing", idstr);
-      calvingScoreNotRead++;
+    // calvingscoreint or idbirthweightdbl or stillbirthint or gestationLengthInDays are traits and one should be available
+    if(calvingscoreint == CONSTANTS::INT_NA || idbirthweightdbl == CONSTANTS::DOUBLE_NA || stillbirthint == CONSTANTS::INT_NA || gestationLengthInDays == CONSTANTS::INT_NA){
+      simpleDebug("inputData()_Animal is not read in calvingDataMap, because calvingscoreint or idbirthweightdbl or stillbirthint or gestationLengthInDays is missing", idstr);
+      traitNotRead++;
       continue;
     }
-    // idbirthweightdbl is a trait
-    if(idbirthweightdbl == CONSTANTS::DOUBLE_NA){
-      simpleDebug("inputData()_Animal is not read in calvingDataMap, because idbirthweightdbl is missing", idstr);
-      birthweightNotRead++;
-      continue;
-    }
-    // stillbirthint is a trait
-    if(stillbirthint == CONSTANTS::INT_NA){
-      simpleDebug("inputData()_Animal is not read in calvingDataMap, because stillbirthint is missing", idstr);
-      stillbirthNotRead++;
-      continue;
-    }
-    // gestationLengthInDays is a trait
-    if(gestationLengthInDays == CONSTANTS::INT_NA){
-      simpleDebug("inputData()_Animal is not read in calvingDataMap, because gestationLengthInDays is missing", idstr);
-      gestationLenghtNotRead++;
-      continue;
-    }
-    // recordtypinsemint "Automatischer Eintrag" not considered
-    if(recordtypinsemint == 6){
-      simpleDebug("inputData()_Animal is not read in calvingDataMap, because it is a recordtypinsemint==6", idstr);
-      RecordTypNotRead++;
-      continue;
-    }
+//    // recordtypinsemint "Automatischer Eintrag" not considered
+//    if(recordtypinsemint == 6){
+//      simpleDebug("inputData()_Animal is not read in calvingDataMap, because it is a recordtypinsemint==6", idstr);
+//      RecordTypNotRead++;
+//      continue;
+//    }
     // multiple not considered
     if(multiplestr == "1"){
       simpleDebug("inputData()_Animal is not read in calvingDataMap, because it is an multiplestr", idstr);
@@ -519,10 +498,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
   cout<<"Number of animal record with missing sire: "<<sireNotRead<<endl;
   cout<<"Number of animal record with missing dam: "<<damNotRead<<endl;
   cout<<"Number of animal record with missing mandant: "<<mandantNotRead<<endl;
-  cout<<"Number of animal record with missing calvingScore: "<<calvingScoreNotRead<<endl;
-  cout<<"Number of animal record with missing birthweight: "<<birthweightNotRead<<endl;
-  cout<<"Number of animal record with missing stillbirth: "<<stillbirthNotRead<<endl;
-  cout<<"Number of animal record with missing gestationLength: "<<gestationLenghtNotRead<<endl;
+  cout<<"Number of animal record with missing calvingScore or birthweight or stillbirth or gestationLength: "<<traitNotRead<<endl;
   cout<<"Number of animal record as abort: "<<AbortNotRead<<endl;
   cout<<"Number of animal record as premature: "<<PrematureNotRead<<endl;
   cout<<"Number of animal record as ET: "<<ETNotRead<<endl;
