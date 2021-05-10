@@ -24,7 +24,7 @@ const unsigned CONSTANTS::ITB_NR_LENGTH = 19;
 //' length of breed,country and sex code in ITB-NR
 const unsigned CONSTANTS::BREED_COUNTRY_SEX_CODE_LENGTH = 7;
 //' string corresponding to firstYearData
-const char CONSTANTS::FIRSTYEARDATA[] = "1994";
+const char CONSTANTS::FIRSTYEARDATA[] = "2006";
 //' integer for min first age at calving is 17 months
 const int CONSTANTS::MIN_FIRST_AGE_AT_CALVING = 17;
 //' integer for max first age at calving is 50 months
