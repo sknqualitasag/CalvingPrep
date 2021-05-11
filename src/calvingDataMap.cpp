@@ -307,6 +307,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     gestationLengthInDays = verifyGL(gestationLengthInDays, idstr);
     calvingIntervalInDays = verifyIV(calvingIntervalInDays, idstr);
     firstCalvingAgeInDays = verifyFirstAge(firstCalvingAgeInDays, idstr);
+    lnint = verifyInteractLnIV(lnint, calvingIntervalInDays, idstr);
 
     // Transform field by creating a new field
     int transformedcalvingscoreint = transformCalvingScore(calvingscoreint, idstr);
@@ -1286,6 +1287,18 @@ long int calvingDataMap::verifyFirstAge(long int firstCalvingAgeInDays, string i
     return firstCalvingAgeInDays;
   }
 
+
+}
+
+
+int calvingDataMap::verifyInteractLnIV(int lnint, long int calvingIntervalInDays, string idstr){
+
+  if(lnint != 1 && calvingIntervalInDays == 0){
+    lnint = CONSTANTS::INT_NA;
+    simpleDebug("verifyInteractLnIV()_lnint "+to_string(lnint)+" and calvingIntervalInDays "+to_string(calvingIntervalInDays)+", so set lactationnummer to missing", idstr);
+  }
+
+  return lnint;
 
 }
 

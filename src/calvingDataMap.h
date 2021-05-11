@@ -72,6 +72,8 @@ public:
   long int verifyCalvingAge(long int calvingAgeInDays, int laktNrDamInt, string idstr);
   long int verifyIV(long int calvingIntervalInDays, string idstr);
   long int verifyFirstAge(long int firstCalvingAgeInDays, string idstr);
+  int verifyInteractLnIV(int lnint, long int calvingIntervalInDays, string idstr);
+
   // Transform field by creating a new field
   int transformCalvingScore(int calvingscoreint, string idstr);
 
