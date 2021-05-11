@@ -183,6 +183,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
   unsigned sireNotRead=0;
   unsigned damNotRead=0;
   unsigned mandantNotRead=0;
+  unsigned stillbirthNotRead=0;
   unsigned traitNotRead=0;
   unsigned MultipleNotRead=0;
   unsigned AbortNotRead=0;
@@ -288,6 +289,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     calvingdate = verifyCalvingDate(calvingdate,idstr);
     insemmotherstartdate = verifyInsemStart(insemmotherstartdate, idstr);
     insemmotherenddate = verifyInsemEnd(insemmotherenddate, idstr);
+    stillbirthint = verifyInteractStillbirthDeathcalfdate(stillbirthint, deathcalfdate, calvingdate, idstr);
 
     // Set a new field in dependency to other already declared fields
     bool sourceMKS = setSourceVMS(mandatestr, idstr);
@@ -398,9 +400,15 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
       mandantNotRead++;
       continue;
     }
-    // calvingscoreint, idbirthweightdbl, stillbirthint, gestationLengthInDays are traits and at least one should be available
-    if(calvingscoreint == CONSTANTS::INT_NA && idbirthweightdbl == CONSTANTS::DOUBLE_NA && stillbirthint == CONSTANTS::INT_NA && gestationLengthInDays == CONSTANTS::INT_NA){
-      simpleDebug("inputData()_Animal is not read in calvingDataMap, because calvingscoreint or idbirthweightdbl or stillbirthint or gestationLengthInDays is missing", idstr);
+    // stillbirthint could be used as trait and should be available thank deathcalfdate information
+    if(stillbirthint == CONSTANTS::INT_NA){
+      simpleDebug("inputData()_Animal is not read in calvingDataMap, because stillbirthint is missing", idstr);
+      stillbirthNotRead++;
+      continue;
+    }
+    // calvingscoreint, idbirthweightdbl, gestationLengthInDays are traits and at least one should be available
+    if(calvingscoreint == CONSTANTS::INT_NA && idbirthweightdbl == CONSTANTS::DOUBLE_NA && gestationLengthInDays == CONSTANTS::INT_NA){
+      simpleDebug("inputData()_Animal is not read in calvingDataMap, because calvingscoreint or idbirthweightdbl or gestationLengthInDays is missing", idstr);
       traitNotRead++;
       continue;
     }
@@ -972,6 +980,39 @@ date calvingDataMap::verifyInsemEnd(date insemmotherenddate, string idstr){
   }
 
   return insemmotherenddate;
+
+}
+
+
+int calvingDataMap::verifyInteractStillbirthDeathcalfdate(int stillbirthint, date deathcalfdate, date calvingdate, string idstr){
+
+  long int stillbirthInDays;
+  if(deathcalfdate.DateInDays > 0 && calvingdate.DateInDays > 0){
+    stillbirthInDays = deathcalfdate.DateInDays - calvingdate.DateInDays;
+    simpleDebug("verifyInteractStillbirthDeathcalfdate()_Calculate stillbirthInDays "+to_string(stillbirthInDays), idstr);
+  }else{
+    stillbirthInDays = CONSTANTS::INT_NA;
+    simpleDebug("verifyInteractStillbirthDeathcalfdate()_stillbirthInDays can't be calculated, so set to missing", idstr);
+  }
+
+  // Find input for stillbirth with deathcalfdate
+  if(stillbirthint == CONSTANTS::INT_NA){
+    if(stillbirthInDays > 2){
+      stillbirthint = 1;
+      simpleDebug("verifyInteractStillbirthDeathcalfdate()_stillbirth is in the raw data missing, stillbirthInDays "+to_string(stillbirthInDays)+" is higher than 2, so stillbirthint set to 1 = "+to_string(stillbirthint), idstr);
+    }else if(stillbirthInDays == 2){
+      stillbirthint = 3;
+      simpleDebug("verifyInteractStillbirthDeathcalfdate()_stillbirth is in the raw data missing, stillbirthInDays "+to_string(stillbirthInDays)+" is 2, so stillbirthint set to 3 = "+to_string(stillbirthint), idstr);
+    }else if(stillbirthInDays == 1){
+      stillbirthint = 2;
+      simpleDebug("verifyInteractStillbirthDeathcalfdate()_stillbirth is in the raw data missing, stillbirthInDays "+to_string(stillbirthInDays)+" is 1, so stillbirthint set to 2 = "+to_string(stillbirthint), idstr);
+    }else{
+      stillbirthint = CONSTANTS::INT_NA;
+      simpleDebug("verifyInteractStillbirthDeathcalfdate()_stillbirth is in the raw data missing, stillbirthInDays "+to_string(stillbirthInDays)+" is missing, so stillbirthint still missing ", idstr);
+    }
+  }
+
+  return stillbirthint;
 
 }
 
