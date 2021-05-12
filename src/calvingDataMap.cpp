@@ -1007,9 +1007,9 @@ int calvingDataMap::verifyInteractStillbirthDeathcalfdate(int stillbirthint, dat
 
   // Find input for stillbirth with deathcalfdate
   if(stillbirthint == CONSTANTS::INT_NA){
-    if(stillbirthInDays > 2 || stillbirthInDays == CONSTANTS::INT_NA){
+    if(stillbirthInDays > 2 || (stillbirthInDays == CONSTANTS::INT_NA && calvingdate.YearInt > 2005)){
       stillbirthint = 1;
-      simpleDebug("verifyInteractStillbirthDeathcalfdate()_stillbirth is in the raw data missing, stillbirthInDays "+to_string(stillbirthInDays)+" is higher than 2 or missing, so stillbirthint set to 1 = "+to_string(stillbirthint), idstr);
+      simpleDebug("verifyInteractStillbirthDeathcalfdate()_stillbirth is in the raw data missing, stillbirthInDays "+to_string(stillbirthInDays)+" is higher than 2 or (missing & calvingyear > 2005), so stillbirthint set to 1 = "+to_string(stillbirthint), idstr);
     }else if(stillbirthInDays == 2){
       stillbirthint = 3;
       simpleDebug("verifyInteractStillbirthDeathcalfdate()_stillbirth is in the raw data missing, stillbirthInDays "+to_string(stillbirthInDays)+" is 2, so stillbirthint set to 3 = "+to_string(stillbirthint), idstr);
