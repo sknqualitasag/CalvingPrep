@@ -999,7 +999,8 @@ int calvingDataMap::verifyInteractStillbirthDeathcalfdate(int stillbirthint, dat
   long int stillbirthInDays;
   if(deathcalfdate.DateInDays > 0 && calvingdate.DateInDays > 0){
     stillbirthInDays = deathcalfdate.DateInDays - calvingdate.DateInDays;
-    simpleDebug("verifyInteractStillbirthDeathcalfdate()_Calculate stillbirthInDays "+to_string(stillbirthInDays), idstr);
+  }else{
+    stillbirthInDays = CONSTANTS::INT_NA;
   }
 
   // Find input for stillbirth with deathcalfdate
