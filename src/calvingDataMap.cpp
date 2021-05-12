@@ -415,7 +415,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
       continue;
     }
     // idbirthweightdbl, gestationLengthInDays are normal distribute traits and at least one should be available
-    if(calvingscoreint == CONSTANTS::INT_NA && idbirthweightdbl == CONSTANTS::DOUBLE_NA && gestationLengthInDays == CONSTANTS::INT_NA){
+    if(idbirthweightdbl == CONSTANTS::DOUBLE_NA && gestationLengthInDays == CONSTANTS::INT_NA){
       simpleDebug("inputData()_Animal is not read in calvingDataMap, because idbirthweightdbl or gestationLengthInDays is missing", idstr);
       traitNotRead++;
       continue;
