@@ -312,6 +312,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
 
     // Transform field by creating a new field
     int transformedcalvingscoreint = transformCalvingScore(calvingscoreint, idstr);
+    int transformedstillbirthint = transformStillbirth(stillbirthint, idstr);
 
 
     rec++;
@@ -402,9 +403,9 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
       mandantNotRead++;
       continue;
     }
-    // stillbirthint could be used as trait and should be available thank deathcalfdate information
-    if(stillbirthint == CONSTANTS::INT_NA){
-      simpleDebug("inputData()_Animal is not read in calvingDataMap, because stillbirthint is missing", idstr);
+    // transformedstillbirthint could be used as trait and should be available thank deathcalfdate information
+    if(transformedstillbirthint == CONSTANTS::INT_NA){
+      simpleDebug("inputData()_Animal is not read in calvingDataMap, because transformedstillbirthint is missing", idstr);
       stillbirthNotRead++;
       continue;
     }
@@ -449,7 +450,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     // Calling constructor calvingData
     calvingData *ptr = new calvingData (idstr, idbreedstr, mstr, mbreedstr, mvbreedstr, idsexstr,\
                                         mbirthdate, calvingdate, idbirthweightdbl, multiplestr,\
-                                        calvingscoreint, transformedcalvingscoreint, stillbirthint,\
+                                        calvingscoreint, transformedcalvingscoreint, stillbirthint, transformedstillbirthint,\
                                         prematurebirthint, geneticmotherstr, fstr, fbreedstr, herdstr,
                                         mandatestr, lnint, insemmotherstartdate, insemmotherenddate,\
                                         psRunningMode, breedCombstr, sourceMKS, gestationLengthInDays,\
@@ -1254,10 +1255,30 @@ int calvingDataMap::transformCalvingScore(int calvingscoreint, string indstr){
     return CONSTANTS::INT_NA;
   }
 
-  return calvingscoreint;
+}
 
+
+int calvingDataMap::transformStillbirth(int stillbirthint, string idstr){
+
+  if(stillbirthint == 1){
+    simpleDebug("transformStillbirth()_Transforming stillbirthint to 3, because stillbirthint is 1 ", idstr);
+    return 3;
+  }else if(stillbirthint == 2){
+    simpleDebug("transformStillbirth()_Transforming stillbirthint to 2, because stillbirthint is 2 ", idstr);
+    return 2;
+  }else if(stillbirthint == 3){
+    simpleDebug("transformStillbirth()_Transforming stillbirthint to 2, because stillbirthint is 3 ", idstr);
+    return 2;
+  }else if(stillbirthint == 4){
+    simpleDebug("transformStillbirth()_Transforming stillbirthint to 1, because stillbirthint is 4 ", idstr);
+    return 1;
+  }else{
+    simpleDebug("transformStillbirth()_Transforming stillbirthint to missing, because stillbirthint is missing ", idstr);
+    return CONSTANTS::INT_NA;
+  }
 
 }
+
 
 
 long int calvingDataMap::calculateCalvingInterval(date calvingdate, date calfbefore_calvingdate, string idstr){
@@ -1341,7 +1362,7 @@ void calvingDataMap::pheno_out(){
   cout<<"*****************************************************************"<< endl;
 
   inputDataAmap<<"idStr;idBreedStr;mgsBreedStr;damBreedStr;sireBreedStr;damStr;geneticDamStr;sireStr;breedCombStr;idSexStr;mbirthdate;";
-  inputDataAmap<<"calvingdate;birthWeightDbl;calvingScoreInt;transformedCalvingScoreInt;stillbirthInt;prematurityInt;herdStr;mandateStr;";
+  inputDataAmap<<"calvingdate;birthWeightDbl;calvingScoreInt;transformedCalvingScoreInt;stillbirthInt;transformedStillbirthInt;prematurityInt;herdStr;mandateStr;";
   inputDataAmap<<"sourceMKS;sourceBeefOrDairyStr;lnInt;insemmotherstartdate;insemmotherenddate;gestationLengthInDays;calvingAgeInDays;";
   inputDataAmap<<"calvingIntervalInDays;firstCalvingAgeInDays;recordTypInsemInt;spermaTraitmentInt;animIDStr;itbIDStr;damIDStr;sireIDStr"<<endl;
 
@@ -1366,6 +1387,7 @@ void calvingDataMap::pheno_out(){
                   <<ptr->calvingScoreInt<<";"
                   <<ptr->transformedCalvingScoreInt<<";"
                   <<ptr->stillbirthInt<<";"
+                  <<ptr->transformedStillbirthInt<<";"
                   <<ptr->prematurityInt<<";"
                   <<ptr->herdStr<<";"
                   <<ptr->mandateStr<<";"

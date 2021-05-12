@@ -27,7 +27,7 @@ using namespace std;
 
 calvingData::calvingData(string idstr, string idbreedstr, string mstr, string mbreedstr, string mvbreedstr, string idsexstr,\
                          date pmbirthdate, date pcalvingdate, double idbirthweightdbl, string multiplestr, \
-                         int calvingscoreint, int transformedcalvingscoreint, int stillbirthint, \
+                         int calvingscoreint, int transformedcalvingscoreint, int stillbirthint, int transformedstillbirthint, \
                          int prematurebirthint, string geneticmotherstr, string fstr, string fbreedstr, string herdstr, \
                          string mandatestr, int lnint, date pinsemmotherstartdate, date pinsemmotherenddate, \
                          string psRunningMode, string breedCombstr, bool psourceMKS, long int pgestationLengthInDays,\
@@ -97,6 +97,9 @@ calvingData::calvingData(string idstr, string idbreedstr, string mstr, string mb
 
   stillbirthInt = stillbirthint;
   constructorDebug("constructor calvingData()_stillbirthInt " + to_string(stillbirthInt), idStr, psRunningMode);
+
+  transformedStillbirthInt = transformedstillbirthint;
+  constructorDebug("constructor calvingData()_transformedStillbirthInt " + to_string(transformedStillbirthInt), idStr, psRunningMode);
 
   prematurityInt = prematurebirthint;
   constructorDebug("constructor calvingData()_prematurityInt " + to_string(prematurityInt), idStr, psRunningMode);

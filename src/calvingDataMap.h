@@ -76,6 +76,8 @@ public:
 
   // Transform field by creating a new field
   int transformCalvingScore(int calvingscoreint, string idstr);
+  int transformStillbirth(int stillbirthint, string idstr);
+
 
 
   //output function

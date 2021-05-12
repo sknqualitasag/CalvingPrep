@@ -18,7 +18,7 @@ public:
   void constructorDebug(string message, string tvdid, string psRunningMode);
 
   int sexCode, herdYearCode, yearCode, yearMonthCode, breedLNCode, LNAgeCode;
-  int calvingScoreInt, transformedCalvingScoreInt, stillbirthInt, prematurityInt;
+  int calvingScoreInt, transformedCalvingScoreInt, stillbirthInt, transformedStillbirthInt, prematurityInt;
   int lnInt, spermaTraitmentInt, recordTypInsemInt;
   long int gestationLengthInDays, calvingAgeInDays, calvingIntervalInDays, firstCalvingAgeInDays;
   string idStr, idBreedStr, damStr, damBreedStr, mgsBreedStr, idSexStr, multipleStr;
@@ -32,7 +32,7 @@ public:
 
   calvingData(string idstr, string idbreedstr, string mstr, string mbreedstr, string mvbreedstr, string idsexstr,\
               date pmbirthdate, date pcalvingdate, double idbirthweightdbl, string multiplestr,\
-              int calvingscoreint, int transformedcalvingscoreint, int stillbirthint,\
+              int calvingscoreint, int transformedcalvingscoreint, int stillbirthint, int transformedstillbirthint,\
               int prematurebirthint, string geneticmotherstr, string fstr, string fbreedstr, string herdstr,\
               string mandatestr, int lnint, date pinsemmotherstartdate, date pinsemmotherenddate,\
               string psRunningMode, string breedCombstr, bool psourceMKS, long int pgestationLengthInDays,\
