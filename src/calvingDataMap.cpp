@@ -1261,14 +1261,14 @@ int calvingDataMap::transformCalvingScore(int calvingscoreint, string indstr){
 int calvingDataMap::transformStillbirth(int stillbirthint, string idstr){
 
   if(stillbirthint == 1){
-    simpleDebug("transformStillbirth()_Transforming stillbirthint to 3, because stillbirthint is 1 ", idstr);
-    return 3;
+    simpleDebug("transformStillbirth()_Transforming stillbirthint to 2, because stillbirthint is 1 ", idstr);
+    return 2;
   }else if(stillbirthint == 2){
-    simpleDebug("transformStillbirth()_Transforming stillbirthint to 2, because stillbirthint is 2 ", idstr);
-    return 2;
+    simpleDebug("transformStillbirth()_Transforming stillbirthint to 1, because stillbirthint is 2 ", idstr);
+    return 1;
   }else if(stillbirthint == 3){
-    simpleDebug("transformStillbirth()_Transforming stillbirthint to 2, because stillbirthint is 3 ", idstr);
-    return 2;
+    simpleDebug("transformStillbirth()_Transforming stillbirthint to 1, because stillbirthint is 3 ", idstr);
+    return 1;
   }else if(stillbirthint == 4){
     simpleDebug("transformStillbirth()_Transforming stillbirthint to 1, because stillbirthint is 4 ", idstr);
     return 1;
