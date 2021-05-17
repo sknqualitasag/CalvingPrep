@@ -1499,6 +1499,32 @@ void calvingDataMap::purgeSire(){
 
   cout<<"purgeSire(): "<<sire2Delete.size()<<" sires are erased due to few number of obersvations."<<endl;
 
+  // tagging animals to delete in such sire with to low observation
+  for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
+    calvingData *ptr = (*it).second;
+
+    set<string>::iterator hit = sire2Delete.find(ptr->sireStr);
+    if(hit != sire2Delete.end()){
+      animals2Delete.insert(ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr);
+      simpleDebug("purgeSire()_In the the list sire2Delete is sire: " + ptr->sireStr + " with key to delete of cMap "+ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr, ptr->idStr);
+    }
+  }
+
+  // deleting animals with to low observation
+  unsigned count=0;
+  for(set<string>::iterator ait = animals2Delete.begin(); ait != animals2Delete.end(); ait ++){
+    this->erase(*ait);
+    simpleDebug("purgeSire()_Record is deleted due to min numberObs not in the range ", *ait);
+    count++;
+  }
+  cout<<"purgeSire(): "<<count<<" animals removed from map and memory released."<<endl;
+
+  cout<<"purgeSire(): "<<this->size()<<" animals in map after purging sire."<<endl;
+  for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
+    calvingData *ptr = (*it).second;
+    simpleDebug("purgeSire()_Still in cMap after purging sire "+ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr,ptr->idStr);
+  }
+
 
 }
 
