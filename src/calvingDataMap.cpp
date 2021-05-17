@@ -1454,6 +1454,32 @@ void calvingDataMap::countHerd(){
 }
 
 
+void calvingDataMap::countSire(){
+
+  cout<<"\ncountSire(): count animal for each sire "<<endl;
+  cout<<"*****************************************************************"<< endl;
+
+  for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
+    calvingData *ptr = (*it).second;
+
+    map<string,int>::iterator sit = sireID.SireStatistic.find(ptr->sireStr);
+    if(sit != sireID.SireStatistic.end()){
+      sireID.SireStatistic[ptr->sireStr]++;
+    }else{
+      sireID.SireStatistic[ptr->sireStr] = 1;
+    }
+
+  }
+
+  for(map<string,int>::iterator sit = sireID.SireStatistic.begin(); sit != sireID.SireStatistic.end(); sit++){
+    simpleDebug("countSire()_output of the map for sire " + sit->first + " number observation per sire " + to_string(sit->second), "");
+  }
+
+
+
+}
+
+
 void calvingDataMap::pheno_out(){
 
   ofstream inputDataAmap("PhenoOutput.csv");

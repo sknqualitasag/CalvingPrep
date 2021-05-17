@@ -10,6 +10,7 @@
 #include "util.h"
 #include "date.h"
 #include "herd.h"
+#include "sire.h"
 
 
 
@@ -87,6 +88,11 @@ public:
   // Variance in herd
   void countHerd();
   herd herdID;
+
+
+  // Check number observation per sire
+  void countSire();
+  sire sireID;
 
 
   //output function
