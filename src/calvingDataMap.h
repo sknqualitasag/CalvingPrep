@@ -83,7 +83,7 @@ public:
   //check herd
   void countHerdYear();
   herd herdID;
-//  void purgeHerdYear();
+  void purgeHerdYear();
 
 
   //output function

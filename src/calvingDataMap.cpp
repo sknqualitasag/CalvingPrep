@@ -1375,17 +1375,16 @@ void calvingDataMap::countHerdYear(){
   cout<<"\ncountHerdYear(): output of the map for herd per year:"<<endl;
   for(map<string,int>::iterator hit = herdID.HerdStatistic.begin(); hit != herdID.HerdStatistic.end(); hit++){
     cout<<"key: "<<hit->first<<" value: "<<hit->second<<endl;
-    simpleDebug("countHerdYear()_output of the map for herd.year " + hit->first + " number observation per herd.year " + to_string(hit->second), "");
-
+    //simpleDebug("countHerdYear()_output of the map for herd.year " + hit->first + " number observation per herd.year " + to_string(hit->second), "");
   }
 
 }
 
 
-//void calvingDataMap::purgeHerdYear(){
-//
-//  cout<<"\npurgeHerdYear(): "<<this->size()<<" animals in map before purging herd year."<<endl;
-//  cout<<"*****************************************************************"<< endl;
+void calvingDataMap::purgeHerdYear(){
+
+  cout<<"\npurgeHerdYear(): "<<this->size()<<" animals in map before purging herd year."<<endl;
+  cout<<"*****************************************************************"<< endl;
 //
 //  set<string>herdyear2Delete;
 //  set<string>animals2Delete;
@@ -1429,7 +1428,7 @@ void calvingDataMap::countHerdYear(){
 //  }
 //
 //
-//}
+}
 
 
 
