@@ -1483,9 +1483,21 @@ void calvingDataMap::purgeSire(){
   cout<<"\npurgeSire(): "<<this->size()<<" animals in map before purging sire."<<endl;
   cout<<"*****************************************************************"<< endl;
 
-  set<string>herdyear2Delete;
+  set<string>sire2Delete;
   set<string>animals2Delete;
 
+  // find sire with number observations under minimum
+  for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
+    calvingData *ptr = (*it).second;
+
+    map<string,int>::iterator hit = sireID.SireStatistic.find(ptr->sireStr);
+    if(sireID.SireStatistic[ptr->sireStr]  < CONSTANTS::MIN_OBS_PER_SIRE){
+      sire2Delete.insert(ptr->sireStr);
+      simpleDebug("purgeSire()_inserted in sire2Delete, herd.year " + hit->first + " has " + to_string(hit->second)  + " number observations", "");
+    }
+  }
+
+  cout<<"purgeSire(): "<<sire2Delete.size()<<" sires are erased due to few number of obersvations."<<endl;
 
 
 }
