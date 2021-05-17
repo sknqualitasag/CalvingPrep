@@ -1363,68 +1363,71 @@ void calvingDataMap::countHerdYear(){
   for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
     calvingData *ptr = (*it).second;
 
-    if(ptr->herdStr != CONSTANTS::STRING_NA){
-      map<string,int>::iterator hit = herdID.HerdStatistic.find(ptr->herdStr+"."+ptr->calvingdate.YearStr);
-      if(hit != herdID.HerdStatistic.end()){
-        herdID.HerdStatistic[ptr->herdStr+"."+ptr->calvingdate.YearStr]++;
-      }else{
-        herdID.HerdStatistic[ptr->herdStr+"."+ptr->calvingdate.YearStr] = 1;
-      }
-    }
-
-  }
-
-}
-
-
-void calvingDataMap::purgeHerdYear(){
-
-  cout<<"\npurgeHerdYear(): "<<this->size()<<" animals in map before purging herd year."<<endl;
-  cout<<"*****************************************************************"<< endl;
-
-  set<string>herdyear2Delete;
-  set<string>animals2Delete;
-
-  // find herdyear with number observations under minimum
-  for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
-    calvingData *ptr = (*it).second;
-
     map<string,int>::iterator hit = herdID.HerdStatistic.find(ptr->herdStr+"."+ptr->calvingdate.YearStr);
-    if(herdID.HerdStatistic[ptr->herdStr+"."+ptr->calvingdate.YearStr]  < CONSTANTS::MIN_OBS_PER_HERDYEAR){
-      herdyear2Delete.insert(ptr->herdStr+"."+ptr->calvingdate.YearStr);
+    if(hit != herdID.HerdStatistic.end()){
+      herdID.HerdStatistic[ptr->herdStr+"."+ptr->calvingdate.YearStr]++;
+    }else{
+      herdID.HerdStatistic[ptr->herdStr+"."+ptr->calvingdate.YearStr] = 1;
     }
+
   }
 
-  cout<<"purgeHerdYear(): "<<herdyear2Delete.size()<<" herdyear are erased due to few number of obersvations."<<endl;
-
-  // tagging animals to delete in such herdyear with to low observation
-  for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
-    calvingData *ptr = (*it).second;
-
-    set<string>::iterator hit = herdyear2Delete.find(ptr->herdStr+"."+ptr->calvingdate.YearStr);
-    if(hit != herdyear2Delete.end()){
-      animals2Delete.insert(ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr);
-      outputDebug("purgeHerdYear()_In the the list herdyear2Delete is herd.year: " + ptr->herdStr+"."+ptr->calvingdate.YearStr, ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr);
-    }
+  cout<<"\ncountHerdYear(): output of the map for herd per year:"<<endl;
+  for(map<string,int>::iterator hit = herdID.HerdStatistic.begin(); hit != herdID.HerdStatistic.end(); hit++){
+    cout<<"key: "<<hit->first<<" value: "<<hit->second<<endl;
   }
-
-  // deleting animals with to low observation
-  unsigned count=0;
-  for(set<string>::iterator ait = animals2Delete.begin(); ait != animals2Delete.end(); ait ++){
-    this->erase(*ait);
-    outputDebug("purgeHerdYear()_Record is deleted due to min numberObs not in the range ", *ait);
-    count++;
-  }
-  cout<<"purgeHerdYear(): "<<count<<" animals removed from map and memory released."<<endl;
-
-  cout<<"purgeHerdYear(): "<<this->size()<<" animals in map after purging herd year."<<endl;
-  for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
-    calvingData *ptr = (*it).second;
-    outputDebug("purgeHerdYear()_Still in cMap after purging herd ", ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr);
-  }
-
 
 }
+
+
+//void calvingDataMap::purgeHerdYear(){
+//
+//  cout<<"\npurgeHerdYear(): "<<this->size()<<" animals in map before purging herd year."<<endl;
+//  cout<<"*****************************************************************"<< endl;
+//
+//  set<string>herdyear2Delete;
+//  set<string>animals2Delete;
+//
+//  // find herdyear with number observations under minimum
+//  for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
+//    calvingData *ptr = (*it).second;
+//
+//    map<string,int>::iterator hit = herdID.HerdStatistic.find(ptr->herdStr+"."+ptr->calvingdate.YearStr);
+//    if(herdID.HerdStatistic[ptr->herdStr+"."+ptr->calvingdate.YearStr]  < CONSTANTS::MIN_OBS_PER_HERDYEAR){
+//      herdyear2Delete.insert(ptr->herdStr+"."+ptr->calvingdate.YearStr);
+//    }
+//  }
+//
+//  cout<<"purgeHerdYear(): "<<herdyear2Delete.size()<<" herdyear are erased due to few number of obersvations."<<endl;
+//
+//  // tagging animals to delete in such herdyear with to low observation
+//  for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
+//    calvingData *ptr = (*it).second;
+//
+//    set<string>::iterator hit = herdyear2Delete.find(ptr->herdStr+"."+ptr->calvingdate.YearStr);
+//    if(hit != herdyear2Delete.end()){
+//      animals2Delete.insert(ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr);
+//      outputDebug("purgeHerdYear()_In the the list herdyear2Delete is herd.year: " + ptr->herdStr+"."+ptr->calvingdate.YearStr, ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr);
+//    }
+//  }
+//
+//  // deleting animals with to low observation
+//  unsigned count=0;
+//  for(set<string>::iterator ait = animals2Delete.begin(); ait != animals2Delete.end(); ait ++){
+//    this->erase(*ait);
+//    outputDebug("purgeHerdYear()_Record is deleted due to min numberObs not in the range ", *ait);
+//    count++;
+//  }
+//  cout<<"purgeHerdYear(): "<<count<<" animals removed from map and memory released."<<endl;
+//
+//  cout<<"purgeHerdYear(): "<<this->size()<<" animals in map after purging herd year."<<endl;
+//  for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
+//    calvingData *ptr = (*it).second;
+//    outputDebug("purgeHerdYear()_Still in cMap after purging herd ", ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr);
+//  }
+//
+//
+//}
 
 
 

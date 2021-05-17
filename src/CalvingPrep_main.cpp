@@ -67,7 +67,7 @@ int CalvingPrep_main(std::string paramFileName) {
 
   // Minimum observations per herd
   cMap.countHerdYear();
-  cMap.purgeHerdYear();
+ // cMap.purgeHerdYear();
 
 
   //Phenotyp Output
