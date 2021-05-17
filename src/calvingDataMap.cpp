@@ -1373,9 +1373,15 @@ void calvingDataMap::countHerdYear(){
   }
 
   cout<<"\ncountHerdYear(): output of the map for herd per year:"<<endl;
-  for(map<string,int>::iterator hit = herdID.HerdStatistic.begin(); hit != herdID.HerdStatistic.end(); hit++){
-    cout<<"key: "<<hit->first<<" value: "<<hit->second<<endl;
-    //simpleDebug("countHerdYear()_output of the map for herd.year " + hit->first + " number observation per herd.year " + to_string(hit->second), "");
+
+  for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
+    calvingData *ptr = (*it).second;
+
+    for(map<string,int>::iterator hit = herdID.HerdStatistic.begin(); hit != herdID.HerdStatistic.end(); hit++){
+      cout<<"key: "<<hit->first<<" value: "<<hit->second<<endl;
+      simpleDebug("countHerdYear()_output of the map for herd.year " + hit->first + " number observation per herd.year " + to_string(hit->second), "");
+    }
+
   }
 
 }
@@ -1401,18 +1407,18 @@ void calvingDataMap::purgeHerdYear(){
   }
 
   cout<<"purgeHerdYear(): "<<herdyear2Delete.size()<<" herdyear are erased due to few number of obersvations."<<endl;
-//
-//  // tagging animals to delete in such herdyear with to low observation
-//  for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
-//    calvingData *ptr = (*it).second;
-//
-//    set<string>::iterator hit = herdyear2Delete.find(ptr->herdStr+"."+ptr->calvingdate.YearStr);
-//    if(hit != herdyear2Delete.end()){
-//      animals2Delete.insert(ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr);
-//      outputDebug("purgeHerdYear()_In the the list herdyear2Delete is herd.year: " + ptr->herdStr+"."+ptr->calvingdate.YearStr, ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr);
-//    }
-//  }
-//
+
+  // tagging animals to delete in such herdyear with to low observation
+  for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
+    calvingData *ptr = (*it).second;
+
+    set<string>::iterator hit = herdyear2Delete.find(ptr->herdStr+"."+ptr->calvingdate.YearStr);
+    if(hit != herdyear2Delete.end()){
+      animals2Delete.insert(ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr);
+      simpleDebug("purgeHerdYear()_In the the list herdyear2Delete is herd.year: " + ptr->herdStr+"."+ptr->calvingdate.YearStr + " with key to delete of cMap "+ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr, ptr->idStr);
+    }
+  }
+
 //  // deleting animals with to low observation
 //  unsigned count=0;
 //  for(set<string>::iterator ait = animals2Delete.begin(); ait != animals2Delete.end(); ait ++){
