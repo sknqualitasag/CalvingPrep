@@ -1373,15 +1373,9 @@ void calvingDataMap::countHerdYear(){
   }
 
   cout<<"\ncountHerdYear(): output of the map for herd per year:"<<endl;
-
-  for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
-    calvingData *ptr = (*it).second;
-
-    for(map<string,int>::iterator hit = herdID.HerdStatistic.begin(); hit != herdID.HerdStatistic.end(); hit++){
-      cout<<"key: "<<hit->first<<" value: "<<hit->second<<endl;
-      simpleDebug("countHerdYear()_output of the map for herd.year " + hit->first + " number observation per herd.year " + to_string(hit->second), "");
-    }
-
+  for(map<string,int>::iterator hit = herdID.HerdStatistic.begin(); hit != herdID.HerdStatistic.end(); hit++){
+    cout<<"key: "<<hit->first<<" value: "<<hit->second<<endl;
+    simpleDebug("countHerdYear()_output of the map for herd.year " + hit->first + " number observation per herd.year " + to_string(hit->second), "");
   }
 
 }
