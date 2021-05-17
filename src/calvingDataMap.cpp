@@ -1363,16 +1363,16 @@ void calvingDataMap::countHerdYear(){
   for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
     calvingData *ptr = (*it).second;
 
-    map<string,int>::iterator hit = herdID.HerdStatistic.find(ptr->herdStr+"."+ptr->calvingdate.YearStr);
-    if(hit != herdID.HerdStatistic.end()){
-      herdID.HerdStatistic[ptr->herdStr+"."+ptr->calvingdate.YearStr]++;
+    map<string,int>::iterator hit = herdYearID.HerdYearStatistic.find(ptr->herdStr+"."+ptr->calvingdate.YearStr);
+    if(hit != herdYearID.HerdYearStatistic.end()){
+      herdYearID.HerdYearStatistic[ptr->herdStr+"."+ptr->calvingdate.YearStr]++;
     }else{
-      herdID.HerdStatistic[ptr->herdStr+"."+ptr->calvingdate.YearStr] = 1;
+      herdYearID.HerdYearStatistic[ptr->herdStr+"."+ptr->calvingdate.YearStr] = 1;
     }
 
   }
 
-  for(map<string,int>::iterator hit = herdID.HerdStatistic.begin(); hit != herdID.HerdStatistic.end(); hit++){
+  for(map<string,int>::iterator hit = herdYearID.HerdYearStatistic.begin(); hit != herdYearID.HerdYearStatistic.end(); hit++){
     simpleDebug("countHerdYear()_output of the map for herd.year " + hit->first + " number observation per herd.year " + to_string(hit->second), "");
   }
 
@@ -1391,8 +1391,8 @@ void calvingDataMap::purgeHerdYear(){
   for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
     calvingData *ptr = (*it).second;
 
-    map<string,int>::iterator hit = herdID.HerdStatistic.find(ptr->herdStr+"."+ptr->calvingdate.YearStr);
-    if(herdID.HerdStatistic[ptr->herdStr+"."+ptr->calvingdate.YearStr]  < CONSTANTS::MIN_OBS_PER_HERDYEAR){
+    map<string,int>::iterator hit = herdYearID.HerdYearStatistic.find(ptr->herdStr+"."+ptr->calvingdate.YearStr);
+    if(herdYearID.HerdYearStatistic[ptr->herdStr+"."+ptr->calvingdate.YearStr]  < CONSTANTS::MIN_OBS_PER_HERDYEAR){
       herdyear2Delete.insert(ptr->herdStr+"."+ptr->calvingdate.YearStr);
       simpleDebug("purgeHerdYear()_inserted in herdyear2Delete, herd.year " + hit->first + " has " + to_string(hit->second)  + " number observations", "");
     }
@@ -1429,6 +1429,29 @@ void calvingDataMap::purgeHerdYear(){
 
 }
 
+
+void calvingDataMap::countHerd(){
+
+  cout<<"\ncountHerd(): count animal for each herd "<<endl;
+  cout<<"*****************************************************************"<< endl;
+
+  for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
+    calvingData *ptr = (*it).second;
+
+    map<string,int>::iterator hit = herdID.HerdStatistic.find(ptr->herdStr);
+    if(hit != herdID.HerdStatistic.end()){
+      herdID.HerdStatistic[ptr->herdStr]++;
+    }else{
+      herdID.HerdStatistic[ptr->herdStr] = 1;
+    }
+
+  }
+
+  for(map<string,int>::iterator hit = herdID.HerdStatistic.begin(); hit != herdID.HerdStatistic.end(); hit++){
+    simpleDebug("countHerd()_output of the map for herd " + hit->first + " number observation per herd " + to_string(hit->second), "");
+  }
+
+}
 
 
 void calvingDataMap::pheno_out(){

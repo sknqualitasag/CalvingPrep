@@ -12,6 +12,7 @@ class herd{
 public:
 
   herd();
+  map<string,int> HerdYearStatistic;
   map<string,int> HerdStatistic;
 
 

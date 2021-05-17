@@ -80,10 +80,13 @@ public:
   int transformStillbirth(int stillbirthint, string idstr);
 
 
-  //check herd
+  // Check number observation in herd.year
   void countHerdYear();
-  herd herdID;
+  herd herdYearID;
   void purgeHerdYear();
+  // Variance in herd
+  void countHerd();
+  herd herdID;
 
 
   //output function
