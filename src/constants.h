@@ -40,6 +40,9 @@ public:
   static const int FIRST_LACTATION;
   //' missing value code as double
   static const double DOUBLE_NA;
+  //' minimum observation per herd year
+  static const unsigned MIN_OBS_PER_HERDYEAR;
+
 
 
 };

@@ -9,6 +9,7 @@
 #include "animalMap.h"
 #include "util.h"
 #include "date.h"
+#include "herd.h"
 
 
 
@@ -78,6 +79,11 @@ public:
   int transformCalvingScore(int calvingscoreint, string idstr);
   int transformStillbirth(int stillbirthint, string idstr);
 
+
+  //check herd
+  void countHerdYear();
+  herd herdID;
+  void purgeHerdYear();
 
 
   //output function

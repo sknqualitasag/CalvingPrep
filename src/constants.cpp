@@ -39,3 +39,5 @@ const int CONSTANTS::TRANSFORM_IN_DAYS = 31;
 const int CONSTANTS::FIRST_LACTATION = 1;
 //' missing value code as string
 const double CONSTANTS::DOUBLE_NA = -9999.;
+//' minimum observation per herd year
+const unsigned CONSTANTS::MIN_OBS_PER_HERDYEAR = 5;
