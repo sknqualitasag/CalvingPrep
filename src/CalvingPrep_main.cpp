@@ -74,6 +74,7 @@ int CalvingPrep_main(std::string paramFileName) {
 
   // Minimum observation per sire
   cMap.countSire();
+  cMap.purgeSire();
 
 
   //Phenotyp Output

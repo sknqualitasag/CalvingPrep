@@ -1475,6 +1475,17 @@ void calvingDataMap::countSire(){
     simpleDebug("countSire()_output of the map for sire " + sit->first + " number observation per sire " + to_string(sit->second), "");
   }
 
+}
+
+
+void calvingDataMap::purgeSire(){
+
+  cout<<"\npurgeSire(): "<<this->size()<<" animals in map before purging sire."<<endl;
+  cout<<"*****************************************************************"<< endl;
+
+  set<string>herdyear2Delete;
+  set<string>animals2Delete;
+
 
 
 }

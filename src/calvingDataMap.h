@@ -93,6 +93,7 @@ public:
   // Check number observation per sire
   void countSire();
   sire sireID;
+  void purgeSire();
 
 
   //output function
