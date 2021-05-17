@@ -1420,13 +1420,13 @@ void calvingDataMap::purgeHerdYear(){
   }
   cout<<"purgeHerdYear(): "<<count<<" animals removed from map and memory released."<<endl;
 
-//  cout<<"purgeHerdYear(): "<<this->size()<<" animals in map after purging herd year."<<endl;
-//  for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
-//    calvingData *ptr = (*it).second;
-//    simpleDebug("purgeHerdYear()_Still in cMap after purging herd ", ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr);
-//  }
-//
-//
+  cout<<"purgeHerdYear(): "<<this->size()<<" animals in map after purging herd year."<<endl;
+  for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
+    calvingData *ptr = (*it).second;
+    simpleDebug("purgeHerdYear()_Still in cMap after purging herd.year "+ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr,ptr->idStr);
+  }
+
+
 }
 
 
