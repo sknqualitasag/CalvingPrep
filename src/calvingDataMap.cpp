@@ -1415,7 +1415,7 @@ void calvingDataMap::purgeHerdYear(){
   unsigned count=0;
   for(set<string>::iterator ait = animals2Delete.begin(); ait != animals2Delete.end(); ait ++){
     this->erase(*ait);
-    outputDebug("purgeHerdYear()_Record is deleted due to min numberObs not in the range ", *ait);
+    simpleDebug("purgeHerdYear()_Record is deleted due to min numberObs not in the range ", *ait);
     count++;
   }
   cout<<"purgeHerdYear(): "<<count<<" animals removed from map and memory released."<<endl;
@@ -1423,7 +1423,7 @@ void calvingDataMap::purgeHerdYear(){
 //  cout<<"purgeHerdYear(): "<<this->size()<<" animals in map after purging herd year."<<endl;
 //  for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
 //    calvingData *ptr = (*it).second;
-//    outputDebug("purgeHerdYear()_Still in cMap after purging herd ", ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr);
+//    simpleDebug("purgeHerdYear()_Still in cMap after purging herd ", ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr);
 //  }
 //
 //
