@@ -1493,7 +1493,7 @@ void calvingDataMap::purgeSire(){
     map<string,int>::iterator hit = sireID.SireStatistic.find(ptr->sireStr);
     if(sireID.SireStatistic[ptr->sireStr]  < CONSTANTS::MIN_OBS_PER_SIRE){
       sire2Delete.insert(ptr->sireStr);
-      simpleDebug("purgeSire()_inserted in sire2Delete, herd.year " + hit->first + " has " + to_string(hit->second)  + " number observations", "");
+      simpleDebug("purgeSire()_inserted in sire2Delete, sire " + hit->first + " has " + to_string(hit->second)  + " number observations", "");
     }
   }
 
