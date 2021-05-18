@@ -1445,7 +1445,7 @@ void calvingDataMap::countHerd(){
       herd *hPtr = new herd();
       hPtr->herdIdStr = ptr->herdStr;
       hPtr->increment(ptr->birthWeightDbl);
-      (*this)[ptr->herdStr] = hPtr;
+      (HerdStatisticMap)[ptr->herdStr] = hPtr;
     }else{
       // Herd is already in the map
       hit->second->increment(ptr->birthWeightDbl);
