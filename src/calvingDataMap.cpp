@@ -1451,20 +1451,34 @@ void calvingDataMap::countHerd(){
       hit->second->increment(ptr->birthWeightDbl);
     }
 
-//    map<string,int>::iterator hit = herdID.HerdStatistic.find(ptr->herdStr);
-//    if(hit != herdID.HerdStatistic.end()){
-//      herdID.HerdStatistic[ptr->herdStr]++;
-//    }else{
-//      herdID.HerdStatistic[ptr->herdStr] = 1;
-//    }
-
   }
 
-//  for(map<string,int>::iterator hit = herdID.HerdStatistic.begin(); hit != herdID.HerdStatistic.end(); hit++){
-//    simpleDebug("countHerd()_output of the map for herd " + hit->first + " number observation per herd " + to_string(hit->second), "");
-//  }
-
 }
+
+
+void calvingDataMap::stdHerd(){
+
+  cout<<"\nstdHerd(): calculate per herd the standarddeviation per trait "<<endl;
+  cout<<"*****************************************************************"<< endl;
+
+
+  for(map<string,herd*>::iterator hit = HerdStatisticMap.begin(); hit != HerdStatisticMap.end(); hit++){
+    herd *hPtr = hit->second;
+
+    for(map<string,statistic*>::iterator sit = hPtr->HerdStatistic.begin(); sit != hPtr->HerdStatistic.end(); sit++){
+      statistic *sPtr = sit->second;
+
+      statistic *cPtr = hPtr->HerdStatistic[sPtr->trait];
+      cPtr->Std = (sPtr->Quadriert - sPtr->Sum * sPtr->Sum / (double) sPtr->ObsPerHerd) / ((double) sPtr->ObsPerHerd - 1.0);
+
+
+      //statistic per herd
+      simpleDebug("stdHerd()_herd is " + hit->first + " with trait  " + sPtr->trait + " has " + to_string(sPtr->ObsPerHerd) + " observation(s) and it's standarddeviation " + to_string(cPtr->Std), "");
+      simpleDebug("Trait: " + sPtr->trait + "  | SSQ: " + to_string(sPtr->Quadriert) + " | Sum: " + to_string(sPtr->Sum), hit->first);
+    }
+  }
+}
+
 
 
 void calvingDataMap::countSire(){

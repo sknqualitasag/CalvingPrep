@@ -85,9 +85,10 @@ public:
   void countHerdYear();
   herd herdYearID;
   void purgeHerdYear();
-  // Variance in herd
+  // Calculate variance in herd
   void countHerd();
   map<string, herd*> HerdStatisticMap;
+  void stdHerd();
 
 
   // Check number observation per sire
