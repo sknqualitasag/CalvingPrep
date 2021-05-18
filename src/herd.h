@@ -4,6 +4,7 @@
 #include <sstream>
 #include <vector>
 #include <map>
+#include "statistic.h"
 
 
 using namespace std;
@@ -11,9 +12,12 @@ using namespace std;
 class herd{
 public:
 
+  string herdIdStr;
   herd();
+  void increment(double birthWeightDbl);
+
   map<string,int> HerdYearStatistic;
-  map<string,int> HerdStatistic;
+  map<string,statistic*> HerdStatistic;
 
 
 };

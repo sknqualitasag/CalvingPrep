@@ -1438,18 +1438,31 @@ void calvingDataMap::countHerd(){
   for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
     calvingData *ptr = (*it).second;
 
-    map<string,int>::iterator hit = herdID.HerdStatistic.find(ptr->herdStr);
-    if(hit != herdID.HerdStatistic.end()){
-      herdID.HerdStatistic[ptr->herdStr]++;
+    map<string,herd*>::iterator hit = HerdStatisticMap.find(ptr->herdStr);
+    // Herd is not found in the map
+    if(hit == HerdStatisticMap.end()){
+      // Insert new herd
+      herd *hPtr = new herd();
+      hPtr->herdIdStr = ptr->herdStr;
+      hPtr->increment(ptr->birthWeightDbl);
+      (*this)[ptr->herdStr] = hPtr;
     }else{
-      herdID.HerdStatistic[ptr->herdStr] = 1;
+      // Herd is already in the map
+      hit->second->increment(ptr->birthWeightDbl);
     }
 
+//    map<string,int>::iterator hit = herdID.HerdStatistic.find(ptr->herdStr);
+//    if(hit != herdID.HerdStatistic.end()){
+//      herdID.HerdStatistic[ptr->herdStr]++;
+//    }else{
+//      herdID.HerdStatistic[ptr->herdStr] = 1;
+//    }
+
   }
 
-  for(map<string,int>::iterator hit = herdID.HerdStatistic.begin(); hit != herdID.HerdStatistic.end(); hit++){
-    simpleDebug("countHerd()_output of the map for herd " + hit->first + " number observation per herd " + to_string(hit->second), "");
-  }
+//  for(map<string,int>::iterator hit = herdID.HerdStatistic.begin(); hit != herdID.HerdStatistic.end(); hit++){
+//    simpleDebug("countHerd()_output of the map for herd " + hit->first + " number observation per herd " + to_string(hit->second), "");
+//  }
 
 }
 
