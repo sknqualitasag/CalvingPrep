@@ -43,3 +43,6 @@ const double CONSTANTS::DOUBLE_NA = -9999.;
 const unsigned CONSTANTS::MIN_OBS_PER_HERDYEAR = 5;
 //' minimum observation per sire
 const unsigned CONSTANTS::MIN_OBS_PER_SIRE = 5;
+//' standarddeviation of zero for trait in herd
+const double CONSTANTS::STD_TRAIT_ZERO_PER_HERD = 0.0001;
+

@@ -71,6 +71,7 @@ int CalvingPrep_main(std::string paramFileName) {
   // Variance in herd
   cMap.countHerd();
   cMap.stdHerd();
+  cMap.purgeHerd();
 
 
   // Minimum observation per sire

@@ -1482,6 +1482,41 @@ void calvingDataMap::stdHerd(){
 }
 
 
+void calvingDataMap::purgeHerd(){
+
+  cout<<"\npurgeHerd(): "<<this->size()<<" animals in map before purging herd."<<endl;
+  cout<<"*****************************************************************"<< endl;
+
+  set<string>herd2Delete;
+  set<string>animals2Delete;
+
+  for(map<string,herd*>::iterator hit = HerdStatisticMap.begin(); hit != HerdStatisticMap.end(); hit++){
+    herd *hPtr = hit->second;
+
+    //Herd without variance
+    bool deleteHerd = false;
+    for(map<string,statistic*>::iterator sit = hPtr->HerdStatistic.begin(); sit != hPtr->HerdStatistic.end(); sit++){
+      statistic *sPtr = sit->second;
+      statistic *cPtr = hPtr->HerdStatistic[sPtr->trait];
+      if(cPtr->Std < CONSTANTS::STD_TRAIT_ZERO_PER_HERD){
+        deleteHerd = true;
+        simpleDebug("purgeHerd()_herd has " + hit->first + " no variance for the trait " + sPtr->trait, "");
+      }else{
+        simpleDebug("purgeHerd()_herd has " + hit->first + " variance for the trait " + sPtr->trait, "");
+      }
+    }
+    if(deleteHerd){
+      herd2Delete.insert(hPtr->herdIdStr);
+      simpleDebug("purgeHerd()_herd has " + hit->first + " no variance and is inserted in herd2Delete.", "");
+    }
+
+  }
+
+
+}
+
+
+
 
 void calvingDataMap::countSire(){
 

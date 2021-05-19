@@ -89,6 +89,7 @@ public:
   void countHerd();
   map<string, herd*> HerdStatisticMap;
   void stdHerd();
+  void purgeHerd();
 
 
   // Check number observation per sire

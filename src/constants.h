@@ -44,6 +44,9 @@ public:
   static const unsigned MIN_OBS_PER_HERDYEAR;
   //' minimum observation per sire
   static const unsigned MIN_OBS_PER_SIRE;
+  //' standarddeviation of zero for trait in herd
+  static const double STD_TRAIT_ZERO_PER_HERD;
+
 
 
 
