@@ -1444,11 +1444,13 @@ void calvingDataMap::countHerd(){
       // Insert new herd
       herd *hPtr = new herd();
       hPtr->herdIdStr = ptr->herdStr;
-      hPtr->increment(ptr->birthWeightDbl);
+      // prepare info to check variance of calving ease,
+      // but not birthweight because birthweight may be missing according to inputCalvingData
+      hPtr->increment(ptr->transformedCalvingScoreInt);
       (HerdStatisticMap)[ptr->herdStr] = hPtr;
     }else{
       // Herd is already in the map
-      hit->second->increment(ptr->birthWeightDbl);
+      hit->second->increment(ptr->transformedCalvingScoreInt);
     }
 
   }
@@ -1474,7 +1476,7 @@ void calvingDataMap::stdHerd(){
 
       //statistic per herd
       simpleDebug("stdHerd()_herd is " + hit->first + " with trait  " + sPtr->trait + " has " + to_string(sPtr->ObsPerHerd) + " observation(s) and it's standarddeviation " + to_string(cPtr->Std), "");
-      simpleDebug("Trait: " + sPtr->trait + "  | SSQ: " + to_string(sPtr->Quadriert) + " | Sum: " + to_string(sPtr->Sum), hit->first);
+      simpleDebug("stdHerd()_Trait: " + sPtr->trait + "  | SSQ: " + to_string(sPtr->Quadriert) + " | Sum: " + to_string(sPtr->Sum)  + " | Herd: " + hit->first,"");
     }
   }
 }
