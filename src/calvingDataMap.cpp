@@ -1490,10 +1490,10 @@ void calvingDataMap::purgeHerd(){
   set<string>herd2Delete;
   set<string>animals2Delete;
 
+  // Find herd without variance
   for(map<string,herd*>::iterator hit = HerdStatisticMap.begin(); hit != HerdStatisticMap.end(); hit++){
     herd *hPtr = hit->second;
 
-    //Herd without variance
     bool deleteHerd = false;
     for(map<string,statistic*>::iterator sit = hPtr->HerdStatistic.begin(); sit != hPtr->HerdStatistic.end(); sit++){
       statistic *sPtr = sit->second;
@@ -1510,6 +1510,35 @@ void calvingDataMap::purgeHerd(){
       simpleDebug("purgeHerd()_herd has " + hit->first + " no variance and is inserted in herd2Delete.", "");
     }
 
+  }
+  cout<<"purgeHerd(): "<<herd2Delete.size()<<" herds are erased due to no variance in the herd."<<endl;
+
+
+  // tagging animals to delete in such herd without variance
+  for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
+    calvingData *ptr = (*it).second;
+
+    set<string>::iterator hit = herd2Delete.find(ptr->herdStr);
+    if(hit != herd2Delete.end()){
+      animals2Delete.insert(ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr);
+      simpleDebug("purgeHerd()_In the the list herd2Delete is herd: " + ptr->herdStr + " with key to delete of cMap "+ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr, ptr->idStr);
+    }
+  }
+
+
+  // deleting animals with to low observation
+  unsigned count=0;
+  for(set<string>::iterator ait = animals2Delete.begin(); ait != animals2Delete.end(); ait ++){
+    this->erase(*ait);
+    simpleDebug("purgeHerd()_Record is deleted due to min numberObs not in the range ", *ait);
+    count++;
+  }
+  cout<<"purgeHerd(): "<<count<<" animals removed from map and memory released."<<endl;
+
+  cout<<"purgeHerd(): "<<this->size()<<" animals in map after purging herd."<<endl;
+  for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
+    calvingData *ptr = (*it).second;
+    simpleDebug("purgeHerd()_Still in cMap after purging herd "+ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr,ptr->idStr);
   }
 
 
