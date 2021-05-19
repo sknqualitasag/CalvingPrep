@@ -1530,7 +1530,7 @@ void calvingDataMap::purgeHerd(){
   unsigned count=0;
   for(set<string>::iterator ait = animals2Delete.begin(); ait != animals2Delete.end(); ait ++){
     this->erase(*ait);
-    simpleDebug("purgeHerd()_Record is deleted due to min numberObs not in the range ", *ait);
+    simpleDebug("purgeHerd()_Record is deleted due to no variance, cMap key is "+*ait, "");
     count++;
   }
   cout<<"purgeHerd(): "<<count<<" animals removed from map and memory released."<<endl;
