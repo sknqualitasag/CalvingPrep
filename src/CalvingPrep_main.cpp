@@ -88,6 +88,10 @@ int CalvingPrep_main(std::string paramFileName) {
   cMap.drawHerd(proportion, seed);
 
 
+  //Coding the effects
+  cMap.codeEffects();
+
+
   //Phenotyp Output
   cMap.pheno_out();
 

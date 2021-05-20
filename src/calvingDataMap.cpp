@@ -1736,3 +1736,12 @@ void calvingDataMap::pheno_out(){
 
   }
 }
+
+
+void calvingDataMap::codeEffects(){
+
+  cout<<"\ncodeEffects():"<<endl;
+  cout<<"*****************************************************************"<< endl;
+
+
+}
