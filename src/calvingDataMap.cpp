@@ -342,16 +342,16 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     // Following field has to be available, otherwise the record is removed
     // Ideal should the field idsexstr be full because it will be used to build a fix effect
     // however a lot calves have missing sex, so it is still kept
-    // calvingdate.MonthStr is used to build a fix effect
-    if(calvingdate.MonthStr == CONSTANTS::STRING_NA){
-      simpleDebug("inputData()_Animal is not read in calvingDataMap, because calvingdate.MonthStr is missing", idstr);
-      calvingMonthNotRead++;
-      continue;
-    }
     // calvingdate.YearStr is used to build a fix effect
     if(calvingdate.YearStr == CONSTANTS::STRING_NA){
       simpleDebug("inputData()_Animal is not read in calvingDataMap, because calvingdate.YearStr is missing", idstr);
       calvingYearNotRead++;
+      continue;
+    }
+    // calvingdate.MonthStr is used to build a fix effect
+    if(calvingdate.MonthStr == CONSTANTS::STRING_NA){
+      simpleDebug("inputData()_Animal is not read in calvingDataMap, because calvingdate.MonthStr is missing", idstr);
+      calvingMonthNotRead++;
       continue;
     }
     // lnint is used to build a fix effect
@@ -466,25 +466,25 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
        (*this)[key] = ptr;
        outputDebug("inputCalvingData()_The key " + key + " is in calvingDataMap before checking if idStr is available", ptr->idStr);
 
-       if(ptr->idStr != CONSTANTS::STRING_NA) {
-         outputDebug("inputCalvingData()_idStr " + ptr->idStr + " is available and will be setting in offspringIds", ptr->idStr);
-
-         set<string>::iterator idit = offspringIds.find(ptr->idStr);
-         if(idit == offspringIds.end()) {
-           offspringIds.insert(ptr->idStr);
-           AMap.addAnimal(ptr);
-         }else{
-           outputDebug("inputCalvingData()_idStr is already in offspringIds, so delete the record", ptr->idStr);
-           this->erase(key);
-           delete (ptr);
-           offspringIdsToDelete.insert(ptr->idStr);
-           inconsistentRepeatedRecs1++;
-         }
-       }else{
-         outputDebug("inputCalvingData()_idStr is missing, stillbirth is "+to_string(ptr->stillbirthInt), ptr->idStr);
-         // In case of stillbirth, mostly idStr is missing
-         numconsistentRecsButMissingIDs++;
-       }
+//       if(ptr->idStr != CONSTANTS::STRING_NA) {
+//         outputDebug("inputCalvingData()_idStr " + ptr->idStr + " is available and will be setting in offspringIds", ptr->idStr);
+//
+//         set<string>::iterator idit = offspringIds.find(ptr->idStr);
+//         if(idit == offspringIds.end()) {
+//           offspringIds.insert(ptr->idStr);
+//           AMap.addAnimal(ptr);
+//         }else{
+//           outputDebug("inputCalvingData()_idStr is already in offspringIds, so delete the record", ptr->idStr);
+//           this->erase(key);
+//           delete (ptr);
+//           offspringIdsToDelete.insert(ptr->idStr);
+//           inconsistentRepeatedRecs1++;
+//         }
+//       }else{
+//         outputDebug("inputCalvingData()_idStr is missing, stillbirth is "+to_string(ptr->stillbirthInt), ptr->idStr);
+//         // In case of stillbirth, mostly idStr is missing
+//         numconsistentRecsButMissingIDs++;
+//       }
 
      }else{
        cout<<"The key "<<key<<" is already in Cmap, so "+ptr->idStr+" not taken in account."<<endl;
@@ -497,10 +497,10 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
 
   cout<<"\nNumber of records in raw data:                                                          "<<rec<<endl;
   cout<<"Number of consistent duplicate records or multiple birth (same dam, same calvingdate).    "<<numRepRecs<<endl;
-  cout<<"Number of consistent records but a missing ID.                                            "<<numconsistentRecsButMissingIDs<<endl;
-  cout<<"Number of consistent offspring Ids occuring more than once in "<<fname<<" :               "<<inconsistentRepeatedRecs1<<endl;
-  cout<<"Number of animal record with missing calvingMonth: "<<calvingMonthNotRead<<endl;
+//  cout<<"Number of consistent records but a missing ID.                                            "<<numconsistentRecsButMissingIDs<<endl;
+//  cout<<"Number of consistent offspring Ids occuring more than once in "<<fname<<" :               "<<inconsistentRepeatedRecs1<<endl;
   cout<<"Number of animal record with missing calvingYear: "<<calvingYearNotRead<<endl;
+  cout<<"Number of animal record with missing calvingMonth: "<<calvingMonthNotRead<<endl;
   cout<<"Number of animal record with missing lactationNumber: "<<lacationNumberNotRead<<endl;
   cout<<"Number of animal record with missing calvingAgeInDays: "<<calvingAgeInDaysNotRead<<endl;
   cout<<"Number of animal record with missing sire breed: "<<sirebreedNotRead<<endl;
