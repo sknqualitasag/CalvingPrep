@@ -19,6 +19,7 @@
 #include "constants.h"
 #include "date.h"
 #include "herd.h"
+#include "recoderMap.h"
 
 
 
@@ -1743,5 +1744,33 @@ void calvingDataMap::codeEffects(){
   cout<<"\ncodeEffects():"<<endl;
   cout<<"*****************************************************************"<< endl;
 
+  cout<<"\nCoding the effect SEX..."<<endl;
+  codeSex();
+
+
+}
+
+
+void calvingDataMap::codeSex(void){
+
+  recoderMap sexCoder;
+
+  sexCoder.Count = 0;
+  sexCoder.missing = 0;
+  unsigned validRecs=0;
+
+//  for(calvingDataMap::iterator it=begin();it!=end();it++){
+//    calvingData* ptr =(*it).second;
+//    //    outputDebug("codeSex()_Sex " + to_string(aPtr->sex) + " and sexSlaughterStr " + aPtr->sexSlaughterStr, aPtr->indStr);
+//    ptr->sexCode = sexCoder.code(ptr->idSexStr,MVC);
+//    //    outputDebug("codeSex()_After Code Sex " + to_string(aPtr->sex) + " and sexSlaughterStr " + aPtr->sexSlaughterStr , aPtr->indStr);
+//    //    validRecs++;
+//  }
+//
+//  sexCoder.displayCodes();
+//  sexCoder.toCSV("sexCoder.csv");
+//  numSexes = sexCoder.size();
+//
+//  cout<<"codeSex(): "<<validRecs<<" coded animals for sex."<<endl;
 
 }

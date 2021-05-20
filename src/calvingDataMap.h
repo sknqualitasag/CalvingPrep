@@ -104,6 +104,8 @@ public:
 
   //Coding the effects
   void codeEffects();
+  void codeSex(void);
+
 
 
   //output function
