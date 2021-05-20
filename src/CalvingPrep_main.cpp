@@ -85,7 +85,7 @@ int CalvingPrep_main(std::string paramFileName) {
 
 
   // Draw a sample of data based on herds
-  drawHerd(proportion, seed);
+  cMap.drawHerd(proportion, seed);
 
 
   //Phenotyp Output
