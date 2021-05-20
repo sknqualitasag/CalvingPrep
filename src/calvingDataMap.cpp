@@ -1630,6 +1630,44 @@ void calvingDataMap::drawHerd(unsigned proportion, unsigned seed){
 
     cout<<"drawHerd(): draw a sample of herd for variance component."<<endl;
 
+    set<string>herds2Delete;
+    unsigned herdCounter = 0;
+    unsigned k = 0; // Ganzzahlige Rest von der Division
+    for(map<string,herd*>::iterator it = HerdStatisticMap.begin(); it != HerdStatisticMap.end(); it++){
+      herd *hPtr = (*it).second;
+      herdCounter++;
+      k = herdCounter % proportion;
+      if(k != seed){
+        herds2Delete.insert(hPtr->herdIdStr);
+        simpleDebug("drawHerd()_herd " + hPtr->herdIdStr + " is not taken into account in the sampling", "");
+      }
+    }
+    cout<<"drawHerd(): "<<herds2Delete.size()<<" herds are not taken into account in the sampling."<<endl;
+
+    set<string>animals2Delete;
+    for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
+      calvingData *ptr = (*it).second;
+
+      set<string>::iterator hit = herds2Delete.find(ptr->herdStr);
+      if(hit != herds2Delete.end()){
+        animals2Delete.insert(ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr);
+        simpleDebug("drawHerd()_In the the list herds2Delete is herd: " + ptr->herdStr + " with key to delete of cMap "+ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr, ptr->idStr);
+      }
+    }
+
+    unsigned count=0;
+    for(set<string>::iterator ait = animals2Delete.begin(); ait != animals2Delete.end(); ait ++){
+      this->erase(*ait);
+      simpleDebug("drawHerd()_Record is not sampled, cMap key is "+*ait, "");
+      count++;
+    }
+    cout<<"drawHerd(): "<<count<<" animals removed from map and memory released."<<endl;
+
+    cout<<"drawHerd(): "<<this->size()<<" animals in map after drawing herd."<<endl;
+    for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
+      calvingData *ptr = (*it).second;
+      simpleDebug("drawHerd()_Still in cMap after drawing herd "+ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr,ptr->idStr);
+    }
 
   }else{
 
