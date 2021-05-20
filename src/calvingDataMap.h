@@ -97,6 +97,9 @@ public:
   sire sireID;
   void purgeSire();
 
+  // Draw a sample of data based on herds
+  void drawHerd(unsigned proportion, unsigned seed);
+
 
   //output function
   void pheno_out();

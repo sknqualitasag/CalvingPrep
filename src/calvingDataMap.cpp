@@ -1545,8 +1545,6 @@ void calvingDataMap::purgeHerd(){
 }
 
 
-
-
 void calvingDataMap::countSire(){
 
   cout<<"\ncountSire(): count animal for each sire "<<endl;
@@ -1617,6 +1615,28 @@ void calvingDataMap::purgeSire(){
     calvingData *ptr = (*it).second;
     simpleDebug("purgeSire()_Still in cMap after purging sire "+ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr,ptr->idStr);
   }
+
+
+}
+
+
+void calvingDataMap::drawHerd(unsigned proportion, unsigned seed){
+
+  cout<<"\ndrawHerd(): herds in map before sampling."<<endl;
+  cout<<"*****************************************************************"<< endl;
+
+  //estimation e.g., however, we only need to do this if proportion is == 1
+  if(proportion){
+
+    cout<<"drawHerd(): draw a sample of herd for variance component."<<endl;
+
+
+  }else{
+
+    cout<<"drawHerd(): Not drawing a sample of herd for variance component."<<endl;
+
+  }
+
 
 
 }

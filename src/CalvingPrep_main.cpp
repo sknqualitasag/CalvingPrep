@@ -40,10 +40,13 @@ int CalvingPrep_main(std::string paramFileName) {
   parmMap.fileName = paramFileName;
   parmMap.inputParms();
 
-  std::string dataFile                                = parmMap.getString("dataFileName");
-  unsigned numberDataFiles                            = parmMap.getUnsigned("numberDataFiles");
-  int lastYearToConsiderData                          = parmMap.getInteger("lastYearToConsiderData");
-  std::string parRunMode                              = parmMap.getString("DEBUG");//yes = turn on debugging
+  std::string dataFile                        = parmMap.getString("dataFileName");
+  unsigned numberDataFiles                    = parmMap.getUnsigned("numberDataFiles");
+  int lastYearToConsiderData                  = parmMap.getInteger("lastYearToConsiderData");
+  std::string parRunMode                      = parmMap.getString("DEBUG");//yes = turn on debugging
+  unsigned proportion                         = parmMap.getUnsigned("proportion");//1 = draw sample on herds; 0 = not draw sample
+  unsigned seed                               = parmMap.getUnsigned("seed");//0 = not draw sample;
+
 
 
   //Declare Map
@@ -79,6 +82,10 @@ int CalvingPrep_main(std::string paramFileName) {
   // Minimum observation per sire
   cMap.countSire();
   cMap.purgeSire();
+
+
+  // Draw a sample of data based on herds
+  drawHerd(proportion, seed);
 
 
   //Phenotyp Output
