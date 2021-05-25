@@ -195,6 +195,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
   unsigned inconsistentRepeatedRecs1=0;
   unsigned numconsistentRecsButMissingIDs=0;
   unsigned numRepRecs=0;
+  unsigned aliveIdmissingNotRead=0;
 
 
 
@@ -411,6 +412,12 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
       stillbirthNotRead++;
       continue;
     }
+    // alive and animal without id should not be readen
+    if(stillbirthint == 1 && idstr == CONSTANTS::STRING_NA){
+      simpleDebug("inputData()_Animal is not read in calvingDataMap, because alive with missing animal id ", idstr);
+      aliveIdmissingNotRead++;
+      continue;
+    }
     // calvingscoreint is a categorical trait and should be available
     if(calvingscoreint == CONSTANTS::INT_NA ){
       simpleDebug("inputData()_Animal is not read in calvingDataMap, because calvingscoreint is missing", idstr);
@@ -517,6 +524,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
   cout<<"Number of animal record as abort: "<<AbortNotRead<<endl;
   cout<<"Number of animal record as premature: "<<PrematureNotRead<<endl;
   cout<<"Number of animal record as ET: "<<ETNotRead<<endl;
+  cout<<"Number of animal record alive but with missing id: "<<aliveIdmissingNotRead<<endl;
   cout<<"\nNumber of records which are stored in Cmap:                                              "<<this->size()<<endl;
 
 
@@ -1759,13 +1767,13 @@ void calvingDataMap::codeSex(void){
   sexCoder.missing = 0;
   unsigned validRecs=0;
 
-//  for(calvingDataMap::iterator it=begin();it!=end();it++){
-//    calvingData* ptr =(*it).second;
-//    //    outputDebug("codeSex()_Sex " + to_string(aPtr->sex) + " and sexSlaughterStr " + aPtr->sexSlaughterStr, aPtr->indStr);
-//    ptr->sexCode = sexCoder.code(ptr->idSexStr,MVC);
-//    //    outputDebug("codeSex()_After Code Sex " + to_string(aPtr->sex) + " and sexSlaughterStr " + aPtr->sexSlaughterStr , aPtr->indStr);
-//    //    validRecs++;
-//  }
+  for(calvingDataMap::iterator it=begin();it!=end();it++){
+    calvingData* ptr =(*it).second;
+    outputDebug("codeSex()_Sex " + to_string(ptr->sexCode) + " and idSexStr " + ptr->idSexStr, ptr->idStr);
+    ptr->sexCode = sexCoder.code(ptr->idSexStr,CONSTANTS::STRING_NA);
+    outputDebug("codeSex()_After Code Sex " + to_string(ptr->sexCode) + " and idSexStr " + ptr->idSexStr , ptr->idStr);
+    validRecs++;
+  }
 //
 //  sexCoder.displayCodes();
 //  sexCoder.toCSV("sexCoder.csv");
