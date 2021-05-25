@@ -1455,11 +1455,11 @@ void calvingDataMap::countHerd(){
       hPtr->herdIdStr = ptr->herdStr;
       // prepare info to check variance of calving ease,
       // but not birthweight because birthweight may be missing according to inputCalvingData
-      hPtr->increment(ptr->transformedCalvingScoreInt);
+      hPtr->increment(ptr->transformedCalvingScoreInt, ptr->birthWeightDbl);
       (HerdStatisticMap)[ptr->herdStr] = hPtr;
     }else{
       // Herd is already in the map
-      hit->second->increment(ptr->transformedCalvingScoreInt);
+      hit->second->increment(ptr->transformedCalvingScoreInt, ptr->birthWeightDbl);
     }
 
   }
