@@ -1767,12 +1767,6 @@ void calvingDataMap::codeEffects(){
   cout<<endl<< "Coding the effect HERD*YEAR..."<<endl;
   codeHerdYear();
 
-  cout<<"***"<< endl;
-  cout<<endl<< "Coding the effect HERD..."<<endl;
-  codeHerd();
-
-
-
 }
 
 
