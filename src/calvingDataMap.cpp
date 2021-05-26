@@ -1820,26 +1820,3 @@ void calvingDataMap::codeBreedCombination(void){
 }
 
 
-void calvingDataMap::codeHerdYear(void){
-
-  recoderMap herdYearCoder;
-
-  herdYearCoder.Count = 0;
-  herdYearCoder.missing = 0;
-  unsigned validRecs=0;
-
-  for(calvingDataMap::iterator it=begin();it!=end();it++){
-    calvingData* ptr =(*it).second;
-    outputDebug("codeHerdYear()_Herdyear " + to_string(ptr->herdYearCode) + " and herdStr/calvingdate.YearStr " + ptr->herdStr+"/"+ptr->calvingdate.YearStr, ptr->idStr);
-    ptr->herdYearCode = herdYearCoder.code(ptr->herdStr+"/"+ptr->calvingdate.YearStr,CONSTANTS::STRING_NA);
-    outputDebug("codeHerdYear()_After Code Herdyear " + to_string(ptr->herdYearCode) + " and herdStr/calvingdate.YearStr " + ptr->herdStr+"/"+ptr->calvingdate.YearStr, ptr->idStr);
-    validRecs++;
-  }
-
-  herdYearCoder.displayCodes();
-  herdYearCoder.toCSV("herdYearCoder.csv");
-  numHerdYear = herdYearCoder.size();
-
-  cout<<"codeHerdYear(): "<<validRecs<<" coded animals for herdyear."<<endl;
-
-}
