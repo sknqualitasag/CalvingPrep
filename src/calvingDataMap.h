@@ -103,6 +103,7 @@ public:
 
 
   //Coding the effects
+  unsigned numSexes;
   void codeEffects();
   void codeSex(void);
 

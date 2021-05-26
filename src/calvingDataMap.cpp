@@ -1774,11 +1774,11 @@ void calvingDataMap::codeSex(void){
     outputDebug("codeSex()_After Code Sex " + to_string(ptr->sexCode) + " and idSexStr " + ptr->idSexStr , ptr->idStr);
     validRecs++;
   }
-//
-//  sexCoder.displayCodes();
-//  sexCoder.toCSV("sexCoder.csv");
-//  numSexes = sexCoder.size();
-//
-//  cout<<"codeSex(): "<<validRecs<<" coded animals for sex."<<endl;
+
+  sexCoder.displayCodes();
+  sexCoder.toCSV("sexCoder.csv");
+  numSexes = sexCoder.size();
+
+  cout<<"codeSex(): "<<validRecs<<" coded animals for sex."<<endl;
 
 }
