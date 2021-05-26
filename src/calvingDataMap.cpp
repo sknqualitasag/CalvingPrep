@@ -1767,6 +1767,11 @@ void calvingDataMap::codeEffects(){
   cout<<endl<< "Coding the effect HERD*YEAR..."<<endl;
   codeHerdYear();
 
+  cout<<"***"<< endl;
+  cout<<endl<< "Coding the effect HERD..."<<endl;
+  codeHerd();
+
+
 
 }
 
@@ -1792,31 +1797,6 @@ void calvingDataMap::codeSex(void){
   numSexes = sexCoder.size();
 
   cout<<"codeSex(): "<<validRecs<<" coded animals for sex."<<endl;
-
-}
-
-
-void calvingDataMap::codeYearMonth(){
-
-  recoderMap yearMonthCoder;
-
-  yearMonthCoder.Count = 0;
-  yearMonthCoder.missing = 0;
-  unsigned validRecs=0;
-
-  for(calvingDataMap::iterator it=begin();it!=end();it++){
-    calvingData* ptr =(*it).second;
-    outputDebug("codeYearMonth()_Yearmonth " + to_string(ptr->yearMonthCode) + " and calvingdate.YearStr/calvingdate.MonthStr " + ptr->calvingdate.YearStr+"/"+ptr->calvingdate.MonthStr, ptr->idStr);
-    ptr->yearMonthCode = yearMonthCoder.code(ptr->calvingdate.YearStr+"/"+ptr->calvingdate.MonthStr,CONSTANTS::STRING_NA);
-    outputDebug("codeYearMonth()_After Code Yearmonth " + to_string(ptr->yearMonthCode) + " and calvingdate.YearStr/calvingdate.MonthStr " + ptr->calvingdate.YearStr+"/"+ptr->calvingdate.MonthStr, ptr->idStr);
-    validRecs++;
-  }
-
-  yearMonthCoder.displayCodes();
-  yearMonthCoder.toCSV("yearMonthCoder.csv");
-  numYearMonth = yearMonthCoder.size();
-
-  cout<<"codeYearMonth(): "<<validRecs<<" coded animals for year.month."<<endl;
 
 }
 
@@ -1867,5 +1847,30 @@ void calvingDataMap::codeHerdYear(void){
   numHerdYear = herdYearCoder.size();
 
   cout<<"codeHerdYear(): "<<validRecs<<" coded animals for herdyear."<<endl;
+
+}
+
+
+void calvingDataMap::codeHerd(){
+
+  recoderMap herdCoder;
+
+  herdCoder.Count = 0;
+  herdCoder.missing = 0;
+  unsigned validRecs=0;
+
+  for(calvingDataMap::iterator it=begin();it!=end();it++){
+    calvingData* ptr =(*it).second;
+    outputDebug("codeHerd()_herd " + to_string(ptr->herdCode) + " and herdStr " + ptr->herdStr, ptr->idStr);
+    ptr->herdCode = herdCoder.code(ptr->herdStr,CONSTANTS::STRING_NA);
+    outputDebug("codeHerd()_After Code herd " + to_string(ptr->herdCode) + " and herdStr " + ptr->herdStr, ptr->idStr);
+    validRecs++;
+  }
+
+  herdCoder.displayCodes();
+  herdCoder.toCSV("herdCoder.csv");
+  numYearMonth = herdCoder.size();
+
+  cout<<"codeHerd(): "<<validRecs<<" coded animals for herd."<<endl;
 
 }
