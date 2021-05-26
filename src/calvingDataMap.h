@@ -106,6 +106,7 @@ public:
   unsigned numSexes;
   void codeEffects();
   void codeSex(void);
+  void codeYearMonth(void);
 
 
 
