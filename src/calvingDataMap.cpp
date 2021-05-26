@@ -1763,10 +1763,6 @@ void calvingDataMap::codeEffects(){
   cout<<"\nCoding the effect BREED COMBINATION (SIRE X DAM)..."<<endl;
   codeBreedCombination();
 
-  cout<<"***"<< endl;
-  cout<<endl<< "Coding the effect HERD*YEAR..."<<endl;
-  codeHerdYear();
-
 }
 
 

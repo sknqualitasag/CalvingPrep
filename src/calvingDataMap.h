@@ -108,7 +108,6 @@ public:
   void codeSex(void);
   void codeYearMonth(void);
   void codeBreedCombination(void);
-  void codeHerdYear(void);
 
 
   //output function
