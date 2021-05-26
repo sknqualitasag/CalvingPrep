@@ -1805,8 +1805,8 @@ void calvingDataMap::codeYearMonth(){
 
   yearMonthCoder.displayCodes();
   yearMonthCoder.toCSV("yearMonthCoder.csv");
-  numSexes = yearMonthCoder.size();
+  numYearMonth = yearMonthCoder.size();
 
-  cout<<"codeSex(): "<<validRecs<<" coded animals for sex."<<endl;
+  cout<<"codeYearMonth(): "<<validRecs<<" coded animals for year.month."<<endl;
 
 }
