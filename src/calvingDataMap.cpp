@@ -1869,7 +1869,7 @@ void calvingDataMap::codeHerd(){
 
   herdCoder.displayCodes();
   herdCoder.toCSV("herdCoder.csv");
-  numYearMonth = herdCoder.size();
+  numHerd = herdCoder.size();
 
   cout<<"codeHerd(): "<<validRecs<<" coded animals for herd."<<endl;
 
