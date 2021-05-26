@@ -1849,28 +1849,3 @@ void calvingDataMap::codeHerdYear(void){
   cout<<"codeHerdYear(): "<<validRecs<<" coded animals for herdyear."<<endl;
 
 }
-
-
-void calvingDataMap::codeHerd(){
-
-  recoderMap herdCoder;
-
-  herdCoder.Count = 0;
-  herdCoder.missing = 0;
-  unsigned validRecs=0;
-
-  for(calvingDataMap::iterator it=begin();it!=end();it++){
-    calvingData* ptr =(*it).second;
-    outputDebug("codeHerd()_herd " + to_string(ptr->herdCode) + " and herdStr " + ptr->herdStr, ptr->idStr);
-    ptr->herdCode = herdCoder.code(ptr->herdStr,CONSTANTS::STRING_NA);
-    outputDebug("codeHerd()_After Code herd " + to_string(ptr->herdCode) + " and herdStr " + ptr->herdStr, ptr->idStr);
-    validRecs++;
-  }
-
-  herdCoder.displayCodes();
-  herdCoder.toCSV("herdCoder.csv");
-  numHerd = herdCoder.size();
-
-  cout<<"codeHerd(): "<<validRecs<<" coded animals for herd."<<endl;
-
-}
