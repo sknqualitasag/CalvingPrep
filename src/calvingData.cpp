@@ -40,6 +40,8 @@ calvingData::calvingData(string idstr, string idbreedstr, string mstr, string mb
   // Initializing Code for fixed effect
   sexCode = -1;
   yearMonthCode = -1;
+  breedCombCode = -1;
+
   herdYearCode = -1;
   yearCode = -1;
   breedLNCode = -1;
