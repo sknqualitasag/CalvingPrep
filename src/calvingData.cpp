@@ -41,6 +41,8 @@ calvingData::calvingData(string idstr, string idbreedstr, string mstr, string mb
   sexCode = -1;
   yearMonthCode = -1;
   breedCombCode = -1;
+  herdYearCode = -1;
+
 
   idStr = idstr;
   constructorDebug("constructor calvingData()_Constructor called with idStr", idStr, psRunningMode);
