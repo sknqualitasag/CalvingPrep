@@ -103,11 +103,12 @@ public:
 
 
   //Coding the effects
-  unsigned numSexes, numYearMonth, numBreedcomb;
+  unsigned numSexes, numYearMonth, numBreedcomb, numHerdyear;
   void codeEffects();
   void codeSex(void);
   void codeYearMonth(void);
   void codeBreedComb(void);
+  void codeHerdYear(void);
 
 
   //output function

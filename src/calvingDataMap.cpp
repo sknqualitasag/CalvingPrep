@@ -1755,12 +1755,17 @@ void calvingDataMap::codeEffects(){
   cout<<"\nCoding the effect SEX..."<<endl;
   codeSex();
 
+  cout<<"***"<< endl;
   cout<<"\nCoding the effect YEAR*MONTH..."<<endl;
   codeYearMonth();
 
+  cout<<"***"<< endl;
   cout<<"\nCoding the effect BREEDCOMBINATION..."<<endl;
   codeBreedComb();
 
+  cout<<"***"<< endl;
+  cout<<"\nCoding the effect HERD*YEAR..."<<endl;
+  codeHerdYear();
 
 
 }
@@ -1803,7 +1808,7 @@ void calvingDataMap::codeYearMonth(void){
     calvingData* ptr =(*it).second;
     outputDebug("codeYearMonth()_YearMonth " + to_string(ptr->yearMonthCode) + " and calvingdate.YearStr/calvingdate.MonthStr " + ptr->calvingdate.YearStr+"/"+ptr->calvingdate.MonthStr, ptr->idStr);
     ptr->yearMonthCode = yearMonthCoder.code(ptr->calvingdate.YearStr+"/"+ptr->calvingdate.MonthStr,CONSTANTS::STRING_NA);
-    outputDebug("codeYearMonth()_After Code Sex " + to_string(ptr->yearMonthCode) + " and calvingdate.YearStr/calvingdate.MonthStr " + ptr->calvingdate.YearStr+"/"+ptr->calvingdate.MonthStr , ptr->idStr);
+    outputDebug("codeYearMonth()_After Code YearMonth " + to_string(ptr->yearMonthCode) + " and calvingdate.YearStr/calvingdate.MonthStr " + ptr->calvingdate.YearStr+"/"+ptr->calvingdate.MonthStr , ptr->idStr);
     validRecs++;
   }
 
@@ -1829,7 +1834,7 @@ void calvingDataMap::codeBreedComb(void){
     calvingData* ptr =(*it).second;
     outputDebug("codeBreedComb()_Breedcomb " + to_string(ptr->breedcombCode) + " and breedCombStr " + ptr->breedCombStr, ptr->idStr);
     ptr->breedcombCode = breedcombCoder.code(ptr->breedCombStr,CONSTANTS::STRING_NA);
-    outputDebug("codeBreedComb()_After Code Sex " + to_string(ptr->breedcombCode) + " and breedCombStr " + ptr->breedCombStr, ptr->idStr);
+    outputDebug("codeBreedComb()_After Code Breedcomb " + to_string(ptr->breedcombCode) + " and breedCombStr " + ptr->breedCombStr, ptr->idStr);
     validRecs++;
   }
 
@@ -1838,5 +1843,31 @@ void calvingDataMap::codeBreedComb(void){
   numBreedcomb = breedcombCoder.size();
 
   cout<<"codeBreedComb(): "<<validRecs<<" coded animals for breedcombination."<<endl;
+
+}
+
+
+void calvingDataMap::codeHerdYear(void){
+
+  recoderMap herdyearCoder;
+
+  herdyearCoder.Count = 0;
+  herdyearCoder.missing = 0;
+  unsigned validRecs=0;
+
+  for(calvingDataMap::iterator it=begin();it!=end();it++){
+    calvingData* ptr =(*it).second;
+    outputDebug("codeHerdYear()_HerdYear " + to_string(ptr->herdYearCode) + " and herdStr/calvingdate.YearStr " + ptr->herdStr+"/"+ptr->calvingdate.YearStr, ptr->idStr);
+    ptr->herdYearCode = herdyearCoder.code(ptr->herdStr+"/"+ptr->calvingdate.YearStr,CONSTANTS::STRING_NA);
+    outputDebug("codeHerdYear()_After Code HerdYear " + to_string(ptr->herdYearCode) + " and herdStr/calvingdate.YearStr " + ptr->herdStr+"/"+ptr->calvingdate.YearStr, ptr->idStr);
+    validRecs++;
+  }
+
+  herdyearCoder.displayCodes();
+  herdyearCoder.toCSV("herdyearCoder.csv");
+  numHerdyear = herdyearCoder.size();
+
+  cout<<"codeHerdYear(): "<<validRecs<<" coded animals for herd*year."<<endl;
+
 
 }
