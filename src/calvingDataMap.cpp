@@ -1755,13 +1755,6 @@ void calvingDataMap::codeEffects(){
   cout<<"\nCoding the effect SEX..."<<endl;
   codeSex();
 
-  cout<<"***"<< endl;
-  cout<<"\nCoding the effect YEAR*MONTH..."<<endl;
-  codeYearMonth();
-
-  cout<<"***"<< endl;
-  cout<<"\nCoding the effect BREED COMBINATION (SIRE X DAM)..."<<endl;
-  codeBreedCombination();
 
 }
 
@@ -1790,29 +1783,5 @@ void calvingDataMap::codeSex(void){
 
 }
 
-
-void calvingDataMap::codeBreedCombination(void){
-
-  recoderMap breedCombinationCoder;
-
-  breedCombinationCoder.Count = 0;
-  breedCombinationCoder.missing = 0;
-  unsigned validRecs=0;
-
-  for(calvingDataMap::iterator it=begin();it!=end();it++){
-    calvingData* ptr =(*it).second;
-    outputDebug("codeBreedCombination()_Breed combination " + to_string(ptr->breedCombCode) + " and breedCombStr " + ptr->breedCombStr, ptr->idStr);
-    ptr->breedCombCode = breedCombinationCoder.code(ptr->breedCombStr,CONSTANTS::STRING_NA);
-    outputDebug("codeBreedCombination()_After Code Breed combination " + to_string(ptr->breedCombCode) + " and breedCombStr " + ptr->breedCombStr , ptr->idStr);
-    validRecs++;
-  }
-
-  breedCombinationCoder.displayCodes();
-  breedCombinationCoder.toCSV("breedCombinationCoder.csv");
-  numBreedCombination = breedCombinationCoder.size();
-
-  cout<<"codeBreedCombination(): "<<validRecs<<" coded animals for breed combination."<<endl;
-
-}
 
 
