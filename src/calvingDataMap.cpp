@@ -1755,6 +1755,9 @@ void calvingDataMap::codeEffects(){
   cout<<"\nCoding the effect SEX..."<<endl;
   codeSex();
 
+  cout<<"\nCoding the effect YEAR*MONTH..."<<endl;
+  codeYearMonth();
+
 
 }
 
@@ -1784,4 +1787,27 @@ void calvingDataMap::codeSex(void){
 }
 
 
+void calvingDataMap::codeYearMonth(void){
 
+  recoderMap yearMonthCoder;
+
+  yearMonthCoder.Count = 0;
+  yearMonthCoder.missing = 0;
+  unsigned validRecs=0;
+
+  for(calvingDataMap::iterator it=begin();it!=end();it++){
+    calvingData* ptr =(*it).second;
+    outputDebug("codeYearMonth()_YearMonth " + to_string(ptr->yearMonthCode) + " and calvingdate.YearStr/calvingdate.MonthStr " + ptr->calvingdate.YearStr+"/"+ptr->calvingdate.MonthStr, ptr->idStr);
+    ptr->yearMonthCode = yearMonthCoder.code(ptr->calvingdate.YearStr+"/"+ptr->calvingdate.MonthStr,CONSTANTS::STRING_NA);
+    outputDebug("codeYearMonth()_After Code Sex " + to_string(ptr->yearMonthCode) + " and calvingdate.YearStr/calvingdate.MonthStr " + ptr->calvingdate.YearStr+"/"+ptr->calvingdate.MonthStr , ptr->idStr);
+    validRecs++;
+  }
+
+  yearMonthCoder.displayCodes();
+  yearMonthCoder.toCSV("yearMonthCoder.csv");
+  numYearMonth = yearMonthCoder.size();
+
+  cout<<"codeYearMonth(): "<<validRecs<<" coded animals for year/month."<<endl;
+
+
+}

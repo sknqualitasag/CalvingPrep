@@ -39,6 +39,7 @@ calvingData::calvingData(string idstr, string idbreedstr, string mstr, string mb
 
   // Initializing Code for fixed effect
   sexCode = -1;
+  yearMonthCode = -1;
 
   idStr = idstr;
   constructorDebug("constructor calvingData()_Constructor called with idStr", idStr, psRunningMode);

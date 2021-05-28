@@ -17,7 +17,7 @@ public:
   string runningMode, psRunningModeStr;
   void constructorDebug(string message, string tvdid, string psRunningMode);
 
-  int sexCode;
+  int sexCode, yearMonthCode;
   int calvingScoreInt, transformedCalvingScoreInt, stillbirthInt, transformedStillbirthInt, prematurityInt;
   int lnInt, spermaTraitmentInt, recordTypInsemInt;
   long int gestationLengthInDays, calvingAgeInDays, calvingIntervalInDays, firstCalvingAgeInDays;
