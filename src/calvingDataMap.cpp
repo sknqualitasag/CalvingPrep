@@ -1758,6 +1758,10 @@ void calvingDataMap::codeEffects(){
   cout<<"\nCoding the effect YEAR*MONTH..."<<endl;
   codeYearMonth();
 
+  cout<<"\nCoding the effect BREEDCOMBINATION..."<<endl;
+  codeBreedComb();
+
+
 
 }
 
