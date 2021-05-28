@@ -1771,6 +1771,11 @@ void calvingDataMap::codeEffects(){
   cout<<"\nCoding the effect HERD..."<<endl;
   codeHerdYear();
 
+  cout<<"***"<< endl;
+  cout<<"\nCoding the effect PE..."<<endl;
+  codePEMother();
+
+
 
 }
 
@@ -1898,6 +1903,32 @@ void calvingDataMap::codeHerd(void){
   numHerd = herdCoder.size();
 
   cout<<"codeHerd(): "<<validRecs<<" coded animals for herd."<<endl;
+
+
+}
+
+
+void calvingDataMap::codePEMother(void){
+
+  recoderMap PECoder;
+
+  PECoder.Count = 0;
+  PECoder.missing = 0;
+  unsigned validRecs=0;
+
+  for(calvingDataMap::iterator it=begin();it!=end();it++){
+    calvingData* ptr =(*it).second;
+    outputDebug("codePEMother()_PE " + to_string(ptr->PECode) + " and damStr " + ptr->damStr, ptr->idStr);
+    ptr->PECode = PECoder.code(ptr->damStr,CONSTANTS::STRING_NA);
+    outputDebug("codePEMother()_After Code PE " + to_string(ptr->PECode) + " and damStr " + ptr->damStr, ptr->idStr);
+    validRecs++;
+  }
+
+  PECoder.displayCodes();
+  PECoder.toCSV("PECoder.csv");
+  numPE = PECoder.size();
+
+  cout<<"codePEMother(): "<<validRecs<<" coded animals for PE."<<endl;
 
 
 }
