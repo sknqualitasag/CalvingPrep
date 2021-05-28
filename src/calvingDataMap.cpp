@@ -1775,6 +1775,9 @@ void calvingDataMap::codeEffects(){
   cout<<"\nCoding the effect PE..."<<endl;
   codePEMother();
 
+  cout<<"***"<< endl;
+  cout<<"\nCoding the effect SIRE..."<<endl;
+  codeSire();
 
 
 }
@@ -1929,6 +1932,32 @@ void calvingDataMap::codePEMother(void){
   numPE = PECoder.size();
 
   cout<<"codePEMother(): "<<validRecs<<" coded animals for PE."<<endl;
+
+
+}
+
+
+void calvingDataMap::codeSire(void){
+
+  recoderMap sireCoder;
+
+  sireCoder.Count = 0;
+  sireCoder.missing = 0;
+  unsigned validRecs=0;
+
+  for(calvingDataMap::iterator it=begin();it!=end();it++){
+    calvingData* ptr =(*it).second;
+    outputDebug("codeSire()_sire " + to_string(ptr->sireCode) + " and sireStr " + ptr->sireStr, ptr->idStr);
+    ptr->sireCode = sireCoder.code(ptr->sireStr,CONSTANTS::STRING_NA);
+    outputDebug("codeSire()_After Code sire " + to_string(ptr->sireCode) + " and sireStr " + ptr->sireStr, ptr->idStr);
+    validRecs++;
+  }
+
+  sireCoder.displayCodes();
+  sireCoder.toCSV("sireCoder.csv");
+  numSire = sireCoder.size();
+
+  cout<<"codeSire(): "<<validRecs<<" coded animals for sire."<<endl;
 
 
 }

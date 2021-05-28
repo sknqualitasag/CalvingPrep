@@ -17,7 +17,7 @@ public:
   string runningMode, psRunningModeStr;
   void constructorDebug(string message, string tvdid, string psRunningMode);
 
-  int sexCode, yearMonthCode, breedcombCode, herdYearCode, herdCode, PECode;
+  int sexCode, yearMonthCode, breedcombCode, herdYearCode, herdCode, PECode, sireCode;
   int calvingScoreInt, transformedCalvingScoreInt, stillbirthInt, transformedStillbirthInt, prematurityInt;
   int lnInt, spermaTraitmentInt, recordTypInsemInt;
   long int gestationLengthInDays, calvingAgeInDays, calvingIntervalInDays, firstCalvingAgeInDays;
