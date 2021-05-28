@@ -1811,3 +1811,28 @@ void calvingDataMap::codeYearMonth(void){
 
 
 }
+
+
+void calvingDataMap::codeBreedComb(void){
+
+  recoderMap breedcombCoder;
+
+  breedcombCoder.Count = 0;
+  breedcombCoder.missing = 0;
+  unsigned validRecs=0;
+
+  for(calvingDataMap::iterator it=begin();it!=end();it++){
+    calvingData* ptr =(*it).second;
+    outputDebug("codeBreedComb()_Breedcomb " + to_string(ptr->breedcombCode) + " and breedCombStr " + ptr->breedCombStr, ptr->idStr);
+    ptr->breedcombCode = breedcombCoder.code(ptr->breedCombStr,CONSTANTS::STRING_NA);
+    outputDebug("codeBreedComb()_After Code Sex " + to_string(ptr->breedcombCode) + " and breedCombStr " + ptr->breedCombStr, ptr->idStr);
+    validRecs++;
+  }
+
+  breedcombCoder.displayCodes();
+  breedcombCoder.toCSV("breedcombCoder.csv");
+  numBreedcomb = breedcombCoder.size();
+
+  cout<<"codeBreedComb(): "<<validRecs<<" coded animals for breedcombination."<<endl;
+
+}
