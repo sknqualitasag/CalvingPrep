@@ -46,3 +46,20 @@ void herd::increment(int transformedCalvingScoreInt, double birthWeightDbl){
   }
 
 }
+
+
+void herd::incrementHYS(string herdStr, string YearStr, string sireStr){
+
+  map<string,statisticHYS*> :: iterator bit = HerdYearStatistic.find(herdStr+"."+YearStr);
+  if(bit == HerdYearStatistic.end()){
+    statisticHYS *sPtr = new statisticHYS();
+    sPtr->ObsPerHerdyear = 1;
+    sPtr->SiresPerHerdyear = 1;
+    HerdYearStatistic[herdStr+"."+YearStr] = sPtr;
+  }else{
+    bit->second->ObsPerHerdyear++;
+    bit->second->SiresPerHerdyear++;
+  }
+
+
+}

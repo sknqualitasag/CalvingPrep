@@ -83,6 +83,7 @@ public:
 
   // Check number observation in herd.year
   void countHerdYear();
+  map<string, herd*> HerdYearStatisticMap;
   herd herdYearID;
   void purgeHerdYear();
   // Calculate variance in herd

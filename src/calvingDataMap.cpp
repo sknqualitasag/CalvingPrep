@@ -1372,18 +1372,34 @@ void calvingDataMap::countHerdYear(){
   for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
     calvingData *ptr = (*it).second;
 
-    map<string,int>::iterator hit = herdYearID.HerdYearStatistic.find(ptr->herdStr+"."+ptr->calvingdate.YearStr);
-    if(hit != herdYearID.HerdYearStatistic.end()){
-      herdYearID.HerdYearStatistic[ptr->herdStr+"."+ptr->calvingdate.YearStr]++;
+    map<string,herd*>::iterator hit = HerdYearStatisticMap.find(ptr->herdStr+"."+ptr->calvingdate.YearStr);
+    if(hit != HerdYearStatisticMap.end()){
+      herd *hPtr = new herd();
+      hPtr->herdyearIdStr = ptr->herdStr+"."+ptr->calvingdate.YearStr;
+      hPtr->incrementHYS(ptr->herdStr, ptr->calvingdate.YearStr, ptr->sireStr);
+      (HerdYearStatisticMap)[ptr->herdStr+"."+ptr->calvingdate.YearStr] = hPtr;
     }else{
-      herdYearID.HerdYearStatistic[ptr->herdStr+"."+ptr->calvingdate.YearStr] = 1;
+      hit->second->incrementHYS(ptr->herdStr, ptr->calvingdate.YearStr, ptr->sireStr);
     }
 
+
   }
 
-  for(map<string,int>::iterator hit = herdYearID.HerdYearStatistic.begin(); hit != herdYearID.HerdYearStatistic.end(); hit++){
-    simpleDebug("countHerdYear()_output of the map for herd.year " + hit->first + " number observation per herd.year " + to_string(hit->second), "");
-  }
+//  for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
+//    calvingData *ptr = (*it).second;
+//
+//    map<string,int>::iterator hit = herdYearID.HerdYearStatistic.find(ptr->herdStr+"."+ptr->calvingdate.YearStr);
+//    if(hit != herdYearID.HerdYearStatistic.end()){
+//      herdYearID.HerdYearStatistic[ptr->herdStr+"."+ptr->calvingdate.YearStr]++;
+//    }else{
+//      herdYearID.HerdYearStatistic[ptr->herdStr+"."+ptr->calvingdate.YearStr] = 1;
+//    }
+//
+//  }
+//
+//  for(map<string,int>::iterator hit = herdYearID.HerdYearStatistic.begin(); hit != herdYearID.HerdYearStatistic.end(); hit++){
+//    simpleDebug("countHerdYear()_output of the map for herd.year " + hit->first + " number observation per herd.year " + to_string(hit->second), "");
+//  }
 
 }
 

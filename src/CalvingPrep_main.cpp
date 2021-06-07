@@ -69,31 +69,32 @@ int CalvingPrep_main(std::string paramFileName) {
 
 
   // Minimum observations per herdyear
+  // Minimum sires per herdyear
   cMap.countHerdYear();
-  cMap.purgeHerdYear();
-
-
-  // Check Variance per herd
-  cMap.countHerd();
-  cMap.stdHerd();
-  cMap.purgeHerd();
-
-
-  // Minimum observation per sire
-  cMap.countSire();
-  cMap.purgeSire();
-
-
-  // Draw a sample of data based on herds
-  cMap.drawHerd(proportion, seed);
-
-
-  //Coding the effects
-  cMap.codeEffects();
-
-
-  //Phenotyp Output
-  cMap.pheno_out();
+//  cMap.purgeHerdYear();
+//
+//
+//  // Check Variance per herd
+//  cMap.countHerd();
+//  cMap.stdHerd();
+//  cMap.purgeHerd();
+//
+//
+//  // Minimum observation per sire
+//  cMap.countSire();
+//  cMap.purgeSire();
+//
+//
+//  // Draw a sample of data based on herds
+//  cMap.drawHerd(proportion, seed);
+//
+//
+//  //Coding the effects
+//  cMap.codeEffects();
+//
+//
+//  //Phenotyp Output
+//  cMap.pheno_out();
 
 
   //Time tracking

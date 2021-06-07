@@ -5,6 +5,7 @@
 #include <vector>
 #include <map>
 #include "statistic.h"
+#include "statisticHYS.h"
 
 
 using namespace std;
@@ -12,11 +13,13 @@ using namespace std;
 class herd{
 public:
 
-  string herdIdStr;
+  string herdIdStr, herdyearIdStr;
   herd();
   void increment(int transformedCalvingScoreInt, double birthWeightDbl);
+  void incrementHYS(string herdStr, string YearStr, string sireStr);
 
-  map<string,int> HerdYearStatistic;
+  map<string,statisticHYS*> HerdYearStatistic;
+//  map<string,int> HerdYearStatistic;
   map<string,statistic*> HerdStatistic;
 
 
