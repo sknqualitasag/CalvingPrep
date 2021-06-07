@@ -85,7 +85,7 @@ public:
 //  void countHerdYear();
   map<string, herd*> HerdYearStatisticMap;
 //  herd herdYearID;
-//  void purgeHerdYear();
+  void purgeHerdYear();
   // Calculate variance in herd
   void countHerd();
   map<string, herd*> HerdStatisticMap;
