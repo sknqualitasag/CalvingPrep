@@ -51,15 +51,16 @@ void herd::increment(int transformedCalvingScoreInt, double birthWeightDbl){
 void herd::incrementHYS(string herdStr, string YearStr, string sireStr){
 
   map<string,statisticHYS*> :: iterator bit = HerdYearStatistic.find(herdStr+"."+YearStr);
-  if(bit == HerdYearStatistic.end()){
-    statisticHYS *sPtr = new statisticHYS();
-    sPtr->ObsPerHerdyear = 1;
-    sPtr->SiresPerHerdyear = 1;
-    HerdYearStatistic[herdStr+"."+YearStr] = sPtr;
-  }else{
+  if(bit != HerdYearStatistic.end()){
     bit->second->ObsPerHerdyear++;
-    bit->second->SiresPerHerdyear++;
-  }
 
+    if(bit->second->sireCounted.find(sireStr) == bit->second->sireCounted.end()){
+      bit->second->sireCounted.insert(sireStr);
+      bit->second->SiresPerHerdyear++;
+    }
+
+  }else{
+    cout<<"incrementHYS: do not find herd.year to increment."<<endl;
+  }
 
 }

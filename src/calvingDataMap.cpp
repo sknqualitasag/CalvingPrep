@@ -1364,27 +1364,11 @@ int calvingDataMap::verifyInteractLnIV(int lnint, long int calvingIntervalInDays
 }
 
 
-void calvingDataMap::countHerdYear(){
-
-  cout<<"\ncountHerdYear(): count animal in each herd per year "<<endl;
-  cout<<"*****************************************************************"<< endl;
-
-  for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
-    calvingData *ptr = (*it).second;
-
-    map<string,herd*>::iterator hit = HerdYearStatisticMap.find(ptr->herdStr+"."+ptr->calvingdate.YearStr);
-    if(hit != HerdYearStatisticMap.end()){
-      herd *hPtr = new herd();
-      hPtr->herdyearIdStr = ptr->herdStr+"."+ptr->calvingdate.YearStr;
-      hPtr->incrementHYS(ptr->herdStr, ptr->calvingdate.YearStr, ptr->sireStr);
-      (HerdYearStatisticMap)[ptr->herdStr+"."+ptr->calvingdate.YearStr] = hPtr;
-    }else{
-      hit->second->incrementHYS(ptr->herdStr, ptr->calvingdate.YearStr, ptr->sireStr);
-    }
-
-
-  }
-
+//void calvingDataMap::countHerdYear(){
+//
+//  cout<<"\ncountHerdYear(): count animal in each herd per year "<<endl;
+//  cout<<"*****************************************************************"<< endl;
+//
 //  for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
 //    calvingData *ptr = (*it).second;
 //
@@ -1400,6 +1384,26 @@ void calvingDataMap::countHerdYear(){
 //  for(map<string,int>::iterator hit = herdYearID.HerdYearStatistic.begin(); hit != herdYearID.HerdYearStatistic.end(); hit++){
 //    simpleDebug("countHerdYear()_output of the map for herd.year " + hit->first + " number observation per herd.year " + to_string(hit->second), "");
 //  }
+//
+//}
+
+
+void calvingDataMap::countHerdYearSire(){
+
+    for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
+      calvingData *ptr = (*it).second;
+
+      map<string,herd*>::iterator hit = HerdYearStatisticMap.find(ptr->herdStr+"."+ptr->calvingdate.YearStr);
+      if(hit != HerdYearStatisticMap.end()){
+        hit->second->incrementHYS(ptr->herdStr, ptr->calvingdate.YearStr, ptr->sireStr);
+      }else{
+        herd *hPtr = new herd();
+        hPtr->herdyearIdStr = ptr->herdStr+"."+ptr->calvingdate.YearStr;
+        hPtr->incrementHYS(ptr->herdStr, ptr->calvingdate.YearStr, ptr->sireStr);
+        (HerdYearStatisticMap)[ptr->herdStr+"."+ptr->calvingdate.YearStr] = hPtr;
+      }
+
+    }
 
 }
 

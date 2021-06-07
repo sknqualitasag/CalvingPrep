@@ -11,7 +11,10 @@ class statisticHYS{
 public:
   unsigned ObsPerHerdyear;
   unsigned SiresPerHerdyear;
+  set<string>sireCounted;
+
   statisticHYS();
+
 };
 
 #endif
