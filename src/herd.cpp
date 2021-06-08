@@ -60,7 +60,12 @@ void herd::incrementHYS(string herdStr, string YearStr, string sireStr){
     }
 
   }else{
-    cout<<"incrementHYS: do not find herd.year to increment."<<endl;
+    statisticHYS *sPtr = new statisticHYS();
+    sPtr->ObsPerHerdyear = 1;
+    sPtr->sireCounted.insert(sireStr);
+    sPtr->SiresPerHerdyear = 1;
+    (HerdYearStatistic)[herdStr+"."+YearStr] = sPtr;
+
   }
 
 }
