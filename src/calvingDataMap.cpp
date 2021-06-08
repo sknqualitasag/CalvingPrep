@@ -1481,6 +1481,8 @@ void calvingDataMap::purgeHerdYear(){
       if(sPtr->ObsPerHerdyear < CONSTANTS::MIN_OBS_PER_HERDYEAR){
         herdyear2Delete.insert(hPtr->herdyearIdStr);
         simpleDebug("purgeHerdYear()_inserted in herdyear2Delete, herd.year " + hit->first + " has " + to_string(sPtr->ObsPerHerdyear)  + " number observations", "");
+      }else{
+        simpleDebug("purgeHerdYear()_herd.year " + hit->first + " has " + to_string(sPtr->ObsPerHerdyear)  + " number observations and number sires "+ to_string(sPtr->SiresPerHerdyear), "");
       }
     }
   }
