@@ -1450,7 +1450,7 @@ void calvingDataMap::countHerdYearSire(){
 
     map<string,herd*>::iterator hit = HerdYearStatisticMap.find(ptr->herdStr+"."+ptr->calvingdate.YearStr);
     if(hit != HerdYearStatisticMap.end()){
-      cout<<"Already iterator in HerdYearStatisticMap: "<<hit->first<<endl;
+      cout<<"Already iterator in HerdYearStatisticMap: "<<hit->first<<" or "<<hit ->second->herdyearIdStr<<endl;
       hit->second->incrementHYS(ptr->herdStr, ptr->calvingdate.YearStr, ptr->sireStr);
     }else{
       cout<<"Iterator not in HerdYearStatisticMap: "<<hit->first<<endl;
