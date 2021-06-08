@@ -41,6 +41,8 @@ const int CONSTANTS::FIRST_LACTATION = 1;
 const double CONSTANTS::DOUBLE_NA = -9999.;
 //' minimum observation per herd year
 const unsigned CONSTANTS::MIN_OBS_PER_HERDYEAR = 5;
+//' minimum sires per herd year
+const unsigned CONSTANTS::MIN_SIRE_PER_HERDYEAR = 2;
 //' minimum observation per sire
 const unsigned CONSTANTS::MIN_OBS_PER_SIRE = 5;
 //' standarddeviation of zero for trait in herd

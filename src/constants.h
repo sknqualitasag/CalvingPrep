@@ -42,6 +42,8 @@ public:
   static const double DOUBLE_NA;
   //' minimum observation per herd year
   static const unsigned MIN_OBS_PER_HERDYEAR;
+  //' minimum sires per herd year
+  static const unsigned MIN_SIRE_PER_HERDYEAR;
   //' minimum observation per sire
   static const unsigned MIN_OBS_PER_SIRE;
   //' standarddeviation of zero for trait in herd

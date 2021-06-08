@@ -81,20 +81,18 @@ public:
   int transformStillbirth(int stillbirthint, string idstr);
 
 
-  // Check number observation in herd.year
-//  void countHerdYear();
-  map<string, herd*> HerdYearStatisticMap;
-//  herd herdYearID;
-  void purgeHerdYear();
   // Calculate variance in herd
   void countHerd();
   map<string, herd*> HerdStatisticMap;
   void stdHerd();
   void purgeHerd();
 
-  // Count number observation per herd*year and count number sires per herd*year
-  void countHerdYearSire();
 
+  // Count number observation per herd*year and count number sires per herd*year
+  map<string, herd*> HerdYearStatisticMap;
+  void countHerdYearSire();
+  void purgeHerdYear();
+  void purgeHerdYearSire();
 
 
   // Check number observation per sire
