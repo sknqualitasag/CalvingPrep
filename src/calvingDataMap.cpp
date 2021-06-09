@@ -1760,7 +1760,7 @@ void calvingDataMap::pheno_out(){
   inputDataAmap<<"calvingdate;birthWeightDbl;calvingScoreInt;transformedCalvingScoreInt;stillbirthInt;transformedStillbirthInt;prematurityInt;herdStr;mandateStr;";
   inputDataAmap<<"sourceMKS;sourceBeefOrDairyStr;lnInt;insemmotherstartdate;insemmotherenddate;gestationLengthInDays;calvingAgeInDays;";
   inputDataAmap<<"calvingIntervalInDays;firstCalvingAgeInDays;recordTypInsemInt;spermaTraitmentInt;animIDStr;itbIDStr;damIDStr;sireIDStr;";
-  inputDataAmap<<"sexCode;yearMonthCode;breedcombCode;LNAgeCode;herdYearCode;PECode;sireCode"<<endl;
+  inputDataAmap<<"sexCode;yearMonthCode;breedcombCode;LNAgeCode;herdYearCode;herdCode;PECode;sireCode"<<endl;
 
 
 
@@ -1844,7 +1844,7 @@ void calvingDataMap::codeEffects(){
 
   cout<<"***"<< endl;
   cout<<"\nCoding the effect HERD..."<<endl;
-  codeHerdYear();
+  codeHerd();
 
   cout<<"***"<< endl;
   cout<<"\nCoding the effect PE..."<<endl;
