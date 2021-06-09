@@ -1823,6 +1823,10 @@ void calvingDataMap::codeEffects(){
   codeBreedComb();
 
   cout<<"***"<< endl;
+  cout<<"\nCoding the effect LN*CALVINGAGE..."<<endl;
+  codeLNCalvingAge();
+
+  cout<<"***"<< endl;
   cout<<"\nCoding the effect HERD*YEAR..."<<endl;
   codeHerdYear();
 
@@ -1916,6 +1920,57 @@ void calvingDataMap::codeBreedComb(void){
   cout<<"codeBreedComb(): "<<validRecs<<" coded animals for breedcombination."<<endl;
 
 }
+
+
+void calvingDataMap::codeLNCalvingAge(void){
+
+  codeNestedDamBreedLN();
+
+
+
+}
+
+
+void calvingDataMap::codeNestedDamBreedLN(void){
+
+  cout<<"codeNestedDamBreedLN: Coding nested damBreed x LN combination."<<endl;
+
+  recoderMap breedLNCoder;
+
+  breedLNCoder.Count = 0;
+  breedLNCoder.missing = 0;
+
+  string damBreedLN;
+  calvingDataMap::iterator it;
+  for(it=begin();it!=end();it++){
+    calvingData *ptr =(*it).second;
+    // lactation number 1 and 2
+    if(ptr->lnInt < 3 && ptr->lnInt > 0){
+      if(ptr->damBreedStr != CONSTANTS::STRING_NA){
+        damBreedLN = ptr->damBreedStr + "."+ to_string(ptr->lnInt);
+      }
+      else damBreedLN = CONSTANTS::STRING_NA;
+    }
+    // lactation number 3 and more
+    else if(ptr->lnInt > 2){
+      if(ptr->damBreedStr != CONSTANTS::STRING_NA){
+        damBreedLN = ptr->damBreedStr + ".3ff";
+      }
+      else damBreedLN = CONSTANTS::STRING_NA;
+    }
+    // lactation number not known (should not occur)
+    else damBreedLN = CONSTANTS::STRING_NA;
+
+    ptr->nestedDamBreedLNCode = breedLNCoder.code(damBreedLN,CONSTANTS::STRING_NA);
+
+  }
+
+  breedLNCoder.displayCodes();
+  breedLNCoder.toCSV("breedcombCoder.csv");
+  numDamBreedLN = breedLNCoder.size();
+
+}
+
 
 
 void calvingDataMap::codeHerdYear(void){

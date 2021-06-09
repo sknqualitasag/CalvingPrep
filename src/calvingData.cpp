@@ -41,6 +41,7 @@ calvingData::calvingData(string idstr, string idbreedstr, string mstr, string mb
   sexCode = -1;
   yearMonthCode = -1;
   breedcombCode = -1;
+  nestedDamBreedLNCode = -1;
   herdYearCode = -1;
   herdCode = -1;
   PECode = -1;
