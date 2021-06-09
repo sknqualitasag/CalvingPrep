@@ -1961,12 +1961,14 @@ void calvingDataMap::codeNestedDamBreedLN(void){
     // lactation number not known (should not occur)
     else damBreedLN = CONSTANTS::STRING_NA;
 
+    outputDebug("codeNestedDamBreedLN()_nestedDamBreedLNCode " + to_string(ptr->nestedDamBreedLNCode) + " and damBreedLN " + damBreedLN, ptr->idStr);
     ptr->nestedDamBreedLNCode = breedLNCoder.code(damBreedLN,CONSTANTS::STRING_NA);
+    outputDebug("codeNestedDamBreedLN()_nestedDamBreedLNCode " + to_string(ptr->nestedDamBreedLNCode) + " and damBreedLN " + damBreedLN, ptr->idStr);
 
   }
 
   breedLNCoder.displayCodes();
-  breedLNCoder.toCSV("breedcombCoder.csv");
+  breedLNCoder.toCSV("breedLNCoder.csv");
   numDamBreedLN = breedLNCoder.size();
 
 }
