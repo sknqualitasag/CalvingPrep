@@ -20,6 +20,7 @@
 #include "date.h"
 #include "herd.h"
 #include "recoderMap.h"
+#include "distCalvingAge.h"
 
 
 
@@ -1926,6 +1927,89 @@ void calvingDataMap::codeLNCalvingAge(void){
 
   codeNestedDamBreedLN();
 
+  cout<<"calcDistAndCodeCalvingAge(void): Calculating distribution for calving age within breed combination."<<endl;
+  for(calvingDataMap::iterator it=begin();it!=end();it++){
+    calvingData *ptr =(*it).second;
+    double age = double(ptr->calvingAgeInDays);
+    map<int, distCalvingAge*>::iterator dit = distCalvingAgeMap.find(ptr->nestedDamBreedLNCode);
+    if(dit == distCalvingAgeMap.end()){
+      distCalvingAge* dptr;
+      if(ptr->lnInt < 3 && ptr->lnInt > 0){
+        dptr = new distCalvingAge(age, ptr->damBreedStr+"."+to_string(ptr->lnInt));
+      }
+      else if(ptr->lnInt > 2){
+        dptr = new distCalvingAge(age, ptr->damBreedStr + ".3ff");
+      }
+      else {
+        dptr = new distCalvingAge(age, ptr->damBreedStr + CONSTANTS::STRING_NA);
+      }
+      distCalvingAgeMap[ptr->nestedDamBreedLNCode] = dptr;
+    }
+    else {
+      dit->second->mean += age;
+      dit->second->var += age * age;
+      dit->second->num++;
+    }
+  }
+
+
+  cout<<"distCalvingAge stats:"<<endl;
+  for(map<int, distCalvingAge*>::iterator dit = distCalvingAgeMap.begin(); dit != distCalvingAgeMap.end(); dit++){
+    distCalvingAge* dptr = dit->second;
+    dptr->mean /= dptr->num;
+    dptr->var   = (dptr->var/dptr->num - (dptr->mean*dptr->mean))*(dptr->num/(dptr->num -1));
+    cout<<dptr->breedCombStr<<" mean="<<dptr->mean<<" var="<<dptr->var<<" numObs="<<dptr->num<<endl;
+  }
+
+
+  cout<<"codeLNCalvingAge: Coding quantile within damBreed x LN combination."<<endl;
+  recoderMap LNCalvingAgeCoder;
+  LNCalvingAgeCoder.Count = 0;
+  LNCalvingAgeCoder.missing = 0;
+  unsigned validRecs=0;
+
+  for(calvingDataMap::iterator it=begin();it!=end();it++){
+    calvingData *ptr =it->second;
+    double age = double(ptr->calvingAgeInDays);
+    map<int, distCalvingAge*>::iterator dit = distCalvingAgeMap.find(ptr->nestedDamBreedLNCode);
+    if(dit != distCalvingAgeMap.end()){
+      distCalvingAge* dptr = dit->second;
+      if(ptr->lnInt < 3 && ptr->lnInt > 0){
+        if(age < dptr->mean - (0.675*sqrt(dptr->var))){
+          ptr->LNAgeGroupStr = to_string(ptr->lnInt)+"Q1";
+        }
+        else if(age < dptr->mean){
+          ptr->LNAgeGroupStr = to_string(ptr->lnInt)+"Q2";
+        }
+        else if(age < dptr->mean+ (0.675*sqrt(dptr->var))){
+          ptr->LNAgeGroupStr = to_string(ptr->lnInt)+"Q3";
+        }
+        else ptr->LNAgeGroupStr = to_string(ptr->lnInt)+"Q4";
+      }
+      else if(ptr->lnInt > 2){
+        ptr->LNAgeGroupStr = "3ff";
+      }
+      else {
+        ptr->LNAgeGroupStr = CONSTANTS::STRING_NA;
+      }
+    }
+    else{
+      cout<<"Error in codeLNCalvingAge(): "<<ptr->nestedDamBreedLNCode<<" cannot be found in distCalvingAgeMap. This is wrong, please correct!"<<endl;
+      exit(93);
+    }
+
+    outputDebug("codeLNCalvingAge()_LNAgeCode " + to_string(ptr->LNAgeCode) + " and LNAgeGroupStr " + ptr->LNAgeGroupStr, ptr->idStr);
+    ptr->LNAgeCode = LNCalvingAgeCoder.code(ptr->LNAgeGroupStr,CONSTANTS::STRING_NA);
+    outputDebug("codeLNCalvingAge()_LNAgeCode " + to_string(ptr->LNAgeCode) + " and LNAgeGroupStr " + ptr->LNAgeGroupStr, ptr->idStr);
+    validRecs++;
+
+  }
+
+  LNCalvingAgeCoder.displayCodes();
+  LNCalvingAgeCoder.toCSV("LNCalvingAgeCoder.csv");
+  numLNAgeCodes = LNCalvingAgeCoder.size();
+
+  cout<<"codeLNCalvingAge(): "<<validRecs<<" coded animals for lactation number * calving age."<<endl;
 
 
 }

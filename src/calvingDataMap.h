@@ -11,6 +11,7 @@
 #include "date.h"
 #include "herd.h"
 #include "sire.h"
+#include "distCalvingAge.h"
 
 
 
@@ -106,7 +107,9 @@ public:
 
 
   //Coding the effects
-  unsigned numSexes, numYearMonth, numBreedcomb, numDamBreedLN, numHerdyear, numHerd, numPE, numSire;
+  unsigned numSexes, numYearMonth, numBreedcomb, numDamBreedLN, numLNAgeCodes, numHerdyear, numHerd, numPE, numSire;
+  map<int, distCalvingAge*> distCalvingAgeMap;
+
   void codeEffects();
   void codeSex(void);
   void codeYearMonth(void);

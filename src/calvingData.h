@@ -17,12 +17,12 @@ public:
   string runningMode, psRunningModeStr;
   void constructorDebug(string message, string tvdid, string psRunningMode);
 
-  int sexCode, yearMonthCode, breedcombCode, nestedDamBreedLNCode, herdYearCode, herdCode, PECode, sireCode;
+  int sexCode, yearMonthCode, breedcombCode, nestedDamBreedLNCode, LNAgeCode, herdYearCode, herdCode, PECode, sireCode;
   int calvingScoreInt, transformedCalvingScoreInt, stillbirthInt, transformedStillbirthInt, prematurityInt;
   int lnInt, spermaTraitmentInt, recordTypInsemInt;
   long int gestationLengthInDays, calvingAgeInDays, calvingIntervalInDays, firstCalvingAgeInDays;
   string idStr, idBreedStr, damStr, damBreedStr, mgsBreedStr, idSexStr, multipleStr;
-  string geneticDamStr, sireStr, sireBreedStr, herdStr, mandateStr, breedCombStr;
+  string geneticDamStr, sireStr, sireBreedStr, herdStr, mandateStr, breedCombStr, LNAgeGroupStr;
   string sourceBeefOrDairyStr, animIDStr, itbIDStr, damIDStr, sireIDStr;
   date mbirthdate, calvingdate, insemmotherstartdate, insemmotherenddate;
   double birthWeightDbl;
