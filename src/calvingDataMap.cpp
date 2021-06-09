@@ -1759,7 +1759,8 @@ void calvingDataMap::pheno_out(){
   inputDataAmap<<"idStr;idBreedStr;mgsBreedStr;damBreedStr;sireBreedStr;damStr;geneticDamStr;sireStr;breedCombStr;idSexStr;mbirthdate;";
   inputDataAmap<<"calvingdate;birthWeightDbl;calvingScoreInt;transformedCalvingScoreInt;stillbirthInt;transformedStillbirthInt;prematurityInt;herdStr;mandateStr;";
   inputDataAmap<<"sourceMKS;sourceBeefOrDairyStr;lnInt;insemmotherstartdate;insemmotherenddate;gestationLengthInDays;calvingAgeInDays;";
-  inputDataAmap<<"calvingIntervalInDays;firstCalvingAgeInDays;recordTypInsemInt;spermaTraitmentInt;animIDStr;itbIDStr;damIDStr;sireIDStr"<<endl;
+  inputDataAmap<<"calvingIntervalInDays;firstCalvingAgeInDays;recordTypInsemInt;spermaTraitmentInt;animIDStr;itbIDStr;damIDStr;sireIDStr;";
+  inputDataAmap<<"sexCode;yearMonthCode;breedcombCode;LNAgeCode;herdYearCode;PECode;sireCode"<<endl;
 
 
 
@@ -1800,7 +1801,17 @@ void calvingDataMap::pheno_out(){
                   <<ptr->animIDStr<<";"
                   <<ptr->itbIDStr<<";"
                   <<ptr->damIDStr<<";"
-                  <<ptr->sireIDStr<<endl;
+                  <<ptr->sireIDStr<<";"
+                  <<ptr->sexCode<<";"
+                  <<ptr->yearMonthCode<<";"
+                  <<ptr->breedcombCode<<";"
+                  <<ptr->LNAgeCode<<";"
+                  <<ptr->herdYearCode<<";"
+                  <<ptr->herdCode<<";"
+                  <<ptr->PECode<<";"
+                  <<ptr->sireCode<<endl;
+
+
 
 
   }
@@ -1927,7 +1938,7 @@ void calvingDataMap::codeLNCalvingAge(void){
 
   codeNestedDamBreedLN();
 
-  cout<<"calcDistAndCodeCalvingAge(void): Calculating distribution for calving age within breed combination."<<endl;
+  cout<<"\ncalcDistAndCodeCalvingAge: Calculating distribution for calving age within breed combination."<<endl;
   for(calvingDataMap::iterator it=begin();it!=end();it++){
     calvingData *ptr =(*it).second;
     double age = double(ptr->calvingAgeInDays);
@@ -1953,7 +1964,7 @@ void calvingDataMap::codeLNCalvingAge(void){
   }
 
 
-  cout<<"distCalvingAge stats:"<<endl;
+  cout<<"\ndistCalvingAge stats:"<<endl;
   for(map<int, distCalvingAge*>::iterator dit = distCalvingAgeMap.begin(); dit != distCalvingAgeMap.end(); dit++){
     distCalvingAge* dptr = dit->second;
     dptr->mean /= dptr->num;
@@ -1962,7 +1973,7 @@ void calvingDataMap::codeLNCalvingAge(void){
   }
 
 
-  cout<<"codeLNCalvingAge: Coding quantile within damBreed x LN combination."<<endl;
+  cout<<"\ncodeLNCalvingAge: Coding quantile within damBreed x LN combination."<<endl;
   recoderMap LNCalvingAgeCoder;
   LNCalvingAgeCoder.Count = 0;
   LNCalvingAgeCoder.missing = 0;
@@ -2017,7 +2028,7 @@ void calvingDataMap::codeLNCalvingAge(void){
 
 void calvingDataMap::codeNestedDamBreedLN(void){
 
-  cout<<"codeNestedDamBreedLN: Coding nested damBreed x LN combination."<<endl;
+  cout<<"\ncodeNestedDamBreedLN: Coding nested damBreed x LN combination."<<endl;
 
   recoderMap breedLNCoder;
 
