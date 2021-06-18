@@ -29,7 +29,6 @@ public:
   bool sourceMKS;
 
 
-
   calvingData(string idstr, string idbreedstr, string mstr, string mbreedstr, string mvbreedstr, string idsexstr,\
               date pmbirthdate, date pcalvingdate, double idbirthweightdbl, string multiplestr,\
               int calvingscoreint, int transformedcalvingscoreint, int stillbirthint, int transformedstillbirthint,\
