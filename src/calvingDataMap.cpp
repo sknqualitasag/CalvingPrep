@@ -1369,6 +1369,32 @@ int calvingDataMap::verifyInteractLnIV(int lnint, long int calvingIntervalInDays
 }
 
 
+void countBreedComb(){
+
+  cout<<"\ncountBreedComb(): count animals in each breed combination"<<endl;
+  cout<<"*****************************************************************"<< endl;
+
+
+  for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
+    calvingData *ptr = (*it).second;
+
+    map<string,int>::iterator sit = breedcombID.BreedCombStatistic.find(ptr->sireStr);
+    if(sit != breedcombID.BreedCombStatistic.end()){
+      breedcombID.BreedCombStatistic[ptr->breedCombStr]++;
+    }else{
+      breedcombID.BreedCombStatistic[ptr->breedCombStr] = 1;
+    }
+
+  }
+
+  for(map<string,int>::iterator sit = breedcombID.BreedCombStatistic.begin(); sit != breedcombID.BreedCombStatistic.end(); sit++){
+    simpleDebug("countBreedComb()_output of the map for breedcomb " + sit->first + " number observation per breedcomb " + to_string(sit->second), "");
+  }
+
+
+}
+
+
 void calvingDataMap::countHerdYearSire(){
 
   cout<<"\ncountHerdYearSire(): count animals and sires in each herd year"<<endl;

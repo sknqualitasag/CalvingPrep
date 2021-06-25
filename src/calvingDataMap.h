@@ -12,6 +12,7 @@
 #include "herd.h"
 #include "sire.h"
 #include "distCalvingAge.h"
+#include "breedcomb.h"
 
 
 
@@ -80,6 +81,11 @@ public:
   // Transform field by creating a new field
   int transformCalvingScore(int calvingscoreint, string idstr);
   int transformStillbirth(int stillbirthint, string idstr);
+
+
+  // Count number observation per breedcombination
+  void countBreedComb();
+  breedcomb breedcombID;
 
 
   // Calculate variance in herd

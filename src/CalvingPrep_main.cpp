@@ -67,6 +67,8 @@ int CalvingPrep_main(std::string paramFileName) {
     cMap.inputCalvingData(fileName, aMap, lastYearToConsiderData);
   }
 
+  // Minimum observations per breedcombination
+  cMap.countBreedComb();
 
   // Minimum observations per herdyear
   // Minimum sires per herdyear
