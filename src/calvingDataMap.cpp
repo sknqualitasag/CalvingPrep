@@ -1762,8 +1762,8 @@ void calvingDataMap::pheno_out(){
   inputDataAmap<<"calvingIntervalInDays;firstCalvingAgeInDays;recordTypInsemInt;spermaTraitmentInt;animIDStr;itbIDStr;damIDStr;sireIDStr;";
   inputDataAmap<<"sexCode;yearMonthCode;breedcombCode;LNAgeCode;herdYearCode;herdCode;PECode;sireCode;";
   inputDataAmap<<"ceb;ced;bwb;bwd;";
-  inputDataAmap<<"ce_bdam;ce_ddam;bw_bdam;bw_ddam";
-  inputDataAmap<<"ceb_h;ceb_c;bwb_h;bwb_c;ced_h;ced_c;bwd_h;bwd_c";
+  inputDataAmap<<"ce_bdam;ce_ddam;bw_bdam;bw_ddam;";
+  inputDataAmap<<"ceb_h;ceb_c;bwb_h;bwb_c;ced_h;ced_c;bwd_h;bwd_c;";
   inputDataAmap<<"ce_h_bdam;ce_c_bdam;bw_h_bdam;bw_c_bdam;ce_h_ddam;ce_c_ddam;bw_h_ddam;bw_c_ddam"<<endl;
 
 
