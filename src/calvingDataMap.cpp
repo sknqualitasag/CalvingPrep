@@ -1794,43 +1794,51 @@ void calvingDataMap::pheno_out(){
 
     // Auftrennung beef und dairy nach Mandant
     if(ptr->sourceMKS){
-      if(ptr->calvingScoreInt == CONSTANTS::INT_NA){
+      if(ptr->transformedCalvingScoreInt == CONSTANTS::INT_NA){
         ceb = 0;
+        ced = 0;
       }else{
-        ceb = ptr->calvingScoreInt * 100;
+        ceb = ptr->transformedCalvingScoreInt * 100;
+        ced = 0;
       }
       if(ptr->birthWeightDbl == CONSTANTS::DOUBLE_NA){
         bwb = 0.;
+        bwd = 0.;
       }else{
         bwb = ptr->birthWeightDbl;
+        bwd = 0.;
       }
     }else{
-      if(ptr->calvingScoreInt == CONSTANTS::INT_NA){
+      if(ptr->transformedCalvingScoreInt == CONSTANTS::INT_NA){
         ced = 0;
+        ceb = 0;
       }else{
-        ced = ptr->calvingScoreInt * 100;
+        ced = ptr->transformedCalvingScoreInt * 100;
+        ceb = 0;
       }
       if(ptr->birthWeightDbl == CONSTANTS::DOUBLE_NA){
         bwd = 0.;
+        bwb = 0.;
       }else{
         bwd = ptr->birthWeightDbl;
+        bwb = 0.;
       }
     }
     // Auftrennung beef und dairy nach Mandant und Laktation
     if(ptr->sourceMKS){
-      if(ptr->calvingScoreInt == CONSTANTS::INT_NA){
+      if(ptr->transformedCalvingScoreInt == CONSTANTS::INT_NA){
         ceb_h = 0;
         ceb_c = 0;
         ced_c = 0;
         ced_h = 0;
       }else{
         if(ptr->lnInt == 1){
-          ceb_h = ptr->calvingScoreInt * 100;
+          ceb_h = ptr->transformedCalvingScoreInt * 100;
           ced_h = 0;
           ceb_c = 0;
           ced_c = 0;
         }else{
-          ceb_c = ptr->calvingScoreInt * 100;
+          ceb_c = ptr->transformedCalvingScoreInt * 100;
           ced_c = 0;
           ceb_h = 0;
           ced_h = 0;
@@ -1855,19 +1863,19 @@ void calvingDataMap::pheno_out(){
         }
       }
     }else{
-      if(ptr->calvingScoreInt == CONSTANTS::INT_NA){
+      if(ptr->transformedCalvingScoreInt == CONSTANTS::INT_NA){
         ced_h = 0;
         ced_c = 0;
         ceb_h = 0;
         ceb_c = 0;
       }else{
         if(ptr->lnInt == 1){
-          ced_h = ptr->calvingScoreInt * 100;
+          ced_h = ptr->transformedCalvingScoreInt * 100;
           ceb_h = 0;
           ced_c = 0;
           ceb_c = 0;
         }else{
-          ced_c = ptr->calvingScoreInt * 100;
+          ced_c = ptr->transformedCalvingScoreInt * 100;
           ceb_c = 0;
           ced_h = 0;
           ceb_h = 0;
@@ -1894,73 +1902,109 @@ void calvingDataMap::pheno_out(){
     }
     // Auftrennung beef und dairy nach Rasse der Kuh
     if(ptr->sourceBeefOrDairyStr == "beef"){
-      if(ptr->calvingScoreInt == CONSTANTS::INT_NA){
+      if(ptr->transformedCalvingScoreInt == CONSTANTS::INT_NA){
         ce_bdam = 0;
+        ce_ddam = 0;
       }else{
-        ce_bdam = ptr->calvingScoreInt * 100;
+        ce_bdam = ptr->transformedCalvingScoreInt * 100;
+        ce_ddam = 0;
       }
       if(ptr->birthWeightDbl == CONSTANTS::DOUBLE_NA){
         bw_bdam = 0.;
+        bw_ddam = 0.;
       }else{
         bw_bdam = ptr->birthWeightDbl;
+        bw_ddam = 0.;
       }
     }else{
-      if(ptr->calvingScoreInt == CONSTANTS::INT_NA){
+      if(ptr->transformedCalvingScoreInt == CONSTANTS::INT_NA){
         ce_ddam = 0;
+        ce_bdam = 0;
       }else{
-        ce_ddam = ptr->calvingScoreInt * 100;
+        ce_ddam = ptr->transformedCalvingScoreInt * 100;
+        ce_bdam = 0;
       }
       if(ptr->birthWeightDbl == CONSTANTS::DOUBLE_NA){
         bw_ddam = 0.;
+        bw_bdam = 0.;
       }else{
         bw_ddam = ptr->birthWeightDbl;
+        bw_bdam = 0.;
       }
     }
     // Auftrennung beef und dairy nach Rasse der Kuh und Laktation
     if(ptr->sourceBeefOrDairyStr == "beef"){
-      if(ptr->calvingScoreInt == CONSTANTS::INT_NA){
+      if(ptr->transformedCalvingScoreInt == CONSTANTS::INT_NA){
         ce_h_bdam = 0;
         ce_c_bdam = 0;
+        ce_h_ddam = 0;
+        ce_c_ddam = 0;
       }else{
         if(ptr->lnInt == 1){
-          ce_h_bdam = ptr->calvingScoreInt * 100;
+          ce_h_bdam = ptr->transformedCalvingScoreInt * 100;
+          ce_c_bdam = 0;
+          ce_h_ddam = 0;
+          ce_c_ddam = 0;
         }else{
-          ce_c_bdam = ptr->calvingScoreInt * 100;
+          ce_c_bdam = ptr->transformedCalvingScoreInt * 100;
+          ce_h_ddam = 0;
+          ce_c_ddam = 0;
+          ce_h_bdam = 0;
         }
       }
       if(ptr->birthWeightDbl == CONSTANTS::DOUBLE_NA){
         bw_h_bdam = 0.;
         bw_c_bdam = 0.;
+        bw_h_ddam = 0.;
+        bw_c_ddam = 0.;
       }else{
         if(ptr->lnInt == 1){
           bw_h_bdam = ptr->birthWeightDbl;
           bw_c_bdam = 0.;
+          bw_h_ddam = 0.;
+          bw_c_ddam = 0.;
         }else{
           bw_c_bdam = ptr->birthWeightDbl;
           bw_h_bdam = 0.;
+          bw_h_ddam = 0.;
+          bw_c_ddam = 0.;
         }
       }
     }else{
-      if(ptr->calvingScoreInt == CONSTANTS::INT_NA){
+      if(ptr->transformedCalvingScoreInt == CONSTANTS::INT_NA){
         ce_h_ddam = 0;
         ce_c_ddam = 0;
+        ce_h_bdam = 0;
+        ce_c_bdam = 0;
       }else{
         if(ptr->lnInt == 1){
-          ce_h_ddam = ptr->calvingScoreInt * 100;
+          ce_h_ddam = ptr->transformedCalvingScoreInt * 100;
+          ce_c_ddam = 0;
+          ce_h_bdam = 0;
+          ce_c_bdam = 0;
         }else{
-          ce_c_ddam = ptr->calvingScoreInt * 100;
+          ce_c_ddam = ptr->transformedCalvingScoreInt * 100;
+          ce_h_bdam = 0;
+          ce_c_bdam = 0;
+          ce_h_ddam = 0;
         }
       }
       if(ptr->birthWeightDbl == CONSTANTS::DOUBLE_NA){
         bw_h_ddam = 0.;
         bw_c_ddam = 0.;
+        bw_h_bdam = 0.;
+        bw_c_bdam = 0.;
       }else{
         if(ptr->lnInt == 1){
           bw_h_ddam = ptr->birthWeightDbl;
           bw_c_ddam = 0.;
+          bw_h_bdam = 0.;
+          bw_c_bdam = 0.;
         }else{
           bw_c_ddam = ptr->birthWeightDbl;
           bw_h_ddam = 0.;
+          bw_h_bdam = 0.;
+          bw_c_bdam = 0.;
         }
       }
     }
