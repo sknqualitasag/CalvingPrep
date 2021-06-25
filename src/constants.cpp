@@ -47,4 +47,6 @@ const unsigned CONSTANTS::MIN_SIRE_PER_HERDYEAR = 2;
 const unsigned CONSTANTS::MIN_OBS_PER_SIRE = 5;
 //' standarddeviation of zero for trait in herd
 const double CONSTANTS::STD_TRAIT_ZERO_PER_HERD = 0.0001;
+//' minimum observation per breedcomb
+const unsigned CONSTANTS::MIN_OBS_PER_BREEDCOMB = 100;
 

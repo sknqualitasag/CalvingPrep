@@ -69,6 +69,7 @@ int CalvingPrep_main(std::string paramFileName) {
 
   // Minimum observations per breedcombination
   cMap.countBreedComb();
+  cMap.purgeBreedComb();
 
   // Minimum observations per herdyear
   // Minimum sires per herdyear

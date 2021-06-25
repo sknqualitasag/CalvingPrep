@@ -1395,6 +1395,58 @@ void calvingDataMap::countBreedComb(){
 }
 
 
+void calvingDataMap::purgeBreedComb(){
+
+  cout<<"\npurgeBreedComb(): "<<this->size()<<" animals in map before purging breedcomb."<<endl;
+  cout<<"*****************************************************************"<< endl;
+
+  set<string>breedcomb2Delete;
+  set<string>animals2Delete;
+
+  // find breedcomb with number observations under minimum
+  for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
+    calvingData *ptr = (*it).second;
+
+    map<string,int>::iterator hit = breedcombID.BreedCombStatistic.find(ptr->breedCombStr);
+    if(breedcombID.BreedCombStatistic[ptr->breedCombStr]  < CONSTANTS::MIN_OBS_PER_BREEDCOMB){
+      breedcomb2Delete.insert(ptr->breedCombStr);
+      simpleDebug("purgeBreedComb()_inserted in breedcomb2Delete, breedCombStr " + hit->first + " has " + to_string(hit->second)  + " number observations", "");
+    }
+  }
+
+  cout<<"purgeBreedComb(): "<<breedcomb2Delete.size()<<" breedcomb are erased due to few number of obersvations."<<endl;
+
+  // tagging animals to delete in such breedcomb with to low observation
+  for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
+    calvingData *ptr = (*it).second;
+
+    set<string>::iterator hit = breedcomb2Delete.find(ptr->breedCombStr);
+    if(hit != breedcomb2Delete.end()){
+      animals2Delete.insert(ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr);
+      simpleDebug("purgeBreedComb()_In the the list breedcomb2Delete is breedcomb: " + ptr->breedCombStr + " with key to delete of cMap "+ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr, ptr->idStr);
+    }
+  }
+
+  // deleting animals with to low observation
+  unsigned count=0;
+  for(set<string>::iterator ait = animals2Delete.begin(); ait != animals2Delete.end(); ait ++){
+    this->erase(*ait);
+    simpleDebug("purgeBreedComb()_Record is deleted due to min numberObs not in the range ", *ait);
+    count++;
+  }
+  cout<<"purgeBreedComb(): "<<count<<" animals removed from map and memory released."<<endl;
+
+  cout<<"purgeBreedComb(): "<<this->size()<<" animals in map after purging breedcomb."<<endl;
+  for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
+    calvingData *ptr = (*it).second;
+    simpleDebug("purgeBreedComb()_Still in cMap after purging breedcomb "+ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr,ptr->idStr);
+  }
+
+
+}
+
+
+
 void calvingDataMap::countHerdYearSire(){
 
   cout<<"\ncountHerdYearSire(): count animals and sires in each herd year"<<endl;

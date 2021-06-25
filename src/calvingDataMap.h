@@ -86,13 +86,13 @@ public:
   // Count number observation per breedcombination
   void countBreedComb();
   breedcomb breedcombID;
+  void purgeBreedComb();
 
 
-  // Calculate variance in herd
-  void countHerd();
-  map<string, herd*> HerdStatisticMap;
-  void stdHerd();
-  void purgeHerd();
+  // Check number observation per sire
+  void countSire();
+  sire sireID;
+  void purgeSire();
 
 
   // Count number observation per herd*year and count number sires per herd*year
@@ -102,10 +102,11 @@ public:
   void purgeHerdYearSire();
 
 
-  // Check number observation per sire
-  void countSire();
-  sire sireID;
-  void purgeSire();
+  // Calculate variance in herd
+  void countHerd();
+  map<string, herd*> HerdStatisticMap;
+  void stdHerd();
+  void purgeHerd();
 
 
   // Draw a sample of data based on herds
