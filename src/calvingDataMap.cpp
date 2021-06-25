@@ -2097,11 +2097,13 @@ void calvingDataMap::pheno_out(){
     // Zwischenkalbezeit für Beef
     if(ptr->sourceMKS){
       cib = ptr->calvingIntervalInDays;
-      ci_bdam = 0.;
+    }else{
+      cib = 0.;
     }
     if(ptr->sourceBeefOrDairyStr == "beef"){
       ci_bdam = ptr->calvingIntervalInDays;
-      cib = 0.;
+    }else{
+      ci_bdam = 0.;
     }
 
 
