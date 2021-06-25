@@ -21,7 +21,6 @@
 #include "herd.h"
 #include "recoderMap.h"
 #include "distCalvingAge.h"
-#include "breedcomb.h"
 
 
 
@@ -1370,7 +1369,7 @@ int calvingDataMap::verifyInteractLnIV(int lnint, long int calvingIntervalInDays
 }
 
 
-void countBreedComb(){
+void calvingDataMap::countBreedComb(){
 
   cout<<"\ncountBreedComb(): count animals in each breed combination"<<endl;
   cout<<"*****************************************************************"<< endl;
