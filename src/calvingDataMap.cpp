@@ -1826,10 +1826,12 @@ void calvingDataMap::pheno_out(){
       }else{
         if(ptr->lnInt == 1){
           ceb_h = ptr->calvingScoreInt * 100;
+          ced_h = 0;
           ceb_c = 0;
           ced_c = 0;
         }else{
           ceb_c = ptr->calvingScoreInt * 100;
+          ced_c = 0;
           ceb_h = 0;
           ced_h = 0;
         }
@@ -1842,10 +1844,12 @@ void calvingDataMap::pheno_out(){
       }else{
         if(ptr->lnInt == 1){
           bwb_h = ptr->birthWeightDbl;
+          bwd_h = 0.;
           bwb_c = 0.;
           bwd_c = 0.;
         }else{
           bwb_c = ptr->birthWeightDbl;
+          bwd_c = 0.;
           bwb_h = 0.;
           bwd_h = 0.;
         }
@@ -1859,10 +1863,12 @@ void calvingDataMap::pheno_out(){
       }else{
         if(ptr->lnInt == 1){
           ced_h = ptr->calvingScoreInt * 100;
+          ceb_h = 0;
           ced_c = 0;
           ceb_c = 0;
         }else{
           ced_c = ptr->calvingScoreInt * 100;
+          ceb_c = 0;
           ced_h = 0;
           ceb_h = 0;
         }
@@ -1875,10 +1881,12 @@ void calvingDataMap::pheno_out(){
       }else{
         if(ptr->lnInt == 1){
           bwd_h = ptr->birthWeightDbl;
+          bwb_h = 0.;
           bwd_c = 0.;
           bwd_c = 0.;
         }else{
           bwd_c = ptr->birthWeightDbl;
+          bwb_c = 0.;
           bwd_h = 0.;
           bwb_h = 0.;
         }
