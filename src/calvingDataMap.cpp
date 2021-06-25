@@ -1378,7 +1378,7 @@ void countBreedComb(){
   for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
     calvingData *ptr = (*it).second;
 
-    map<string,int>::iterator sit = breedcombID.BreedCombStatistic.find(ptr->sireStr);
+    map<string,int>::iterator sit = breedcombID.BreedCombStatistic.find(ptr->breedCombStr);
     if(sit != breedcombID.BreedCombStatistic.end()){
       breedcombID.BreedCombStatistic[ptr->breedCombStr]++;
     }else{
