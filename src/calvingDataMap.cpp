@@ -1846,7 +1846,8 @@ void calvingDataMap::pheno_out(){
   inputDataAmap<<"ceb;ced;bwb;bwd;";
   inputDataAmap<<"ce_bdam;ce_ddam;bw_bdam;bw_ddam;";
   inputDataAmap<<"ceb_h;ceb_c;bwb_h;bwb_c;ced_h;ced_c;bwd_h;bwd_c;";
-  inputDataAmap<<"ce_h_bdam;ce_c_bdam;bw_h_bdam;bw_c_bdam;ce_h_ddam;ce_c_ddam;bw_h_ddam;bw_c_ddam"<<endl;
+  inputDataAmap<<"ce_h_bdam;ce_c_bdam;bw_h_bdam;bw_c_bdam;ce_h_ddam;ce_c_ddam;bw_h_ddam;bw_c_ddam;";
+  inputDataAmap<<"cib;ci_bdam"<<endl;
 
 
   // Auftrennung beef und dairy nach Mandant:
@@ -1867,9 +1868,12 @@ void calvingDataMap::pheno_out(){
      // ce_h_ddam = calving ease dairy heifer dam, ce_c_ddam = calving ease dairy cow dam
      // bw_h_bdam = birth weight beef heifer dam, bw_c_bdam = birth weight beef cow dam
      // bw_h_ddam = birth weight dairy heifer dam, bw_c_ddam = birth weight dairy cow dam
-
   unsigned ce_bdam, ce_ddam, ce_h_bdam, ce_c_bdam, ce_h_ddam, ce_c_ddam;
   double bw_bdam, bw_ddam, bw_h_bdam, bw_c_bdam, bw_h_ddam, bw_c_ddam;
+  // Zwischenkalbezeit für Beef
+     // nach Mandant: cib
+     // nach Mutterrasse: ci_bdam
+  double cib, ci_bdam;
 
   for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
     calvingData *ptr = (*it).second;
@@ -2090,6 +2094,15 @@ void calvingDataMap::pheno_out(){
         }
       }
     }
+    // Zwischenkalbezeit für Beef
+    if(ptr->sourceMKS){
+      cib = ptr->calvingIntervalInDays;
+      ci_bdam = 0.;
+    }
+    if(ptr->sourceBeefOrDairyStr == "beef"){
+      ci_bdam = ptr->calvingIntervalInDays;
+      cib = 0.;
+    }
 
 
     inputDataAmap <<ptr->idStr <<";"
@@ -2158,7 +2171,9 @@ void calvingDataMap::pheno_out(){
                   <<ce_h_ddam<<";"
                   <<ce_c_ddam<<";"
                   <<bw_h_ddam<<";"
-                  <<bw_c_ddam<<endl;
+                  <<bw_c_ddam<<";"
+                  <<cib<<";"
+                  <<ci_bdam<<endl;
 
 
   }
