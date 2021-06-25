@@ -1359,6 +1359,10 @@ int calvingDataMap::verifyInteractLnIV(int lnint, long int calvingIntervalInDays
     lnint = CONSTANTS::INT_NA;
     simpleDebug("verifyInteractLnIV()_lnint "+to_string(lnint)+" and calvingIntervalInDays "+to_string(calvingIntervalInDays)+", so set lactationnummer to missing", idstr);
   }
+  if(lnint == 1 && calvingIntervalInDays > 0){
+    lnint = CONSTANTS::INT_NA;
+    simpleDebug("verifyInteractLnIV()_lnint "+to_string(lnint)+" and calvingIntervalInDays "+to_string(calvingIntervalInDays)+", so set lactationnummer to missing", idstr);
+  }
 
   return lnint;
 
