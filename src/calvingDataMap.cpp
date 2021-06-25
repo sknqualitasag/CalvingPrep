@@ -21,6 +21,7 @@
 #include "herd.h"
 #include "recoderMap.h"
 #include "distCalvingAge.h"
+#include "breedcomb.h"
 
 
 
