@@ -1842,7 +1842,7 @@ void calvingDataMap::pheno_out(){
   inputDataAmap<<"calvingdate;birthWeightDbl;calvingScoreInt;transformedCalvingScoreInt;stillbirthInt;transformedStillbirthInt;prematurityInt;herdStr;mandateStr;";
   inputDataAmap<<"sourceMKS;sourceBeefOrDairyStr;lnInt;insemmotherstartdate;insemmotherenddate;gestationLengthInDays;calvingAgeInDays;";
   inputDataAmap<<"calvingIntervalInDays;firstCalvingAgeInDays;recordTypInsemInt;spermaTraitmentInt;animIDStr;itbIDStr;damIDStr;sireIDStr;";
-  inputDataAmap<<"sexCode;yearMonthCode;breedcombCode;LNAgeCode;herdYearCode;herdCode;PECode;sireCode;";
+  inputDataAmap<<"sexCode;yearMonthCode;breedcombCode;LNAgeCode;herdYearCode;herdCode;PECode;sireCode;mandantCode;";
   inputDataAmap<<"ceb;ced;bwb;bwd;";
   inputDataAmap<<"ce_bdam;ce_ddam;bw_bdam;bw_ddam;";
   inputDataAmap<<"ceb_h;ceb_c;bwb_h;bwb_c;ced_h;ced_c;bwd_h;bwd_c;";
@@ -2150,6 +2150,7 @@ void calvingDataMap::pheno_out(){
                   <<ptr->herdCode<<";"
                   <<ptr->PECode<<";"
                   <<ptr->sireCode<<";"
+                  <<ptr->mandantCode<<";"
                   <<ceb<<";"
                   <<ced<<";"
                   <<bwb<<";"
@@ -2217,6 +2218,11 @@ void calvingDataMap::codeEffects(){
   cout<<"***"<< endl;
   cout<<"\nCoding the effect SIRE..."<<endl;
   codeSire();
+
+  cout<<"***"<< endl;
+  cout<<"\nCoding the effect MANDANT..."<<endl;
+  codeMandant();
+
 
 
 }
@@ -2536,3 +2542,30 @@ void calvingDataMap::codeSire(void){
 
 
 }
+
+
+void calvingDataMap::codeMandant(void){
+
+ recoderMap mandantCoder;
+
+  mandantCoder.Count = 0;
+  mandantCoder.missing = 0;
+  unsigned validRecs=0;
+
+  for(calvingDataMap::iterator it=begin();it!=end();it++){
+    calvingData* ptr =(*it).second;
+    outputDebug("codeMandant()_mandantCode " + to_string(ptr->mandantCode) + " and sourceMKS " + to_string(ptr->sourceMKS), ptr->idStr);
+    ptr->sireCode = mandantCoder.code(ptr->sireStr,CONSTANTS::STRING_NA);
+    outputDebug("codeMandant()_After Code mandantCode " + to_string(ptr->mandantCode) + " and sourceMKS " + to_string(ptr->sourceMKS), ptr->idStr);
+    validRecs++;
+  }
+
+  mandantCoder.displayCodes();
+  mandantCoder.toCSV("mandantCoder.csv");
+  numSire = mandantCoder.size();
+
+  cout<<"codeMandant(): "<<validRecs<<" coded animals for mandant."<<endl;
+
+
+}
+

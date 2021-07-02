@@ -127,6 +127,7 @@ public:
   void codeHerd(void);
   void codePEMother(void);
   void codeSire(void);
+  void codeMandant(void);
 
 
   //output function
