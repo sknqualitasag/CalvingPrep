@@ -2555,7 +2555,7 @@ void calvingDataMap::codeMandant(void){
   for(calvingDataMap::iterator it=begin();it!=end();it++){
     calvingData* ptr =(*it).second;
     outputDebug("codeMandant()_mandantCode " + to_string(ptr->mandantCode) + " and sourceMKS " + to_string(ptr->sourceMKS), ptr->idStr);
-    ptr->sireCode = mandantCoder.code(ptr->sireStr,CONSTANTS::STRING_NA);
+    ptr->sireCode = mandantCoder.code(to_string(ptr->sourceMKS),CONSTANTS::STRING_NA);
     outputDebug("codeMandant()_After Code mandantCode " + to_string(ptr->mandantCode) + " and sourceMKS " + to_string(ptr->sourceMKS), ptr->idStr);
     validRecs++;
   }
