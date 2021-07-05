@@ -2197,8 +2197,8 @@ void calvingDataMap::pheno_out(){
                   <<bw_h_ddam<<";"
                   <<bw_c_ddam<<";"
                   <<cib<<";"
-                  <<ci_bdam<<";";
-                  <<ce<<";";
+                  <<ci_bdam<<";"
+                  <<ce<<";"
                   <<bw<<endl;
 
 
