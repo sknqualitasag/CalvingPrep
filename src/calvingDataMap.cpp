@@ -1846,6 +1846,7 @@ void calvingDataMap::drawHerd(unsigned proportion, unsigned seed){
 void calvingDataMap::pheno_out(){
 
   ofstream inputDataAmap("PhenoOutput.csv");
+  ofstream AnimalsWithData("SampledAnimalsForPed");
 
   cout<<"\npheno_out: PHENOTYPIC FILE IN CMAP ..."<<endl;
   cout<<"*****************************************************************"<< endl;
@@ -2118,6 +2119,7 @@ void calvingDataMap::pheno_out(){
       ci_bdam = 0.;
     }
 
+    AnimalsWithData<<ptr->idStr<<endl;
 
     inputDataAmap <<ptr->idStr <<";"
                   <<ptr->idBreedStr<<";"
