@@ -1860,9 +1860,13 @@ void calvingDataMap::pheno_out(){
   inputDataAmap<<"ce_bdam;ce_ddam;bw_bdam;bw_ddam;";
   inputDataAmap<<"ceb_h;ceb_c;bwb_h;bwb_c;ced_h;ced_c;bwd_h;bwd_c;";
   inputDataAmap<<"ce_h_bdam;ce_c_bdam;bw_h_bdam;bw_c_bdam;ce_h_ddam;ce_c_ddam;bw_h_ddam;bw_c_ddam;";
-  inputDataAmap<<"cib;ci_bdam"<<endl;
+  inputDataAmap<<"cib;ci_bdam;ce;bw"<<endl;
 
-
+  // keine Auftrennung:
+     // ce = calving ease
+     unsigned ce;
+     // bw = birth weight
+     double bw;
   // Auftrennung beef und dairy nach Mandant:
   // ceb = calving ease beef, ced = calving ease dairy,
   // bwb = birth weight beef, bwd = birth weight dairy
@@ -1891,6 +1895,9 @@ void calvingDataMap::pheno_out(){
   for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
     calvingData *ptr = (*it).second;
 
+    // keine Auftrennung:
+    ce = ptr->transformedCalvingScoreInt * 100;
+    bw = ptr->birthWeightDbl;
     // Auftrennung beef und dairy nach Mandant
     if(ptr->sourceMKS){
       if(ptr->transformedCalvingScoreInt == CONSTANTS::INT_NA){
@@ -2190,7 +2197,9 @@ void calvingDataMap::pheno_out(){
                   <<bw_h_ddam<<";"
                   <<bw_c_ddam<<";"
                   <<cib<<";"
-                  <<ci_bdam<<endl;
+                  <<ci_bdam<<";";
+                  <<ce<<";";
+                  <<bw<<endl;
 
 
   }
