@@ -425,12 +425,12 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
       calvingscoreNotRead++;
       continue;
     }
-    // idbirthweightdbl, gestationLengthInDays are normal distribute traits and at least one should be available
-    if(idbirthweightdbl == CONSTANTS::DOUBLE_NA && gestationLengthInDays == CONSTANTS::INT_NA){
-      simpleDebug("inputData()_Animal is not read in calvingDataMap, because idbirthweightdbl or gestationLengthInDays is missing", idstr);
-      traitNotRead++;
-      continue;
-    }
+//    // idbirthweightdbl, gestationLengthInDays are normal distribute traits and at least one should be available
+//    if(idbirthweightdbl == CONSTANTS::DOUBLE_NA && gestationLengthInDays == CONSTANTS::INT_NA){
+//      simpleDebug("inputData()_Animal is not read in calvingDataMap, because idbirthweightdbl or gestationLengthInDays is missing", idstr);
+//      traitNotRead++;
+//      continue;
+//    }
     // multiple not considered
     if(multiplestr == "1"){
       simpleDebug("inputData()_Animal is not read in calvingDataMap, because it is an multiplestr", idstr);
@@ -453,6 +453,18 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     if(ETint == 1){
       simpleDebug("inputData()_Animal is not read in calvingDataMap, because it is an ETint", idstr);
       ETNotRead++;
+      continue;
+    }
+    // First variants for VKS only with calving ease and birth weight
+    // idbirthweightdbl is normal distribute traits and at least should be available
+    if(idbirthweightdbl == CONSTANTS::DOUBLE_NA){
+      simpleDebug("inputData()_Animal is not read in calvingDataMap, because idbirthweightdbl is missing", idstr);
+      traitNotRead++;
+      continue;
+    }
+    // id has to be available
+    if(idstr == CONSTANTS::STRING_NA){
+      simpleDebug("inputData()_Animal is not read in calvingDataMap, because idstr is missing", idstr);
       continue;
     }
 
