@@ -164,7 +164,7 @@ void calvingDataMap::outputDebug(string message, string tvdid){
 }
 
 
-void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYearToConsiderData){
+void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYearToConsiderData, bool parSampling, string startDateSampling, string endDateSampling){
 
   ifstream datafile(fname.c_str());
   if(!datafile){
@@ -197,6 +197,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
   unsigned numconsistentRecsButMissingIDs=0;
   unsigned numRepRecs=0;
   unsigned aliveIdmissingNotRead=0;
+  unsigned SamplingNotRead=0;
 
 
 
@@ -465,6 +466,12 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     // id has to be available
     if(idstr == CONSTANTS::STRING_NA){
       simpleDebug("inputData()_Animal is not read in calvingDataMap, because idstr is missing", idstr);
+      continue;
+    }
+    // sampling during a certain period of time
+    if(verifySampling(parSampling, calvingdate, startDateSampling, endDateSampling, idstr)){
+      simpleDebug("inputData()_Animal is not read in animalMap, because sampling based on slaughterdate", idstr);
+      SamplingNotRead++;
       continue;
     }
 
@@ -1377,6 +1384,31 @@ int calvingDataMap::verifyInteractLnIV(int lnint, long int calvingIntervalInDays
   }
 
   return lnint;
+
+}
+
+
+bool calvingDataMap::verifySampling(bool parSampling, date calvingdate, string startDateSampling, string endDateSampling, string idstr){
+
+  date startSampling = date(startDateSampling);
+  date endSampling = date(endDateSampling);
+
+  if(parSampling){
+    if(calvingdate.YearStr < startSampling.YearStr){
+      simpleDebug("verifySampling()_Setting to true, because parSampling=true and calvingdate.YearStr < startSampling.YearStr", idstr);
+      return true;
+    }
+    else if(calvingdate.YearStr > endSampling.YearStr){
+      simpleDebug("verifySampling()_Setting to true, because parSampling=true and calvingdate.YearStr > endSampling.YearStr", idstr);
+      return true;
+    }else{
+      simpleDebug("verifySampling()_Setting to false, because parSampling=true and calvingdate.YearStr > startSampling.YearStr and calvingdate.YearStr < endSampling.YearStr", idstr);
+      return false;
+    }
+  }else{
+    simpleDebug("verifySampling()_Setting to false, because parSampling=false", idstr);
+    return false;
+  }
 
 }
 

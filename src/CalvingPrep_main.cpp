@@ -46,6 +46,10 @@ int CalvingPrep_main(std::string paramFileName) {
   std::string parRunMode                      = parmMap.getString("DEBUG");//yes = turn on debugging
   unsigned proportion                         = parmMap.getUnsigned("proportion");//1 = draw sample on herds; 0 = not draw sample
   unsigned seed                               = parmMap.getUnsigned("seed");//0 = not draw sample;
+  bool parSampling                            = parmMap.getBoolean("sampling");//true = sampling; false = not sampling
+  std::string startDateSampling						    = parmMap.getString("startDateSampling");
+  std::string endDateSampling						      = parmMap.getString("endDateSampling");
+
 
 
 
@@ -64,7 +68,7 @@ int CalvingPrep_main(std::string paramFileName) {
   //Read raw calving-data and check the field of the data-record
   for(unsigned i=0; i<numberDataFiles; i++){
     string fileName = cMap.getFileName(i,dataFile);
-    cMap.inputCalvingData(fileName, aMap, lastYearToConsiderData);
+    cMap.inputCalvingData(fileName, aMap, lastYearToConsiderData, parSampling, startDateSampling, endDateSampling);
   }
 
   // Minimum observations per breedcombination

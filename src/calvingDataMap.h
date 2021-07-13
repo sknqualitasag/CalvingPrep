@@ -37,7 +37,7 @@ public:
 
   // functions for reading calving-data-file
   string getFileName(unsigned i, string name);
-  void inputCalvingData(string fname, animalMap  &AMap, int lastYearToConsiderData);
+  void inputCalvingData(string fname, animalMap  &AMap, int lastYearToConsiderData, bool parSampling, string startDateSampling, string endDateSampling);
   // Verification function of the reading fields
   string getVerifiedTvdNr(string id);
   string verifyBreed(string breedstr, string indstr);
@@ -81,6 +81,10 @@ public:
   // Transform field by creating a new field
   int transformCalvingScore(int calvingscoreint, string idstr);
   int transformStillbirth(int stillbirthint, string idstr);
+
+  // Sampling in a certain period of time
+  bool verifySampling(bool parSampling, date calvingdate, string startDateSampling, string endDateSampling, string idstr);
+
 
 
   // Count number observation per breedcombination
