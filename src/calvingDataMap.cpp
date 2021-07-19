@@ -825,7 +825,8 @@ string calvingDataMap::verifyMandate(string mandatestr,  bool parselectSplitBeef
       simpleDebug("verifyMandate()_Plausible mandatestr "+ mandatestr, idstr);
       return mandatestr;
     }
-  }else{
+  }
+//  }else{
 //    // Split for beef
 //    if(parselectSplitMandantBeef){
 //       if(mandatestr != "3230"){
@@ -846,7 +847,7 @@ string calvingDataMap::verifyMandate(string mandatestr,  bool parselectSplitBeef
 //        return mandatestr;
 //      }
 //    }
-  }
+//  }
 
 }
 
