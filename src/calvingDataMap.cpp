@@ -1065,21 +1065,24 @@ string calvingDataMap::checkSplittingMandant(string mandatestr, bool parselectSp
     simpleDebug("checkSplittingMandant()_parselectSplitBeefDairy = false, mandatestr: "+mandatestr, idstr);
     return mandatestr;
   }else{
-    simpleDebug("checkSplittingMandant()_parselectSplitBeefDairy = true", idstr);
     // Split for dairy
     if(parselectSplitBeefDairy){
       if(mandatestr != "3230"){
+        simpleDebug("checkSplittingMandant()_parselectSplitBeefDairy = true, parselectSplitBeefDairy = true, mandatestr: "+mandatestr, idstr);
         return mandatestr;
       }else{
+        simpleDebug("checkSplittingMandant()_parselectSplitBeefDairy = true, parselectSplitBeefDairy = false, mandatestr: "+mandatestr, idstr);
         return CONSTANTS::STRING_NA;
       }
     }
     // Split for beef
     if(parselectSplitMandantBeef){
       if(mandatestr == "3230"){
+        simpleDebug("checkSplittingMandant()_parselectSplitBeefDairy = true, parselectSplitMandantBeef = true, mandatestr: "+mandatestr, idstr);
         return mandatestr;
       }
     }else{
+      simpleDebug("checkSplittingMandant()_parselectSplitBeefDairy = true, parselectSplitMandantBeef = false, mandatestr: "+mandatestr, idstr);
       return CONSTANTS::STRING_NA;
     }
   }
