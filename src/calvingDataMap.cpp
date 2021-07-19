@@ -297,6 +297,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     insemmotherstartdate = verifyInsemStart(insemmotherstartdate, idstr);
     insemmotherenddate = verifyInsemEnd(insemmotherenddate, idstr);
     stillbirthint = verifyInteractStillbirthDeathcalfdate(stillbirthint, deathcalfdate, calvingdate, idstr);
+    mandatestr = checkSplittingMandant(mandatestr, parselectSplitBeefDairy, parselectSplitMandantBeef, parselectSplitMandantDairy, idstr);
 
     // Set a new field in dependency to other already declared fields
     bool sourceMKS = setSourceVMS(mandatestr, idstr);
@@ -1055,6 +1056,19 @@ int calvingDataMap::verifyInteractStillbirthDeathcalfdate(int stillbirthint, dat
   return stillbirthint;
 
 }
+
+
+string calvingDataMap::checkSplittingMandant(string mandatestr, bool parselectSplitBeefDairy, bool parselectSplitMandantBeef, bool parselectSplitMandantDairy, string idstr){
+
+  if(!parselectSplitBeefDairy){
+    simpleDebug("checkSplittingMandant()_parselectSplitBeefDairy = false, mandatestr: "+mandatestr, idstr);
+    return mandatestr;
+  }else{
+    simpleDebug("checkSplittingMandant()_parselectSplitBeefDairy = true", idstr);
+  }
+
+}
+
 
 
 bool calvingDataMap::setSourceVMS(string mandatestr, string idstr){
