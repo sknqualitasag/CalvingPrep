@@ -51,7 +51,7 @@ public:
   int verifyPrematurity(string prematuritystr, string indstr);
   string verifySireBreed(string fbreedstr, string fstr);
   string verifyHerd(string herdstr, string indstr);
-  string verifyMandate(string mandatestr, bool parselectSplitBeefDairy, bool parselectSplitMandantBeef, bool parselectSplitMandantDairy, string idstr);
+  string verifyMandate(string mandatestr, string idstr);
   int verifyLactationNumber(string lactnumberstr, string indstr);
   int verifyET(string ETstr, string idstr);
   int verifyRecordTypIns(string recordtypinsemstr, string idstr);
