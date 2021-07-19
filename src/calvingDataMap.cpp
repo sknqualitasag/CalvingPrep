@@ -1060,11 +1060,28 @@ int calvingDataMap::verifyInteractStillbirthDeathcalfdate(int stillbirthint, dat
 
 string calvingDataMap::checkSplittingMandant(string mandatestr, bool parselectSplitBeefDairy, bool parselectSplitMandantBeef, bool parselectSplitMandantDairy, string idstr){
 
+  //Without split
   if(!parselectSplitBeefDairy){
     simpleDebug("checkSplittingMandant()_parselectSplitBeefDairy = false, mandatestr: "+mandatestr, idstr);
     return mandatestr;
   }else{
     simpleDebug("checkSplittingMandant()_parselectSplitBeefDairy = true", idstr);
+    // Split for dairy
+    if(parselectSplitBeefDairy){
+      if(mandatestr != "3230"){
+        return mandatestr;
+      }else{
+        return CONSTANTS::STRING_NA;
+      }
+    }
+    // Split for beef
+    if(parselectSplitMandantBeef){
+      if(mandatestr == "3230"){
+        return mandatestr;
+      }
+    }else{
+      return CONSTANTS::STRING_NA;
+    }
   }
 
 }
