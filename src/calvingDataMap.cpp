@@ -817,7 +817,7 @@ string calvingDataMap::verifyHerd(string herdstr, string idstr){
 string calvingDataMap::verifyMandate(string mandatestr,  bool parselectSplitBeefDairy, bool parselectSplitMandantBeef, bool parselectSplitMandantDairy, string idstr){
 
   // Without splitting of beef and dairy
-  if(!parselectSplitBeefDairy){
+//  if(!parselectSplitBeefDairy){
     if(mandatestr != "3230" && mandatestr != "1893" && mandatestr != "2077"){
       simpleDebug("verifyMandate()_Setting mandatestr to missing, because mandatestr is not 3230 or 1893 or 2077 but "+ mandatestr, idstr);
       return CONSTANTS::STRING_NA;
@@ -825,7 +825,7 @@ string calvingDataMap::verifyMandate(string mandatestr,  bool parselectSplitBeef
       simpleDebug("verifyMandate()_Plausible mandatestr "+ mandatestr, idstr);
       return mandatestr;
     }
-  }
+//  }
 //  }else{
 //    // Split for beef
 //    if(parselectSplitMandantBeef){
