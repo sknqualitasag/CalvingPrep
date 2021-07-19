@@ -37,7 +37,8 @@ public:
 
   // functions for reading calving-data-file
   string getFileName(unsigned i, string name);
-  void inputCalvingData(string fname, animalMap  &AMap, int lastYearToConsiderData, bool parSampling, int startYearSampling, int endYearSampling);
+  void inputCalvingData(string fname, animalMap  &AMap, int lastYearToConsiderData, bool parSampling, int startYearSampling, int endYearSampling,\
+                        bool parselectSplitBeefDairy, bool parselectSplitMandantBeef, bool parselectSplitMotherbreedBeef, bool parselectSplitMandantDairy, bool parselectSplitMotherbreedDairy);
   // Verification function of the reading fields
   string getVerifiedTvdNr(string id);
   string verifyBreed(string breedstr, string indstr);
@@ -65,7 +66,7 @@ public:
   // function for setting a new field in dependency to other already declared fields
   bool setSourceVMS(string mandatestr, string idstr);
   string setBreedComb(string mbreedstr, string fbreedstr, string idstr);
-  string setSourceBeefOrDairy(string mbreedstr, string idstr);
+  string setSourceBeefOrDairy(bool parselectSplitBeefDairy, bool parselectSplitMotherbreedBeef, bool parselectSplitMotherbreedDairy, string mbreedstr, string idstr);
   // Calculate a new field in dependency with other already declared fields
   long int calculateGL(date insemmotherstartdate, date insemmotherenddate, date calvingdate, string idstr);
   long int calculateCalvingAge(date calvingdate, date mbirthdate, int lnint, string idstr);

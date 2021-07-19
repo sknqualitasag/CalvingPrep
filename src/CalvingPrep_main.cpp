@@ -49,6 +49,11 @@ int CalvingPrep_main(std::string paramFileName) {
   bool parSampling                            = parmMap.getBoolean("sampling");//true = sampling; false = not sampling
   int startYearSampling						            = parmMap.getInteger("startYearSampling");
   int endYearSampling						              = parmMap.getInteger("endYearSampling");
+  bool parselectSplitBeefDairy                = parmMap.getBoolean("selectSplitBeefDairy");//true = yes; false = no select
+  bool parselectSplitMandantBeef              = parmMap.getBoolean("selectSplitMandantBeef");//true = yes; false = no select
+  bool parselectSplitMotherbreedBeef          = parmMap.getBoolean("selectSplitMotherbreedBeef");//true = yes; false = no select
+  bool parselectSplitMandantDairy             = parmMap.getBoolean("selectSplitMandantDairy");//true = yes; false = no select
+  bool parselectSplitMotherbreedDairy         = parmMap.getBoolean("selectSplitMotherbreedDairy");//true = yes; false = no select
 
 
 
@@ -68,7 +73,8 @@ int CalvingPrep_main(std::string paramFileName) {
   //Read raw calving-data and check the field of the data-record
   for(unsigned i=0; i<numberDataFiles; i++){
     string fileName = cMap.getFileName(i,dataFile);
-    cMap.inputCalvingData(fileName, aMap, lastYearToConsiderData, parSampling, startYearSampling, endYearSampling);
+    cMap.inputCalvingData(fileName, aMap, lastYearToConsiderData, parSampling, startYearSampling, endYearSampling,\
+                          parselectSplitBeefDairy, parselectSplitMandantBeef, parselectSplitMotherbreedBeef, parselectSplitMandantDairy, parselectSplitMotherbreedDairy);
   }
 
   // Minimum observations per breedcombination
