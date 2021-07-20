@@ -55,14 +55,6 @@ int CalvingPrep_main(std::string paramFileName) {
   bool parselectSplitMandantDairy             = parmMap.getBoolean("selectSplitMandantDairy");//true = yes; false = no select
   bool parselectSplitMotherbreedDairy         = parmMap.getBoolean("selectSplitMotherbreedDairy");//true = yes; false = no select
 
-  cout<<"\nmain: "<<endl;
-  cout<<"parselectSplitBeefDairy: "<<parselectSplitBeefDairy<<endl;
-  cout<<"parselectSplitMandantBeef: "<<parselectSplitMandantBeef<<endl;
-  cout<<"parselectSplitMotherbreedBeef: "<<parselectSplitMotherbreedBeef<<endl;
-  cout<<"parselectSplitMandantDairy: "<<parselectSplitMandantDairy<<endl;
-  cout<<"parselectSplitMotherbreedDairy: "<<parselectSplitMotherbreedDairy<<endl;
-
-
 
 
   //Declare Map
