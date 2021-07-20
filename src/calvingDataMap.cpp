@@ -1060,32 +1060,35 @@ int calvingDataMap::verifyInteractStillbirthDeathcalfdate(int stillbirthint, dat
 
 string calvingDataMap::checkSplittingMandant(string mandatestr, bool parselectSplitBeefDairy, bool parselectSplitMandantBeef, bool parselectSplitMandantDairy, string idstr){
 
+  string resultmandatestr=CONSTANTS::STRING_NA;
+
   //Without split
   if(!parselectSplitBeefDairy){
     simpleDebug("checkSplittingMandant()_parselectSplitBeefDairy = false, mandatestr: "+mandatestr, idstr);
-    return mandatestr;
+    resultmandatestr = mandatestr;
   }else{
-    // Split for dairy
     if(parselectSplitBeefDairy){
       if(mandatestr != "3230"){
         simpleDebug("checkSplittingMandant()_parselectSplitBeefDairy = true, parselectSplitBeefDairy = true, mandatestr: "+mandatestr, idstr);
-        return mandatestr;
+        resultmandatestr = mandatestr;
       }else{
         simpleDebug("checkSplittingMandant()_parselectSplitBeefDairy = true, parselectSplitBeefDairy = false, mandatestr: "+mandatestr, idstr);
-        return CONSTANTS::STRING_NA;
+        resultmandatestr = CONSTANTS::STRING_NA;
       }
-    }
-    // Split for beef
-    if(parselectSplitMandantBeef){
+    }else if(parselectSplitMandantBeef){
       if(mandatestr == "3230"){
         simpleDebug("checkSplittingMandant()_parselectSplitBeefDairy = true, parselectSplitMandantBeef = true, mandatestr: "+mandatestr, idstr);
-        return mandatestr;
-      }
-    }else{
+        resultmandatestr = mandatestr;
+      }else{
       simpleDebug("checkSplittingMandant()_parselectSplitBeefDairy = true, parselectSplitMandantBeef = false, mandatestr: "+mandatestr, idstr);
-      return CONSTANTS::STRING_NA;
+      resultmandatestr = CONSTANTS::STRING_NA;
+    }
+  }else{
+    resultmandatestr = mandatestr;
     }
   }
+
+  return resultmandatestr;
 
 }
 
