@@ -176,6 +176,12 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
   cout<<"\ninputCalvingData(): Reading file "<<fname<<endl;
   cout<<"*****************************************************************"<< endl;
 
+  cout<<"parselectSplitBeefDairy: "<<parselectSplitBeefDairy<<endl;
+  cout<<"parselectSplitMandantBeef: "<<parselectSplitMandantBeef<<endl;
+  cout<<"parselectSplitMotherbreedBeef: "<<parselectSplitMotherbreedBeef<<endl;
+  cout<<"parselectSplitMandantDairy: "<<parselectSplitMandantDairy<<endl;
+  cout<<"parselectSplitMotherbreedDairy: "<<parselectSplitMotherbreedDairy<<endl;
+
 
   unsigned calvingMonthNotRead=0;
   unsigned calvingYearNotRead=0;
