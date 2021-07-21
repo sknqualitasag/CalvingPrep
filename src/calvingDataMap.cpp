@@ -199,6 +199,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
   unsigned numRepRecs=0;
   unsigned aliveIdmissingNotRead=0;
   unsigned SamplingNotRead=0;
+  unsigned glNotRead=0;
 
 
 
@@ -458,7 +459,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
       ETNotRead++;
       continue;
     }
-    // First variants for VKS only with calving ease and birth weight
+    // FirstStep and SecondStep for VKS only with calving ease and birth weight
     // idbirthweightdbl is normal distribute traits and at least should be available
     if(idbirthweightdbl == CONSTANTS::DOUBLE_NA){
       simpleDebug("inputData()_Animal is not read in calvingDataMap, because idbirthweightdbl is missing", idstr);
@@ -474,6 +475,12 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     if(verifySampling(parSampling, calvingdate, startYearSampling, endYearSampling, idstr)){
       simpleDebug("inputData()_Animal is not read in animalMap, because sampling based on calvingdate", idstr);
       SamplingNotRead++;
+      continue;
+    }
+    // ThirdStep gestation length has to be available
+    if(gestationLengthInDays == CONSTANTS::INT_NA){
+      simpleDebug("inputData()_Animal is not read in calvingDataMap, because gestationLengthInDays is missing", idstr);
+      glNotRead++;
       continue;
     }
 
