@@ -1753,6 +1753,8 @@ void calvingDataMap::purgeDam(bool parwithMaternalEffect){
 }
 
 
+// Depending the conditions in inputCalvingData (if birthweight and calving ease have to be available),
+// than this checkPhenoDam-function has no impact
 void calvingDataMap::checkPhenoDam(bool parwithMaternalEffect){
 
   cout<<"\ncheckPhenoDam(): "<<this->size()<<" animals, check if the dam as calf had also a phenotyp."<<endl;
