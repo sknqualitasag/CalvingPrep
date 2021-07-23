@@ -1673,6 +1673,7 @@ void calvingDataMap::countDam(bool parwithMaternalEffect){
 
 
   if(parwithMaternalEffect){
+    cout<<"countDam():counting the number calves per dam, because considering maternal effect."<<endl;
     for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
       calvingData *ptr = (*it).second;
 
