@@ -54,6 +54,7 @@ int CalvingPrep_main(std::string paramFileName) {
   bool parselectSplitMotherbreedBeef          = parmMap.getBoolean("selectSplitMotherbreedBeef");//true = yes; false = no select
   bool parselectSplitMandantDairy             = parmMap.getBoolean("selectSplitMandantDairy");//true = yes; false = no select
   bool parselectSplitMotherbreedDairy         = parmMap.getBoolean("selectSplitMotherbreedDairy");//true = yes; false = no select
+  bool parwithMaternalEffect                  = parmMap.getBoolean("withMaternalEffect");//true = yes; false = no including maternal
 
 
 
