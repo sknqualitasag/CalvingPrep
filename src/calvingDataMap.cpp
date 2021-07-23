@@ -1755,13 +1755,53 @@ void calvingDataMap::purgeDam(bool parwithMaternalEffect){
 
 void calvingDataMap::checkPhenoDam(bool parwithMaternalEffect){
 
- cout<<"\ncheckPhenoDam(): check if the dam as calf had also a phenotyp."<<endl;
+  cout<<"\ncheckPhenoDam(): "<<this->size()<<" animals, check if the dam as calf had also a phenotyp."<<endl;
   cout<<"*****************************************************************"<< endl;
 
   if(parwithMaternalEffect){
     cout<<"checkPhenoDam(): checking dam, because considering maternal effect."<<endl;
+    set<string>dam2Delete;
+    set<string>animals2Delete;
 
 
+    for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
+      // searching the dam of the calf and look to her data as calf
+      map<string, calvingData*>::iterator damIt = this->find(it->second->damStr);
+      if(damIt != this->end()){
+        // one of birthweight or calvingscore has to be available
+        if(damIt->second->birthWeightDbl == CONSTANTS::DOUBLE_NA && damIt->second->transformedCalvingScoreInt == CONSTANTS::INT_NA){
+          dam2Delete.insert(it->second->damStr);
+          simpleDebug("checkPhenoDam()_inserted in dam2Delete, dam " + it->second->damStr + " has no pheno available as calf", "");
+        }
+      }
+    }
+    cout<<"checkPhenoDam(): "<<dam2Delete.size()<<" dams are erased due to no phenotyp available as calf."<<endl;
+
+    // tagging animals to delete
+    for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
+      calvingData *ptr = (*it).second;
+
+      set<string>::iterator hit = dam2Delete.find(ptr->idStr);
+      if(hit != dam2Delete.end()){
+        animals2Delete.insert(ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr);
+        simpleDebug("checkPhenoDam()_In the the list dam2Delete is dam as calf: " + ptr->idStr + " with key to delete of cMap "+ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr, ptr->idStr);
+      }
+    }
+
+    // deleting animals
+    unsigned count=0;
+    for(set<string>::iterator ait = animals2Delete.begin(); ait != animals2Delete.end(); ait ++){
+      this->erase(*ait);
+      simpleDebug("checkPhenoDam()_Record is deleted due to that dam has no pheno available as calf ", *ait);
+      count++;
+    }
+    cout<<"checkPhenoDam(): "<<count<<" animals removed from map and memory released."<<endl;
+
+    cout<<"checkPhenoDam(): "<<this->size()<<" animals in map after checking dam."<<endl;
+    for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
+      calvingData *ptr = (*it).second;
+      simpleDebug("checkPhenoDam()_Still in cMap after checking dam "+ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr,ptr->idStr);
+    }
 
   }else{
     cout<<"checkPhenoDam(): Not checking dam, because only considering direct effect."<<endl;
