@@ -13,6 +13,7 @@
 #include "sire.h"
 #include "distCalvingAge.h"
 #include "breedcomb.h"
+#include "dam.h"
 
 
 
@@ -93,6 +94,10 @@ public:
   void countBreedComb();
   breedcomb breedcombID;
   void purgeBreedComb();
+
+  // Check number observation per dam
+  void countDam();
+  dam damID;
 
 
   // Check number observation per sire
