@@ -96,7 +96,7 @@ public:
   void purgeBreedComb();
 
   // Check number observation per dam
-  void countDam();
+  void countDam(bool parwithMaternalEffect);
   dam damID;
 
 

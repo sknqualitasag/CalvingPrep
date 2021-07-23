@@ -82,7 +82,7 @@ int CalvingPrep_main(std::string paramFileName) {
   cMap.purgeBreedComb();
 
   // Minimum observation per dam
-  cMap.countDam();
+  cMap.countDam(parwithMaternalEffect);
 
   // Minimum observations per herdyear
   // Minimum sires per herdyear

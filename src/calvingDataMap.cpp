@@ -1666,25 +1666,30 @@ void calvingDataMap::purgeBreedComb(){
 }
 
 
-void calvingDataMap::countDam(){
+void calvingDataMap::countDam(bool parwithMaternalEffect){
 
   cout<<"\ncountDam(): count animal for each dam "<<endl;
   cout<<"*****************************************************************"<< endl;
 
-  for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
-    calvingData *ptr = (*it).second;
 
-    map<string,int>::iterator dit = damID.DamStatistic.find(ptr->damStr);
-    if(dit != damID.DamStatistic.end()){
-      damID.DamStatistic[ptr->damStr]++;
-    }else{
-      damID.DamStatistic[ptr->damStr] = 1;
+  if(parwithMaternalEffect){
+    for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
+      calvingData *ptr = (*it).second;
+
+      map<string,int>::iterator dit = damID.DamStatistic.find(ptr->damStr);
+      if(dit != damID.DamStatistic.end()){
+        damID.DamStatistic[ptr->damStr]++;
+      }else{
+        damID.DamStatistic[ptr->damStr] = 1;
+      }
+
     }
 
-  }
-
-  for(map<string,int>::iterator dit = damID.DamStatistic.begin(); dit != damID.DamStatistic.end(); dit++){
-    simpleDebug("countDam()_output of the map for dam " + dit->first + " number observation per dam " + to_string(dit->second), "");
+    for(map<string,int>::iterator dit = damID.DamStatistic.begin(); dit != damID.DamStatistic.end(); dit++){
+      simpleDebug("countDam()_output of the map for dam " + dit->first + " number observation per dam " + to_string(dit->second), "");
+    }
+  }else{
+    cout<<"countDam(): Not counting the number calves per dam, because only considering direct effect."<<endl;
   }
 
 }
