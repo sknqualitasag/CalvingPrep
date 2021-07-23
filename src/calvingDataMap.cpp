@@ -1753,6 +1753,23 @@ void calvingDataMap::purgeDam(bool parwithMaternalEffect){
 }
 
 
+void calvingDataMap::checkPhenoDam(bool parwithMaternalEffect){
+
+ cout<<"\ncheckPhenoDam(): check if the dam as calf had also a phenotyp."<<endl;
+  cout<<"*****************************************************************"<< endl;
+
+  if(parwithMaternalEffect){
+    cout<<"checkPhenoDam(): checking dam, because considering maternal effect."<<endl;
+
+
+
+  }else{
+    cout<<"checkPhenoDam(): Not checking dam, because only considering direct effect."<<endl;
+  }
+
+}
+
+
 
 
 void calvingDataMap::countHerdYearSire(){

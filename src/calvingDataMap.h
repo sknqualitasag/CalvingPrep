@@ -102,6 +102,11 @@ public:
   void purgeDam(bool parwithMaternalEffect);
 
 
+  // Dam has to have herself as calf a phenotyp
+  void checkPhenoDam(bool parwithMaternalEffect);
+
+
+
   // Check number observation per sire
   void countSire();
   sire sireID;

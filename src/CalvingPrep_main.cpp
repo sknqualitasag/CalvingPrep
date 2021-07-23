@@ -87,6 +87,10 @@ int CalvingPrep_main(std::string paramFileName) {
   cMap.purgeDam(parwithMaternalEffect);
 
 
+  // Dam has to have herself as calf a phenotyp
+  cMap.checkPhenoDam(parwithMaternalEffect);
+
+
   // Minimum observations per herdyear
   // Minimum sires per herdyear
   cMap.countHerdYearSire();
