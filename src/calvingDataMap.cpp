@@ -1696,6 +1696,64 @@ void calvingDataMap::countDam(bool parwithMaternalEffect){
 }
 
 
+void calvingDataMap::purgeDam(bool parwithMaternalEffect){
+
+  cout<<"\npurgeDam(): "<<this->size()<<" animals in map before purging dam."<<endl;
+  cout<<"*****************************************************************"<< endl;
+
+  if(parwithMaternalEffect){
+    cout<<"purgeDam():purging dam, because considering maternal effect."<<endl;
+
+    set<string>dam2Delete;
+    set<string>animals2Delete;
+
+    // find dam with number observations under minimum
+    for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
+      calvingData *ptr = (*it).second;
+
+      map<string,int>::iterator hit = damID.DamStatistic.find(ptr->damStr);
+      if(damID.DamStatistic[ptr->damStr]  < CONSTANTS::MIN_OBS_PER_DAM){
+        dam2Delete.insert(ptr->damStr);
+        simpleDebug("purgeDam()_inserted in dam2Delete, dam " + hit->first + " has " + to_string(hit->second)  + " number observations", "");
+      }
+    }
+
+    cout<<"purgeDam(): "<<dam2Delete.size()<<" dams are erased due to few number of obersvations."<<endl;
+
+    // tagging animals to delete in such dam with to low observation
+    for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
+      calvingData *ptr = (*it).second;
+
+      set<string>::iterator hit = dam2Delete.find(ptr->damStr);
+      if(hit != dam2Delete.end()){
+        animals2Delete.insert(ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr);
+        simpleDebug("purgeDam()_In the the list dam2Delete is dam: " + ptr->damStr + " with key to delete of cMap "+ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr, ptr->idStr);
+      }
+    }
+
+    // deleting animals with to low observation
+    unsigned count=0;
+    for(set<string>::iterator ait = animals2Delete.begin(); ait != animals2Delete.end(); ait ++){
+      this->erase(*ait);
+      simpleDebug("purgeDam()_Record is deleted due to min numberObs not in the range ", *ait);
+      count++;
+    }
+    cout<<"purgeDam(): "<<count<<" animals removed from map and memory released."<<endl;
+
+    cout<<"purgeDam(): "<<this->size()<<" animals in map after purging dam."<<endl;
+    for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
+      calvingData *ptr = (*it).second;
+      simpleDebug("purgeDam()_Still in cMap after purging dam "+ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr,ptr->idStr);
+    }
+
+  }else{
+    cout<<"purgeDam(): Not purging dam, because only considering direct effect."<<endl;
+  }
+
+}
+
+
+
 
 void calvingDataMap::countHerdYearSire(){
 

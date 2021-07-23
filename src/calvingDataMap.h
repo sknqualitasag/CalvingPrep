@@ -95,9 +95,11 @@ public:
   breedcomb breedcombID;
   void purgeBreedComb();
 
+
   // Check number observation per dam
   void countDam(bool parwithMaternalEffect);
   dam damID;
+  void purgeDam(bool parwithMaternalEffect);
 
 
   // Check number observation per sire
