@@ -199,7 +199,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
   unsigned numRepRecs=0;
   unsigned aliveIdmissingNotRead=0;
   unsigned SamplingNotRead=0;
-//  unsigned glNotRead=0;
+  unsigned glNotRead=0;
 
 
 
@@ -477,12 +477,14 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
       SamplingNotRead++;
       continue;
     }
-//    // ThirdStep gestation length has to be available
-//    if(gestationLengthInDays == CONSTANTS::INT_NA){
-//      simpleDebug("inputData()_Animal is not read in calvingDataMap, because gestationLengthInDays is missing", idstr);
-//      glNotRead++;
-//      continue;
-//    }
+   // ThirdStep and SixthStep (only dairy) gestation length has to be available
+   if(parselectSplitMandantDairy || parselectSplitMotherbreedDairy){
+     if(gestationLengthInDays == CONSTANTS::INT_NA){
+       simpleDebug("inputData()_Animal is not read in calvingDataMap, because gestationLengthInDays is missing", idstr);
+       glNotRead++;
+       continue;
+     }
+   }
 
 
     // Calling constructor calvingData
