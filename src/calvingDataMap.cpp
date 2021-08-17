@@ -1451,16 +1451,16 @@ int calvingDataMap::transformCalvingScore(int calvingscoreint, string indstr){
 
   if(calvingscoreint == 1){
     simpleDebug("transformCalvingScore()_Transforming calvingscorestr to 3, because calvingscorestr is 1 ", indstr);
-    return 3;
+    return 300;
   }else if(calvingscoreint == 2){
     simpleDebug("transformCalvingScore()_Transforming calvingscorestr to 2, because calvingscorestr is 2 ", indstr);
-    return 2;
+    return 200;
   }else if(calvingscoreint == 3){
     simpleDebug("transformCalvingScore()_Transforming calvingscorestr to 1, because calvingscorestr is 3 ", indstr);
-    return 1;
+    return 100;
   }else if(calvingscoreint == 4){
     simpleDebug("transformCalvingScore()_Transforming calvingscorestr to 1, because calvingscorestr is 4 ", indstr);
-    return 1;
+    return 100;
   }else{
     simpleDebug("transformCalvingScore()_Transforming calvingscorestr to missing", indstr);
     return CONSTANTS::INT_NA;
@@ -2253,7 +2253,7 @@ void calvingDataMap::pheno_out(){
     calvingData *ptr = (*it).second;
 
     // keine Auftrennung:
-    ce = ptr->transformedCalvingScoreInt * 100;
+    ce = ptr->transformedCalvingScoreInt;
     bw = ptr->birthWeightDbl;
     // Auftrennung beef und dairy nach Mandant
     if(ptr->sourceMKS){
@@ -2261,7 +2261,7 @@ void calvingDataMap::pheno_out(){
         ceb = 0;
         ced = 0;
       }else{
-        ceb = ptr->transformedCalvingScoreInt * 100;
+        ceb = ptr->transformedCalvingScoreInt;
         ced = 0;
       }
       if(ptr->birthWeightDbl == CONSTANTS::DOUBLE_NA){
@@ -2276,7 +2276,7 @@ void calvingDataMap::pheno_out(){
         ced = 0;
         ceb = 0;
       }else{
-        ced = ptr->transformedCalvingScoreInt * 100;
+        ced = ptr->transformedCalvingScoreInt;
         ceb = 0;
       }
       if(ptr->birthWeightDbl == CONSTANTS::DOUBLE_NA){
@@ -2296,12 +2296,12 @@ void calvingDataMap::pheno_out(){
         ced_h = 0;
       }else{
         if(ptr->lnInt == 1){
-          ceb_h = ptr->transformedCalvingScoreInt * 100;
+          ceb_h = ptr->transformedCalvingScoreInt;
           ced_h = 0;
           ceb_c = 0;
           ced_c = 0;
         }else{
-          ceb_c = ptr->transformedCalvingScoreInt * 100;
+          ceb_c = ptr->transformedCalvingScoreInt;
           ced_c = 0;
           ceb_h = 0;
           ced_h = 0;
@@ -2333,12 +2333,12 @@ void calvingDataMap::pheno_out(){
         ceb_c = 0;
       }else{
         if(ptr->lnInt == 1){
-          ced_h = ptr->transformedCalvingScoreInt * 100;
+          ced_h = ptr->transformedCalvingScoreInt;
           ceb_h = 0;
           ced_c = 0;
           ceb_c = 0;
         }else{
-          ced_c = ptr->transformedCalvingScoreInt * 100;
+          ced_c = ptr->transformedCalvingScoreInt;
           ceb_c = 0;
           ced_h = 0;
           ceb_h = 0;
@@ -2369,7 +2369,7 @@ void calvingDataMap::pheno_out(){
         ce_bdam = 0;
         ce_ddam = 0;
       }else{
-        ce_bdam = ptr->transformedCalvingScoreInt * 100;
+        ce_bdam = ptr->transformedCalvingScoreInt;
         ce_ddam = 0;
       }
       if(ptr->birthWeightDbl == CONSTANTS::DOUBLE_NA){
@@ -2384,7 +2384,7 @@ void calvingDataMap::pheno_out(){
         ce_ddam = 0;
         ce_bdam = 0;
       }else{
-        ce_ddam = ptr->transformedCalvingScoreInt * 100;
+        ce_ddam = ptr->transformedCalvingScoreInt;
         ce_bdam = 0;
       }
       if(ptr->birthWeightDbl == CONSTANTS::DOUBLE_NA){
@@ -2404,12 +2404,12 @@ void calvingDataMap::pheno_out(){
         ce_c_ddam = 0;
       }else{
         if(ptr->lnInt == 1){
-          ce_h_bdam = ptr->transformedCalvingScoreInt * 100;
+          ce_h_bdam = ptr->transformedCalvingScoreInt;
           ce_c_bdam = 0;
           ce_h_ddam = 0;
           ce_c_ddam = 0;
         }else{
-          ce_c_bdam = ptr->transformedCalvingScoreInt * 100;
+          ce_c_bdam = ptr->transformedCalvingScoreInt;
           ce_h_ddam = 0;
           ce_c_ddam = 0;
           ce_h_bdam = 0;
@@ -2441,12 +2441,12 @@ void calvingDataMap::pheno_out(){
         ce_c_bdam = 0;
       }else{
         if(ptr->lnInt == 1){
-          ce_h_ddam = ptr->transformedCalvingScoreInt * 100;
+          ce_h_ddam = ptr->transformedCalvingScoreInt;
           ce_c_ddam = 0;
           ce_h_bdam = 0;
           ce_c_bdam = 0;
         }else{
-          ce_c_ddam = ptr->transformedCalvingScoreInt * 100;
+          ce_c_ddam = ptr->transformedCalvingScoreInt;
           ce_h_bdam = 0;
           ce_c_bdam = 0;
           ce_h_ddam = 0;

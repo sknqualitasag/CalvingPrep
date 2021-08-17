@@ -119,7 +119,7 @@ int CalvingPrep_main(std::string paramFileName) {
 
 
   //Phenotyp Output
-  cMap.pheno_out();
+//  cMap.pheno_out();
 
   // Output for MiX99
   cMap.output(outputPhenFile);
