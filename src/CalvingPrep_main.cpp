@@ -122,7 +122,7 @@ int CalvingPrep_main(std::string paramFileName) {
   cMap.pheno_out();
 
   // Output for MiX99
-  cMap.output(outputPhenFile)
+  cMap.output(outputPhenFile);
 
 
   //Time tracking
