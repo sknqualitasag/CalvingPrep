@@ -43,6 +43,7 @@ int CalvingPrep_main(std::string paramFileName) {
   std::string dataFile                        = parmMap.getString("dataFileName");
   unsigned numberDataFiles                    = parmMap.getUnsigned("numberDataFiles");
   int lastYearToConsiderData                  = parmMap.getInteger("lastYearToConsiderData");
+  std::string outputPhenFile                  = parmMap.getString("outputPhenFile");
   std::string parRunMode                      = parmMap.getString("DEBUG");//yes = turn on debugging
   unsigned proportion                         = parmMap.getUnsigned("proportion");//1 = draw sample on herds; 0 = not draw sample
   unsigned seed                               = parmMap.getUnsigned("seed");//0 = not draw sample;
@@ -119,6 +120,9 @@ int CalvingPrep_main(std::string paramFileName) {
 
   //Phenotyp Output
   cMap.pheno_out();
+
+  // Output for MiX99
+  cMap.output(outputPhenFile)
 
 
   //Time tracking

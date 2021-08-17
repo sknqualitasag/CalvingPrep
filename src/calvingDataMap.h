@@ -150,6 +150,8 @@ public:
 
   //output function
   void pheno_out();
+  void output(string outputPhenFile);
+
 
 
 

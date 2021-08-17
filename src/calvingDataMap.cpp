@@ -2949,3 +2949,59 @@ void calvingDataMap::codeMandant(void){
 
 }
 
+
+void calvingDataMap::output(string outputPhenFile){
+
+  ofstream AnimalsWithData("SampledAnimalsForPed");
+  ofstream AnimalsWithDataAndHerd("SampledAnimalsWithHerd");
+
+
+  cout<<"\noutput(): writing data-file for Mix99."<<endl;
+  cout<<"*****************************************************************"<< endl;
+
+  ofstream datafile(outputPhenFile.c_str());
+
+  if(!datafile){
+    cout<< "output(): Cannot open file "<<outputPhenFile<<endl;
+  }
+
+  vector <calvingData*> dataVec;
+  for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
+    calvingData *ptr = (*it).second;
+    dataVec.push_back((*it).second);
+    outputDebug("output()_Present in dataVec with sex " + to_string(ptr->sexCode) + " yearMonth " + to_string(ptr->yearMonthCode) \
+                + " breedcomb " + to_string(ptr->breedcombCode) + " LNAge " + to_string(ptr->LNAgeCode) + " PE " + to_string(ptr->PECode) \
+                + " herdyear " + to_string(ptr->herdYearCode) + " calvingAge " + to_string(ptr->calvingAgeInDays)  \
+                + " calvingscore " + to_string(ptr->transformedCalvingScoreInt) + " birthweight " + to_string(ptr->birthWeightDbl) \
+                + " gestationLength " + to_string(ptr->gestationLengthInDays) \
+                + " sourceMKS" + to_string(ptr->sourceMKS) + " sourceBeefOrDairyStr " + ptr->sourceBeefOrDairyStr, ptr->idStr);
+  }
+
+
+  datafile<<"sex yearMonth breedcomb LNAge herd herdYear PE calvingAge ";
+  datafile<<"ceb bwb ce_bdam bw_bdam ";
+  datafile<<"ced bwd ce_ddam bw_ddam gl ind"<<endl;
+
+  datafile.setf(ios::fixed | ios::right);
+  for (vector<calvingData*>::iterator vecit=dataVec.begin(); vecit!=dataVec.end(); vecit++){
+
+    AnimalsWithData<<(*vecit)->idStr<<endl;
+    AnimalsWithDataAndHerd<<(*vecit)->idStr<<" "<<(*vecit)->herdCode<<endl;
+
+    datafile << (*vecit)->sexCode
+             << " "<< (*vecit)->yearMonthCode
+             << " "<< (*vecit)->breedcombCode
+             << " "<< (*vecit)->LNAgeCode
+             << " "<< (*vecit)->herdCode
+             << " "<< (*vecit)->herdYearCode
+             << " "<< (*vecit)->PECode
+             << " "<< (*vecit)->calvingAgeInDays
+
+             << " "<< (*vecit)->gestationLengthInDays
+             << " "<< ((*vecit)->idStr).c_str();
+
+
+  }
+
+
+}
