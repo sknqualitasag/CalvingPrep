@@ -2979,8 +2979,8 @@ void calvingDataMap::output(string outputPhenFile){
 
 
   datafile<<"sex yearMonth breedcomb LNAge herd herdYear PE calvingAge ";
-  datafile<<"ceb bwb ce_bdam bw_bdam ";
-  datafile<<"ced bwd ce_ddam bw_ddam gl ind"<<endl;
+  datafile<<"ceb bwb ced bwd";
+  datafile<<"ce_bdam bw_bdam ce_ddam bw_ddam gl ind"<<endl;
 
   datafile.setf(ios::fixed | ios::right);
   for (vector<calvingData*>::iterator vecit=dataVec.begin(); vecit!=dataVec.end(); vecit++){
@@ -2995,13 +2995,25 @@ void calvingDataMap::output(string outputPhenFile){
              << " "<< (*vecit)->herdCode
              << " "<< (*vecit)->herdYearCode
              << " "<< (*vecit)->PECode
-             << " "<< (*vecit)->calvingAgeInDays
+             << " "<< (*vecit)->calvingAgeInDays;
 
-             << " "<< (*vecit)->gestationLengthInDays
-             << " "<< ((*vecit)->idStr).c_str();
+    if((*vecit)->sourceMKS == true){
+      datafile << " "<<(*vecit)->transformedCalvingScoreInt<<" "<<(*vecit)->birthWeightDbl<<" "<<0<<" "<<0;
+    }else if((*vecit)->sourceMKS == false){
+      datafile << " "<<0<<" "<<0<<" "<<(*vecit)->transformedCalvingScoreInt<<" "<<(*vecit)->birthWeightDbl;
+    }
 
+    if((*vecit)->sourceBeefOrDairyStr == "beef"){
+      datafile << " "<<(*vecit)->transformedCalvingScoreInt<<" "<<(*vecit)->birthWeightDbl<<" "<<0<<" "<<0;
+    }else if((*vecit)->sourceBeefOrDairyStr == "dairy"){
+      datafile << " "<<0<<" "<<0<<" "<<(*vecit)->transformedCalvingScoreInt<<" "<<(*vecit)->birthWeightDbl;
+    }
+
+    datafile << " "<< (*vecit)->gestationLengthInDays
+             << " "<< ((*vecit)->idStr).c_str()<<endl;
 
   }
 
+  cout<<endl<<"There are "<<dataVec.size()<<" animals with complete observations on independent variables."<<endl;
 
 }
