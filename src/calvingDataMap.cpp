@@ -2979,7 +2979,7 @@ void calvingDataMap::output(string outputPhenFile){
 
 
   datafile<<"sex yearMonth breedcomb LNAge herd herdYear PE calvingAge ";
-  datafile<<"ceb bwb ced bwd";
+  datafile<<"ceb bwb ced bwd ";
   datafile<<"ce_bdam bw_bdam ce_ddam bw_ddam gl ind"<<endl;
 
   datafile.setf(ios::fixed | ios::right);
