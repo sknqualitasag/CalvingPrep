@@ -2958,6 +2958,8 @@ void calvingDataMap::output(string outputPhenFile){
   datafile<<"ceb bwb ced bwd ";
   datafile<<"ce_bdam bw_bdam ce_ddam bw_ddam gl ind"<<endl;
 
+  int ce, bw, gl;
+
   datafile.setf(ios::fixed | ios::right);
   for (vector<calvingData*>::iterator vecit=dataVec.begin(); vecit!=dataVec.end(); vecit++){
 
@@ -2973,19 +2975,39 @@ void calvingDataMap::output(string outputPhenFile){
              << " "<< (*vecit)->PECode
              << " "<< (*vecit)->calvingAgeInDays;
 
+    // set missing value to 0
+    if((*vecit)->transformedCalvingScoreInt == CONSTANTS::INT_NA){
+      ce = 0;
+    }else{
+      ce = (*vecit)->transformedCalvingScoreInt;
+    }
+
+    if((*vecit)->birthWeightInt == CONSTANTS::INT_NA){
+      bw = 0;
+    }else{
+      bw = (*vecit)->birthWeightInt;
+    }
+
+    if((*vecit)->gestationLengthInDays == CONSTANTS::INT_NA){
+      gl = 0;
+    }else{
+      gl = (*vecit)->gestationLengthInDays;
+    }
+
+    // output depending of mandant
     if((*vecit)->sourceMKS == true){
-      datafile << " "<<(*vecit)->transformedCalvingScoreInt<<" "<<(*vecit)->birthWeightInt<<" "<<0<<" "<<0;
+      datafile << " "<<ce<<" "<<bw<<" "<<0<<" "<<0;
     }else if((*vecit)->sourceMKS == false){
-      datafile << " "<<0<<" "<<0<<" "<<(*vecit)->transformedCalvingScoreInt<<" "<<(*vecit)->birthWeightInt;
+      datafile << " "<<0<<" "<<0<<" "<<ce<<" "<<bw;
     }
-
+    // output depending of motherbreed
     if((*vecit)->sourceBeefOrDairyStr == "beef"){
-      datafile << " "<<(*vecit)->transformedCalvingScoreInt<<" "<<(*vecit)->birthWeightInt<<" "<<0<<" "<<0;
+      datafile << " "<<ce<<" "<<bw<<" "<<0<<" "<<0;
     }else if((*vecit)->sourceBeefOrDairyStr == "dairy"){
-      datafile << " "<<0<<" "<<0<<" "<<(*vecit)->transformedCalvingScoreInt<<" "<<(*vecit)->birthWeightInt;
+      datafile << " "<<0<<" "<<0<<" "<<ce<<" "<<bw;
     }
 
-    datafile << " "<< (*vecit)->gestationLengthInDays
+    datafile << " "<< gl
              << " "<< ((*vecit)->idStr).c_str()<<endl;
 
   }
