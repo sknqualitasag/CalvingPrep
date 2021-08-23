@@ -188,7 +188,6 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
   unsigned damNotRead=0;
   unsigned mandantNotRead=0;
   unsigned stillbirthNotRead=0;
-  unsigned calvingscoreNotRead=0;
   unsigned traitNotRead=0;
   unsigned MultipleNotRead=0;
   unsigned AbortNotRead=0;
@@ -199,7 +198,6 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
   unsigned numRepRecs=0;
   unsigned aliveIdmissingNotRead=0;
   unsigned SamplingNotRead=0;
-  unsigned glNotRead=0;
 
 
 
@@ -382,10 +380,12 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
       continue;
     }
     // sourceBeefOrDairystr is used to define the trait
-    if(sourceBeefOrDairystr == CONSTANTS::STRING_NA){
-      simpleDebug("inputData()_Animal is not read in calvingDataMap, because sourceBeefOrDairystr is missing", idstr);
-      sourceBeefOrDairyNotRead++;
-      continue;
+    if(parselectSplitMotherbreedDairy || parselectSplitMotherbreedBeef){
+      if(sourceBeefOrDairystr == CONSTANTS::STRING_NA){
+        simpleDebug("inputData()_Animal is not read in calvingDataMap, because sourceBeefOrDairystr is missing", idstr);
+        sourceBeefOrDairyNotRead++;
+        continue;
+      }
     }
     // herdstr is used to build a random effect
     if(herdstr == CONSTANTS::STRING_NA){
@@ -406,10 +406,12 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
       continue;
     }
     // mandatestr is used to define the trait
-    if(mandatestr == CONSTANTS::STRING_NA){
-      simpleDebug("inputData()_Animal is not read in calvingDataMap, because mandatestr is missing", idstr);
-      mandantNotRead++;
-      continue;
+    if(parselectSplitMandantDairy || parselectSplitMandantBeef){
+      if(mandatestr == CONSTANTS::STRING_NA){
+        simpleDebug("inputData()_Animal is not read in calvingDataMap, because mandatestr is missing", idstr);
+        mandantNotRead++;
+        continue;
+      }
     }
     // transformedstillbirthint could be used as trait and should be available thank deathcalfdate information
     if(transformedstillbirthint == CONSTANTS::INT_NA){
@@ -423,18 +425,12 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
       aliveIdmissingNotRead++;
       continue;
     }
-    // calvingscoreint is a categorical trait and should be available
-    if(calvingscoreint == CONSTANTS::INT_NA ){
-      simpleDebug("inputData()_Animal is not read in calvingDataMap, because calvingscoreint is missing", idstr);
-      calvingscoreNotRead++;
+    // calvingscoreint or birthweight should be available, at least one should be available
+    if(calvingscoreint == CONSTANTS::INT_NA && idbirthweightdbl == CONSTANTS::DOUBLE_NA){
+      simpleDebug("inputData()_Animal is not read in calvingDataMap, because calvingscoreint or idbirthweightdbl is missing", idstr);
+      traitNotRead++;
       continue;
     }
-//    // idbirthweightdbl, gestationLengthInDays are normal distribute traits and at least one should be available
-//    if(idbirthweightdbl == CONSTANTS::DOUBLE_NA && gestationLengthInDays == CONSTANTS::INT_NA){
-//      simpleDebug("inputData()_Animal is not read in calvingDataMap, because idbirthweightdbl or gestationLengthInDays is missing", idstr);
-//      traitNotRead++;
-//      continue;
-//    }
     // multiple not considered
     if(multiplestr == "1"){
       simpleDebug("inputData()_Animal is not read in calvingDataMap, because it is an multiplestr", idstr);
@@ -459,13 +455,6 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
       ETNotRead++;
       continue;
     }
-    // FirstStep and SecondStep for VKS only with calving ease and birth weight
-    // idbirthweightdbl is normal distribute traits and at least should be available
-    if(idbirthweightdbl == CONSTANTS::DOUBLE_NA){
-      simpleDebug("inputData()_Animal is not read in calvingDataMap, because idbirthweightdbl is missing", idstr);
-      traitNotRead++;
-      continue;
-    }
     // id has to be available
     if(idstr == CONSTANTS::STRING_NA){
       simpleDebug("inputData()_Animal is not read in calvingDataMap, because idstr is missing", idstr);
@@ -477,14 +466,6 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
       SamplingNotRead++;
       continue;
     }
-   // ThirdStep and SixthStep (only dairy) gestation length has to be available
-   if(parselectSplitMandantDairy || parselectSplitMotherbreedDairy){
-     if(gestationLengthInDays == CONSTANTS::INT_NA){
-       simpleDebug("inputData()_Animal is not read in calvingDataMap, because gestationLengthInDays is missing", idstr);
-       glNotRead++;
-       continue;
-     }
-   }
 
 
     // Calling constructor calvingData
@@ -549,8 +530,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
   cout<<"Number of animal record with missing dam: "<<damNotRead<<endl;
   cout<<"Number of animal record with missing mandant: "<<mandantNotRead<<endl;
   cout<<"Number of animal record with missing stillbirth: "<<stillbirthNotRead<<endl;
-  cout<<"Number of animal record with missing calvingscoreint: "<<calvingscoreNotRead<<endl;
-  cout<<"Number of animal record with missing birthweight or gestationLength: "<<traitNotRead<<endl;
+  cout<<"Number of animal record with missing birthweight or calving ease: "<<traitNotRead<<endl;
   cout<<"Number of animal record as multiple: "<<MultipleNotRead<<endl;
   cout<<"Number of animal record as abort: "<<AbortNotRead<<endl;
   cout<<"Number of animal record as premature: "<<PrematureNotRead<<endl;
