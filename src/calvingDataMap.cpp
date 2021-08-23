@@ -380,12 +380,10 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
       continue;
     }
     // sourceBeefOrDairystr is used to define the trait
-    if(parselectSplitMotherbreedDairy || parselectSplitMotherbreedBeef){
-      if(sourceBeefOrDairystr == CONSTANTS::STRING_NA){
-        simpleDebug("inputData()_Animal is not read in calvingDataMap, because sourceBeefOrDairystr is missing", idstr);
-        sourceBeefOrDairyNotRead++;
-        continue;
-      }
+    if(sourceBeefOrDairystr == CONSTANTS::STRING_NA){
+      simpleDebug("inputData()_Animal is not read in calvingDataMap, because sourceBeefOrDairystr is missing", idstr);
+      sourceBeefOrDairyNotRead++;
+      continue;
     }
     // herdstr is used to build a random effect
     if(herdstr == CONSTANTS::STRING_NA){
@@ -406,12 +404,10 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
       continue;
     }
     // mandatestr is used to define the trait
-    if(parselectSplitMandantDairy || parselectSplitMandantBeef){
-      if(mandatestr == CONSTANTS::STRING_NA){
-        simpleDebug("inputData()_Animal is not read in calvingDataMap, because mandatestr is missing", idstr);
-        mandantNotRead++;
-        continue;
-      }
+    if(mandatestr == CONSTANTS::STRING_NA){
+      simpleDebug("inputData()_Animal is not read in calvingDataMap, because mandatestr is missing", idstr);
+      mandantNotRead++;
+      continue;
     }
     // transformedstillbirthint could be used as trait and should be available thank deathcalfdate information
     if(transformedstillbirthint == CONSTANTS::INT_NA){
