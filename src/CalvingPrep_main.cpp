@@ -83,26 +83,26 @@ int CalvingPrep_main(std::string paramFileName) {
   cMap.purgeBreedComb();
 
 
-  // Minimum observation per dam
-  cMap.countDam(parwithMaternalEffect);
-  cMap.purgeDam(parwithMaternalEffect);
+// // Minimum observation per dam
+// cMap.countDam(parwithMaternalEffect);
+// cMap.purgeDam(parwithMaternalEffect);
 
 
-  // Dam has to have herself as calf a phenotyp
-  cMap.checkPhenoDam(parwithMaternalEffect);
+// // Dam has to have herself as calf a phenotyp
+// cMap.checkPhenoDam(parwithMaternalEffect);
 
 
   // Minimum observations per herdyear
   // Minimum sires per herdyear
   cMap.countHerdYearSire();
   cMap.purgeHerdYear();
-  cMap.purgeHerdYearSire();
+//  cMap.purgeHerdYearSire();
 
 
-  // Check Variance per herd
-  cMap.countHerd();
-  cMap.stdHerd();
-  cMap.purgeHerd();
+//  // Check Variance per herd
+//  cMap.countHerd();
+//  cMap.stdHerd();
+//  cMap.purgeHerd();
 
 
   // Minimum observation per sire
