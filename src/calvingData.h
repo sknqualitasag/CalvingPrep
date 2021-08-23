@@ -18,19 +18,18 @@ public:
   void constructorDebug(string message, string tvdid, string psRunningMode);
 
   int sexCode, yearMonthCode, breedcombCode, nestedDamBreedLNCode, LNAgeCode, herdYearCode, herdCode, PECode, sireCode, mandantCode;
-  int calvingScoreInt, transformedCalvingScoreInt, stillbirthInt, transformedStillbirthInt, prematurityInt;
+  int calvingScoreInt, transformedCalvingScoreInt, stillbirthInt, transformedStillbirthInt, prematurityInt, birthWeightInt;
   int lnInt, spermaTraitmentInt, recordTypInsemInt;
   long int gestationLengthInDays, calvingAgeInDays, calvingIntervalInDays, firstCalvingAgeInDays;
   string idStr, idBreedStr, damStr, damBreedStr, mgsBreedStr, idSexStr, multipleStr;
   string geneticDamStr, sireStr, sireBreedStr, herdStr, mandateStr, breedCombStr, LNAgeGroupStr;
   string sourceBeefOrDairyStr, animIDStr, itbIDStr, damIDStr, sireIDStr;
   date mbirthdate, calvingdate, insemmotherstartdate, insemmotherenddate;
-  double birthWeightDbl;
   bool sourceMKS;
 
 
   calvingData(string idstr, string idbreedstr, string mstr, string mbreedstr, string mvbreedstr, string idsexstr,\
-              date pmbirthdate, date pcalvingdate, double idbirthweightdbl, string multiplestr,\
+              date pmbirthdate, date pcalvingdate, int idbirthweightint, string multiplestr,\
               int calvingscoreint, int transformedcalvingscoreint, int stillbirthint, int transformedstillbirthint,\
               int prematurebirthint, string geneticmotherstr, string fstr, string fbreedstr, string herdstr,\
               string mandatestr, int lnint, date pinsemmotherstartdate, date pinsemmotherenddate,\

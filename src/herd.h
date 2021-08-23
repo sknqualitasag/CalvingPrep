@@ -15,7 +15,7 @@ public:
 
   string herdIdStr, herdyearIdStr;
   herd();
-  void increment(int transformedCalvingScoreInt, double birthWeightDbl);
+  void increment(int transformedCalvingScoreInt, int birthWeightInt);
   void incrementHYS(string herdStr, string YearStr, string sireStr);
 
   map<string,statisticHYS*> HerdYearStatistic;

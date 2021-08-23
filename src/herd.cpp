@@ -9,7 +9,7 @@ using namespace std;
 herd::herd(){}
 
 
-void herd::increment(int transformedCalvingScoreInt, double birthWeightDbl){
+void herd::increment(int transformedCalvingScoreInt, int birthWeightInt){
 
   // trait
   string traitCE = "ce";
@@ -36,13 +36,13 @@ void herd::increment(int transformedCalvingScoreInt, double birthWeightDbl){
     statistic *sPtr = new statistic();
     sPtr->ObsPerHerd = 1;
     sPtr->trait = traitBW;
-    sPtr->Quadriert += birthWeightDbl * birthWeightDbl;
-    sPtr->Sum += birthWeightDbl;
+    sPtr->Quadriert += birthWeightInt * birthWeightInt;
+    sPtr->Sum += birthWeightInt;
     HerdStatistic[traitBW] = sPtr;
   }else{
     wit->second->ObsPerHerd++;
-    wit->second->Quadriert += birthWeightDbl * birthWeightDbl;
-    wit->second->Sum += birthWeightDbl;
+    wit->second->Quadriert += birthWeightInt * birthWeightInt;
+    wit->second->Sum += birthWeightInt;
   }
 
 }

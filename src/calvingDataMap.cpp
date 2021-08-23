@@ -249,7 +249,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     simpleDebug("inputData()_getVerifiedTvdNr of animal",colData[6]);
     string idstr = getVerifiedTvdNr(colData[6]);
     string idbreedstr = verifyBreed(colData[7],idstr);
-    double idbirthweightdbl = verifyBirthWeight(colData[8],idstr);
+    int idbirthweightint = verifyBirthWeight(colData[8],idstr);
     string multiplestr = verifyMultiple(colData[9],idstr);
     int abortint = verifyAbort(colData[10],idstr);
     int calvingscoreint = verifyCalvingscore(colData[11],idstr);
@@ -426,8 +426,8 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
       continue;
     }
     // calvingscoreint or birthweight should be available, at least one should be available
-    if(calvingscoreint == CONSTANTS::INT_NA && idbirthweightdbl == CONSTANTS::DOUBLE_NA){
-      simpleDebug("inputData()_Animal is not read in calvingDataMap, because calvingscoreint or idbirthweightdbl is missing", idstr);
+    if(calvingscoreint == CONSTANTS::INT_NA && idbirthweightint == CONSTANTS::INT_NA){
+      simpleDebug("inputData()_Animal is not read in calvingDataMap, because calvingscoreint or idbirthweightint is missing", idstr);
       traitNotRead++;
       continue;
     }
@@ -470,7 +470,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
 
     // Calling constructor calvingData
     calvingData *ptr = new calvingData (idstr, idbreedstr, mstr, mbreedstr, mvbreedstr, idsexstr,\
-                                        mbirthdate, calvingdate, idbirthweightdbl, multiplestr,\
+                                        mbirthdate, calvingdate, idbirthweightint, multiplestr,\
                                         calvingscoreint, transformedcalvingscoreint, stillbirthint, transformedstillbirthint,\
                                         prematurebirthint, geneticmotherstr, fstr, fbreedstr, herdstr,
                                         mandatestr, lnint, insemmotherstartdate, insemmotherenddate,\
@@ -653,12 +653,12 @@ string calvingDataMap::verifySexBirth(string sexstr, string indstr){
 }
 
 
-double calvingDataMap::verifyBirthWeight(string birthweightstr, string indstr){
-  double bw;
-  bw = atoi(birthweightstr.c_str());
-  if(bw < 10. || bw > 80.) {
+int calvingDataMap::verifyBirthWeight(string birthweightstr, string indstr){
+
+  int bw = atoi(birthweightstr.c_str());
+  if(bw < 10 || bw > 80) {
     simpleDebug("verifyBirthWeight()_Setting birthweightstr to missing, because birthweightstr "+to_string(bw)+" is bellow 10 or higher 80", indstr);
-    bw =  -9999.;
+    bw =  CONSTANTS::INT_NA;
   }else{
     simpleDebug("verifyBirthWeight()_Plausible birthweightstr "+to_string(bw), indstr);
   }
@@ -1946,11 +1946,11 @@ void calvingDataMap::countHerd(){
       hPtr->herdIdStr = ptr->herdStr;
       // prepare info to check variance of calving ease,
       // but not birthweight because birthweight may be missing according to inputCalvingData
-      hPtr->increment(ptr->transformedCalvingScoreInt, ptr->birthWeightDbl);
+      hPtr->increment(ptr->transformedCalvingScoreInt, ptr->birthWeightInt);
       (HerdStatisticMap)[ptr->herdStr] = hPtr;
     }else{
       // Herd is already in the map
-      hit->second->increment(ptr->transformedCalvingScoreInt, ptr->birthWeightDbl);
+      hit->second->increment(ptr->transformedCalvingScoreInt, ptr->birthWeightInt);
     }
 
   }
@@ -2189,7 +2189,7 @@ void calvingDataMap::pheno_out(){
   cout<<"*****************************************************************"<< endl;
 
   inputDataAmap<<"idStr;idBreedStr;mgsBreedStr;damBreedStr;sireBreedStr;damStr;geneticDamStr;sireStr;breedCombStr;idSexStr;mbirthdate;";
-  inputDataAmap<<"calvingdate;birthWeightDbl;calvingScoreInt;transformedCalvingScoreInt;stillbirthInt;transformedStillbirthInt;prematurityInt;herdStr;mandateStr;";
+  inputDataAmap<<"calvingdate;birthWeightInt;calvingScoreInt;transformedCalvingScoreInt;stillbirthInt;transformedStillbirthInt;prematurityInt;herdStr;mandateStr;";
   inputDataAmap<<"sourceMKS;sourceBeefOrDairyStr;lnInt;insemmotherstartdate;insemmotherenddate;gestationLengthInDays;calvingAgeInDays;";
   inputDataAmap<<"calvingIntervalInDays;firstCalvingAgeInDays;recordTypInsemInt;spermaTraitmentInt;animIDStr;itbIDStr;damIDStr;sireIDStr;";
   inputDataAmap<<"sexCode;yearMonthCode;breedcombCode;LNAgeCode;herdYearCode;herdCode;PECode;sireCode;mandantCode;";
@@ -2234,7 +2234,7 @@ void calvingDataMap::pheno_out(){
 
     // keine Auftrennung:
     ce = ptr->transformedCalvingScoreInt;
-    bw = ptr->birthWeightDbl;
+    bw = ptr->birthWeightInt;
     // Auftrennung beef und dairy nach Mandant
     if(ptr->sourceMKS){
       if(ptr->transformedCalvingScoreInt == CONSTANTS::INT_NA){
@@ -2244,12 +2244,12 @@ void calvingDataMap::pheno_out(){
         ceb = ptr->transformedCalvingScoreInt;
         ced = 0;
       }
-      if(ptr->birthWeightDbl == CONSTANTS::DOUBLE_NA){
-        bwb = 0.;
-        bwd = 0.;
+      if(ptr->birthWeightInt == CONSTANTS::INT_NA){
+        bwb = 0;
+        bwd = 0;
       }else{
-        bwb = ptr->birthWeightDbl;
-        bwd = 0.;
+        bwb = ptr->birthWeightInt;
+        bwd = 0;
       }
     }else{
       if(ptr->transformedCalvingScoreInt == CONSTANTS::INT_NA){
@@ -2259,12 +2259,12 @@ void calvingDataMap::pheno_out(){
         ced = ptr->transformedCalvingScoreInt;
         ceb = 0;
       }
-      if(ptr->birthWeightDbl == CONSTANTS::DOUBLE_NA){
-        bwd = 0.;
-        bwb = 0.;
+      if(ptr->birthWeightInt == CONSTANTS::INT_NA){
+        bwd = 0;
+        bwb = 0;
       }else{
-        bwd = ptr->birthWeightDbl;
-        bwb = 0.;
+        bwd = ptr->birthWeightInt;
+        bwb = 0;
       }
     }
     // Auftrennung beef und dairy nach Mandant und Laktation
@@ -2287,22 +2287,22 @@ void calvingDataMap::pheno_out(){
           ced_h = 0;
         }
       }
-      if(ptr->birthWeightDbl == CONSTANTS::DOUBLE_NA){
-        bwb_h = 0.;
-        bwb_c = 0.;
-        bwd_c = 0.;
-        bwd_h = 0.;
+      if(ptr->birthWeightInt == CONSTANTS::INT_NA){
+        bwb_h = 0;
+        bwb_c = 0;
+        bwd_c = 0;
+        bwd_h = 0;
       }else{
         if(ptr->lnInt == 1){
-          bwb_h = ptr->birthWeightDbl;
-          bwd_h = 0.;
-          bwb_c = 0.;
-          bwd_c = 0.;
+          bwb_h = ptr->birthWeightInt;
+          bwd_h = 0;
+          bwb_c = 0;
+          bwd_c = 0;
         }else{
-          bwb_c = ptr->birthWeightDbl;
-          bwd_c = 0.;
-          bwb_h = 0.;
-          bwd_h = 0.;
+          bwb_c = ptr->birthWeightInt;
+          bwd_c = 0;
+          bwb_h = 0;
+          bwd_h = 0;
         }
       }
     }else{
@@ -2324,22 +2324,22 @@ void calvingDataMap::pheno_out(){
           ceb_h = 0;
         }
       }
-      if(ptr->birthWeightDbl == CONSTANTS::DOUBLE_NA){
-        bwd_h = 0.;
-        bwd_c = 0.;
-        bwb_h = 0.;
-        bwb_c = 0.;
+      if(ptr->birthWeightInt == CONSTANTS::INT_NA){
+        bwd_h = 0;
+        bwd_c = 0;
+        bwb_h = 0;
+        bwb_c = 0;
       }else{
         if(ptr->lnInt == 1){
-          bwd_h = ptr->birthWeightDbl;
-          bwb_h = 0.;
-          bwd_c = 0.;
-          bwd_c = 0.;
+          bwd_h = ptr->birthWeightInt;
+          bwb_h = 0;
+          bwd_c = 0;
+          bwd_c = 0;
         }else{
-          bwd_c = ptr->birthWeightDbl;
-          bwb_c = 0.;
-          bwd_h = 0.;
-          bwb_h = 0.;
+          bwd_c = ptr->birthWeightInt;
+          bwb_c = 0;
+          bwd_h = 0;
+          bwb_h = 0;
         }
       }
     }
@@ -2352,12 +2352,12 @@ void calvingDataMap::pheno_out(){
         ce_bdam = ptr->transformedCalvingScoreInt;
         ce_ddam = 0;
       }
-      if(ptr->birthWeightDbl == CONSTANTS::DOUBLE_NA){
-        bw_bdam = 0.;
-        bw_ddam = 0.;
+      if(ptr->birthWeightInt == CONSTANTS::INT_NA){
+        bw_bdam = 0;
+        bw_ddam = 0;
       }else{
-        bw_bdam = ptr->birthWeightDbl;
-        bw_ddam = 0.;
+        bw_bdam = ptr->birthWeightInt;
+        bw_ddam = 0;
       }
     }else{
       if(ptr->transformedCalvingScoreInt == CONSTANTS::INT_NA){
@@ -2367,12 +2367,12 @@ void calvingDataMap::pheno_out(){
         ce_ddam = ptr->transformedCalvingScoreInt;
         ce_bdam = 0;
       }
-      if(ptr->birthWeightDbl == CONSTANTS::DOUBLE_NA){
-        bw_ddam = 0.;
-        bw_bdam = 0.;
+      if(ptr->birthWeightInt == CONSTANTS::INT_NA){
+        bw_ddam = 0;
+        bw_bdam = 0;
       }else{
-        bw_ddam = ptr->birthWeightDbl;
-        bw_bdam = 0.;
+        bw_ddam = ptr->birthWeightInt;
+        bw_bdam = 0;
       }
     }
     // Auftrennung beef und dairy nach Rasse der Kuh und Laktation
@@ -2395,22 +2395,22 @@ void calvingDataMap::pheno_out(){
           ce_h_bdam = 0;
         }
       }
-      if(ptr->birthWeightDbl == CONSTANTS::DOUBLE_NA){
-        bw_h_bdam = 0.;
-        bw_c_bdam = 0.;
-        bw_h_ddam = 0.;
-        bw_c_ddam = 0.;
+      if(ptr->birthWeightInt == CONSTANTS::INT_NA){
+        bw_h_bdam = 0;
+        bw_c_bdam = 0;
+        bw_h_ddam = 0;
+        bw_c_ddam = 0;
       }else{
         if(ptr->lnInt == 1){
-          bw_h_bdam = ptr->birthWeightDbl;
-          bw_c_bdam = 0.;
-          bw_h_ddam = 0.;
-          bw_c_ddam = 0.;
+          bw_h_bdam = ptr->birthWeightInt;
+          bw_c_bdam = 0;
+          bw_h_ddam = 0;
+          bw_c_ddam = 0;
         }else{
-          bw_c_bdam = ptr->birthWeightDbl;
-          bw_h_bdam = 0.;
-          bw_h_ddam = 0.;
-          bw_c_ddam = 0.;
+          bw_c_bdam = ptr->birthWeightInt;
+          bw_h_bdam = 0;
+          bw_h_ddam = 0;
+          bw_c_ddam = 0;
         }
       }
     }else{
@@ -2432,22 +2432,22 @@ void calvingDataMap::pheno_out(){
           ce_h_ddam = 0;
         }
       }
-      if(ptr->birthWeightDbl == CONSTANTS::DOUBLE_NA){
-        bw_h_ddam = 0.;
-        bw_c_ddam = 0.;
-        bw_h_bdam = 0.;
-        bw_c_bdam = 0.;
+      if(ptr->birthWeightInt == CONSTANTS::INT_NA){
+        bw_h_ddam = 0;
+        bw_c_ddam = 0;
+        bw_h_bdam = 0;
+        bw_c_bdam = 0;
       }else{
         if(ptr->lnInt == 1){
-          bw_h_ddam = ptr->birthWeightDbl;
-          bw_c_ddam = 0.;
-          bw_h_bdam = 0.;
-          bw_c_bdam = 0.;
+          bw_h_ddam = ptr->birthWeightInt;
+          bw_c_ddam = 0;
+          bw_h_bdam = 0;
+          bw_c_bdam = 0;
         }else{
-          bw_c_ddam = ptr->birthWeightDbl;
-          bw_h_ddam = 0.;
-          bw_h_bdam = 0.;
-          bw_c_bdam = 0.;
+          bw_c_ddam = ptr->birthWeightInt;
+          bw_h_ddam = 0;
+          bw_h_bdam = 0;
+          bw_c_bdam = 0;
         }
       }
     }
@@ -2477,7 +2477,7 @@ void calvingDataMap::pheno_out(){
                   <<ptr->idSexStr<<";"
                   <<ptr->mbirthdate.YearStr<<ptr->mbirthdate.MonthStr<<ptr->mbirthdate.DayStr<<";"
                   <<ptr->calvingdate.YearStr<<ptr->calvingdate.MonthStr<<ptr->calvingdate.DayStr<<";"
-                  <<ptr->birthWeightDbl<<";"
+                  <<ptr->birthWeightInt<<";"
                   <<ptr->calvingScoreInt<<";"
                   <<ptr->transformedCalvingScoreInt<<";"
                   <<ptr->stillbirthInt<<";"
@@ -2952,7 +2952,7 @@ void calvingDataMap::output(string outputPhenFile){
     outputDebug("output()_Present in dataVec with sex " + to_string(ptr->sexCode) + " yearMonth " + to_string(ptr->yearMonthCode) \
                 + " breedcomb " + to_string(ptr->breedcombCode) + " LNAge " + to_string(ptr->LNAgeCode) + " PE " + to_string(ptr->PECode) \
                 + " herdyear " + to_string(ptr->herdYearCode) + " calvingAge " + to_string(ptr->calvingAgeInDays)  \
-                + " calvingscore " + to_string(ptr->transformedCalvingScoreInt) + " birthweight " + to_string(ptr->birthWeightDbl) \
+                + " calvingscore " + to_string(ptr->transformedCalvingScoreInt) + " birthweight " + to_string(ptr->birthWeightInt) \
                 + " gestationLength " + to_string(ptr->gestationLengthInDays) \
                 + " sourceMKS" + to_string(ptr->sourceMKS) + " sourceBeefOrDairyStr " + ptr->sourceBeefOrDairyStr, ptr->idStr);
   }
@@ -2978,15 +2978,15 @@ void calvingDataMap::output(string outputPhenFile){
              << " "<< (*vecit)->calvingAgeInDays;
 
     if((*vecit)->sourceMKS == true){
-      datafile << " "<<(*vecit)->transformedCalvingScoreInt<<" "<<(*vecit)->birthWeightDbl<<" "<<0<<" "<<0;
+      datafile << " "<<(*vecit)->transformedCalvingScoreInt<<" "<<(*vecit)->birthWeightInt<<" "<<0<<" "<<0;
     }else if((*vecit)->sourceMKS == false){
-      datafile << " "<<0<<" "<<0<<" "<<(*vecit)->transformedCalvingScoreInt<<" "<<(*vecit)->birthWeightDbl;
+      datafile << " "<<0<<" "<<0<<" "<<(*vecit)->transformedCalvingScoreInt<<" "<<(*vecit)->birthWeightInt;
     }
 
     if((*vecit)->sourceBeefOrDairyStr == "beef"){
-      datafile << " "<<(*vecit)->transformedCalvingScoreInt<<" "<<(*vecit)->birthWeightDbl<<" "<<0<<" "<<0;
+      datafile << " "<<(*vecit)->transformedCalvingScoreInt<<" "<<(*vecit)->birthWeightInt<<" "<<0<<" "<<0;
     }else if((*vecit)->sourceBeefOrDairyStr == "dairy"){
-      datafile << " "<<0<<" "<<0<<" "<<(*vecit)->transformedCalvingScoreInt<<" "<<(*vecit)->birthWeightDbl;
+      datafile << " "<<0<<" "<<0<<" "<<(*vecit)->transformedCalvingScoreInt<<" "<<(*vecit)->birthWeightInt;
     }
 
     datafile << " "<< (*vecit)->gestationLengthInDays
