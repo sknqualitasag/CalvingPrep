@@ -1753,7 +1753,7 @@ void calvingDataMap::checkPhenoDam(bool parwithMaternalEffect){
       map<string, calvingData*>::iterator damIt = this->find(it->second->damStr);
       if(damIt != this->end()){
         // one of birthweight or calvingscore has to be available
-        if(damIt->second->birthWeightDbl == CONSTANTS::DOUBLE_NA && damIt->second->transformedCalvingScoreInt == CONSTANTS::INT_NA){
+        if(damIt->second->birthWeightInt == CONSTANTS::INT_NA && damIt->second->transformedCalvingScoreInt == CONSTANTS::INT_NA){
           dam2Delete.insert(it->second->damStr);
           simpleDebug("checkPhenoDam()_inserted in dam2Delete, dam " + it->second->damStr + " has no pheno available as calf", "");
         }
