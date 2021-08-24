@@ -96,13 +96,13 @@ int CalvingPrep_main(std::string paramFileName) {
   // Minimum sires per herdyear
   cMap.countHerdYearSire();
   cMap.purgeHerdYear();
-//  cMap.purgeHerdYearSire();
+  cMap.purgeHerdYearSire();
 
 
-//  // Check Variance per herd
-//  cMap.countHerd();
-//  cMap.stdHerd();
-//  cMap.purgeHerd();
+  // Check Variance per herd
+  cMap.countHerd();
+  cMap.stdHerd();
+  cMap.purgeHerd();
 
 
   // Minimum observation per sire
