@@ -165,7 +165,7 @@ void calvingDataMap::outputDebug(string message, string tvdid){
 
 
 void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYearToConsiderData, bool parSampling, int startYearSampling, int endYearSampling,\
-                                      bool parselectSplitBeefDairy, bool parselectSplitMandantBeef, bool parselectSplitMotherbreedBeef, bool parselectSplitMandantDairy, bool parselectSplitMotherbreedDairy){
+                                      bool parselectSplitMandantBeef, bool parselectSplitMandantDairy){
 
   ifstream datafile(fname.c_str());
   if(!datafile){
@@ -296,13 +296,13 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     insemmotherstartdate = verifyInsemStart(insemmotherstartdate, idstr);
     insemmotherenddate = verifyInsemEnd(insemmotherenddate, idstr);
     stillbirthint = verifyInteractStillbirthDeathcalfdate(stillbirthint, deathcalfdate, calvingdate, idstr);
-    mandatestr = checkSplittingMandant(mandatestr, parselectSplitBeefDairy, parselectSplitMandantBeef, parselectSplitMandantDairy, idstr);
+    mandatestr = checkSplittingMandant(mandatestr, parselectSplitMandantBeef, parselectSplitMandantDairy, idstr);
 
     // Set a new field in dependency to other already declared fields
     bool sourceMKS = setSourceVMS(mandatestr, idstr);
     simpleDebug("inputData()_after setSourceVMS, new field sourceMKS is "+to_string(sourceMKS),idstr);
     string breedCombstr = setBreedComb(mbreedstr, fbreedstr, idstr);
-    string sourceBeefOrDairystr = setSourceBeefOrDairy(parselectSplitBeefDairy, parselectSplitMotherbreedBeef, parselectSplitMotherbreedDairy, mbreedstr, idstr);
+    string sourceBeefOrDairystr = setSourceBeefOrDairy(mbreedstr, idstr);
 
     // Calculate a new field in dependency with other already declared fields
     long int gestationLengthInDays = calculateGL(insemmotherstartdate, insemmotherenddate, calvingdate, idstr);
@@ -1043,35 +1043,29 @@ int calvingDataMap::verifyInteractStillbirthDeathcalfdate(int stillbirthint, dat
 }
 
 
-string calvingDataMap::checkSplittingMandant(string mandatestr, bool parselectSplitBeefDairy, bool parselectSplitMandantBeef, bool parselectSplitMandantDairy, string idstr){
+string calvingDataMap::checkSplittingMandant(string mandatestr, bool parselectSplitMandantBeef, bool parselectSplitMandantDairy, string idstr){
 
   string resultmandatestr=CONSTANTS::STRING_NA;
 
-  //Without split
-  if(!parselectSplitBeefDairy){
-    simpleDebug("checkSplittingMandant()_parselectSplitBeefDairy = false, mandatestr: "+mandatestr, idstr);
-    resultmandatestr = mandatestr;
-  }else{
     if(parselectSplitMandantDairy){
       if(mandatestr != "3230"){
-        simpleDebug("checkSplittingMandant()_parselectSplitBeefDairy = true, parselectSplitMandantDairy = true, mandatestr: "+mandatestr, idstr);
+        simpleDebug("checkSplittingMandant()_parselectSplitMandantDairy = true, mandatestr: "+mandatestr, idstr);
         resultmandatestr = mandatestr;
       }else{
-        simpleDebug("checkSplittingMandant()_parselectSplitBeefDairy = true, parselectSplitMandantDairy = false, mandatestr: "+mandatestr, idstr);
+        simpleDebug("checkSplittingMandant()_parselectSplitMandantDairy = false, mandatestr: "+mandatestr, idstr);
         resultmandatestr = CONSTANTS::STRING_NA;
       }
     }else if(parselectSplitMandantBeef){
       if(mandatestr == "3230"){
-        simpleDebug("checkSplittingMandant()_parselectSplitBeefDairy = true, parselectSplitMandantBeef = true, mandatestr: "+mandatestr, idstr);
+        simpleDebug("checkSplittingMandant()_parselectSplitMandantBeef = true, mandatestr: "+mandatestr, idstr);
         resultmandatestr = mandatestr;
       }else{
-      simpleDebug("checkSplittingMandant()_parselectSplitBeefDairy = true, parselectSplitMandantBeef = false, mandatestr: "+mandatestr, idstr);
+      simpleDebug("checkSplittingMandant()_parselectSplitMandantBeef = false, mandatestr: "+mandatestr, idstr);
       resultmandatestr = CONSTANTS::STRING_NA;
     }
   }else{
     resultmandatestr = mandatestr;
     }
-  }
 
   return resultmandatestr;
 
@@ -1109,10 +1103,8 @@ string calvingDataMap::setBreedComb(string mbreedstr, string fbreedstr, string i
 }
 
 
-string calvingDataMap::setSourceBeefOrDairy(bool parselectSplitBeefDairy, bool parselectSplitMotherbreedBeef, bool parselectSplitMotherbreedDairy, string mbreedstr, string idstr){
+string calvingDataMap::setSourceBeefOrDairy(string mbreedstr, string idstr){
 
-  // Without splitting of beef and dairy
-  if(!parselectSplitBeefDairy){
     if(mbreedstr == "KR"){
       simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
       return "beef";
@@ -1171,137 +1163,6 @@ string calvingDataMap::setSourceBeefOrDairy(bool parselectSplitBeefDairy, bool p
       simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to missing", idstr);
       return CONSTANTS::STRING_NA;
     }
-    // With splitting
-  }else{
-    // Split for beef
-    if(parselectSplitMotherbreedBeef){
-      if(mbreedstr == "KR"){
-        simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
-        return "beef";
-      }else if(mbreedstr == "SI"){
-        simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
-        return "beef";
-      }else if(mbreedstr == "OB"){
-        simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
-        return "beef";
-      }else if(mbreedstr == "AN"){
-        simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
-        return "beef";
-      }else if(mbreedstr == "AU"){
-        simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
-        return "beef";
-      }else if(mbreedstr == "CH"){
-        simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
-        return "beef";
-      }else if(mbreedstr == "LM"){
-        simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
-        return "beef";
-      }else if(mbreedstr == "HH"){
-        simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
-        return "beef";
-      }else if(mbreedstr == "AL"){
-        simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
-        return "beef";
-      }else if(mbreedstr == "BD"){
-        simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
-        return "beef";
-      }else if(mbreedstr == "SL"){
-        simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
-        return "beef";
-      }else if(mbreedstr == "PI"){
-        simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
-        return "beef";
-      }else if(mbreedstr == "HR"){
-        simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
-        return "beef";
-      }else{
-        simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to missing because parameter selectSplitMotherbreedBeef", idstr);
-        return CONSTANTS::STRING_NA;
-      }
-    }
-    // Split for dairy
-    else if(parselectSplitMotherbreedDairy){
-      if(mbreedstr == "SF"){
-        simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to dairy", idstr);
-        return "dairy";
-      }else if(mbreedstr == "HO"){
-        simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to dairy", idstr);
-        return "dairy";
-      }else if(mbreedstr == "BV"){
-        simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to dairy", idstr);
-        return "dairy";
-      }else if(mbreedstr == "JE"){
-        simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to dairy", idstr);
-        return "dairy";
-      }else if(mbreedstr == "MO"){
-        simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to dairy", idstr);
-        return "dairy";
-      }else{
-        simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to missing because parameter selectSplitMotherbreedDairy", idstr);
-        return CONSTANTS::STRING_NA;
-      }
-    }else{
-      if(mbreedstr == "KR"){
-        simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
-        return "beef";
-      }else if(mbreedstr == "SI"){
-        simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
-        return "beef";
-      }else if(mbreedstr == "SF"){
-        simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to dairy", idstr);
-        return "dairy";
-      }else if(mbreedstr == "HO"){
-        simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to dairy", idstr);
-        return "dairy";
-      }else if(mbreedstr == "BV"){
-        simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to dairy", idstr);
-        return "dairy";
-      }else if(mbreedstr == "OB"){
-        simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
-        return "beef";
-      }else if(mbreedstr == "JE"){
-        simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to dairy", idstr);
-        return "dairy";
-      }else if(mbreedstr == "MO"){
-        simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to dairy", idstr);
-        return "dairy";
-      }else if(mbreedstr == "AN"){
-        simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
-        return "beef";
-      }else if(mbreedstr == "AU"){
-        simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
-        return "beef";
-      }else if(mbreedstr == "CH"){
-        simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
-        return "beef";
-      }else if(mbreedstr == "LM"){
-        simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
-        return "beef";
-      }else if(mbreedstr == "HH"){
-        simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
-        return "beef";
-      }else if(mbreedstr == "AL"){
-        simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
-        return "beef";
-      }else if(mbreedstr == "BD"){
-        simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
-        return "beef";
-      }else if(mbreedstr == "SL"){
-        simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
-        return "beef";
-      }else if(mbreedstr == "PI"){
-        simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
-        return "beef";
-      }else if(mbreedstr == "HR"){
-        simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to beef", idstr);
-        return "beef";
-      }else{
-        simpleDebug("setSourceBeefOrDairy()_mbreedstr is "+mbreedstr+" so set to missing", idstr);
-        return CONSTANTS::STRING_NA;
-      }
-    }
-
-  }
 
 
 }
