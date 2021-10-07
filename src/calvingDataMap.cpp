@@ -1902,48 +1902,17 @@ void calvingDataMap::pheno_out(){
   inputDataAmap<<"sourceMKS;sourceBeefOrDairyStr;lnInt;insemmotherstartdate;insemmotherenddate;gestationLengthInDays;calvingAgeInDays;";
   inputDataAmap<<"calvingIntervalInDays;firstCalvingAgeInDays;recordTypInsemInt;spermaTraitmentInt;animIDStr;itbIDStr;damIDStr;sireIDStr;";
   inputDataAmap<<"sexCode;yearMonthCode;breedcombCode;LNAgeCode;herdYearCode;herdCode;PECode;sireCode;mandantCode;";
-  inputDataAmap<<"ceb;ced;bwb;bwd;";
-  inputDataAmap<<"ce_bdam;ce_ddam;bw_bdam;bw_ddam;";
-  inputDataAmap<<"ceb_h;ceb_c;bwb_h;bwb_c;ced_h;ced_c;bwd_h;bwd_c;";
-  inputDataAmap<<"ce_h_bdam;ce_c_bdam;bw_h_bdam;bw_c_bdam;ce_h_ddam;ce_c_ddam;bw_h_ddam;bw_c_ddam;";
-  inputDataAmap<<"cib;ci_bdam;ce;bw"<<endl;
+  inputDataAmap<<"ceb;ced;bwb;bwd"<<endl;
 
-  // keine Auftrennung:
-     // ce = calving ease
-     unsigned ce;
-     // bw = birth weight
-     double bw;
   // Auftrennung beef und dairy nach Mandant:
   // ceb = calving ease beef, ced = calving ease dairy,
   // bwb = birth weight beef, bwd = birth weight dairy
-     // Autrennung nach Laktation:
-     // ceb_h = calving ease beef heifer, ceb_c = calving ease beef cow
-     // ced_h = calving ease dairy heifer, ced_c = calving ease dairy cow
-     // bwb_h = birth weight beef heifer, bwb_c = birth weight beef cow
-     // bwd_h = birth weight dairy heifer, bwd_c = birth weight dairy cow
-  unsigned ceb, ced, sb, ceb_h, ceb_c, ced_h, ced_c;
-  double bwb, bwd, bwb_h, bwb_c, bwd_h, bwd_c;
-  // Auftrennung beef und dairy nach Rasse der Kuh:
-  // ce_bdam = calving ease beef dam, ce_ddam = calving ease dairy dam,
-  // bw_bdam = birth weight beef dam, bw_ddam = birth weight dairy dam
-     // Auftrennung nach Laktation:
-     // ce_h_bdam = calving ease beef heifer dam, ce_c_bdam = calving ease beef cow dam
-     // ce_h_ddam = calving ease dairy heifer dam, ce_c_ddam = calving ease dairy cow dam
-     // bw_h_bdam = birth weight beef heifer dam, bw_c_bdam = birth weight beef cow dam
-     // bw_h_ddam = birth weight dairy heifer dam, bw_c_ddam = birth weight dairy cow dam
-  unsigned ce_bdam, ce_ddam, ce_h_bdam, ce_c_bdam, ce_h_ddam, ce_c_ddam;
-  double bw_bdam, bw_ddam, bw_h_bdam, bw_c_bdam, bw_h_ddam, bw_c_ddam;
-  // Zwischenkalbezeit für Beef
-     // nach Mandant: cib
-     // nach Mutterrasse: ci_bdam
-  double cib, ci_bdam;
+  unsigned ceb, ced, sb;
+  double bwb, bwd;
 
   for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
     calvingData *ptr = (*it).second;
 
-    // keine Auftrennung:
-    ce = ptr->transformedCalvingScoreInt;
-    bw = ptr->birthWeightInt;
     // Auftrennung beef und dairy nach Mandant
     if(ptr->sourceMKS){
       if(ptr->transformedCalvingScoreInt == CONSTANTS::INT_NA){
@@ -1975,201 +1944,6 @@ void calvingDataMap::pheno_out(){
         bwd = ptr->birthWeightInt;
         bwb = 0;
       }
-    }
-    // Auftrennung beef und dairy nach Mandant und Laktation
-    if(ptr->sourceMKS){
-      if(ptr->transformedCalvingScoreInt == CONSTANTS::INT_NA){
-        ceb_h = 0;
-        ceb_c = 0;
-        ced_c = 0;
-        ced_h = 0;
-      }else{
-        if(ptr->lnInt == 1){
-          ceb_h = ptr->transformedCalvingScoreInt;
-          ced_h = 0;
-          ceb_c = 0;
-          ced_c = 0;
-        }else{
-          ceb_c = ptr->transformedCalvingScoreInt;
-          ced_c = 0;
-          ceb_h = 0;
-          ced_h = 0;
-        }
-      }
-      if(ptr->birthWeightInt == CONSTANTS::INT_NA){
-        bwb_h = 0;
-        bwb_c = 0;
-        bwd_c = 0;
-        bwd_h = 0;
-      }else{
-        if(ptr->lnInt == 1){
-          bwb_h = ptr->birthWeightInt;
-          bwd_h = 0;
-          bwb_c = 0;
-          bwd_c = 0;
-        }else{
-          bwb_c = ptr->birthWeightInt;
-          bwd_c = 0;
-          bwb_h = 0;
-          bwd_h = 0;
-        }
-      }
-    }else{
-      if(ptr->transformedCalvingScoreInt == CONSTANTS::INT_NA){
-        ced_h = 0;
-        ced_c = 0;
-        ceb_h = 0;
-        ceb_c = 0;
-      }else{
-        if(ptr->lnInt == 1){
-          ced_h = ptr->transformedCalvingScoreInt;
-          ceb_h = 0;
-          ced_c = 0;
-          ceb_c = 0;
-        }else{
-          ced_c = ptr->transformedCalvingScoreInt;
-          ceb_c = 0;
-          ced_h = 0;
-          ceb_h = 0;
-        }
-      }
-      if(ptr->birthWeightInt == CONSTANTS::INT_NA){
-        bwd_h = 0;
-        bwd_c = 0;
-        bwb_h = 0;
-        bwb_c = 0;
-      }else{
-        if(ptr->lnInt == 1){
-          bwd_h = ptr->birthWeightInt;
-          bwb_h = 0;
-          bwd_c = 0;
-          bwd_c = 0;
-        }else{
-          bwd_c = ptr->birthWeightInt;
-          bwb_c = 0;
-          bwd_h = 0;
-          bwb_h = 0;
-        }
-      }
-    }
-    // Auftrennung beef und dairy nach Rasse der Kuh
-    if(ptr->sourceBeefOrDairyStr == "beef"){
-      if(ptr->transformedCalvingScoreInt == CONSTANTS::INT_NA){
-        ce_bdam = 0;
-        ce_ddam = 0;
-      }else{
-        ce_bdam = ptr->transformedCalvingScoreInt;
-        ce_ddam = 0;
-      }
-      if(ptr->birthWeightInt == CONSTANTS::INT_NA){
-        bw_bdam = 0;
-        bw_ddam = 0;
-      }else{
-        bw_bdam = ptr->birthWeightInt;
-        bw_ddam = 0;
-      }
-    }else{
-      if(ptr->transformedCalvingScoreInt == CONSTANTS::INT_NA){
-        ce_ddam = 0;
-        ce_bdam = 0;
-      }else{
-        ce_ddam = ptr->transformedCalvingScoreInt;
-        ce_bdam = 0;
-      }
-      if(ptr->birthWeightInt == CONSTANTS::INT_NA){
-        bw_ddam = 0;
-        bw_bdam = 0;
-      }else{
-        bw_ddam = ptr->birthWeightInt;
-        bw_bdam = 0;
-      }
-    }
-    // Auftrennung beef und dairy nach Rasse der Kuh und Laktation
-    if(ptr->sourceBeefOrDairyStr == "beef"){
-      if(ptr->transformedCalvingScoreInt == CONSTANTS::INT_NA){
-        ce_h_bdam = 0;
-        ce_c_bdam = 0;
-        ce_h_ddam = 0;
-        ce_c_ddam = 0;
-      }else{
-        if(ptr->lnInt == 1){
-          ce_h_bdam = ptr->transformedCalvingScoreInt;
-          ce_c_bdam = 0;
-          ce_h_ddam = 0;
-          ce_c_ddam = 0;
-        }else{
-          ce_c_bdam = ptr->transformedCalvingScoreInt;
-          ce_h_ddam = 0;
-          ce_c_ddam = 0;
-          ce_h_bdam = 0;
-        }
-      }
-      if(ptr->birthWeightInt == CONSTANTS::INT_NA){
-        bw_h_bdam = 0;
-        bw_c_bdam = 0;
-        bw_h_ddam = 0;
-        bw_c_ddam = 0;
-      }else{
-        if(ptr->lnInt == 1){
-          bw_h_bdam = ptr->birthWeightInt;
-          bw_c_bdam = 0;
-          bw_h_ddam = 0;
-          bw_c_ddam = 0;
-        }else{
-          bw_c_bdam = ptr->birthWeightInt;
-          bw_h_bdam = 0;
-          bw_h_ddam = 0;
-          bw_c_ddam = 0;
-        }
-      }
-    }else{
-      if(ptr->transformedCalvingScoreInt == CONSTANTS::INT_NA){
-        ce_h_ddam = 0;
-        ce_c_ddam = 0;
-        ce_h_bdam = 0;
-        ce_c_bdam = 0;
-      }else{
-        if(ptr->lnInt == 1){
-          ce_h_ddam = ptr->transformedCalvingScoreInt;
-          ce_c_ddam = 0;
-          ce_h_bdam = 0;
-          ce_c_bdam = 0;
-        }else{
-          ce_c_ddam = ptr->transformedCalvingScoreInt;
-          ce_h_bdam = 0;
-          ce_c_bdam = 0;
-          ce_h_ddam = 0;
-        }
-      }
-      if(ptr->birthWeightInt == CONSTANTS::INT_NA){
-        bw_h_ddam = 0;
-        bw_c_ddam = 0;
-        bw_h_bdam = 0;
-        bw_c_bdam = 0;
-      }else{
-        if(ptr->lnInt == 1){
-          bw_h_ddam = ptr->birthWeightInt;
-          bw_c_ddam = 0;
-          bw_h_bdam = 0;
-          bw_c_bdam = 0;
-        }else{
-          bw_c_ddam = ptr->birthWeightInt;
-          bw_h_ddam = 0;
-          bw_h_bdam = 0;
-          bw_c_bdam = 0;
-        }
-      }
-    }
-    // Zwischenkalbezeit für Beef
-    if(ptr->sourceMKS){
-      cib = ptr->calvingIntervalInDays;
-    }else{
-      cib = 0.;
-    }
-    if(ptr->sourceBeefOrDairyStr == "beef"){
-      ci_bdam = ptr->calvingIntervalInDays;
-    }else{
-      ci_bdam = 0.;
     }
 
     AnimalsWithData<<ptr->idStr<<endl;
@@ -2221,31 +1995,7 @@ void calvingDataMap::pheno_out(){
                   <<ceb<<";"
                   <<ced<<";"
                   <<bwb<<";"
-                  <<bwd<<";"
-                  <<ce_bdam<<";"
-                  <<ce_ddam<<";"
-                  <<bw_bdam<<";"
-                  <<bw_ddam<<";"
-                  <<ceb_h<<";"
-                  <<ceb_c<<";"
-                  <<bwb_h<<";"
-                  <<bwb_c<<";"
-                  <<ced_h<<";"
-                  <<ced_c<<";"
-                  <<bwd_h<<";"
-                  <<bwd_c<<";"
-                  <<ce_h_bdam<<";"
-                  <<ce_c_bdam<<";"
-                  <<bw_h_bdam<<";"
-                  <<bw_c_bdam<<";"
-                  <<ce_h_ddam<<";"
-                  <<ce_c_ddam<<";"
-                  <<bw_h_ddam<<";"
-                  <<bw_c_ddam<<";"
-                  <<cib<<";"
-                  <<ci_bdam<<";"
-                  <<ce<<";"
-                  <<bw<<endl;
+                  <<bwd<<endl;
 
 
   }
