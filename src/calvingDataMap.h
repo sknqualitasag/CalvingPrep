@@ -13,7 +13,6 @@
 #include "sire.h"
 #include "distCalvingAge.h"
 #include "breedcomb.h"
-#include "dam.h"
 
 
 
@@ -94,17 +93,6 @@ public:
   void countBreedComb();
   breedcomb breedcombID;
   void purgeBreedComb();
-
-
-  // Check number observation per dam
-  void countDam(bool parwithMaternalEffect);
-  dam damID;
-  void purgeDam(bool parwithMaternalEffect);
-
-
-  // Dam has to have herself as calf a phenotyp
-  void checkPhenoDam(bool parwithMaternalEffect);
-
 
 
   // Check number observation per sire

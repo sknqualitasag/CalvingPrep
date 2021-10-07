@@ -49,6 +49,4 @@ const unsigned CONSTANTS::MIN_OBS_PER_SIRE = 5;
 const double CONSTANTS::STD_TRAIT_ZERO_PER_HERD = 0.0001;
 //' minimum observation per breedcomb
 const unsigned CONSTANTS::MIN_OBS_PER_BREEDCOMB = 100;
-//' minimum observation per dam
-const unsigned CONSTANTS::MIN_OBS_PER_DAM = 3;
 

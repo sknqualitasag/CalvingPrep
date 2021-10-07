@@ -55,7 +55,6 @@ int CalvingPrep_main(std::string paramFileName) {
   bool parselectSplitMotherbreedBeef          = parmMap.getBoolean("selectSplitMotherbreedBeef");//true = yes; false = no select
   bool parselectSplitMandantDairy             = parmMap.getBoolean("selectSplitMandantDairy");//true = yes; false = no select
   bool parselectSplitMotherbreedDairy         = parmMap.getBoolean("selectSplitMotherbreedDairy");//true = yes; false = no select
-  bool parwithMaternalEffect                  = parmMap.getBoolean("withMaternalEffect");//true = yes; false = no including maternal
 
 
 
@@ -81,15 +80,6 @@ int CalvingPrep_main(std::string paramFileName) {
   // Minimum observations per breedcombination
   cMap.countBreedComb();
   cMap.purgeBreedComb();
-
-
-// // Minimum observation per dam
-// cMap.countDam(parwithMaternalEffect);
-// cMap.purgeDam(parwithMaternalEffect);
-
-
-// // Dam has to have herself as calf a phenotyp
-// cMap.checkPhenoDam(parwithMaternalEffect);
 
 
   // Minimum observations per herdyear
