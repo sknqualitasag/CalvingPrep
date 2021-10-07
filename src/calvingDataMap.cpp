@@ -2418,8 +2418,7 @@ void calvingDataMap::output(string outputPhenFile){
 
 
   datafile<<"sex yearMonth breedcomb LNAge herd herdYear PE calvingAge ";
-  datafile<<"ceb bwb ced bwd ";
-  datafile<<"ce_bdam bw_bdam ce_ddam bw_ddam gl ind"<<endl;
+  datafile<<"ceb bwb ced bwd gl ind"<<endl;
 
   int ce, bw, gl;
 
@@ -2461,12 +2460,6 @@ void calvingDataMap::output(string outputPhenFile){
     if((*vecit)->sourceMKS == true){
       datafile << " "<<ce<<" "<<bw<<" "<<0<<" "<<0;
     }else if((*vecit)->sourceMKS == false){
-      datafile << " "<<0<<" "<<0<<" "<<ce<<" "<<bw;
-    }
-    // output depending of motherbreed
-    if((*vecit)->sourceBeefOrDairyStr == "beef"){
-      datafile << " "<<ce<<" "<<bw<<" "<<0<<" "<<0;
-    }else if((*vecit)->sourceBeefOrDairyStr == "dairy"){
       datafile << " "<<0<<" "<<0<<" "<<ce<<" "<<bw;
     }
 
