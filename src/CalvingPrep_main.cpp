@@ -76,13 +76,13 @@ int CalvingPrep_main(std::string paramFileName) {
   }
 
 
-//  //Read raw calving-data and check the field of the data-record
-//  for(unsigned i=0; i<numberDataFiles; i++){
-//    string fileName = cMap.getFileName(i,dataFile);
-//    cMap.inputCalvingData(fileName, aMap, lastYearToConsiderData, parSampling, startYearSampling, endYearSampling,\
-//                          parselectSplitMandantBeef, parselectSplitMandantDairy);
-//  }
-//
+  //Read raw calving-data and check the field of the data-record
+  for(unsigned i=0; i<numberDataFiles; i++){
+    string fileName = cMap.getFileName(i,dataFile);
+    cMap.inputCalvingData(fileName, aMap, lastYearToConsiderData, parSampling, startYearSampling, endYearSampling,\
+                          parselectSplitMandantBeef, parselectSplitMandantDairy);
+  }
+
 //  // Minimum observations per breedcombination
 //  cMap.countBreedComb();
 //  cMap.purgeBreedComb();
