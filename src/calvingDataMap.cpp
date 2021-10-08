@@ -130,6 +130,13 @@ void calvingDataMap::simpleDebug(string message, string tvdid){
   if(localRunningMode == CONSTANTS::RUNNING_DEBUGALL){
     //here Debug-Output-Logfile
     LOGD <<"Message "<<message<<" of animal "<<tvdid;
+  }else if(localRunningMode == CONSTANTS::RUNNING_DEBUG){
+//    for (vector<string>::iterator vecit=debugTvdIds.begin(); vecit!=debugTvdIds.end(); vecit++){
+//      if(*vecit == tvdid){
+//        //here Debug-Output-Logfile
+//        LOGD <<"Message "<<message<<" of animal "<<tvdid;
+//      }
+//    }
   }
 }
 
@@ -160,6 +167,8 @@ void calvingDataMap::outputDebug(string message, string tvdid){
         LOGD <<"Message "<<message<<" of animal "<<tvdid;
       }
     }
+  }else if(localRunningMode == CONSTANTS::RUNNING_DEBUG){
+//
   }
 }
 

@@ -61,55 +61,70 @@ int CalvingPrep_main(std::string paramFileName) {
 
 
   //Create DEBUG-File
+//  if (parRunMode == CONSTANTS::DEBUG){
+//    plog::init(plog::debug, "DEBUG_CalvingPrepare.txt");
+//    cMap.setRunningMode(CONSTANTS::RUNNING_DEBUGALL);
+//  }
+
+
+  //Create DEBUG-File
   if (parRunMode == CONSTANTS::DEBUG){
+    plog::init(plog::debug, "DEBUG_CalvingPrepare.txt");
+    cMap.setRunningMode(CONSTANTS::RUNNING_DEBUG);
+//    aMap.inputDebug(parRunModeFile);
+  }
+  else if(parRunMode == CONSTANTS::DEBUGALL){
     plog::init(plog::debug, "DEBUG_CalvingPrepare.txt");
     cMap.setRunningMode(CONSTANTS::RUNNING_DEBUGALL);
   }
-
-
-  //Read raw calving-data and check the field of the data-record
-  for(unsigned i=0; i<numberDataFiles; i++){
-    string fileName = cMap.getFileName(i,dataFile);
-    cMap.inputCalvingData(fileName, aMap, lastYearToConsiderData, parSampling, startYearSampling, endYearSampling,\
-                          parselectSplitMandantBeef, parselectSplitMandantDairy);
+  else {
+    cMap.setRunningMode(CONSTANTS::RUNNING_ROUTINE);
   }
 
-  // Minimum observations per breedcombination
-  cMap.countBreedComb();
-  cMap.purgeBreedComb();
 
-
-  // Minimum observations per herdyear
-  // Minimum sires per herdyear
-  cMap.countHerdYearSire();
-  cMap.purgeHerdYear();
-  cMap.purgeHerdYearSire();
-
-
-  // Check Variance per herd
-  cMap.countHerd();
-  cMap.stdHerd();
-  cMap.purgeHerd();
-
-
-  // Minimum observation per sire
-  cMap.countSire();
-  cMap.purgeSire();
-
-
-  // Draw a sample of data based on herds
-  cMap.drawHerd(proportion, seed);
-
-
-  //Coding the effects
-  cMap.codeEffects();
-
-
-  //Phenotyp Output
-//  cMap.pheno_out();
-
-  // Output for MiX99
-  cMap.output(outputPhenFile);
+//  //Read raw calving-data and check the field of the data-record
+//  for(unsigned i=0; i<numberDataFiles; i++){
+//    string fileName = cMap.getFileName(i,dataFile);
+//    cMap.inputCalvingData(fileName, aMap, lastYearToConsiderData, parSampling, startYearSampling, endYearSampling,\
+//                          parselectSplitMandantBeef, parselectSplitMandantDairy);
+//  }
+//
+//  // Minimum observations per breedcombination
+//  cMap.countBreedComb();
+//  cMap.purgeBreedComb();
+//
+//
+//  // Minimum observations per herdyear
+//  // Minimum sires per herdyear
+//  cMap.countHerdYearSire();
+//  cMap.purgeHerdYear();
+//  cMap.purgeHerdYearSire();
+//
+//
+//  // Check Variance per herd
+//  cMap.countHerd();
+//  cMap.stdHerd();
+//  cMap.purgeHerd();
+//
+//
+//  // Minimum observation per sire
+//  cMap.countSire();
+//  cMap.purgeSire();
+//
+//
+//  // Draw a sample of data based on herds
+//  cMap.drawHerd(proportion, seed);
+//
+//
+//  //Coding the effects
+//  cMap.codeEffects();
+//
+//
+//  //Phenotyp Output
+////  cMap.pheno_out();
+//
+//  // Output for MiX99
+//  cMap.output(outputPhenFile);
 
 
   //Time tracking

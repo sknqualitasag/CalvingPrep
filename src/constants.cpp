@@ -5,8 +5,14 @@ using namespace Rcpp;
 
 //' string corresponding to debuging
 const char CONSTANTS::DEBUG[] = "yes";
+//' string corresponding to debuging all animal
+const char CONSTANTS::DEBUGALL[] = "all";
+// string corresponding to running routine
+const char CONSTANTS::RUNNING_ROUTINE[] = "routine";
 // string corresponding to running debug all animal
 const char CONSTANTS::RUNNING_DEBUGALL[] = "all";
+// string corresponding to running debug
+const char CONSTANTS::RUNNING_DEBUG[] = "debug";
 //' length of TVD-Nr in number of characters
 const unsigned CONSTANTS::TVD_NR_LENGTH = 14;
 //' missing value code as string

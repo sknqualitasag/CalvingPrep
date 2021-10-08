@@ -8,6 +8,12 @@ public:
   static const char DEBUG[];
   // string corresponding to running debug all animal
   static const char RUNNING_DEBUGALL[];
+  // string corresponding to running routine
+  static const char RUNNING_ROUTINE[];
+  //' string corresponding to debuging all animal
+  static const char DEBUGALL[];
+  // string corresponding to running debug
+  static const char RUNNING_DEBUG[];
   // length of TVD-Nr in number of characters
   static const unsigned TVD_NR_LENGTH;
   // string corresponding to missing value code
