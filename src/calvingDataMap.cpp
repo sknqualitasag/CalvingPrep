@@ -204,7 +204,7 @@ void calvingDataMap::outputDebug(string message, string tvdid){
 }
 
 
-void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYearToConsiderData, bool parSampling, int startYearSampling, int endYearSampling,\
+void calvingDataMap::inputCalvingData(string fname, int lastYearToConsiderData, bool parSampling, int startYearSampling, int endYearSampling,\
                                       bool parselectSplitMandantBeef, bool parselectSplitMandantDairy){
 
   ifstream datafile(fname.c_str());
@@ -238,6 +238,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
   unsigned numRepRecs=0;
   unsigned aliveIdmissingNotRead=0;
   unsigned SamplingNotRead=0;
+  unsigned MissingIdNotRead=0;
 
 
 
@@ -494,6 +495,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     // id has to be available
     if(idstr == CONSTANTS::STRING_NA){
       simpleDebug("inputCalvingData()_Animal is not read in calvingDataMap, because idstr is missing", idstr);
+      MissingIdNotRead++;
       continue;
     }
     // sampling during a certain period of time
@@ -520,30 +522,9 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
      map<string, calvingData*>::iterator cit = this->find(key);
      if(cit == this->end()){
        (*this)[key] = ptr;
-       outputDebug("inputCalvingData()_The key " + key + " is in calvingDataMap before checking if idStr is available", ptr->idStr);
-
-//       if(ptr->idStr != CONSTANTS::STRING_NA) {
-//         outputDebug("inputCalvingData()_idStr " + ptr->idStr + " is available and will be setting in offspringIds", ptr->idStr);
-//
-//         set<string>::iterator idit = offspringIds.find(ptr->idStr);
-//         if(idit == offspringIds.end()) {
-//           offspringIds.insert(ptr->idStr);
-//           AMap.addAnimal(ptr);
-//         }else{
-//           outputDebug("inputCalvingData()_idStr is already in offspringIds, so delete the record", ptr->idStr);
-//           this->erase(key);
-//           delete (ptr);
-//           offspringIdsToDelete.insert(ptr->idStr);
-//           inconsistentRepeatedRecs1++;
-//         }
-//       }else{
-//         outputDebug("inputCalvingData()_idStr is missing, stillbirth is "+to_string(ptr->stillbirthInt), ptr->idStr);
-//         // In case of stillbirth, mostly idStr is missing
-//         numconsistentRecsButMissingIDs++;
-//       }
-
+       outputDebug("inputCalvingData()_The key " + key + " is in calvingDataMap available", ptr->idStr);
      }else{
-       cout<<"The key "<<key<<" is already in Cmap, so "+ptr->idStr+" not taken in account."<<endl;
+       //cout<<"The key "<<key<<" is already in Cmap, so "+ptr->idStr+" not taken in account."<<endl;
        numRepRecs++;
      }
 
@@ -552,9 +533,8 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
 
 
   cout<<"\nNumber of records in raw data:                                                          "<<rec<<endl;
-  cout<<"Number of consistent duplicate records or multiple birth (same dam, same calvingdate).    "<<numRepRecs<<endl;
-//  cout<<"Number of consistent records but a missing ID.                                            "<<numconsistentRecsButMissingIDs<<endl;
-//  cout<<"Number of consistent offspring Ids occuring more than once in "<<fname<<" :               "<<inconsistentRepeatedRecs1<<endl;
+
+  cout<<"Number of consistent duplicate records or multiple birth (same dam, same calvingdate): "<<numRepRecs<<endl;
   cout<<"Number of animal record with missing calvingYear: "<<calvingYearNotRead<<endl;
   cout<<"Number of animal record with missing calvingMonth: "<<calvingMonthNotRead<<endl;
   cout<<"Number of animal record with missing lactationNumber: "<<lacationNumberNotRead<<endl;
@@ -572,6 +552,9 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
   cout<<"Number of animal record as premature: "<<PrematureNotRead<<endl;
   cout<<"Number of animal record as ET: "<<ETNotRead<<endl;
   cout<<"Number of animal record alive but with missing id: "<<aliveIdmissingNotRead<<endl;
+  cout<<"Number of animal record not in the sampling if sampling = true : "<<SamplingNotRead<<endl;
+  cout<<"Number of animal record with missing id: "<<MissingIdNotRead<<endl;
+
   cout<<"\nNumber of records which are stored in Cmap:                                              "<<this->size()<<endl;
 
 
@@ -1327,16 +1310,16 @@ long int calvingDataMap::calculateCalvingAge(date calvingdate, date mbirthdate, 
 int calvingDataMap::transformCalvingScore(int calvingscoreint, string indstr){
 
   if(calvingscoreint == 1){
-    simpleDebug("transformCalvingScore()_Transforming calvingscorestr to 3, because calvingscorestr is 1 ", indstr);
+    simpleDebug("transformCalvingScore()_Transforming calvingscorestr to 300, because calvingscorestr is 1 ", indstr);
     return 300;
   }else if(calvingscoreint == 2){
-    simpleDebug("transformCalvingScore()_Transforming calvingscorestr to 2, because calvingscorestr is 2 ", indstr);
+    simpleDebug("transformCalvingScore()_Transforming calvingscorestr to 200, because calvingscorestr is 2 ", indstr);
     return 200;
   }else if(calvingscoreint == 3){
-    simpleDebug("transformCalvingScore()_Transforming calvingscorestr to 1, because calvingscorestr is 3 ", indstr);
+    simpleDebug("transformCalvingScore()_Transforming calvingscorestr to 100, because calvingscorestr is 3 ", indstr);
     return 100;
   }else if(calvingscoreint == 4){
-    simpleDebug("transformCalvingScore()_Transforming calvingscorestr to 1, because calvingscorestr is 4 ", indstr);
+    simpleDebug("transformCalvingScore()_Transforming calvingscorestr to 100, because calvingscorestr is 4 ", indstr);
     return 100;
   }else{
     simpleDebug("transformCalvingScore()_Transforming calvingscorestr to missing", indstr);

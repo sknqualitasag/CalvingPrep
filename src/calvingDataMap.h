@@ -6,7 +6,6 @@
 #include <algorithm>
 #include <set>
 #include "calvingData.h"
-#include "animalMap.h"
 #include "util.h"
 #include "date.h"
 #include "herd.h"
@@ -40,7 +39,7 @@ public:
 
   // functions for reading calving-data-file
   string getFileName(unsigned i, string name);
-  void inputCalvingData(string fname, animalMap  &AMap, int lastYearToConsiderData, bool parSampling, int startYearSampling, int endYearSampling,\
+  void inputCalvingData(string fname, int lastYearToConsiderData, bool parSampling, int startYearSampling, int endYearSampling,\
                         bool parselectSplitMandantBeef, bool parselectSplitMandantDairy);
   // Verification function of the reading fields
   string getVerifiedTvdNr(string id);

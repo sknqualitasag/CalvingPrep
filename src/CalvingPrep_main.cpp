@@ -58,7 +58,6 @@ int CalvingPrep_main(std::string paramFileName) {
 
   //Declare Map
   calvingDataMap cMap;
-  animalMap aMap;
 
 
   //Create DEBUG-File
@@ -79,7 +78,7 @@ int CalvingPrep_main(std::string paramFileName) {
   //Read raw calving-data and check the field of the data-record
   for(unsigned i=0; i<numberDataFiles; i++){
     string fileName = cMap.getFileName(i,dataFile);
-    cMap.inputCalvingData(fileName, aMap, lastYearToConsiderData, parSampling, startYearSampling, endYearSampling,\
+    cMap.inputCalvingData(fileName, lastYearToConsiderData, parSampling, startYearSampling, endYearSampling,\
                           parselectSplitMandantBeef, parselectSplitMandantDairy);
   }
 
