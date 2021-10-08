@@ -524,7 +524,7 @@ void calvingDataMap::inputCalvingData(string fname, int lastYearToConsiderData, 
        (*this)[key] = ptr;
        outputDebug("inputCalvingData()_The key " + key + " is in calvingDataMap available", ptr->idStr);
      }else{
-       //cout<<"The key "<<key<<" is already in Cmap, so "+ptr->idStr+" not taken in account."<<endl;
+       outputDebug("inputCalvingData()_The key " + key + " is already in Cmap, so the duplicate "+ptr->idStr+" not taken in account", ptr->idStr);
        numRepRecs++;
      }
 
