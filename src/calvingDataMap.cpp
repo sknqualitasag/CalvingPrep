@@ -1470,7 +1470,7 @@ void calvingDataMap::countBreedComb(){
   }
 
   for(map<string,int>::iterator sit = breedcombID.BreedCombStatistic.begin(); sit != breedcombID.BreedCombStatistic.end(); sit++){
-    simpleDebug("countBreedComb()_output of the map for breedcomb " + sit->first + " number observation per breedcomb " + to_string(sit->second), "");
+    outputDebug("countBreedComb()_output of the map for breedcomb " + sit->first + " number observation per breedcomb " + to_string(sit->second), "");
   }
 
 
@@ -1492,7 +1492,7 @@ void calvingDataMap::purgeBreedComb(){
     map<string,int>::iterator hit = breedcombID.BreedCombStatistic.find(ptr->breedCombStr);
     if(breedcombID.BreedCombStatistic[ptr->breedCombStr]  < CONSTANTS::MIN_OBS_PER_BREEDCOMB){
       breedcomb2Delete.insert(ptr->breedCombStr);
-      simpleDebug("purgeBreedComb()_inserted in breedcomb2Delete, breedCombStr " + hit->first + " has " + to_string(hit->second)  + " number observations", "");
+      outputDebug("purgeBreedComb()_inserted in breedcomb2Delete, breedCombStr " + hit->first + " has " + to_string(hit->second)  + " number observations", "");
     }
   }
 
@@ -1505,7 +1505,7 @@ void calvingDataMap::purgeBreedComb(){
     set<string>::iterator hit = breedcomb2Delete.find(ptr->breedCombStr);
     if(hit != breedcomb2Delete.end()){
       animals2Delete.insert(ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr);
-      simpleDebug("purgeBreedComb()_In the the list breedcomb2Delete is breedcomb: " + ptr->breedCombStr + " with key to delete of cMap "+ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr, ptr->idStr);
+      outputDebug("purgeBreedComb()_In the the list breedcomb2Delete is breedcomb: " + ptr->breedCombStr + " with key to delete of cMap "+ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr, ptr->idStr);
     }
   }
 
@@ -1513,7 +1513,7 @@ void calvingDataMap::purgeBreedComb(){
   unsigned count=0;
   for(set<string>::iterator ait = animals2Delete.begin(); ait != animals2Delete.end(); ait ++){
     this->erase(*ait);
-    simpleDebug("purgeBreedComb()_Record is deleted due to min numberObs not in the range ", *ait);
+    outputDebug("purgeBreedComb()_Record is deleted due to min numberObs not in the range ", *ait);
     count++;
   }
   cout<<"purgeBreedComb(): "<<count<<" animals removed from map and memory released."<<endl;
@@ -1521,7 +1521,7 @@ void calvingDataMap::purgeBreedComb(){
   cout<<"purgeBreedComb(): "<<this->size()<<" animals in map after purging breedcomb."<<endl;
   for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
     calvingData *ptr = (*it).second;
-    simpleDebug("purgeBreedComb()_Still in cMap after purging breedcomb "+ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr,ptr->idStr);
+    outputDebug("purgeBreedComb()_Still in cMap after purging breedcomb "+ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr,ptr->idStr);
   }
 
 
@@ -1569,9 +1569,9 @@ void calvingDataMap::purgeHerdYear(){
 
       if(sPtr->ObsPerHerdyear < CONSTANTS::MIN_OBS_PER_HERDYEAR){
         herdyear2Delete.insert(hPtr->herdyearIdStr);
-        simpleDebug("purgeHerdYear()_inserted in herdyear2Delete, herd.year " + hit->first + " has " + to_string(sPtr->ObsPerHerdyear)  + " number observations", "");
+        outputDebug("purgeHerdYear()_inserted in herdyear2Delete, herd.year " + hit->first + " has " + to_string(sPtr->ObsPerHerdyear)  + " number observations", "");
       }else{
-        simpleDebug("purgeHerdYear()_herd.year " + hit->first + " has " + to_string(sPtr->ObsPerHerdyear)  + " number observations", "");
+        outputDebug("purgeHerdYear()_herd.year " + hit->first + " has " + to_string(sPtr->ObsPerHerdyear)  + " number observations", "");
       }
     }
   }
@@ -1584,7 +1584,7 @@ void calvingDataMap::purgeHerdYear(){
     set<string>::iterator hit = herdyear2Delete.find(ptr->herdStr+"."+ptr->calvingdate.YearStr);
     if(hit != herdyear2Delete.end()){
       animals2Delete.insert(ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr);
-      simpleDebug("purgeHerdYear()_In the the list herdyear2Delete is herd.year: " + ptr->herdStr+"."+ptr->calvingdate.YearStr + " with key to delete of cMap "+ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr, ptr->idStr);
+      outputDebug("purgeHerdYear()_In the the list herdyear2Delete is herd.year: " + ptr->herdStr+"."+ptr->calvingdate.YearStr + " with key to delete of cMap "+ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr, ptr->idStr);
     }
   }
 
@@ -1592,7 +1592,7 @@ void calvingDataMap::purgeHerdYear(){
   unsigned count=0;
   for(set<string>::iterator ait = animals2Delete.begin(); ait != animals2Delete.end(); ait ++){
     this->erase(*ait);
-    simpleDebug("purgeHerdYear()_Record is deleted due to min numberObs not in the range ", *ait);
+    outputDebug("purgeHerdYear()_Record is deleted due to min numberObs not in the range ", *ait);
     count++;
   }
   cout<<"purgeHerdYear(): "<<count<<" animals removed from map and memory released."<<endl;
@@ -1600,7 +1600,7 @@ void calvingDataMap::purgeHerdYear(){
   cout<<"purgeHerdYear(): "<<this->size()<<" animals in map after purging herd year."<<endl;
   for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
     calvingData *ptr = (*it).second;
-    simpleDebug("purgeHerdYear()_Still in cMap after purging herd.year "+ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr,ptr->idStr);
+    outputDebug("purgeHerdYear()_Still in cMap after purging herd.year "+ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr,ptr->idStr);
   }
 
 
@@ -1624,9 +1624,9 @@ void calvingDataMap::purgeHerdYearSire(){
 
       if(sPtr->SiresPerHerdyear < CONSTANTS::MIN_SIRE_PER_HERDYEAR){
         herdyearsire2Delete.insert(hPtr->herdyearIdStr);
-        simpleDebug("purgeHerdYearSire()_inserted in herdyearsire2Delete, herd.year " + hit->first + " has " + to_string(sPtr->SiresPerHerdyear)  + " number sires", "");
+        outputDebug("purgeHerdYearSire()_inserted in herdyearsire2Delete, herd.year " + hit->first + " has " + to_string(sPtr->SiresPerHerdyear)  + " number sires", "");
       }else{
-        simpleDebug("purgeHerdYearSire()_herd.year " + hit->first + " has " + to_string(sPtr->SiresPerHerdyear)  + " number sires", "");
+        outputDebug("purgeHerdYearSire()_herd.year " + hit->first + " has " + to_string(sPtr->SiresPerHerdyear)  + " number sires", "");
       }
     }
   }
@@ -1639,7 +1639,7 @@ void calvingDataMap::purgeHerdYearSire(){
     set<string>::iterator hit = herdyearsire2Delete.find(ptr->herdStr+"."+ptr->calvingdate.YearStr);
     if(hit != herdyearsire2Delete.end()){
       animals2Delete.insert(ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr);
-      simpleDebug("purgeHerdYearSire()_In the the list herdyearsire2Delete is herd.year: " + ptr->herdStr+"."+ptr->calvingdate.YearStr + " with key to delete of cMap "+ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr, ptr->idStr);
+      outputDebug("purgeHerdYearSire()_In the the list herdyearsire2Delete is herd.year: " + ptr->herdStr+"."+ptr->calvingdate.YearStr + " with key to delete of cMap "+ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr, ptr->idStr);
     }
   }
 
@@ -1647,7 +1647,7 @@ void calvingDataMap::purgeHerdYearSire(){
   unsigned count=0;
   for(set<string>::iterator ait = animals2Delete.begin(); ait != animals2Delete.end(); ait ++){
     this->erase(*ait);
-    simpleDebug("purgeHerdYearSire()_Record is deleted due to min number sire not in the range ", *ait);
+    outputDebug("purgeHerdYearSire()_Record is deleted due to min number sire not in the range ", *ait);
     count++;
   }
   cout<<"purgeHerdYearSire(): "<<count<<" animals removed from map and memory released."<<endl;
@@ -1655,7 +1655,7 @@ void calvingDataMap::purgeHerdYearSire(){
   cout<<"purgeHerdYearSire(): "<<this->size()<<" animals in map after purging herd year sire."<<endl;
   for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
     calvingData *ptr = (*it).second;
-    simpleDebug("purgeHerdYearSire()_Still in cMap after purging herd.year.sire "+ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr,ptr->idStr);
+    outputDebug("purgeHerdYearSire()_Still in cMap after purging herd.year.sire "+ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr,ptr->idStr);
   }
 
 
@@ -1707,8 +1707,8 @@ void calvingDataMap::stdHerd(){
 
 
       //statistic per herd
-      simpleDebug("stdHerd()_herd is " + hit->first + " with trait  " + sPtr->trait + " has " + to_string(sPtr->ObsPerHerd) + " observation(s) and it's standarddeviation " + to_string(cPtr->Std), "");
-      simpleDebug("stdHerd()_Trait: " + sPtr->trait + "  | SSQ: " + to_string(sPtr->Quadriert) + " | Sum: " + to_string(sPtr->Sum)  + " | Herd: " + hit->first,"");
+      outputDebug("stdHerd()_herd is " + hit->first + " with trait  " + sPtr->trait + " has " + to_string(sPtr->ObsPerHerd) + " observation(s) and it's standarddeviation " + to_string(cPtr->Std), "");
+      outputDebug("stdHerd()_Trait: " + sPtr->trait + "  | SSQ: " + to_string(sPtr->Quadriert) + " | Sum: " + to_string(sPtr->Sum)  + " | Herd: " + hit->first,"");
     }
   }
 }
@@ -1732,14 +1732,14 @@ void calvingDataMap::purgeHerd(){
       statistic *cPtr = hPtr->HerdStatistic[sPtr->trait];
       if(cPtr->Std < CONSTANTS::STD_TRAIT_ZERO_PER_HERD){
         deleteHerd = true;
-        simpleDebug("purgeHerd()_herd has " + hit->first + " no variance for the trait " + sPtr->trait, "");
+        outputDebug("purgeHerd()_herd has " + hit->first + " no variance for the trait " + sPtr->trait, "");
       }else{
-        simpleDebug("purgeHerd()_herd has " + hit->first + " variance for the trait " + sPtr->trait, "");
+        outputDebug("purgeHerd()_herd has " + hit->first + " variance for the trait " + sPtr->trait, "");
       }
     }
     if(deleteHerd){
       herd2Delete.insert(hPtr->herdIdStr);
-      simpleDebug("purgeHerd()_herd has " + hit->first + " no variance and is inserted in herd2Delete.", "");
+      outputDebug("purgeHerd()_herd has " + hit->first + " no variance and is inserted in herd2Delete.", "");
     }
 
   }
@@ -1753,7 +1753,7 @@ void calvingDataMap::purgeHerd(){
     set<string>::iterator hit = herd2Delete.find(ptr->herdStr);
     if(hit != herd2Delete.end()){
       animals2Delete.insert(ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr);
-      simpleDebug("purgeHerd()_In the the list herd2Delete is herd: " + ptr->herdStr + " with key to delete of cMap "+ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr, ptr->idStr);
+      outputDebug("purgeHerd()_In the the list herd2Delete is herd: " + ptr->herdStr + " with key to delete of cMap "+ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr, ptr->idStr);
     }
   }
 
@@ -1762,7 +1762,7 @@ void calvingDataMap::purgeHerd(){
   unsigned count=0;
   for(set<string>::iterator ait = animals2Delete.begin(); ait != animals2Delete.end(); ait ++){
     this->erase(*ait);
-    simpleDebug("purgeHerd()_Record is deleted due to no variance, cMap key is "+*ait, "");
+    outputDebug("purgeHerd()_Record is deleted due to no variance, cMap key is "+*ait, "");
     count++;
   }
   cout<<"purgeHerd(): "<<count<<" animals removed from map and memory released."<<endl;
@@ -1770,7 +1770,7 @@ void calvingDataMap::purgeHerd(){
   cout<<"purgeHerd(): "<<this->size()<<" animals in map after purging herd."<<endl;
   for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
     calvingData *ptr = (*it).second;
-    simpleDebug("purgeHerd()_Still in cMap after purging herd "+ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr,ptr->idStr);
+    outputDebug("purgeHerd()_Still in cMap after purging herd "+ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr,ptr->idStr);
   }
 
 
@@ -1795,7 +1795,7 @@ void calvingDataMap::countSire(){
   }
 
   for(map<string,int>::iterator sit = sireID.SireStatistic.begin(); sit != sireID.SireStatistic.end(); sit++){
-    simpleDebug("countSire()_output of the map for sire " + sit->first + " number observation per sire " + to_string(sit->second), "");
+    outputDebug("countSire()_output of the map for sire " + sit->first + " number observation per sire " + to_string(sit->second), "");
   }
 
 }
@@ -1816,7 +1816,7 @@ void calvingDataMap::purgeSire(){
     map<string,int>::iterator hit = sireID.SireStatistic.find(ptr->sireStr);
     if(sireID.SireStatistic[ptr->sireStr]  < CONSTANTS::MIN_OBS_PER_SIRE){
       sire2Delete.insert(ptr->sireStr);
-      simpleDebug("purgeSire()_inserted in sire2Delete, sire " + hit->first + " has " + to_string(hit->second)  + " number observations", "");
+      outputDebug("purgeSire()_inserted in sire2Delete, sire " + hit->first + " has " + to_string(hit->second)  + " number observations", "");
     }
   }
 
@@ -1829,7 +1829,7 @@ void calvingDataMap::purgeSire(){
     set<string>::iterator hit = sire2Delete.find(ptr->sireStr);
     if(hit != sire2Delete.end()){
       animals2Delete.insert(ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr);
-      simpleDebug("purgeSire()_In the the list sire2Delete is sire: " + ptr->sireStr + " with key to delete of cMap "+ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr, ptr->idStr);
+      outputDebug("purgeSire()_In the the list sire2Delete is sire: " + ptr->sireStr + " with key to delete of cMap "+ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr, ptr->idStr);
     }
   }
 
@@ -1837,7 +1837,7 @@ void calvingDataMap::purgeSire(){
   unsigned count=0;
   for(set<string>::iterator ait = animals2Delete.begin(); ait != animals2Delete.end(); ait ++){
     this->erase(*ait);
-    simpleDebug("purgeSire()_Record is deleted due to min numberObs not in the range ", *ait);
+    outputDebug("purgeSire()_Record is deleted due to min numberObs not in the range ", *ait);
     count++;
   }
   cout<<"purgeSire(): "<<count<<" animals removed from map and memory released."<<endl;
@@ -1845,7 +1845,7 @@ void calvingDataMap::purgeSire(){
   cout<<"purgeSire(): "<<this->size()<<" animals in map after purging sire."<<endl;
   for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
     calvingData *ptr = (*it).second;
-    simpleDebug("purgeSire()_Still in cMap after purging sire "+ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr,ptr->idStr);
+    outputDebug("purgeSire()_Still in cMap after purging sire "+ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr,ptr->idStr);
   }
 
 
@@ -1871,7 +1871,7 @@ void calvingDataMap::drawHerd(unsigned proportion, unsigned seed){
       k = herdCounter % proportion;
       if(k != seed){
         herds2Delete.insert(hPtr->herdIdStr);
-        simpleDebug("drawHerd()_herd " + hPtr->herdIdStr + " is not taken into account in the sampling", "");
+        outputDebug("drawHerd()_herd " + hPtr->herdIdStr + " is not taken into account in the sampling", "");
       }
     }
     cout<<"drawHerd(): "<<herds2Delete.size()<<" herds are not taken into account in the sampling."<<endl;
@@ -1883,14 +1883,14 @@ void calvingDataMap::drawHerd(unsigned proportion, unsigned seed){
       set<string>::iterator hit = herds2Delete.find(ptr->herdStr);
       if(hit != herds2Delete.end()){
         animals2Delete.insert(ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr);
-        simpleDebug("drawHerd()_In the the list herds2Delete is herd: " + ptr->herdStr + " with key to delete of cMap "+ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr, ptr->idStr);
+        outputDebug("drawHerd()_In the the list herds2Delete is herd: " + ptr->herdStr + " with key to delete of cMap "+ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr, ptr->idStr);
       }
     }
 
     unsigned count=0;
     for(set<string>::iterator ait = animals2Delete.begin(); ait != animals2Delete.end(); ait ++){
       this->erase(*ait);
-      simpleDebug("drawHerd()_Record is not sampled, cMap key is "+*ait, "");
+      outputDebug("drawHerd()_Record is not sampled, cMap key is "+*ait, "");
       count++;
     }
     cout<<"drawHerd(): "<<count<<" animals removed from map and memory released."<<endl;
@@ -1898,7 +1898,7 @@ void calvingDataMap::drawHerd(unsigned proportion, unsigned seed){
     cout<<"drawHerd(): "<<this->size()<<" animals in map after drawing herd."<<endl;
     for(map<string, calvingData*>::iterator it=begin();it!=end();it++){
       calvingData *ptr = (*it).second;
-      simpleDebug("drawHerd()_Still in cMap after drawing herd "+ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr,ptr->idStr);
+      outputDebug("drawHerd()_Still in cMap after drawing herd "+ptr->damStr+"."+ptr->calvingdate.YearStr+"."+ptr->calvingdate.MonthStr,ptr->idStr);
     }
 
   }else{

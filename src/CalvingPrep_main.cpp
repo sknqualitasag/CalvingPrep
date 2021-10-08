@@ -81,42 +81,42 @@ int CalvingPrep_main(std::string paramFileName) {
                           parselectSplitMandantBeef, parselectSplitMandantDairy);
   }
 
-//  // Minimum observations per breedcombination
-//  cMap.countBreedComb();
-//  cMap.purgeBreedComb();
-//
-//
-//  // Minimum observations per herdyear
-//  // Minimum sires per herdyear
-//  cMap.countHerdYearSire();
-//  cMap.purgeHerdYear();
-//  cMap.purgeHerdYearSire();
-//
-//
-//  // Check Variance per herd
-//  cMap.countHerd();
-//  cMap.stdHerd();
-//  cMap.purgeHerd();
-//
-//
-//  // Minimum observation per sire
-//  cMap.countSire();
-//  cMap.purgeSire();
-//
-//
-//  // Draw a sample of data based on herds
-//  cMap.drawHerd(proportion, seed);
-//
-//
-//  //Coding the effects
-//  cMap.codeEffects();
-//
-//
-//  //Phenotyp Output
-////  cMap.pheno_out();
-//
-//  // Output for MiX99
-//  cMap.output(outputPhenFile);
+  // Minimum observations per breedcombination
+  cMap.countBreedComb();
+  cMap.purgeBreedComb();
+
+
+  // Minimum observations per herdyear
+  // Minimum sires per herdyear
+  cMap.countHerdYearSire();
+  cMap.purgeHerdYear();
+  cMap.purgeHerdYearSire();
+
+
+  // Check Variance per herd
+  cMap.countHerd();
+  cMap.stdHerd();
+  cMap.purgeHerd();
+
+
+  // Minimum observation per sire
+  cMap.countSire();
+  cMap.purgeSire();
+
+
+  // Draw a sample of data based on herds
+  cMap.drawHerd(proportion, seed);
+
+
+  //Coding the effects
+  cMap.codeEffects();
+
+
+  //Phenotyp Output
+  //cMap.pheno_out();
+
+  // Output for MiX99
+  cMap.output(outputPhenFile);
 
 
   //Time tracking
