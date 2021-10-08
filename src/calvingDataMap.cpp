@@ -267,26 +267,26 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
       numCols = colData.size();
       continue;
     }else if(colData.size() != numCols){
-      cout<<"inputData(): Number of columns on line "<<lineNumber<<" in file "<<fname<<" is "<<colData.size()<<", but the header of the files has "<<numCols<<" labels."<<endl;
+      cout<<"inputCalvingData(): Number of columns on line "<<lineNumber<<" in file "<<fname<<" is "<<colData.size()<<", but the header of the files has "<<numCols<<" labels."<<endl;
       exit(19);
     }
 
 
-    simpleDebug("inputData()_Input Line inputStr " + inputStr, "");
+    simpleDebug("inputCalvingData()_Input Line inputStr " + inputStr, "");
     string psRunningMode = getRunningMode();
 
 
     // Verification for fields as colData
-    simpleDebug("inputData()_getVerifiedTvdNr of dam",colData[0]);
+    simpleDebug("inputCalvingData()_getVerifiedTvdNr of dam",colData[0]);
     string mstr = getVerifiedTvdNr(colData[0]);
     string mbreedstr = verifyBreed(colData[1],mstr);
     string mvbreedstr = verifyBreed(colData[2],"");
     string idsexstr = verifySexBirth(colData[3],colData[6]);
-    simpleDebug("inputData()_Call contructor date for mbirthdate " + colData[4], mstr);
+    simpleDebug("inputCalvingData()_Call contructor date for mbirthdate " + colData[4], mstr);
     date mbirthdate = date(colData[4], lastYearToConsiderData, psRunningMode, mstr);
-    simpleDebug("inputData()_Call contructor date for calvingdate " + colData[5], colData[6]);
+    simpleDebug("inputCalvingData()_Call contructor date for calvingdate " + colData[5], colData[6]);
     date calvingdate = date(colData[5], lastYearToConsiderData, psRunningMode, colData[6]);
-    simpleDebug("inputData()_getVerifiedTvdNr of animal",colData[6]);
+    simpleDebug("inputCalvingData()_getVerifiedTvdNr of animal",colData[6]);
     string idstr = getVerifiedTvdNr(colData[6]);
     string idbreedstr = verifyBreed(colData[7],idstr);
     int idbirthweightint = verifyBirthWeight(colData[8],idstr);
@@ -295,26 +295,26 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     int calvingscoreint = verifyCalvingscore(colData[11],idstr);
     int stillbirthint = verifyStillbirth(colData[12], calvingdate, idstr);
     int prematurebirthint = verifyPrematurity(colData[13],idstr);
-    simpleDebug("inputData()_getVerifiedTvdNr of geneticmother",colData[14]);
+    simpleDebug("inputCalvingData()_getVerifiedTvdNr of geneticmother",colData[14]);
     string geneticmotherstr = getVerifiedTvdNr(colData[14]);
-    simpleDebug("inputData()_getVerifiedTvdNr of sire",colData[15]);
+    simpleDebug("inputCalvingData()_getVerifiedTvdNr of sire",colData[15]);
     string fstr = getVerifiedTvdNr(colData[15]);
     string fbreedstr = verifySireBreed(colData[16], fstr);
     string herdstr = verifyHerd(colData[17], idstr);
     string mandatestr = verifyMandate(colData[18], idstr);
-    simpleDebug("inputData()_Call contructor date for insemmotherstartdate " + colData[19], idstr);
+    simpleDebug("inputCalvingData()_Call contructor date for insemmotherstartdate " + colData[19], idstr);
     date insemmotherstartdate = date(colData[19], lastYearToConsiderData, psRunningMode, idstr);
-    simpleDebug("inputData()_Call contructor date for insemmotherenddate " + colData[20], idstr);
+    simpleDebug("inputCalvingData()_Call contructor date for insemmotherenddate " + colData[20], idstr);
     date insemmotherenddate = date(colData[20], lastYearToConsiderData, psRunningMode, idstr);
     int lnint = verifyLactationNumber(colData[21],idstr);
-    simpleDebug("inputData()_Call contructor date for deathmotherdate " + colData[22], idstr);
+    simpleDebug("inputCalvingData()_Call contructor date for deathmotherdate " + colData[22], idstr);
     date deathmotherdate = date(colData[22], lastYearToConsiderData, psRunningMode, idstr);
-    simpleDebug("inputData()_Call contructor date for deathmothertvddate", idstr);
+    simpleDebug("inputCalvingData()_Call contructor date for deathmothertvddate", idstr);
     date deathmothertvddate = date(colData[23], lastYearToConsiderData, psRunningMode, idstr);
     int ETint = verifyET(colData[24], idstr);
-    simpleDebug("inputData()_Call contructor date for calfbefore_calvingdate", idstr);
+    simpleDebug("inputCalvingData()_Call contructor date for calfbefore_calvingdate", idstr);
     date calfbefore_calvingdate = date(colData[25], lastYearToConsiderData, psRunningMode, idstr);
-    simpleDebug("inputData()_Call contructor date for firstcalvingdate", idstr);
+    simpleDebug("inputCalvingData()_Call contructor date for firstcalvingdate", idstr);
     date firstcalvingdate = date(colData[26], lastYearToConsiderData, psRunningMode, idstr);
     string afterbirthsexstr = colData[27];
     int recordtypinsemint = verifyRecordTypIns(colData[28], idstr);
@@ -324,11 +324,11 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     string insemorganisation = colData[32];
     string animIDstr = verifyAnimNr(colData[33], idstr);
     string itbIDstr = getVerifiedITBNr(colData[34], idstr);
-    simpleDebug("inputData()_verifyAnimNr of dam",mstr);
+    simpleDebug("inputCalvingData()_verifyAnimNr of dam",mstr);
     string damIDstr = verifyAnimNr(colData[35], mstr);
-    simpleDebug("inputData()_verifyAnimNr of sire",fstr);
+    simpleDebug("inputCalvingData()_verifyAnimNr of sire",fstr);
     string sireIDstr = verifyAnimNr(colData[36], fstr);
-    simpleDebug("inputData()_Call contructor date for deathcalfdate", idstr);
+    simpleDebug("inputCalvingData()_Call contructor date for deathcalfdate", idstr);
     date deathcalfdate = date(colData[37], lastYearToConsiderData, psRunningMode, idstr);
 
     // Second verification of declared fields
@@ -340,7 +340,7 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
 
     // Set a new field in dependency to other already declared fields
     bool sourceMKS = setSourceVMS(mandatestr, idstr);
-    simpleDebug("inputData()_after setSourceVMS, new field sourceMKS is "+to_string(sourceMKS),idstr);
+    simpleDebug("inputCalvingData()_after setSourceVMS, new field sourceMKS is "+to_string(sourceMKS),idstr);
     string breedCombstr = setBreedComb(mbreedstr, fbreedstr, idstr);
     string sourceBeefOrDairystr = setSourceBeefOrDairy(mbreedstr, idstr);
 
@@ -370,16 +370,16 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     set<string>::iterator dsit = dummySires.find(fstr);
     if(dsit!=dummySires.end()){
       fstr = CONSTANTS::STRING_NA;
-      simpleDebug("inputData()_sire in dummySires so set sire to missing", idstr);
+      simpleDebug("inputCalvingData()_sire in dummySires so set sire to missing", idstr);
     }
     dsit = dummySires.find(mstr);
     if(dsit!=dummySires.end()){
       mstr = CONSTANTS::STRING_NA;
-      simpleDebug("inputData()_dam in dummySires so set dam to missing", idstr);
+      simpleDebug("inputCalvingData()_dam in dummySires so set dam to missing", idstr);
     }
     dsit = dummySires.find(idstr);
     if(dsit!=dummySires.end()){
-      simpleDebug("inputData()_animal in dummySires so continue", idstr);
+      simpleDebug("inputCalvingData()_animal in dummySires so continue", idstr);
       continue;
     }
 
@@ -389,25 +389,25 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     // however a lot calves have missing sex, so it is still kept
     // calvingdate.YearStr is used to build a fix effect
     if(calvingdate.YearStr == CONSTANTS::STRING_NA){
-      simpleDebug("inputData()_Animal is not read in calvingDataMap, because calvingdate.YearStr is missing", idstr);
+      simpleDebug("inputCalvingData()_Animal is not read in calvingDataMap, because calvingdate.YearStr is missing", idstr);
       calvingYearNotRead++;
       continue;
     }
     // calvingdate.MonthStr is used to build a fix effect
     if(calvingdate.MonthStr == CONSTANTS::STRING_NA){
-      simpleDebug("inputData()_Animal is not read in calvingDataMap, because calvingdate.MonthStr is missing", idstr);
+      simpleDebug("inputCalvingData()_Animal is not read in calvingDataMap, because calvingdate.MonthStr is missing", idstr);
       calvingMonthNotRead++;
       continue;
     }
     // lnint is used to build a fix effect
     if(lnint == CONSTANTS::INT_NA){
-      simpleDebug("inputData()_Animal is not read in calvingDataMap, because lnint is missing", idstr);
+      simpleDebug("inputCalvingData()_Animal is not read in calvingDataMap, because lnint is missing", idstr);
       lacationNumberNotRead++;
       continue;
     }
     // calvingAgeInDays is used to build a fix effect
     if(calvingAgeInDays == CONSTANTS::INT_NA){
-      simpleDebug("inputData()_Animal is not read in calvingDataMap, because calvingAgeInDays is missing", idstr);
+      simpleDebug("inputCalvingData()_Animal is not read in calvingDataMap, because calvingAgeInDays is missing", idstr);
       calvingAgeInDaysNotRead++;
       continue;
     }
@@ -415,90 +415,90 @@ void calvingDataMap::inputCalvingData(string fname, animalMap  &AMap, int lastYe
     // a minimum number per breedComb should be available, otherwise record removed
     // but at this stage first check about sire breed which should correspond to the major breed of interest
     if(fbreedstr == CONSTANTS::STRING_NA){
-      simpleDebug("inputData()_Animal is not read in calvingDataMap, because fbreedstr is missing", idstr);
+      simpleDebug("inputCalvingData()_Animal is not read in calvingDataMap, because fbreedstr is missing", idstr);
       sirebreedNotRead++;
       continue;
     }
     // sourceBeefOrDairystr is used to define the trait
     if(sourceBeefOrDairystr == CONSTANTS::STRING_NA){
-      simpleDebug("inputData()_Animal is not read in calvingDataMap, because sourceBeefOrDairystr is missing", idstr);
+      simpleDebug("inputCalvingData()_Animal is not read in calvingDataMap, because sourceBeefOrDairystr is missing", idstr);
       sourceBeefOrDairyNotRead++;
       continue;
     }
     // herdstr is used to build a random effect
     if(herdstr == CONSTANTS::STRING_NA){
-      simpleDebug("inputData()_Animal is not read in calvingDataMap, because herdstr is missing", idstr);
+      simpleDebug("inputCalvingData()_Animal is not read in calvingDataMap, because herdstr is missing", idstr);
       herdNotRead++;
       continue;
     }
     // fstr is used to build a random effect for the sire model
     if(fstr == CONSTANTS::STRING_NA){
-      simpleDebug("inputData()_Animal is not read in calvingDataMap, because fstr is missing", idstr);
+      simpleDebug("inputCalvingData()_Animal is not read in calvingDataMap, because fstr is missing", idstr);
       sireNotRead++;
       continue;
     }
     // mstr could be used for maternal effect
     if(mstr == CONSTANTS::STRING_NA){
-      simpleDebug("inputData()_Animal is not read in calvingDataMap, because mstr is missing", idstr);
+      simpleDebug("inputCalvingData()_Animal is not read in calvingDataMap, because mstr is missing", idstr);
       damNotRead++;
       continue;
     }
     // mandatestr is used to define the trait
     if(mandatestr == CONSTANTS::STRING_NA){
-      simpleDebug("inputData()_Animal is not read in calvingDataMap, because mandatestr is missing", idstr);
+      simpleDebug("inputCalvingData()_Animal is not read in calvingDataMap, because mandatestr is missing", idstr);
       mandantNotRead++;
       continue;
     }
     // transformedstillbirthint could be used as trait and should be available thank deathcalfdate information
     if(transformedstillbirthint == CONSTANTS::INT_NA){
-      simpleDebug("inputData()_Animal is not read in calvingDataMap, because transformedstillbirthint is missing", idstr);
+      simpleDebug("inputCalvingData()_Animal is not read in calvingDataMap, because transformedstillbirthint is missing", idstr);
       stillbirthNotRead++;
       continue;
     }
     // alive and animal without id should not be readen
     if(stillbirthint == 1 && idstr == CONSTANTS::STRING_NA){
-      simpleDebug("inputData()_Animal is not read in calvingDataMap, because alive with missing animal id ", idstr);
+      simpleDebug("inputCalvingData()_Animal is not read in calvingDataMap, because alive with missing animal id ", idstr);
       aliveIdmissingNotRead++;
       continue;
     }
     // calvingscoreint or birthweight should be available, at least one should be available
     if(calvingscoreint == CONSTANTS::INT_NA && idbirthweightint == CONSTANTS::INT_NA){
-      simpleDebug("inputData()_Animal is not read in calvingDataMap, because calvingscoreint or idbirthweightint is missing", idstr);
+      simpleDebug("inputCalvingData()_Animal is not read in calvingDataMap, because calvingscoreint or idbirthweightint is missing", idstr);
       traitNotRead++;
       continue;
     }
     // multiple not considered
     if(multiplestr == "1"){
-      simpleDebug("inputData()_Animal is not read in calvingDataMap, because it is an multiplestr", idstr);
+      simpleDebug("inputCalvingData()_Animal is not read in calvingDataMap, because it is an multiplestr", idstr);
       MultipleNotRead++;
       continue;
     }
     // prematurebirthint not considered
     if(prematurebirthint == 1){
-      simpleDebug("inputData()_Animal is not read in calvingDataMap, because it is an prematurebirthint", idstr);
+      simpleDebug("inputCalvingData()_Animal is not read in calvingDataMap, because it is an prematurebirthint", idstr);
       PrematureNotRead++;
       continue;
     }
     // abortint not considered
     if(abortint == 1){
-      simpleDebug("inputData()_Animal is not read in calvingDataMap, because it is an abortint", idstr);
+      simpleDebug("inputCalvingData()_Animal is not read in calvingDataMap, because it is an abortint", idstr);
       AbortNotRead++;
       continue;
     }
     // ETint not considered
     if(ETint == 1){
-      simpleDebug("inputData()_Animal is not read in calvingDataMap, because it is an ETint", idstr);
+      simpleDebug("inputCalvingData()_Animal is not read in calvingDataMap, because it is an ETint", idstr);
       ETNotRead++;
       continue;
     }
     // id has to be available
     if(idstr == CONSTANTS::STRING_NA){
-      simpleDebug("inputData()_Animal is not read in calvingDataMap, because idstr is missing", idstr);
+      simpleDebug("inputCalvingData()_Animal is not read in calvingDataMap, because idstr is missing", idstr);
       continue;
     }
     // sampling during a certain period of time
     if(verifySampling(parSampling, calvingdate, startYearSampling, endYearSampling, idstr)){
-      simpleDebug("inputData()_Animal is not read in animalMap, because sampling based on calvingdate", idstr);
+      simpleDebug("inputCalvingData()_Animal is not read in animalMap, because sampling based on calvingdate", idstr);
       SamplingNotRead++;
       continue;
     }
