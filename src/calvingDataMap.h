@@ -29,10 +29,13 @@ public:
   // functions for debugging
   void setRunningMode(string psRunningMode);
   string getRunningMode();
+  void inputDebug(string psRunModeFile);
   void simpleDebug(string message, string tvdid);
   void outputDebug(string message, string tvdid);
   // running mode indicating whether debug information should be printed or not
   string runningMode;
+  // list of TVD-Ids for which we want to output debugging information
+  vector <string> debugTvdIds;
 
 
   // functions for reading calving-data-file

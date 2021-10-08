@@ -45,6 +45,7 @@ int CalvingPrep_main(std::string paramFileName) {
   int lastYearToConsiderData                  = parmMap.getInteger("lastYearToConsiderData");
   std::string outputPhenFile                  = parmMap.getString("outputPhenFile");
   std::string parRunMode                      = parmMap.getString("DEBUG");//yes = turn on debugging
+  std::string parRunModeFile                  = parmMap.getString("DEBUGFile");
   unsigned proportion                         = parmMap.getUnsigned("proportion");//1 = draw sample on herds; 0 = not draw sample
   unsigned seed                               = parmMap.getUnsigned("seed");//0 = not draw sample;
   bool parSampling                            = parmMap.getBoolean("sampling");//true = sampling; false = not sampling
@@ -61,17 +62,10 @@ int CalvingPrep_main(std::string paramFileName) {
 
 
   //Create DEBUG-File
-//  if (parRunMode == CONSTANTS::DEBUG){
-//    plog::init(plog::debug, "DEBUG_CalvingPrepare.txt");
-//    cMap.setRunningMode(CONSTANTS::RUNNING_DEBUGALL);
-//  }
-
-
-  //Create DEBUG-File
   if (parRunMode == CONSTANTS::DEBUG){
     plog::init(plog::debug, "DEBUG_CalvingPrepare.txt");
     cMap.setRunningMode(CONSTANTS::RUNNING_DEBUG);
-//    aMap.inputDebug(parRunModeFile);
+    cMap.inputDebug(parRunModeFile);
   }
   else if(parRunMode == CONSTANTS::DEBUGALL){
     plog::init(plog::debug, "DEBUG_CalvingPrepare.txt");

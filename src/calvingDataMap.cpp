@@ -124,6 +124,32 @@ string calvingDataMap::getRunningMode(){
 }
 
 
+// read debug File
+void calvingDataMap::inputDebug(string psRunModeFile){
+
+  // checking whether file psRunModFile exists, if not exit with error 8
+  ifstream datafile(psRunModeFile.c_str());
+  if(!datafile){
+    cout<< "inputDebug(): Cannot open file "<<psRunModeFile<<endl;
+    exit(8);
+  }
+
+  cout<<"\ninputDebug(): Reading file "<<psRunModeFile<<endl;
+  cout<<"*****************************************************************"<< endl;
+
+  // define a string to hold one line of input
+  string inputStr;
+  // counts for linenumbers
+  unsigned lineNumber=0;
+  // loop over all lines of input file, reading one line at the time
+  while (getline(datafile,inputStr)){
+    LOGD <<"Input Line inputStr "<<inputStr;
+    debugTvdIds.push_back(inputStr);
+    lineNumber++;
+  }
+}
+
+
 // simple debug File
 void calvingDataMap::simpleDebug(string message, string tvdid){
   string localRunningMode = getRunningMode();
@@ -131,12 +157,12 @@ void calvingDataMap::simpleDebug(string message, string tvdid){
     //here Debug-Output-Logfile
     LOGD <<"Message "<<message<<" of animal "<<tvdid;
   }else if(localRunningMode == CONSTANTS::RUNNING_DEBUG){
-//    for (vector<string>::iterator vecit=debugTvdIds.begin(); vecit!=debugTvdIds.end(); vecit++){
-//      if(*vecit == tvdid){
-//        //here Debug-Output-Logfile
-//        LOGD <<"Message "<<message<<" of animal "<<tvdid;
-//      }
-//    }
+    for (vector<string>::iterator vecit=debugTvdIds.begin(); vecit!=debugTvdIds.end(); vecit++){
+      if(*vecit == tvdid){
+        //here Debug-Output-Logfile
+        LOGD <<"Message "<<message<<" of animal "<<tvdid;
+      }
+    }
   }
 }
 
@@ -168,7 +194,12 @@ void calvingDataMap::outputDebug(string message, string tvdid){
       }
     }
   }else if(localRunningMode == CONSTANTS::RUNNING_DEBUG){
-//
+    for (vector<string>::iterator vecit=debugTvdIds.begin(); vecit!=debugTvdIds.end(); vecit++){
+      if(*vecit == tvdid){
+        //here Debug-Output-Logfile
+        LOGD <<"Message "<<message<<" of animal "<<tvdid;
+      }
+    }
   }
 }
 
