@@ -55,4 +55,20 @@ const unsigned CONSTANTS::MIN_OBS_PER_SIRE = 5;
 const double CONSTANTS::STD_TRAIT_ZERO_PER_HERD = 0.0001;
 //' minimum observation per breedcomb
 const unsigned CONSTANTS::MIN_OBS_PER_BREEDCOMB = 100;
+// string corresponding to interbeef
+const char CONSTANTS::INTERBEEF[] = "yes";
+// string corresponding to interbeef category Beef On Beef
+const char CONSTANTS::INTERBEEF_CATEGORY_BEEFONBEEF[] = "BeefOnBeef";
+// string corresponding to interbeef category Beef On Dairy
+const char CONSTANTS::INTERBEEF_CATEGORY_BEEFONDAIRY[] = "BeefOnDairy";
+// string corresponding to breed Limouusin interbeef
+const char CONSTANTS::LM_INTERBEEFBREED[] = "LM";
+// string corresponding to breed Charolais interbeef
+const char CONSTANTS::CH_INTERBEEFBREED[] = "CH";
+// string corresponding to breed Simmental interbeef
+const char CONSTANTS::SM_INTERBEEFBREED[] = "SI";
+// string corresponding to breed Angus interbeef
+const char CONSTANTS::AN_INTERBEEFBREED[] = "AN";
+// string corresponding to breed Simmental interbeef
+const char CONSTANTS::HH_INTERBEEFBREED[] = "HH";
 

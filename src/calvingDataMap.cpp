@@ -2494,3 +2494,50 @@ void calvingDataMap::output(string outputPhenFile){
   cout<<endl<<"There are "<<dataVec.size()<<" animals with complete observations on independent variables."<<endl;
 
 }
+
+
+
+//Generate list to create with an other programm the pedigree file 601 for interbeef
+void calvingDataMap::outputInterbeef601(string psBreed, string categoryInterbeef){
+
+  string itbBreed=convertBreed2InterbullBreed(psBreed);
+
+  cout<<"\noutputInterbeef601(): WRITING LIST TO BUILD INTERBEEF PEDIGREE-FILE FOR "<<itbBreed<<endl;
+  cout<<"*****************************************************************"<< endl;
+
+
+  ofstream datafile601("listfile601_"+itbBreed);
+
+  for(map<string,calvingData*>::iterator it = this->begin();it != this->end(); it++){
+    calvingData *cPtr =(*it).second;
+
+    if(cPtr->itbIDStr != CONSTANTS::STRING_NA){
+      if(cPtr->idBreedStr == psBreed){
+        if(cPtr->mandateStr == "3230"){
+            if(categoryInterbeef == CONSTANTS::INTERBEEF_CATEGORY_BEEFONBEEF){
+              datafile601<<cPtr->itbIDStr<<endl;
+              outputDebug("outputInterbeef601()_BeefOnBeef, Animal has itbidStr " + cPtr->itbIDStr + " for animal " + cPtr->idStr, cPtr->idStr);
+            }
+          }else{
+            if(categoryInterbeef == CONSTANTS::INTERBEEF_CATEGORY_BEEFONDAIRY){
+              datafile601<<cPtr->itbIDStr<<endl;
+              outputDebug("outputInterbeef601()_BeefOnDairy, Animal has itbidStr " + cPtr->itbIDStr + " for animal " + cPtr->idStr, cPtr->idStr);
+            }
+          }
+        }
+      }
+    }
+
+}
+
+
+string calvingDataMap::convertBreed2InterbullBreed(string psBreed){
+
+  if(psBreed == "SI") return("SIM");
+  else if(psBreed == "CH") return("CHA");
+  else if(psBreed == "LM") return("LIM");
+  else if(psBreed == "AN") return("AAN");
+  else if(psBreed == "HH") return("HER");
+  else return("XXX");
+
+}

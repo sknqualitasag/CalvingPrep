@@ -143,7 +143,9 @@ public:
   void output(string outputPhenFile);
 
 
-
+  //output interbeef
+  void outputInterbeef601(string psBreed, string categoryInterbeef);
+  string convertBreed2InterbullBreed(string psBreed);
 
 
 

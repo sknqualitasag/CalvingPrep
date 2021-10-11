@@ -52,6 +52,8 @@ int CalvingPrep_main(std::string paramFileName) {
   int endYearSampling						              = parmMap.getInteger("endYearSampling");
   bool parselectSplitMandantBeef              = parmMap.getBoolean("selectSplitMandantBeef");//true = yes; false = no select
   bool parselectSplitMandantDairy             = parmMap.getBoolean("selectSplitMandantDairy");//true = yes; false = no select
+  std::string prepareInterbeefFiles           = parmMap.getString("prepareInterbeefFiles");//yes = prepare; no = not prepare interbeef files
+  std::string categoryInterbeef               = parmMap.getString("categoryInterbeef");//BeefOnBeef = prepare Beef data; BeefOnDairy = prepare Dairy data
 
 
 
@@ -117,6 +119,18 @@ int CalvingPrep_main(std::string paramFileName) {
 
   // Output for MiX99
   cMap.output(outputPhenFile);
+
+
+  //Files for Interbeef
+  if(prepareInterbeefFiles == CONSTANTS::INTERBEEF){
+    //List for Pedigree File 601
+    cMap.outputInterbeef601(CONSTANTS::LM_INTERBEEFBREED,categoryInterbeef);
+    cMap.outputInterbeef601(CONSTANTS::SM_INTERBEEFBREED,categoryInterbeef);
+    cMap.outputInterbeef601(CONSTANTS::CH_INTERBEEFBREED,categoryInterbeef);
+    cMap.outputInterbeef601(CONSTANTS::AN_INTERBEEFBREED,categoryInterbeef);
+    cMap.outputInterbeef601(CONSTANTS::HH_INTERBEEFBREED,categoryInterbeef);
+  }
+
 
 
   //Time tracking

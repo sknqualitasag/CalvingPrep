@@ -56,6 +56,22 @@ public:
   static const double STD_TRAIT_ZERO_PER_HERD;
   //' minimum observation per breedcomb
   static const unsigned MIN_OBS_PER_BREEDCOMB;
+  // string corresponding to interbeef
+  static const char INTERBEEF[];
+  // string corresponding to interbeef category Beef On Beef
+  static const char INTERBEEF_CATEGORY_BEEFONBEEF[];
+  // string corresponding to interbeef category Beef On Dairy
+  static const char INTERBEEF_CATEGORY_BEEFONDAIRY[];
+  // string corresponding to breed Limouusin interbeef
+  static const char LM_INTERBEEFBREED[];
+  // string corresponding to breed Charolais interbeef
+  static const char CH_INTERBEEFBREED[];
+  // string corresponding to breed Simmental interbeef
+  static const char SM_INTERBEEFBREED[];
+  // string corresponding to breed Angus interbeef
+  static const char AN_INTERBEEFBREED[];
+  // string corresponding to breed Simmental interbeef
+  static const char HH_INTERBEEFBREED[];
 
 
 
