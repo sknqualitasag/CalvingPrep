@@ -2561,23 +2561,96 @@ void calvingDataMap::outputInterbeef602(string psBreed, string psTrait, string c
           if(cPtr->mandateStr == "3230"){
             if(categoryInterbeef == CONSTANTS::INTERBEEF_CATEGORY_BEEFONBEEF){
               if(psTrait == CONSTANTS::BWT_INTERBEEFTRAIT){
-                datafile602 <<"602"<<" "<<psTrait<<" "<<itbBreed<<" "<<"CHE"<<" "<<cPtr->itbIDStr<<" "<<"1"<<" "<<"0"<<" "<<convertHerd2InterbullHerd(cPtr->herdStr, cPtr->idStr)<<setw(11)<<cPtr->birthWeightInt<<" "<<setw(3)<<7<<" "<<setw(20)<<cPtr->herdYearCode<<" "<<setw(20)<<cPtr->calvingAgeInDays<<" "<<setw(20)<<cPtr->sexCode<<" "<<setw(20)<<cPtr->yearMonthCode<<" "<<setw(20)<<cPtr->LNAgeCode<<" "<<setw(20)<<cPtr->breedcombCode<<" "<<setw(20)<<cPtr->PECode<<endl;
-                outputDebug("outputInterbeef602()_Animal has itbidStr " + cPtr->itbIDStr + " with birthweight " + to_string(cPtr->birthWeightInt)+ " for breed  " + psBreed, cPtr->idStr);
+                if(cPtr->birthWeightInt != CONSTANTS::INT_NA){
+                  datafile602 <<"602"<<" "
+                              <<psTrait<<" "
+                              <<itbBreed<<" "
+                              <<"CHE"<<" "
+                              <<cPtr->itbIDStr<<" "
+                              <<"1"<<" "
+                              <<"0"<<" "
+                              <<convertHerd2InterbullHerd(cPtr->herdStr, cPtr->idStr)
+                              <<setw(11)<<cPtr->birthWeightInt<<" "
+                              <<setw(3)<<7<<" "
+                              <<setw(20)<<cPtr->herdYearCode<<" "
+                              <<setw(20)<<cPtr->calvingAgeInDays<<" "
+                              <<setw(20)<<cPtr->sexCode<<" "
+                              <<setw(20)<<cPtr->yearMonthCode<<" "
+                              <<setw(20)<<cPtr->LNAgeCode<<" "
+                              <<setw(20)<<cPtr->breedcombCode<<" "
+                              <<setw(20)<<cPtr->PECode<<endl;
+                  outputDebug("outputInterbeef602()_Animal has itbidStr " + cPtr->itbIDStr + " with birthweight " + to_string(cPtr->birthWeightInt)+ " for breed  " + psBreed, cPtr->idStr);
+
+                }
               }
               if(psTrait == CONSTANTS::CAE_INTERBEEFTRAIT){
-                datafile602 <<"602"<<" "<<psTrait<<" "<<itbBreed<<" "<<"CHE"<<" "<<cPtr->itbIDStr<<" "<<"1"<<" "<<"0"<<" "<<convertHerd2InterbullHerd(cPtr->herdStr, cPtr->idStr)<<setw(11)<<cPtr->transformedCalvingScoreInt<<" "<<setw(3)<<7<<" "<<setw(20)<<cPtr->herdYearCode<<" "<<setw(20)<<cPtr->calvingAgeInDays<<" "<<setw(20)<<cPtr->sexCode<<" "<<setw(20)<<cPtr->yearMonthCode<<" "<<setw(20)<<cPtr->LNAgeCode<<" "<<setw(20)<<cPtr->breedcombCode<<" "<<setw(20)<<cPtr->PECode<<endl;
-                outputDebug("outputInterbeef602()_Animal has itbidStr " + cPtr->itbIDStr + " with calving ease " + to_string(cPtr->transformedCalvingScoreInt) + " for breed  " + psBreed, cPtr->idStr);
+                if(cPtr->transformedCalvingScoreInt != CONSTANTS::INT_NA){
+                  datafile602 <<"602"<<" "
+                              <<psTrait<<" "
+                              <<itbBreed<<" "
+                              <<"CHE"<<" "
+                              <<cPtr->itbIDStr<<" "
+                              <<"1"<<" "
+                              <<"0"<<" "
+                              <<convertHerd2InterbullHerd(cPtr->herdStr, cPtr->idStr)
+                              <<setw(11)<<cPtr->transformedCalvingScoreInt<<" "
+                              <<setw(3)<<7<<" "
+                              <<setw(20)<<cPtr->herdYearCode<<" "
+                              <<setw(20)<<cPtr->calvingAgeInDays<<" "
+                              <<setw(20)<<cPtr->sexCode<<" "
+                              <<setw(20)<<cPtr->yearMonthCode<<" "
+                              <<setw(20)<<cPtr->LNAgeCode<<" "
+                              <<setw(20)<<cPtr->breedcombCode<<" "
+                              <<setw(20)<<cPtr->PECode<<endl;
+                  outputDebug("outputInterbeef602()_Animal has itbidStr " + cPtr->itbIDStr + " with calving ease " + to_string(cPtr->transformedCalvingScoreInt) + " for breed  " + psBreed, cPtr->idStr);
+                }
               }
             }
           }else{
             if(categoryInterbeef == CONSTANTS::INTERBEEF_CATEGORY_BEEFONDAIRY){
               if(psTrait == CONSTANTS::BWT_INTERBEEFTRAIT){
-                datafile602 <<"602"<<" "<<psTrait<<" "<<itbBreed<<" "<<"CHE"<<" "<<cPtr->itbIDStr<<" "<<"1"<<" "<<"0"<<" "<<convertHerd2InterbullHerd(cPtr->herdStr, cPtr->idStr)<<setw(11)<<cPtr->birthWeightInt<<" "<<setw(3)<<7<<" "<<setw(20)<<cPtr->herdYearCode<<" "<<setw(20)<<cPtr->calvingAgeInDays<<" "<<setw(20)<<cPtr->sexCode<<" "<<setw(20)<<cPtr->yearMonthCode<<" "<<setw(20)<<cPtr->LNAgeCode<<" "<<setw(20)<<cPtr->breedcombCode<<" "<<setw(20)<<cPtr->PECode<<endl;
-                outputDebug("outputInterbeef602()_Animal has itbidStr " + cPtr->itbIDStr + " with birthweight " + to_string(cPtr->birthWeightInt)+ " for breed  " + psBreed, cPtr->idStr);
+                if(cPtr->birthWeightInt != CONSTANTS::INT_NA){
+                  datafile602 <<"602"<<" "
+                              <<psTrait<<" "
+                              <<itbBreed<<" "
+                              <<"CHE"<<" "
+                              <<cPtr->itbIDStr<<" "
+                              <<"1"<<" "
+                              <<"0"<<" "
+                              <<convertHerd2InterbullHerd(cPtr->herdStr, cPtr->idStr)
+                              <<setw(11)<<cPtr->birthWeightInt<<" "
+                              <<setw(3)<<7<<" "
+                              <<setw(20)<<cPtr->herdYearCode<<" "
+                              <<setw(20)<<cPtr->calvingAgeInDays<<" "
+                              <<setw(20)<<cPtr->sexCode<<" "
+                              <<setw(20)<<cPtr->yearMonthCode<<" "
+                              <<setw(20)<<cPtr->LNAgeCode<<" "
+                              <<setw(20)<<cPtr->breedcombCode<<" "
+                              <<setw(20)<<cPtr->PECode<<endl;
+                  outputDebug("outputInterbeef602()_Animal has itbidStr " + cPtr->itbIDStr + " with birthweight " + to_string(cPtr->birthWeightInt)+ " for breed  " + psBreed, cPtr->idStr);
+                }
               }
               if(psTrait == CONSTANTS::CAE_INTERBEEFTRAIT){
-                datafile602 <<"602"<<" "<<psTrait<<" "<<itbBreed<<" "<<"CHE"<<" "<<cPtr->itbIDStr<<" "<<"1"<<" "<<"0"<<" "<<convertHerd2InterbullHerd(cPtr->herdStr, cPtr->idStr)<<setw(11)<<cPtr->transformedCalvingScoreInt<<" "<<setw(3)<<7<<" "<<setw(20)<<cPtr->herdYearCode<<" "<<setw(20)<<cPtr->calvingAgeInDays<<" "<<setw(20)<<cPtr->sexCode<<" "<<setw(20)<<cPtr->yearMonthCode<<" "<<setw(20)<<cPtr->LNAgeCode<<" "<<setw(20)<<cPtr->breedcombCode<<" "<<setw(20)<<cPtr->PECode<<endl;
-                outputDebug("outputInterbeef602()_Animal has itbidStr " + cPtr->itbIDStr + " with calving ease " + to_string(cPtr->transformedCalvingScoreInt) + " for breed  " + psBreed, cPtr->idStr);
+                if(cPtr->transformedCalvingScoreInt != CONSTANTS::INT_NA){
+                  datafile602 <<"602"<<" "
+                              <<psTrait<<" "
+                              <<itbBreed<<" "
+                              <<"CHE"<<" "
+                              <<cPtr->itbIDStr<<" "
+                              <<"1"<<" "
+                              <<"0"<<" "
+                              <<convertHerd2InterbullHerd(cPtr->herdStr, cPtr->idStr)
+                              <<setw(11)<<cPtr->transformedCalvingScoreInt<<" "
+                              <<setw(3)<<7<<" "
+                              <<setw(20)<<cPtr->herdYearCode<<" "
+                              <<setw(20)<<cPtr->calvingAgeInDays<<" "
+                              <<setw(20)<<cPtr->sexCode<<" "
+                              <<setw(20)<<cPtr->yearMonthCode<<" "
+                              <<setw(20)<<cPtr->LNAgeCode<<" "
+                              <<setw(20)<<cPtr->breedcombCode<<" "
+                              <<setw(20)<<cPtr->PECode<<endl;
+                  outputDebug("outputInterbeef602()_Animal has itbidStr " + cPtr->itbIDStr + " with calving ease " + to_string(cPtr->transformedCalvingScoreInt) + " for breed  " + psBreed, cPtr->idStr);
+                }
               }
             }
           }
