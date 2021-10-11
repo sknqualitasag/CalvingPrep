@@ -71,4 +71,21 @@ const char CONSTANTS::SM_INTERBEEFBREED[] = "SI";
 const char CONSTANTS::AN_INTERBEEFBREED[] = "AN";
 // string corresponding to breed Simmental interbeef
 const char CONSTANTS::HH_INTERBEEFBREED[] = "HH";
+// string corresponding to trait birthweight interbeef
+const char CONSTANTS::BWT_INTERBEEFTRAIT[] = "BWT";
+// string corresponding to trait calving ease interbeef
+const char CONSTANTS::CAE_INTERBEEFTRAIT[] = "CAE";
+// string corresponding to single birth coming from the data
+const char CONSTANTS::SINGLE_BIRTH[] = "0";
+// string corresponding to twin birth coming from the data
+const char CONSTANTS::TWIN_BIRTH[] = "1";
+// string corresponding to triplet birth coming from the data
+const char CONSTANTS::TRIPLET_BIRTH[] = "2";
+// string corresponding to single birth for interbeef
+const char CONSTANTS::SINGLE_ITBBIRTH[] = "1";
+// string corresponding to twin birth for interbeef
+const char CONSTANTS::TWIN_ITBBIRTH[] = "2";
+// string corresponding to triplet birth for interbeef
+const char CONSTANTS::TRIPLET_ITBBIRTH[] = "2";
+
 

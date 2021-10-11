@@ -2541,3 +2541,75 @@ string calvingDataMap::convertBreed2InterbullBreed(string psBreed){
   else return("XXX");
 
 }
+
+
+//Generate performance file 602 for interbeef
+void calvingDataMap::outputInterbeef602(string psBreed, string psTrait, string categoryInterbeef){
+
+  string itbBreed=convertBreed2InterbullBreed(psBreed);
+
+  ofstream datafile602("datafile602_"+itbBreed+"_"+psTrait);
+
+  cout<<"outputInterbeef602(): WRITING INTERBEEF DATA-FILE FOR "<<itbBreed<<" AND "<<psTrait<<endl;
+  cout<<"*****************************************************************"<< endl;
+
+  for(map<string,calvingData*>::iterator it = this->begin();it != this->end(); it++){
+    calvingData *cPtr =(*it).second;
+
+    if(cPtr->itbIDStr != CONSTANTS::STRING_NA){
+      if(cPtr->idBreedStr == psBreed){
+          if(cPtr->mandateStr == "3230"){
+            if(categoryInterbeef == CONSTANTS::INTERBEEF_CATEGORY_BEEFONBEEF){
+              if(psTrait == CONSTANTS::BWT_INTERBEEFTRAIT){
+                datafile602 <<"602"<<" "<<psTrait<<" "<<itbBreed<<" "<<"CHE"<<" "<<cPtr->itbIDStr<<" "<<"1"<<" "<<"0"<<" "<<convertHerd2InterbullHerd(cPtr->herdStr, cPtr->idStr)<<setw(11)<<cPtr->birthWeightInt<<" "<<setw(3)<<7<<" "<<setw(20)<<cPtr->herdYearCode<<" "<<setw(20)<<cPtr->calvingAgeInDays<<" "<<setw(20)<<cPtr->sexCode<<" "<<setw(20)<<cPtr->yearMonthCode<<" "<<setw(20)<<cPtr->LNAgeCode<<" "<<setw(20)<<cPtr->breedcombCode<<" "<<setw(20)<<cPtr->PECode<<endl;
+                outputDebug("outputInterbeef602()_Animal has itbidStr " + cPtr->itbIDStr + " with birthweight " + to_string(cPtr->birthWeightInt)+ " for breed  " + psBreed, cPtr->idStr);
+              }
+              if(psTrait == CONSTANTS::CAE_INTERBEEFTRAIT){
+                datafile602 <<"602"<<" "<<psTrait<<" "<<itbBreed<<" "<<"CHE"<<" "<<cPtr->itbIDStr<<" "<<"1"<<" "<<"0"<<" "<<convertHerd2InterbullHerd(cPtr->herdStr, cPtr->idStr)<<setw(11)<<cPtr->transformedCalvingScoreInt<<" "<<setw(3)<<7<<" "<<setw(20)<<cPtr->herdYearCode<<" "<<setw(20)<<cPtr->calvingAgeInDays<<" "<<setw(20)<<cPtr->sexCode<<" "<<setw(20)<<cPtr->yearMonthCode<<" "<<setw(20)<<cPtr->LNAgeCode<<" "<<setw(20)<<cPtr->breedcombCode<<" "<<setw(20)<<cPtr->PECode<<endl;
+                outputDebug("outputInterbeef602()_Animal has itbidStr " + cPtr->itbIDStr + " with calving ease " + to_string(cPtr->transformedCalvingScoreInt) + " for breed  " + psBreed, cPtr->idStr);
+              }
+            }
+          }else{
+            if(categoryInterbeef == CONSTANTS::INTERBEEF_CATEGORY_BEEFONDAIRY){
+              if(psTrait == CONSTANTS::BWT_INTERBEEFTRAIT){
+                datafile602 <<"602"<<" "<<psTrait<<" "<<itbBreed<<" "<<"CHE"<<" "<<cPtr->itbIDStr<<" "<<"1"<<" "<<"0"<<" "<<convertHerd2InterbullHerd(cPtr->herdStr, cPtr->idStr)<<setw(11)<<cPtr->birthWeightInt<<" "<<setw(3)<<7<<" "<<setw(20)<<cPtr->herdYearCode<<" "<<setw(20)<<cPtr->calvingAgeInDays<<" "<<setw(20)<<cPtr->sexCode<<" "<<setw(20)<<cPtr->yearMonthCode<<" "<<setw(20)<<cPtr->LNAgeCode<<" "<<setw(20)<<cPtr->breedcombCode<<" "<<setw(20)<<cPtr->PECode<<endl;
+                outputDebug("outputInterbeef602()_Animal has itbidStr " + cPtr->itbIDStr + " with birthweight " + to_string(cPtr->birthWeightInt)+ " for breed  " + psBreed, cPtr->idStr);
+              }
+              if(psTrait == CONSTANTS::CAE_INTERBEEFTRAIT){
+                datafile602 <<"602"<<" "<<psTrait<<" "<<itbBreed<<" "<<"CHE"<<" "<<cPtr->itbIDStr<<" "<<"1"<<" "<<"0"<<" "<<convertHerd2InterbullHerd(cPtr->herdStr, cPtr->idStr)<<setw(11)<<cPtr->transformedCalvingScoreInt<<" "<<setw(3)<<7<<" "<<setw(20)<<cPtr->herdYearCode<<" "<<setw(20)<<cPtr->calvingAgeInDays<<" "<<setw(20)<<cPtr->sexCode<<" "<<setw(20)<<cPtr->yearMonthCode<<" "<<setw(20)<<cPtr->LNAgeCode<<" "<<setw(20)<<cPtr->breedcombCode<<" "<<setw(20)<<cPtr->PECode<<endl;
+                outputDebug("outputInterbeef602()_Animal has itbidStr " + cPtr->itbIDStr + " with calving ease " + to_string(cPtr->transformedCalvingScoreInt) + " for breed  " + psBreed, cPtr->idStr);
+              }
+            }
+          }
+      }
+    }
+  }
+
+}
+
+
+//Sophie: Convert herd to Intbeefherd
+string calvingDataMap::convertHerd2InterbullHerd(string herdStr, string psTVDid){
+  string herd = herdStr;
+  if(herd.size()== 0) {
+    cout<<"convertHerd2InterbullHerd(): invalid herd "<<herdStr<<" of animal "<<psTVDid<<" in phenotypic data. plz check!"<<endl;
+    exit(8);
+  }
+  else if(herd.size()== 1) return "CHE00000000000"+herd;
+  else if(herd.size()== 2) return "CHE0000000000"+herd;
+  else if(herd.size()== 3) return "CHE000000000"+herd;
+  else if(herd.size()== 4) return "CHE00000000"+herd;
+  else if(herd.size()== 5) return "CHE0000000"+herd;
+  else if(herd.size()== 6) return "CHE000000"+herd;
+  else if(herd.size()== 7) return "CHE00000"+herd;
+  else if(herd.size()== 8) return "CHE0000"+herd;
+  else if(herd.size()== 9) return "CHE000"+herd;
+  else if(herd.size()== 10) return "CHE00"+herd;
+  else if(herd.size()== 11) return "CHE0"+herd;
+  else if(herd.size()== 12) return "CHE"+herd;
+  else {
+    cout<<"convertHerd2InterbullHerd(): invalid herd "<<herdStr<<" of animal "<<psTVDid<<" in phenotypic data. plz check!"<<endl;
+    exit(8);
+  }
+}
+

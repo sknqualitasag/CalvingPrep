@@ -72,6 +72,23 @@ public:
   static const char AN_INTERBEEFBREED[];
   // string corresponding to breed Simmental interbeef
   static const char HH_INTERBEEFBREED[];
+  // string corresponding to trait birthweight interbeef
+  static const char BWT_INTERBEEFTRAIT[];
+  // string corresponding to trait calving ease interbeef
+  static const char CAE_INTERBEEFTRAIT[];
+  // string corresponding to single birth coming from the data
+  static const char SINGLE_BIRTH[];
+  // string corresponding to twin birth coming from the data
+  static const char TWIN_BIRTH[];
+  // string corresponding to triplet birth coming from the data
+  static const char TRIPLET_BIRTH[];
+  // string corresponding to single birth for interbeef
+  static const char SINGLE_ITBBIRTH[];
+  // string corresponding to twin birth for interbeef
+  static const char TWIN_ITBBIRTH[];
+  // string corresponding to triplet birth for interbeef
+  static const char TRIPLET_ITBBIRTH[];
+
 
 
 
