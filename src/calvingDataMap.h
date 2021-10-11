@@ -146,6 +146,7 @@ public:
   //output interbeef
   void outputInterbeef601(string psBreed, string categoryInterbeef);
   void outputInterbeef602(string psBreed, string psTrait, string categoryInterbeef);
+  void outputInterbeef603(string psBreed, string psTrait, string categoryInterbeef);
 
   string convertBreed2InterbullBreed(string psBreed);
   string convertHerd2InterbullHerd(string herdStr, string psTVDid);

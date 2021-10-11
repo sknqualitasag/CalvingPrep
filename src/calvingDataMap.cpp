@@ -2686,3 +2686,34 @@ string calvingDataMap::convertHerd2InterbullHerd(string herdStr, string psTVDid)
   }
 }
 
+
+//Generate parameter file 603 for interbeef
+void calvingDataMap::outputInterbeef603(string psBreed, string psTrait, string categoryInterbeef){
+
+  string itbBreed=convertBreed2InterbullBreed(psBreed);
+
+  ofstream datafile603("datafile603_"+itbBreed+"_"+psTrait);
+
+  cout<<"outputInterbeef603(): WRITING INTERBEEF PARAMETER-FILE FOR "<<itbBreed<<" AND "<<psTrait<<endl;
+  cout<<"*****************************************************************"<< endl;
+
+  //Sophie: Jahr*Saison und Rassenkombination sind nicht in Abkkürzungen für fixen Effekt vorhanden
+  if(categoryInterbeef == CONSTANTS::INTERBEEF_CATEGORY_BEEFONBEEF){
+    if(psTrait == CONSTANTS::BWT_INTERBEEFTRAIT){
+      datafile603 <<"603"<<" "<<psTrait<<" "<<itbBreed<<" "<<"CHE"<<" "<<"99999"<<" "<<"47 "<<" "<<"         5"<<" "<<"N"<<" "<<"Y"<<" "<<"Y"<<" "<<"N"<<" "<<"  7"<<" "<<"HY                   R"<<" "<<"AACA                X"<<" "<<"CSEX                 F"<<" "<<"YSEA                 F"<<" "<<"LACN                 F"<<" "<<"BCOMB                F"<<endl;
+    }
+    if(psTrait == CONSTANTS::CAE_INTERBEEFTRAIT){
+      datafile603 <<"603"<<" "<<psTrait<<" "<<itbBreed<<" "<<"CHE"<<" "<<"99999"<<" "<<"17 "<<" "<<"         5"<<" "<<"N"<<" "<<"Y"<<" "<<"Y"<<" "<<"N"<<" "<<"  7"<<" "<<"HY                   R"<<" "<<"AACA                X"<<" "<<"CSEX                 F"<<" "<<"YSEA                 F"<<" "<<"LACN                 F"<<" "<<"BCOMB                F"<<endl;
+    }
+  }
+  if(categoryInterbeef == CONSTANTS::INTERBEEF_CATEGORY_BEEFONDAIRY){
+    if(psTrait == CONSTANTS::BWT_INTERBEEFTRAIT){
+      datafile603 <<"603"<<" "<<psTrait<<" "<<itbBreed<<" "<<"CHE"<<" "<<"99999"<<" "<<"20 "<<" "<<"         5"<<" "<<"N"<<" "<<"N"<<" "<<"N"<<" "<<"N"<<" "<<"  7"<<" "<<"HY                   R"<<" "<<"AACA                X"<<" "<<"CSEX                 F"<<" "<<"YSEA                 F"<<" "<<"LACN                 F"<<" "<<"BCOMB                F"<<endl;
+    }
+    if(psTrait == CONSTANTS::CAE_INTERBEEFTRAIT){
+      datafile603 <<"603"<<" "<<psTrait<<" "<<itbBreed<<" "<<"CHE"<<" "<<"99999"<<" "<<"11 "<<" "<<"         5"<<" "<<"N"<<" "<<"N"<<" "<<"N"<<" "<<"N"<<" "<<"  7"<<" "<<"HY                   R"<<" "<<"AACA                X"<<" "<<"CSEX                 F"<<" "<<"YSEA                 F"<<" "<<"LACN                 F"<<" "<<"BCOMB                F"<<endl;
+    }
+
+  }
+
+}
