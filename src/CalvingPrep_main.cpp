@@ -8,6 +8,7 @@
 #include <plog/Log.h>
 #include <plog/Formatters/MessageOnlyFormatter.h>
 #include "constants.h"
+#include "pedMap.h"
 
 
 using namespace Rcpp;
@@ -43,6 +44,8 @@ int CalvingPrep_main(std::string paramFileName) {
   unsigned numberDataFiles                    = parmMap.getUnsigned("numberDataFiles");
   int lastYearToConsiderData                  = parmMap.getInteger("lastYearToConsiderData");
   std::string outputPhenFile                  = parmMap.getString("outputPhenFile");
+  std::string pedigreeFile                    = parmMap.getString("pedigreeFileName");
+  std::string pedigreeFileReformatted         = pedigreeFile+".reformatted";
   std::string parRunMode                      = parmMap.getString("DEBUG");//yes = turn on debugging
   std::string parRunModeFile                  = parmMap.getString("DEBUGFile");
   unsigned proportion                         = parmMap.getUnsigned("proportion");//1 = draw sample on herds; 0 = not draw sample
@@ -55,6 +58,10 @@ int CalvingPrep_main(std::string paramFileName) {
   std::string prepareInterbeefFiles           = parmMap.getString("prepareInterbeefFiles");//yes = prepare; no = not prepare interbeef files
   std::string categoryInterbeef               = parmMap.getString("categoryInterbeef");//BeefOnBeef = prepare Beef data; BeefOnDairy = prepare Dairy data
 
+
+  // Read rrtdm-pedigree file
+  pedMap pMap;
+  pMap.makeReadableRRTDMPedigree(pedigreeFile,pedigreeFileReformatted);
 
 
   //Declare Map

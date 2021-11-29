@@ -87,5 +87,9 @@ const char CONSTANTS::SINGLE_ITBBIRTH[] = "1";
 const char CONSTANTS::TWIN_ITBBIRTH[] = "2";
 // string corresponding to triplet birth for interbeef
 const char CONSTANTS::TRIPLET_ITBBIRTH[] = "2";
+// number of columns of rrtdm-pedigree
+const unsigned CONSTANTS::NUM_COL_RRTDM = 11;
+// number of columns of rrtdm-pedigree by missing informations
+const unsigned CONSTANTS::NUM_COL_RRTDM_WITH_MISSING = 9;
 
 

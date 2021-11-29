@@ -88,6 +88,10 @@ public:
   static const char TWIN_ITBBIRTH[];
   // string corresponding to triplet birth for interbeef
   static const char TRIPLET_ITBBIRTH[];
+  //' number of columns of rrtdm-pedigree
+  static const unsigned NUM_COL_RRTDM;
+  //' number of columns of rrtdm-pedigree by missing informations
+  static const unsigned NUM_COL_RRTDM_WITH_MISSING;
 
 
 
