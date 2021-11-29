@@ -18,6 +18,7 @@ public:
 
   pedMap(void);
   void makeReadableRRTDMPedigree(string ipedfile, string opedfile);
+  void readRRTDMPedigree(string pedfileName);
 
 };
 

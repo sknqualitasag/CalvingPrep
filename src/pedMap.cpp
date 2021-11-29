@@ -108,3 +108,83 @@ void pedMap::makeReadableRRTDMPedigree(string ipedfile, string opedfile){
   outputfile.close();
 
 }
+
+
+//' Read RRTDM-Pedigree from file pedfile
+//'
+//' The content of pedfile is read line by line. A single space character
+//' is used as column separator. The original RRTDM-pedigree identifies
+//' animals, sires and dams based on their technical database ID.
+//'
+//' @param pedfile input file of RRTDM-pedigree
+void pedMap::readRRTDMPedigree(string pedfileName){
+
+  cout<<"\nreadRRTDMPedigree(): Reading RRTDM-pedigree from "<<pedfileName<<endl;
+  cout<<"*****************************************************************"<< endl;
+
+  ifstream datafile(pedfileName.c_str());
+  if(!datafile){
+    cout<< "Cannot open file "<< pedfileName<<" in readRRTDMPedigree()! \n";
+    exit(1);
+  }
+
+  datafile.setf(ios::skipws);
+  string sep(" ");
+  string indnumstr, sirenumstr, damnumstr, birthyearstr, itbidstr, inputStr, indstr, indbreedstr, indbirthdatestr, indactivstr, indhbstr, inditbbreedstr;
+  Tokenizer colData;
+  unsigned lineNumber=0, numCols, rec = 0;
+
+  // reading RRTDM-pedigree file line by line
+  while(getline(datafile,inputStr)){
+    colData.getTokens(inputStr,sep);
+    lineNumber++;
+    if (lineNumber==1){
+      numCols = colData.size();
+      cout<<"Number of columns: "<<numCols<<endl;
+    }
+    else if(colData.size() != numCols){
+      cout<<"readRRTDMPedigree() Line "<<lineNumber<<" has "<<colData.size()<<" columns, "<<numCols<<" expected!"<<endl;
+      cerr<<"record is: "<<inputStr<<endl;
+      exit(8);
+    }
+
+    indnumstr = colData[0];
+    sirenumstr = colData[1];
+    damnumstr = colData[2];
+    birthyearstr = colData[3];
+    itbidstr = colData[4];
+    indstr = colData[5];
+    indbirthdatestr = colData[6];
+    indbreedstr = colData[7];
+    indactivstr = colData[8];
+    indhbstr = colData[9];
+    inditbbreedstr = colData[10];
+
+
+    rec++;
+    if(rec%100000==0){
+      cout<<rec<<" records processed \r";
+      cout.flush();
+    }
+
+    //pedigree constructor
+    ped *pPtr = new ped(indnumstr, sirenumstr, damnumstr, itbidstr, indstr, indbirthdatestr, indbreedstr, inditbbreedstr, CONSTANTS::STRING_NA, CONSTANTS::STRING_NA);
+
+    //build pedMap
+    map<string,ped*>::iterator pit = this->find(pPtr->indnumStr);
+    if(pit == this->end()){
+      (*this)[pPtr->indnumStr] = pPtr;
+    }
+    else {
+      cout<<"Numeric ID of animal "<<pPtr->indnumStr<<" is already in the map with rrtdm-input. Something is wrong!";
+      exit(1);
+    }
+  }
+
+
+  datafile.close();
+
+  cout<<"\nnumber of records on pedigree file: "<<rec<<endl;
+  cout<<this->size()<<" total number of records stored in map."<<endl;
+
+}

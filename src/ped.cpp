@@ -22,14 +22,14 @@
 using namespace std;
 
 
-ped::ped(string indnumstr, string sirenumstr, string damnumstr, string itbidstr, string indstr, date indbirthdatestr, string indbreedstr, string inditbbreedstr, string sirebreedstr, string dambreedstr){
+ped::ped(string indnumstr, string sirenumstr, string damnumstr, string itbidstr, string indstr, string indbirthdatestr, string indbreedstr, string inditbbreedstr, string sirebreedstr, string dambreedstr){
 
   indnumStr = indnumstr;
   sirenumStr = sirenumstr;
   damnumStr = damnumstr;
   indITB18Str = itbidstr;
   indTVDstr = indstr;
-  indBirthdate = indbirthdatestr;
+  indBirthdateStr = indbirthdatestr;
   indRaceStr = indbreedstr;
   indITBRaceStr = inditbbreedstr;
   sireRaceStr = sirebreedstr;

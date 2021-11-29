@@ -62,6 +62,7 @@ int CalvingPrep_main(std::string paramFileName) {
   // Read rrtdm-pedigree file
   pedMap pMap;
   pMap.makeReadableRRTDMPedigree(pedigreeFile,pedigreeFileReformatted);
+  pMap.readRRTDMPedigree(pedigreeFileReformatted);
 
 
   //Declare Map
