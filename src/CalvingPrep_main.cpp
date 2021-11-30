@@ -63,7 +63,7 @@ int CalvingPrep_main(std::string paramFileName) {
   pedMap pMap;
   pMap.makeReadableRRTDMPedigree(pedigreeFile,pedigreeFileReformatted);
   pMap.readRRTDMPedigree(pedigreeFileReformatted);
-
+  pMap.fillITBParent();
 
   //Declare Map
   calvingDataMap cMap;

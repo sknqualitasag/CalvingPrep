@@ -168,7 +168,7 @@ void pedMap::readRRTDMPedigree(string pedfileName){
     }
 
     //pedigree constructor
-    ped *pPtr = new ped(indnumstr, sirenumstr, damnumstr, itbidstr, indstr, indbirthdatestr, indbreedstr, inditbbreedstr, CONSTANTS::STRING_NA, CONSTANTS::STRING_NA);
+    ped *pPtr = new ped(indnumstr, sirenumstr, damnumstr, itbidstr, indstr, indbirthdatestr, indbreedstr, inditbbreedstr, CONSTANTS::STRING_NA, CONSTANTS::STRING_NA, CONSTANTS::STRING_NA, CONSTANTS::STRING_NA);
 
     //build pedMap
     map<string,ped*>::iterator pit = this->find(pPtr->indnumStr);
@@ -186,5 +186,32 @@ void pedMap::readRRTDMPedigree(string pedfileName){
 
   cout<<"\nnumber of records on pedigree file: "<<rec<<endl;
   cout<<this->size()<<" total number of records stored in map."<<endl;
+
+}
+
+
+void pedMap::fillITBParent(){
+
+  cout<<"\nfillRaceParent(): "<<endl;
+  cout<<"*****************************************************************"<< endl;
+
+  //sireITBStr und damITBStr fuellen, falls die jeweiligen Eltern nicht missing im Pedigree sind
+  for(map<string,ped*>::iterator it = this->begin(); it != this->end(); it++){
+
+    if(it->second->sirenumStr != "0"){
+      map<string,ped*>::iterator sit = this->find(it->second->sirenumStr);
+      if(sit != this->end()){
+        it->second->sireITB18Str = sit->second->indITB18Str;
+      }
+    }
+
+    if(it->second->damnumStr != "0"){
+      map<string,ped*>::iterator dit = this->find(it->second->damnumStr);
+      if(dit != this->end()){
+        it->second->damITB18Str = dit->second->indITB18Str;
+      }
+    }
+
+  }
 
 }
