@@ -2790,18 +2790,18 @@ void calvingDataMap::outputInterbeef603(string psBreed, string psTrait, string c
   //Sophie: Jahr*Saison und Rassenkombination sind nicht in Abkkürzungen für fixen Effekt vorhanden
   if(categoryInterbeef == CONSTANTS::INTERBEEF_CATEGORY_BEEFONBEEF){
     if(psTrait == CONSTANTS::BWT_INTERBEEFTRAIT){
-      datafile603 <<"603"<<" "<<psTrait<<" "<<itbBreed<<" "<<"CHE"<<" "<<"99999"<<" "<<"47 "<<" "<<"         5"<<" "<<"N"<<" "<<"Y"<<" "<<"Y"<<" "<<"N"<<" "<<"  7"<<" "<<"HY                   R"<<" "<<"AACA                X"<<" "<<"CSEX                 F"<<" "<<"YSEA                 F"<<" "<<"LACN                 F"<<" "<<"BCOMB                F"<<endl;
+      datafile603 <<"603"<<" "<<psTrait<<" "<<itbBreed<<" "<<"CHE"<<" "<<"99999"<<" "<<"47 "<<" "<<"         5"<<" "<<"N"<<" "<<"Y"<<" "<<"Y"<<" "<<"N"<<" "<<" 11"<<" "<<"HY                   R"<<" "<<"AACA                X"<<" "<<"CSEX                 F"<<" "<<"YSEA                 F"<<" "<<"LACN                 F"<<" "<<"BCOMB                F"<<" "<<"PEENV                Z"<<" "<<"CASI                 C"<<" "<<"CSEX                 C"<<" "<<"CABI                 C"<<" "<<"CAID                 C"<<endl;
     }
     if(psTrait == CONSTANTS::CAE_INTERBEEFTRAIT){
-      datafile603 <<"603"<<" "<<psTrait<<" "<<itbBreed<<" "<<"CHE"<<" "<<"99999"<<" "<<"17 "<<" "<<"         5"<<" "<<"N"<<" "<<"Y"<<" "<<"Y"<<" "<<"N"<<" "<<"  7"<<" "<<"HY                   R"<<" "<<"AACA                X"<<" "<<"CSEX                 F"<<" "<<"YSEA                 F"<<" "<<"LACN                 F"<<" "<<"BCOMB                F"<<endl;
+      datafile603 <<"603"<<" "<<psTrait<<" "<<itbBreed<<" "<<"CHE"<<" "<<"99999"<<" "<<"17 "<<" "<<"         5"<<" "<<"N"<<" "<<"Y"<<" "<<"Y"<<" "<<"N"<<" "<<" 11"<<" "<<"HY                   R"<<" "<<"AACA                X"<<" "<<"CSEX                 F"<<" "<<"YSEA                 F"<<" "<<"LACN                 F"<<" "<<"BCOMB                F"<<" "<<"PEENV                Z"<<" "<<"CASI                 C"<<" "<<"CSEX                 C"<<" "<<"CABI                 C"<<" "<<"CAID                 C"<<endl;
     }
   }
   if(categoryInterbeef == CONSTANTS::INTERBEEF_CATEGORY_BEEFONDAIRY){
     if(psTrait == CONSTANTS::BWT_INTERBEEFTRAIT){
-      datafile603 <<"603"<<" "<<psTrait<<" "<<itbBreed<<" "<<"CHE"<<" "<<"99999"<<" "<<"20 "<<" "<<"         5"<<" "<<"N"<<" "<<"N"<<" "<<"N"<<" "<<"N"<<" "<<"  7"<<" "<<"HY                   R"<<" "<<"AACA                X"<<" "<<"CSEX                 F"<<" "<<"YSEA                 F"<<" "<<"LACN                 F"<<" "<<"BCOMB                F"<<endl;
+      datafile603 <<"603"<<" "<<psTrait<<" "<<itbBreed<<" "<<"CHE"<<" "<<"99999"<<" "<<"20 "<<" "<<"         5"<<" "<<"N"<<" "<<"N"<<" "<<"N"<<" "<<"N"<<" "<<" 11"<<" "<<"HY                   R"<<" "<<"AACA                X"<<" "<<"CSEX                 F"<<" "<<"YSEA                 F"<<" "<<"LACN                 F"<<" "<<"BCOMB                F"<<" "<<"PEENV                Z"<<" "<<"CASI                 C"<<" "<<"CSEX                 C"<<" "<<"CABI                 C"<<" "<<"CAID                 C"<<endl;
     }
     if(psTrait == CONSTANTS::CAE_INTERBEEFTRAIT){
-      datafile603 <<"603"<<" "<<psTrait<<" "<<itbBreed<<" "<<"CHE"<<" "<<"99999"<<" "<<"11 "<<" "<<"         5"<<" "<<"N"<<" "<<"N"<<" "<<"N"<<" "<<"N"<<" "<<"  7"<<" "<<"HY                   R"<<" "<<"AACA                X"<<" "<<"CSEX                 F"<<" "<<"YSEA                 F"<<" "<<"LACN                 F"<<" "<<"BCOMB                F"<<endl;
+      datafile603 <<"603"<<" "<<psTrait<<" "<<itbBreed<<" "<<"CHE"<<" "<<"99999"<<" "<<"11 "<<" "<<"         5"<<" "<<"N"<<" "<<"N"<<" "<<"N"<<" "<<"N"<<" "<<" 11"<<" "<<"HY                   R"<<" "<<"AACA                X"<<" "<<"CSEX                 F"<<" "<<"YSEA                 F"<<" "<<"LACN                 F"<<" "<<"BCOMB                F"<<" "<<"PEENV                Z"<<" "<<"CASI                 C"<<" "<<"CSEX                 C"<<" "<<"CABI                 C"<<" "<<"CAID                 C"<<endl;
     }
 
   }
