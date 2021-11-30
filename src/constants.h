@@ -92,6 +92,8 @@ public:
   static const unsigned NUM_COL_RRTDM;
   //' number of columns of rrtdm-pedigree by missing informations
   static const unsigned NUM_COL_RRTDM_WITH_MISSING;
+  // number of characters that correspond to the breed code
+  static const unsigned BREED_CODE_LENGTH;
 
 
 

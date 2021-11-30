@@ -91,5 +91,7 @@ const char CONSTANTS::TRIPLET_ITBBIRTH[] = "2";
 const unsigned CONSTANTS::NUM_COL_RRTDM = 11;
 // number of columns of rrtdm-pedigree by missing informations
 const unsigned CONSTANTS::NUM_COL_RRTDM_WITH_MISSING = 9;
+//' length of breed code in ITB-NR
+const unsigned CONSTANTS::BREED_CODE_LENGTH = 2;
 
 

@@ -12,6 +12,7 @@
 #include "sire.h"
 #include "distCalvingAge.h"
 #include "breedcomb.h"
+#include "pedMap.h"
 
 
 
@@ -35,6 +36,7 @@ public:
   string runningMode;
   // list of TVD-Ids for which we want to output debugging information
   vector <string> debugTvdIds;
+  pedMap pMap;
 
 
   // functions for reading calving-data-file
@@ -150,7 +152,8 @@ public:
 
   string convertBreed2InterbullBreed(string psBreed);
   string convertHerd2InterbullHerd(string herdStr, string psTVDid);
-
+  string convertId2InterbullID(string psITBid);
+  string convertSex2InterbullSex(string psSex);
 
 
 

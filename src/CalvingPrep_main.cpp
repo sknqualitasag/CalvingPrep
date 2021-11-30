@@ -59,15 +59,16 @@ int CalvingPrep_main(std::string paramFileName) {
   std::string categoryInterbeef               = parmMap.getString("categoryInterbeef");//BeefOnBeef = prepare Beef data; BeefOnDairy = prepare Dairy data
 
 
+  //Declare Map
+  calvingDataMap cMap;
+
+
   // Read rrtdm-pedigree file
   pedMap pMap;
   pMap.makeReadableRRTDMPedigree(pedigreeFile,pedigreeFileReformatted);
   pMap.readRRTDMPedigree(pedigreeFileReformatted);
   pMap.fillITBParent();
-
-  //Declare Map
-  calvingDataMap cMap;
-
+  cMap.pMap = pMap;
 
   //Create DEBUG-File
   if (parRunMode == CONSTANTS::DEBUG){
