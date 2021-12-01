@@ -2566,7 +2566,7 @@ void calvingDataMap::outputInterbeef602(string psBreed, string psTrait, string c
     calvingData *cPtr =(*it).second;
 
     if(cPtr->itbIDStr != CONSTANTS::STRING_NA){
-      if(cPtr->idBreedStr == psBreed){
+      if(cPtr->idBreedStr == psBreed && cPtr->damBreedStr == psBreed){
         if(cPtr->mandateStr == "3230"){
           if(categoryInterbeef == CONSTANTS::INTERBEEF_CATEGORY_BEEFONBEEF){
             if(psTrait == CONSTANTS::BWT_INTERBEEFTRAIT){
@@ -2581,8 +2581,8 @@ void calvingDataMap::outputInterbeef602(string psBreed, string psTrait, string c
                   datafile602 <<"602"<<" "
                               <<psTrait<<" "
                               <<itbBreed<<" "
-//                              <<"CHE"<<" "
-                              <<"CHE"<<endl;
+                              <<"CHE"<<" "
+                              <<convertId2InterbullID(pit->second->damITB18Str)<<endl;
 //                              <<convertId2InterbullID(pit->second->damITB18Str)<<" "
 //                              <<"1"<<" "
 //                              <<"0"<<" "
@@ -2647,82 +2647,6 @@ void calvingDataMap::outputInterbeef602(string psBreed, string psTrait, string c
 //            }
           }
         }
-//        else{
-//              if(categoryInterbeef == CONSTANTS::INTERBEEF_CATEGORY_BEEFONDAIRY){
-//                if(psTrait == CONSTANTS::BWT_INTERBEEFTRAIT){
-//                  if(cPtr->birthWeightInt != CONSTANTS::INT_NA){
-//
-//                    map<string,ped*>::iterator pit = pMap.find(cPtr->animIDStr);
-//                    if(pit != pMap.end()){
-//
-//                      datafile602 <<"602"<<" "
-//                                  <<psTrait<<" "
-//                                  <<itbBreed<<" "
-//                                  <<"CHE"<<" "
-//                                  <<convertId2InterbullID(pit->second->damITB18Str)<<" "
-//                                  <<"1"<<" "
-//                                  <<"0"<<" "
-//                                  <<convertHerd2InterbullHerd(cPtr->herdStr, cPtr->idStr)
-//                                  <<setw(11)<<cPtr->birthWeightInt<<" "
-//                                  <<setw(3)<<11<<" "
-//                                  <<setw(20)<<cPtr->herdYearCode<<" "
-//                                  <<setw(20)<<cPtr->calvingAgeInDays<<" "
-//                                  <<setw(20)<<cPtr->sexCode<<" "
-//                                  <<setw(20)<<cPtr->yearMonthCode<<" "
-//                                  <<setw(20)<<cPtr->LNAgeCode<<" "
-//                                  <<setw(20)<<cPtr->breedcombCode<<" "
-//                                  <<setw(20)<<cPtr->PECode<<" "
-//                                  <<setw(20)<<convertId2InterbullID(pit->second->sireITB18Str)<<" "
-//                                  <<setw(20)<<convertSex2InterbullSex(cPtr->idSexStr)<<" "
-//                                  <<setw(20)<<cPtr->calvingdate.YearStr<<cPtr->calvingdate.MonthStr<<cPtr->calvingdate.DayStr<<" "
-//                                  <<setw(20)<<cPtr->itbIDStr<<endl;
-//
-//                      outputDebug("outputInterbeef602()_Animal has itbidStr " + cPtr->itbIDStr + " with birthweight " + to_string(cPtr->birthWeightInt)+ " for breed  " + psBreed, cPtr->idStr);
-//
-//
-//                    }else{
-//                      cout<<"AnimID "<<cPtr->animIDStr<<" of animal "<<cPtr->idStr<<" is not found in pedMap."<<endl;
-//                    }
-//                  }
-//                }
-//                if(psTrait == CONSTANTS::CAE_INTERBEEFTRAIT){
-//                  if(cPtr->transformedCalvingScoreInt != CONSTANTS::INT_NA){
-//
-//                    map<string,ped*>::iterator pit = pMap.find(cPtr->animIDStr);
-//                    if(pit != pMap.end()){
-//
-//                      datafile602 <<"602"<<" "
-//                                  <<psTrait<<" "
-//                                  <<itbBreed<<" "
-//                                  <<"CHE"<<" "
-//                                  <<convertId2InterbullID(pit->second->damITB18Str)<<" "
-//                                  <<"1"<<" "
-//                                  <<"0"<<" "
-//                                  <<convertHerd2InterbullHerd(cPtr->herdStr, cPtr->idStr)
-//                                  <<setw(11)<<cPtr->transformedCalvingScoreInt<<" "
-//                                  <<setw(3)<<11<<" "
-//                                  <<setw(20)<<cPtr->herdYearCode<<" "
-//                                  <<setw(20)<<cPtr->calvingAgeInDays<<" "
-//                                  <<setw(20)<<cPtr->sexCode<<" "
-//                                  <<setw(20)<<cPtr->yearMonthCode<<" "
-//                                  <<setw(20)<<cPtr->LNAgeCode<<" "
-//                                  <<setw(20)<<cPtr->breedcombCode<<" "
-//                                  <<setw(20)<<cPtr->PECode<<" "
-//                                  <<setw(20)<<convertId2InterbullID(pit->second->sireITB18Str)<<" "
-//                                  <<setw(20)<<convertSex2InterbullSex(cPtr->idSexStr)<<" "
-//                                  <<setw(20)<<cPtr->calvingdate.YearStr<<cPtr->calvingdate.MonthStr<<cPtr->calvingdate.DayStr<<" "
-//                                  <<setw(20)<<cPtr->itbIDStr<<endl;
-//
-//                      outputDebug("outputInterbeef602()_Animal has itbidStr " + cPtr->itbIDStr + " with calving ease " + to_string(cPtr->transformedCalvingScoreInt)+ " for breed  " + psBreed, cPtr->idStr);
-//
-//
-//                    }else{
-//                      cout<<"AnimID "<<cPtr->animIDStr<<" of animal "<<cPtr->idStr<<" is not found in pedMap."<<endl;
-//                    }
-//                  }
-//                }
-//              }
-//            }
 
 
         }
@@ -2735,14 +2659,16 @@ void calvingDataMap::outputInterbeef602(string psBreed, string psTrait, string c
 //Convert itbId of database to Interbullnum
 string calvingDataMap::convertId2InterbullID(string psITBid){
 
-  // The first two positions of itb id are breed to convert to Interbullbreed
-  string breedCode = psITBid.substr(0,CONSTANTS::BREED_CODE_LENGTH);
-  string itbBreed=convertBreed2InterbullBreed(breedCode);
+  cout<<"convertId2InterbullID(): psITBid; "<<psITBid<<endl;
 
-  // Except the first two position of itbId of the database, the rest are consider
-  string itbNum = psITBid.substr(CONSTANTS::BREED_CODE_LENGTH,psITBid.size()-CONSTANTS::BREED_CODE_LENGTH);
-
-  if(psITBid.size() == 18) return itbBreed+itbNum;
+//  // The first two positions of itb id are breed to convert to Interbullbreed
+//  string breedCode = psITBid.substr(0,CONSTANTS::BREED_CODE_LENGTH);
+//  string itbBreed=convertBreed2InterbullBreed(breedCode);
+//
+//  // Except the first two position of itbId of the database, the rest are consider
+//  string itbNum = psITBid.substr(CONSTANTS::BREED_CODE_LENGTH,psITBid.size()-CONSTANTS::BREED_CODE_LENGTH);
+//
+//  if(psITBid.size() == 18) return itbBreed+itbNum;
 
 }
 
