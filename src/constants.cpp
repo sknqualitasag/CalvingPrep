@@ -93,5 +93,8 @@ const unsigned CONSTANTS::NUM_COL_RRTDM = 11;
 const unsigned CONSTANTS::NUM_COL_RRTDM_WITH_MISSING = 9;
 //' length of breed code in ITB-NR
 const unsigned CONSTANTS::BREED_CODE_LENGTH = 2;
+//' missing value code for ITBid
+const char CONSTANTS::MISSING_ITBID[] = "UUUUUUUUUUUUUUUUUUU";
+
 
 

@@ -2661,21 +2661,30 @@ string calvingDataMap::convertId2InterbullID(string psITBid){
 
   cout<<"convertId2InterbullID(): psITBid: "<<psITBid<<endl;
 
-  // The first two positions of itb id are breed to convert to Interbullbreed
-  string breedCode = psITBid.substr(0,CONSTANTS::BREED_CODE_LENGTH);
-  cout<<"convertId2InterbullID(): breedCode: "<<breedCode<<endl;
+  string resultITBid;
 
-  string itbBreed=convertBreed2InterbullBreed(breedCode);
-  cout<<"convertId2InterbullID(): itbBreed: "<<itbBreed<<endl;
+  if(psITBid.size() == 18){
+
+    // The first two positions of itb id are breed to convert to Interbullbreed
+    string breedCode = psITBid.substr(0,CONSTANTS::BREED_CODE_LENGTH);
+    cout<<"convertId2InterbullID(): breedCode: "<<breedCode<<endl;
+
+    string itbBreed=convertBreed2InterbullBreed(breedCode);
+    cout<<"convertId2InterbullID(): itbBreed: "<<itbBreed<<endl;
 
 
-  // Except the first two position of itbId of the database, the rest are consider
-  string itbNum = psITBid.substr(CONSTANTS::BREED_CODE_LENGTH,psITBid.size()-CONSTANTS::BREED_CODE_LENGTH);
-  cout<<"convertId2InterbullID(): itbNum: "<<itbNum<<endl;
+    // Except the first two position of itbId of the database, the rest are consider
+    string itbNum = psITBid.substr(CONSTANTS::BREED_CODE_LENGTH,psITBid.size()-CONSTANTS::BREED_CODE_LENGTH);
+    cout<<"convertId2InterbullID(): itbNum: "<<itbNum<<endl;
 
-  cout<<"convertId2InterbullID(): itbBreed+itbNum: "<<itbBreed+itbNum<<endl;
+    resultITBid=itbBreed+itbNum;
+    cout<<"convertId2InterbullID(): resultITBid: "<<resultITBid<<endl;
 
-  if(psITBid.size() == 18) return itbBreed+itbNum;
+  }else{
+    resultITBid=CONSTANTS::MISSING_ITBID;
+  }
+
+  return resultITBid;
 
 }
 
