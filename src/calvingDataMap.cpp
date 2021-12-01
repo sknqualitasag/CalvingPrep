@@ -2596,62 +2596,59 @@ void calvingDataMap::outputInterbeef602(string psBreed, string psTrait, string c
                               <<setw(20)<<cPtr->breedcombCode<<" "
                               <<setw(20)<<cPtr->PECode<<" "
                               <<setw(20)<<convertId2InterbullID(pit->second->sireITB18Str)<<" "
-                              <<setw(20)<<convertSex2InterbullSex(cPtr->idSexStr)<<endl;
-//                              <<setw(20)<<convertSex2InterbullSex(cPtr->idSexStr)<<" "
-//                              <<setw(20)<<cPtr->calvingdate.YearStr<<cPtr->calvingdate.MonthStr<<cPtr->calvingdate.DayStr<<" "
-//                              <<setw(20)<<cPtr->itbIDStr<<endl;
-//
-//                  outputDebug("outputInterbeef602()_Animal has itbidStr " + cPtr->itbIDStr + " with birthweight " + to_string(cPtr->birthWeightInt)+ " for breed  " + psBreed, cPtr->idStr);
-//
-//
+                              <<setw(20)<<convertSex2InterbullSex(cPtr->idSexStr)<<" "
+                              <<setw(20)<<cPtr->calvingdate.YearStr<<cPtr->calvingdate.MonthStr<<cPtr->calvingdate.DayStr<<" "
+                              <<setw(20)<<cPtr->itbIDStr<<endl;
+
+                  outputDebug("outputInterbeef602()_Animal has itbidStr " + cPtr->itbIDStr + " with birthweight " + to_string(cPtr->birthWeightInt)+ " for breed  " + psBreed, cPtr->idStr);
+
+
                 }else{
                   cout<<"AnimID "<<cPtr->animIDStr<<" of animal "<<cPtr->idStr<<" is not found in pedMap."<<endl;
                 }
             }
           }
-//            if(psTrait == CONSTANTS::CAE_INTERBEEFTRAIT){
-//              if(cPtr->transformedCalvingScoreInt != CONSTANTS::INT_NA){
-//
-//                map<string,ped*>::iterator pit = pMap.find(cPtr->animIDStr);
-//                if(pit != pMap.end()){
-//
-//                  datafile602 <<"602"<<" "
-//                              <<psTrait<<" "
-//                              <<itbBreed<<" "
-//                              <<"CHE"<<" "
-//                              <<convertId2InterbullID(pit->second->damITB18Str)<<" "
-//                              <<"1"<<" "
-//                              <<"0"<<" "
-//                              <<convertHerd2InterbullHerd(cPtr->herdStr, cPtr->idStr)
-//                              <<setw(11)<<cPtr->transformedCalvingScoreInt<<" "
-//                              <<setw(3)<<11<<" "
-//                              <<setw(20)<<cPtr->herdYearCode<<" "
-//                              <<setw(20)<<cPtr->calvingAgeInDays<<" "
-//                              <<setw(20)<<cPtr->sexCode<<" "
-//                              <<setw(20)<<cPtr->yearMonthCode<<" "
-//                              <<setw(20)<<cPtr->LNAgeCode<<" "
-//                              <<setw(20)<<cPtr->breedcombCode<<" "
-//                              <<setw(20)<<cPtr->PECode<<" "
-//                              <<setw(20)<<convertId2InterbullID(pit->second->sireITB18Str)<<" "
-//                              <<setw(20)<<convertSex2InterbullSex(cPtr->idSexStr)<<" "
-//                              <<setw(20)<<cPtr->calvingdate.YearStr<<cPtr->calvingdate.MonthStr<<cPtr->calvingdate.DayStr<<" "
-//                              <<setw(20)<<cPtr->itbIDStr<<endl;
-//
-//                  outputDebug("outputInterbeef602()_Animal has itbidStr " + cPtr->itbIDStr + " with calving ease " + to_string(cPtr->transformedCalvingScoreInt)+ " for breed  " + psBreed, cPtr->idStr);
-//
-//
-//                }else{
-//                  cout<<"AnimID "<<cPtr->animIDStr<<" of animal "<<cPtr->idStr<<" is not found in pedMap."<<endl;
-//                }
-//              }
-//            }
+            if(psTrait == CONSTANTS::CAE_INTERBEEFTRAIT){
+              if(cPtr->transformedCalvingScoreInt != CONSTANTS::INT_NA){
+
+                map<string,ped*>::iterator pit = pMap.find(cPtr->animIDStr);
+                if(pit != pMap.end()){
+
+                  datafile602 <<"602"<<" "
+                              <<psTrait<<" "
+                              <<itbBreed<<" "
+                              <<"CHE"<<" "
+                              <<convertId2InterbullID(pit->second->damITB18Str)<<" "
+                              <<"1"<<" "
+                              <<"0"<<" "
+                              <<convertHerd2InterbullHerd(cPtr->herdStr, cPtr->idStr)
+                              <<setw(11)<<cPtr->transformedCalvingScoreInt<<" "
+                              <<setw(3)<<11<<" "
+                              <<setw(20)<<cPtr->herdYearCode<<" "
+                              <<setw(20)<<cPtr->calvingAgeInDays<<" "
+                              <<setw(20)<<cPtr->sexCode<<" "
+                              <<setw(20)<<cPtr->yearMonthCode<<" "
+                              <<setw(20)<<cPtr->LNAgeCode<<" "
+                              <<setw(20)<<cPtr->breedcombCode<<" "
+                              <<setw(20)<<cPtr->PECode<<" "
+                              <<setw(20)<<convertId2InterbullID(pit->second->sireITB18Str)<<" "
+                              <<setw(20)<<convertSex2InterbullSex(cPtr->idSexStr)<<" "
+                              <<setw(20)<<cPtr->calvingdate.YearStr<<cPtr->calvingdate.MonthStr<<cPtr->calvingdate.DayStr<<" "
+                              <<setw(20)<<cPtr->itbIDStr<<endl;
+
+                  outputDebug("outputInterbeef602()_Animal has itbidStr " + cPtr->itbIDStr + " with calving ease " + to_string(cPtr->transformedCalvingScoreInt)+ " for breed  " + psBreed, cPtr->idStr);
+
+
+                }else{
+                  cout<<"AnimID "<<cPtr->animIDStr<<" of animal "<<cPtr->idStr<<" is not found in pedMap."<<endl;
+                }
+              }
+            }
           }
-        }
-
-
         }
       }
     }
+  }
 
 }
 
