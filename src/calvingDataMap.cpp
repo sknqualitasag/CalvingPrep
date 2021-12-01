@@ -2567,14 +2567,14 @@ void calvingDataMap::outputInterbeef602(string psBreed, string psTrait, string c
 
     if(cPtr->itbIDStr != CONSTANTS::STRING_NA){
       if(cPtr->idBreedStr == psBreed){
-        if(cPtr->mandateStr == "3230"){
-          if(categoryInterbeef == CONSTANTS::INTERBEEF_CATEGORY_BEEFONBEEF){
-            if(psTrait == CONSTANTS::BWT_INTERBEEFTRAIT){
-              if(cPtr->birthWeightInt != CONSTANTS::INT_NA){
-
-                map<string,ped*>::iterator pit = pMap.find(cPtr->animIDStr);
-                if(pit != pMap.end()){
-
+//        if(cPtr->mandateStr == "3230"){
+//          if(categoryInterbeef == CONSTANTS::INTERBEEF_CATEGORY_BEEFONBEEF){
+//            if(psTrait == CONSTANTS::BWT_INTERBEEFTRAIT){
+//              if(cPtr->birthWeightInt != CONSTANTS::INT_NA){
+//
+//                map<string,ped*>::iterator pit = pMap.find(cPtr->animIDStr);
+//                if(pit != pMap.end()){
+//
 //                  datafile602 <<"602"<<" "
 //                              <<psTrait<<" "
 //                              <<itbBreed<<" "
@@ -2603,8 +2603,8 @@ void calvingDataMap::outputInterbeef602(string psBreed, string psTrait, string c
 //                }else{
 //                  cout<<"AnimID "<<cPtr->animIDStr<<" of animal "<<cPtr->idStr<<" is not found in pedMap."<<endl;
 //                }
-              }
-            }
+//            }
+//          }
 //            if(psTrait == CONSTANTS::CAE_INTERBEEFTRAIT){
 //              if(cPtr->transformedCalvingScoreInt != CONSTANTS::INT_NA){
 //
@@ -2641,8 +2641,8 @@ void calvingDataMap::outputInterbeef602(string psBreed, string psTrait, string c
 //                }
 //              }
 //            }
-          }
-        }
+//          }
+//        }
 //        else{
 //              if(categoryInterbeef == CONSTANTS::INTERBEEF_CATEGORY_BEEFONDAIRY){
 //                if(psTrait == CONSTANTS::BWT_INTERBEEFTRAIT){
@@ -2719,9 +2719,9 @@ void calvingDataMap::outputInterbeef602(string psBreed, string psTrait, string c
 //                }
 //              }
 //            }
-
-
-        }
+//
+//
+//        }
       }
     }
 
