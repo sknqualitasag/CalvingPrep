@@ -2576,27 +2576,27 @@ void calvingDataMap::outputInterbeef602(string psBreed, string psTrait, string c
                 if(pit != pMap.end()){
 
 
-                  cout<<"itbIDStr: "<<cPtr->itbIDStr<<" damITB18Str: "<<pit->second->damITB18Str<<endl;
+                  cout<<"itbIDStr: "<<cPtr->itbIDStr<<endl;
 
                   datafile602 <<"602"<<" "
                               <<psTrait<<" "
                               <<itbBreed<<" "
                               <<"CHE"<<" "
-                              <<convertId2InterbullID(pit->second->damITB18Str)<<endl;
-//                              <<convertId2InterbullID(pit->second->damITB18Str)<<" "
-//                              <<"1"<<" "
-//                              <<"0"<<" "
-//                              <<convertHerd2InterbullHerd(cPtr->herdStr, cPtr->idStr)
-//                              <<setw(11)<<cPtr->birthWeightInt<<" "
-//                              <<setw(3)<<11<<" "
-//                              <<setw(20)<<cPtr->herdYearCode<<" "
-//                              <<setw(20)<<cPtr->calvingAgeInDays<<" "
-//                              <<setw(20)<<cPtr->sexCode<<" "
-//                              <<setw(20)<<cPtr->yearMonthCode<<" "
-//                              <<setw(20)<<cPtr->LNAgeCode<<" "
-//                              <<setw(20)<<cPtr->breedcombCode<<" "
-//                              <<setw(20)<<cPtr->PECode<<" "
-//                              <<setw(20)<<convertId2InterbullID(pit->second->sireITB18Str)<<" "
+                              <<convertId2InterbullID(pit->second->damITB18Str)<<" "
+                              <<"1"<<" "
+                              <<"0"<<" "
+                              <<convertHerd2InterbullHerd(cPtr->herdStr, cPtr->idStr)
+                              <<setw(11)<<cPtr->birthWeightInt<<" "
+                              <<setw(3)<<11<<" "
+                              <<setw(20)<<cPtr->herdYearCode<<" "
+                              <<setw(20)<<cPtr->calvingAgeInDays<<" "
+                              <<setw(20)<<cPtr->sexCode<<" "
+                              <<setw(20)<<cPtr->yearMonthCode<<" "
+                              <<setw(20)<<cPtr->LNAgeCode<<" "
+                              <<setw(20)<<cPtr->breedcombCode<<" "
+                              <<setw(20)<<cPtr->PECode<<" "
+                              <<setw(20)<<convertId2InterbullID(pit->second->sireITB18Str)<<" "
+                              <<setw(20)<<convertSex2InterbullSex(cPtr->idSexStr)<<endl;
 //                              <<setw(20)<<convertSex2InterbullSex(cPtr->idSexStr)<<" "
 //                              <<setw(20)<<cPtr->calvingdate.YearStr<<cPtr->calvingdate.MonthStr<<cPtr->calvingdate.DayStr<<" "
 //                              <<setw(20)<<cPtr->itbIDStr<<endl;
@@ -2659,26 +2659,18 @@ void calvingDataMap::outputInterbeef602(string psBreed, string psTrait, string c
 //Convert itbId of database to Interbullnum
 string calvingDataMap::convertId2InterbullID(string psITBid){
 
-  cout<<"convertId2InterbullID(): psITBid: "<<psITBid<<endl;
-
   string resultITBid;
 
   if(psITBid.size() == 18){
 
     // The first two positions of itb id are breed to convert to Interbullbreed
     string breedCode = psITBid.substr(0,CONSTANTS::BREED_CODE_LENGTH);
-    cout<<"convertId2InterbullID(): breedCode: "<<breedCode<<endl;
-
     string itbBreed=convertBreed2InterbullBreed(breedCode);
-    cout<<"convertId2InterbullID(): itbBreed: "<<itbBreed<<endl;
-
 
     // Except the first two position of itbId of the database, the rest are consider
     string itbNum = psITBid.substr(CONSTANTS::BREED_CODE_LENGTH,psITBid.size()-CONSTANTS::BREED_CODE_LENGTH);
-    cout<<"convertId2InterbullID(): itbNum: "<<itbNum<<endl;
 
     resultITBid=itbBreed+itbNum;
-    cout<<"convertId2InterbullID(): resultITBid: "<<resultITBid<<endl;
 
   }else{
     resultITBid=CONSTANTS::MISSING_ITBID;
@@ -2718,9 +2710,17 @@ string calvingDataMap::convertHerd2InterbullHerd(string herdStr, string psTVDid)
 //Convert sex to Interbeefsex
 string calvingDataMap::convertSex2InterbullSex(string psSex){
 
-  if(psSex == "M") return("1");
-  else if(psSex == "F") return("2");
-  else return("3");
+  string resultITBSex;
+
+  if(psSex == "M"){
+    resultITBSex = "1";
+  }else if(psSex == "F"){
+    resultITBSex = "2";
+  }else{
+    resultITBSex = "3";
+  }
+
+  return resultITBSex;
 
 }
 
