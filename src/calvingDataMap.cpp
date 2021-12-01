@@ -2576,11 +2576,13 @@ void calvingDataMap::outputInterbeef602(string psBreed, string psTrait, string c
                 if(pit != pMap.end()){
 
 
+                  cout<<"itbIDStr: "<<cPtr->itbIDStr<<" damITB18Str: "<<pit->second->damITB18Str<<endl;
+
                   datafile602 <<"602"<<" "
                               <<psTrait<<" "
                               <<itbBreed<<" "
-                              <<"CHE"<<" "
-                              <<convertId2InterbullID(pit->second->damITB18Str)<<endl;
+//                              <<"CHE"<<" "
+                              <<"CHE"<<endl;
 //                              <<convertId2InterbullID(pit->second->damITB18Str)<<" "
 //                              <<"1"<<" "
 //                              <<"0"<<" "
