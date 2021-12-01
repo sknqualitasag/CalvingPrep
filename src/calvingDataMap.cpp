@@ -2571,10 +2571,12 @@ void calvingDataMap::outputInterbeef602(string psBreed, string psTrait, string c
           if(categoryInterbeef == CONSTANTS::INTERBEEF_CATEGORY_BEEFONBEEF){
             if(psTrait == CONSTANTS::BWT_INTERBEEFTRAIT){
               if(cPtr->birthWeightInt != CONSTANTS::INT_NA){
-//
-//                map<string,ped*>::iterator pit = pMap.find(cPtr->animIDStr);
-//                if(pit != pMap.end()){
-//
+
+                map<string,ped*>::iterator pit = pMap.find(cPtr->animIDStr);
+                if(pit != pMap.end()){
+
+                  cout<<"itbIDStr: "<<cPtr->itbIDStr<<" with in pedigree animIDStr: "<<cPtr->animIDStr<<" = "<<pit->first<<endl;
+
 //                  datafile602 <<"602"<<" "
 //                              <<psTrait<<" "
 //                              <<itbBreed<<" "
@@ -2600,9 +2602,9 @@ void calvingDataMap::outputInterbeef602(string psBreed, string psTrait, string c
 //                  outputDebug("outputInterbeef602()_Animal has itbidStr " + cPtr->itbIDStr + " with birthweight " + to_string(cPtr->birthWeightInt)+ " for breed  " + psBreed, cPtr->idStr);
 //
 //
-//                }else{
-//                  cout<<"AnimID "<<cPtr->animIDStr<<" of animal "<<cPtr->idStr<<" is not found in pedMap."<<endl;
-//                }
+                }else{
+                  cout<<"AnimID "<<cPtr->animIDStr<<" of animal "<<cPtr->idStr<<" is not found in pedMap."<<endl;
+                }
             }
           }
 //            if(psTrait == CONSTANTS::CAE_INTERBEEFTRAIT){
