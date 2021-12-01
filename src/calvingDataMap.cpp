@@ -2579,8 +2579,8 @@ void calvingDataMap::outputInterbeef602(string psBreed, string psTrait, string c
                   datafile602 <<"602"<<" "
                               <<psTrait<<" "
                               <<itbBreed<<" "
-                              <<"CHE"<<endl;
-//                              <<"CHE"<<" "
+                              <<"CHE"<<" "
+                              <<convertId2InterbullID(pit->second->damITB18Str)<<endl;
 //                              <<convertId2InterbullID(pit->second->damITB18Str)<<" "
 //                              <<"1"<<" "
 //                              <<"0"<<" "
