@@ -2512,17 +2512,14 @@ void calvingDataMap::outputInterbeef601(string psBreed, string categoryInterbeef
     calvingData *cPtr =(*it).second;
 
     if(cPtr->itbIDStr != CONSTANTS::STRING_NA){
-      if(cPtr->idBreedStr == psBreed){
+      if(cPtr->idBreedStr == psBreed && cPtr->damBreedStr == psBreed && cPtr->sireBreedStr == psBreed){
         if(cPtr->mandateStr == "3230"){
             if(categoryInterbeef == CONSTANTS::INTERBEEF_CATEGORY_BEEFONBEEF){
               datafile601<<cPtr->itbIDStr<<endl;
               outputDebug("outputInterbeef601()_BeefOnBeef, Animal has itbidStr " + cPtr->itbIDStr + " for animal " + cPtr->idStr, cPtr->idStr);
             }
           }else{
-            if(categoryInterbeef == CONSTANTS::INTERBEEF_CATEGORY_BEEFONDAIRY){
-              datafile601<<cPtr->itbIDStr<<endl;
-              outputDebug("outputInterbeef601()_BeefOnDairy, Animal has itbidStr " + cPtr->itbIDStr + " for animal " + cPtr->idStr, cPtr->idStr);
-            }
+            cout<<"mandant is not 3230 and categoryInterbeef "<<categoryInterbeef<<" is not corresponding to "<<CONSTANTS::INTERBEEF_CATEGORY_BEEFONBEEF<<", therefore file601 is not produced."<<endl;
           }
         }
       }
@@ -2566,7 +2563,7 @@ void calvingDataMap::outputInterbeef602(string psBreed, string psTrait, string c
     calvingData *cPtr =(*it).second;
 
     if(cPtr->itbIDStr != CONSTANTS::STRING_NA){
-      if(cPtr->idBreedStr == psBreed && cPtr->damBreedStr == psBreed){
+      if(cPtr->idBreedStr == psBreed && cPtr->damBreedStr == psBreed && cPtr->sireBreedStr == psBreed){
         if(cPtr->mandateStr == "3230"){
           if(categoryInterbeef == CONSTANTS::INTERBEEF_CATEGORY_BEEFONBEEF){
             if(psTrait == CONSTANTS::BWT_INTERBEEFTRAIT){
@@ -2645,6 +2642,8 @@ void calvingDataMap::outputInterbeef602(string psBreed, string psTrait, string c
               }
             }
           }
+        }else{
+          cout<<"mandant is not 3230 and categoryInterbeef "<<categoryInterbeef<<" is not corresponding to "<<CONSTANTS::INTERBEEF_CATEGORY_BEEFONBEEF<<", therefore file602 is not produced."<<endl;
         }
       }
     }
@@ -2739,15 +2738,9 @@ void calvingDataMap::outputInterbeef603(string psBreed, string psTrait, string c
     if(psTrait == CONSTANTS::CAE_INTERBEEFTRAIT){
       datafile603 <<"603"<<" "<<psTrait<<" "<<itbBreed<<" "<<"CHE"<<" "<<"99999"<<" "<<"17 "<<" "<<"         5"<<" "<<"N"<<" "<<"Y"<<" "<<"Y"<<" "<<"N"<<" "<<" 11"<<" "<<"HY                   R"<<" "<<"AACA                X"<<" "<<"CSEX                 F"<<" "<<"YSEA                 F"<<" "<<"LACN                 F"<<" "<<"BCOMB                F"<<" "<<"PEENV                Z"<<" "<<"CASI                 C"<<" "<<"CSEX                 C"<<" "<<"CABI                 C"<<" "<<"CAID                 C"<<endl;
     }
+  }else{
+    cout<<"categoryInterbeef "<<categoryInterbeef<<" is not corresponding to "<<CONSTANTS::INTERBEEF_CATEGORY_BEEFONBEEF<<", therefore file603 is not produced."<<endl;
   }
-  if(categoryInterbeef == CONSTANTS::INTERBEEF_CATEGORY_BEEFONDAIRY){
-    if(psTrait == CONSTANTS::BWT_INTERBEEFTRAIT){
-      datafile603 <<"603"<<" "<<psTrait<<" "<<itbBreed<<" "<<"CHE"<<" "<<"99999"<<" "<<"20 "<<" "<<"         5"<<" "<<"N"<<" "<<"N"<<" "<<"N"<<" "<<"N"<<" "<<" 11"<<" "<<"HY                   R"<<" "<<"AACA                X"<<" "<<"CSEX                 F"<<" "<<"YSEA                 F"<<" "<<"LACN                 F"<<" "<<"BCOMB                F"<<" "<<"PEENV                Z"<<" "<<"CASI                 C"<<" "<<"CSEX                 C"<<" "<<"CABI                 C"<<" "<<"CAID                 C"<<endl;
-    }
-    if(psTrait == CONSTANTS::CAE_INTERBEEFTRAIT){
-      datafile603 <<"603"<<" "<<psTrait<<" "<<itbBreed<<" "<<"CHE"<<" "<<"99999"<<" "<<"11 "<<" "<<"         5"<<" "<<"N"<<" "<<"N"<<" "<<"N"<<" "<<"N"<<" "<<" 11"<<" "<<"HY                   R"<<" "<<"AACA                X"<<" "<<"CSEX                 F"<<" "<<"YSEA                 F"<<" "<<"LACN                 F"<<" "<<"BCOMB                F"<<" "<<"PEENV                Z"<<" "<<"CASI                 C"<<" "<<"CSEX                 C"<<" "<<"CABI                 C"<<" "<<"CAID                 C"<<endl;
-    }
 
-  }
 
 }
