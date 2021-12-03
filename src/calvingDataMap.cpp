@@ -2584,17 +2584,16 @@ void calvingDataMap::outputInterbeef602(string psBreed, string psTrait, string c
                               <<"0"<<" "
                               <<convertHerd2InterbullHerd(cPtr->herdStr, cPtr->idStr)
                               <<setw(11)<<cPtr->birthWeightInt<<" "
-                              <<setw(3)<<11<<" "
+                              <<setw(3)<<10<<" "
                               <<setw(20)<<cPtr->herdYearCode<<" "
                               <<setw(20)<<cPtr->calvingAgeInDays<<" "
                               <<setw(20)<<cPtr->sexCode<<" "
                               <<setw(20)<<cPtr->yearMonthCode<<" "
                               <<setw(20)<<cPtr->LNAgeCode<<" "
                               <<setw(20)<<cPtr->breedcombCode<<" "
-                              <<setw(20)<<cPtr->PECode<<" "
                               <<setw(20)<<convertId2InterbullID(pit->second->sireITB18Str)<<" "
                               <<setw(20)<<convertSex2InterbullSex(cPtr->idSexStr)<<" "
-                              <<setw(20)<<cPtr->calvingdate.YearStr<<cPtr->calvingdate.MonthStr<<cPtr->calvingdate.DayStr<<" "
+                              <<setw(16)<<cPtr->calvingdate.YearStr<<cPtr->calvingdate.MonthStr<<cPtr->calvingdate.DayStr<<" "
                               <<setw(20)<<cPtr->itbIDStr<<endl;
 
                   outputDebug("outputInterbeef602()_Animal has itbidStr " + cPtr->itbIDStr + " with birthweight " + to_string(cPtr->birthWeightInt)+ " for breed  " + psBreed, cPtr->idStr);
@@ -2620,17 +2619,16 @@ void calvingDataMap::outputInterbeef602(string psBreed, string psTrait, string c
                               <<"0"<<" "
                               <<convertHerd2InterbullHerd(cPtr->herdStr, cPtr->idStr)
                               <<setw(11)<<cPtr->transformedCalvingScoreInt<<" "
-                              <<setw(3)<<11<<" "
+                              <<setw(3)<<10<<" "
                               <<setw(20)<<cPtr->herdYearCode<<" "
                               <<setw(20)<<cPtr->calvingAgeInDays<<" "
                               <<setw(20)<<cPtr->sexCode<<" "
                               <<setw(20)<<cPtr->yearMonthCode<<" "
                               <<setw(20)<<cPtr->LNAgeCode<<" "
                               <<setw(20)<<cPtr->breedcombCode<<" "
-                              <<setw(20)<<cPtr->PECode<<" "
                               <<setw(20)<<convertId2InterbullID(pit->second->sireITB18Str)<<" "
                               <<setw(20)<<convertSex2InterbullSex(cPtr->idSexStr)<<" "
-                              <<setw(20)<<cPtr->calvingdate.YearStr<<cPtr->calvingdate.MonthStr<<cPtr->calvingdate.DayStr<<" "
+                              <<setw(16)<<cPtr->calvingdate.YearStr<<cPtr->calvingdate.MonthStr<<cPtr->calvingdate.DayStr<<" "
                               <<setw(20)<<cPtr->itbIDStr<<endl;
 
                   outputDebug("outputInterbeef602()_Animal has itbidStr " + cPtr->itbIDStr + " with calving ease " + to_string(cPtr->transformedCalvingScoreInt)+ " for breed  " + psBreed, cPtr->idStr);
