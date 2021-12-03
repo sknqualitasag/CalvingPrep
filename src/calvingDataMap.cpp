@@ -2733,10 +2733,10 @@ void calvingDataMap::outputInterbeef603(string psBreed, string psTrait, string c
   //Sophie: Jahr*Saison und Rassenkombination sind nicht in Abkkürzungen für fixen Effekt vorhanden
   if(categoryInterbeef == CONSTANTS::INTERBEEF_CATEGORY_BEEFONBEEF){
     if(psTrait == CONSTANTS::BWT_INTERBEEFTRAIT){
-      datafile603 <<"603"<<" "<<psTrait<<" "<<itbBreed<<" "<<"CHE"<<" "<<"99999"<<" "<<"47 "<<" "<<"         5"<<" "<<"N"<<" "<<"Y"<<" "<<"Y"<<" "<<"N"<<" "<<" 10"<<" "<<"HY                   R"<<" "<<"AACA                 X"<<" "<<"CSEX                  F"<<" "<<"YSEA                  F"<<" "<<"PAAC                  F"<<" "<<"BRCM                  F"<<" "<<"CASI                  C"<<" "<<"CSEX                  C"<<" "<<"CABI                  C"<<" "<<"CAID                  C"<<endl;
+      datafile603 <<"603"<<" "<<psTrait<<" "<<itbBreed<<" "<<"CHE"<<" "<<"99999"<<" "<<"47 "<<" "<<"         5"<<" "<<"N"<<" "<<"Y"<<" "<<"Y"<<" "<<"N"<<" "<<" 10"<<" "<<"HY                   R"<<" "<<"AACA                 X"<<" "<<"ASEX                 F"<<" "<<"YSEA                F"<<" "<<"PAAC                F"<<" "<<"BRCM                F"<<" "<<"CASI                C"<<" "<<"CSEX                C"<<" "<<"CABI                C"<<" "<<"CAID                C"<<endl;
     }
     if(psTrait == CONSTANTS::CAE_INTERBEEFTRAIT){
-      datafile603 <<"603"<<" "<<psTrait<<" "<<itbBreed<<" "<<"CHE"<<" "<<"99999"<<" "<<"17 "<<" "<<"         5"<<" "<<"N"<<" "<<"Y"<<" "<<"Y"<<" "<<"N"<<" "<<" 10"<<" "<<"HY                   R"<<" "<<"AACA                 X"<<" "<<"CSEX                  F"<<" "<<"YSEA                  F"<<" "<<"PAAC                  F"<<" "<<"BRCM                  F"<<" "<<"CASI                  C"<<" "<<"CSEX                  C"<<" "<<"CABI                  C"<<" "<<"CAID                  C"<<endl;
+      datafile603 <<"603"<<" "<<psTrait<<" "<<itbBreed<<" "<<"CHE"<<" "<<"99999"<<" "<<"17 "<<" "<<"         5"<<" "<<"N"<<" "<<"Y"<<" "<<"Y"<<" "<<"N"<<" "<<" 10"<<" "<<"HY                   R"<<" "<<"AACA                 X"<<" "<<"ASEX                 F"<<" "<<"YSEA                F"<<" "<<"PAAC                F"<<" "<<"BRCM                F"<<" "<<"CASI                C"<<" "<<"CSEX                C"<<" "<<"CABI                C"<<" "<<"CAID                C"<<endl;
     }
   }else{
     cout<<"categoryInterbeef "<<categoryInterbeef<<" is not corresponding to "<<CONSTANTS::INTERBEEF_CATEGORY_BEEFONBEEF<<", therefore file603 is not produced."<<endl;
