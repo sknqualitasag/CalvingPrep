@@ -236,7 +236,6 @@ void calvingDataMap::inputCalvingData(string fname, int lastYearToConsiderData, 
   unsigned inconsistentRepeatedRecs1=0;
   unsigned numconsistentRecsButMissingIDs=0;
   unsigned numRepRecs=0;
-  unsigned aliveIdmissingNotRead=0;
   unsigned SamplingNotRead=0;
   unsigned MissingIdNotRead=0;
 
@@ -450,16 +449,10 @@ void calvingDataMap::inputCalvingData(string fname, int lastYearToConsiderData, 
       mandantNotRead++;
       continue;
     }
-    // transformedstillbirthint could be used as trait and should be available thank deathcalfdate information
-    if(transformedstillbirthint == CONSTANTS::INT_NA){
-      simpleDebug("inputCalvingData()_Animal is not read in calvingDataMap, because transformedstillbirthint is missing", idstr);
+    // stillbirth should not be considered, with this is the definition for calving ease should be clearer
+    if(transformedstillbirthint == 1){
+      simpleDebug("inputCalvingData()_Animal is not read in calvingDataMap, because transformedstillbirthint is 1", idstr);
       stillbirthNotRead++;
-      continue;
-    }
-    // alive and animal without id should not be readen
-    if(stillbirthint == 1 && idstr == CONSTANTS::STRING_NA){
-      simpleDebug("inputCalvingData()_Animal is not read in calvingDataMap, because alive with missing animal id ", idstr);
-      aliveIdmissingNotRead++;
       continue;
     }
     // calvingscoreint or birthweight should be available, at least one should be available
@@ -551,7 +544,6 @@ void calvingDataMap::inputCalvingData(string fname, int lastYearToConsiderData, 
   cout<<"Number of animal record as abort: "<<AbortNotRead<<endl;
   cout<<"Number of animal record as premature: "<<PrematureNotRead<<endl;
   cout<<"Number of animal record as ET: "<<ETNotRead<<endl;
-  cout<<"Number of animal record alive but with missing id: "<<aliveIdmissingNotRead<<endl;
   cout<<"Number of animal record not in the sampling if sampling = true : "<<SamplingNotRead<<endl;
   cout<<"Number of animal record with missing id: "<<MissingIdNotRead<<endl;
 
@@ -1677,7 +1669,6 @@ void calvingDataMap::countHerd(){
       herd *hPtr = new herd();
       hPtr->herdIdStr = ptr->herdStr;
       // prepare info to check variance of calving ease,
-      // but not birthweight because birthweight may be missing according to inputCalvingData
       hPtr->increment(ptr->transformedCalvingScoreInt, ptr->birthWeightInt);
       (HerdStatisticMap)[ptr->herdStr] = hPtr;
     }else{
