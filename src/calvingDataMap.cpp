@@ -538,7 +538,7 @@ void calvingDataMap::inputCalvingData(string fname, int lastYearToConsiderData, 
   cout<<"Number of animal record with missing sire: "<<sireNotRead<<endl;
   cout<<"Number of animal record with missing dam: "<<damNotRead<<endl;
   cout<<"Number of animal record with missing mandant: "<<mandantNotRead<<endl;
-  cout<<"Number of animal record with missing stillbirth: "<<stillbirthNotRead<<endl;
+  cout<<"Number of animal record with stillbirth: "<<stillbirthNotRead<<endl;
   cout<<"Number of animal record with missing birthweight or calving ease: "<<traitNotRead<<endl;
   cout<<"Number of animal record as multiple: "<<MultipleNotRead<<endl;
   cout<<"Number of animal record as abort: "<<AbortNotRead<<endl;
