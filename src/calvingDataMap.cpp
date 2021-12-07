@@ -2497,7 +2497,7 @@ void calvingDataMap::outputInterbeef601(string psBreed, string psTrait, string c
   cout<<"*****************************************************************"<< endl;
 
 
-  ofstream datafile601("listfile601_"+itbBreed);
+  ofstream datafile601("listfile601_"+itbBreed+"_"+psTrait);
 
   for(map<string,calvingData*>::iterator it = this->begin();it != this->end(); it++){
     calvingData *cPtr =(*it).second;
