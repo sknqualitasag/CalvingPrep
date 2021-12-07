@@ -2489,7 +2489,7 @@ void calvingDataMap::output(string outputPhenFile){
 
 
 //Generate list to create with an other programm the pedigree file 601 for interbeef
-void calvingDataMap::outputInterbeef601(string psBreed, string categoryInterbeef){
+void calvingDataMap::outputInterbeef601(string psBreed, string psTrait, string categoryInterbeef){
 
   string itbBreed=convertBreed2InterbullBreed(psBreed);
 
@@ -2506,12 +2506,21 @@ void calvingDataMap::outputInterbeef601(string psBreed, string categoryInterbeef
       if(cPtr->idBreedStr == psBreed && cPtr->damBreedStr == psBreed && cPtr->sireBreedStr == psBreed){
         if(cPtr->mandateStr == "3230"){
             if(categoryInterbeef == CONSTANTS::INTERBEEF_CATEGORY_BEEFONBEEF){
-              datafile601<<cPtr->itbIDStr<<endl;
-              outputDebug("outputInterbeef601()_BeefOnBeef, Animal has itbidStr " + cPtr->itbIDStr + " for animal " + cPtr->idStr, cPtr->idStr);
+              if(psTrait == CONSTANTS::BWT_INTERBEEFTRAIT){
+                if(cPtr->birthWeightInt != CONSTANTS::INT_NA){
+                  datafile601<<cPtr->itbIDStr<<endl;
+                  outputDebug("outputInterbeef601()_BeefOnBeef, Animal has itbidStr " + cPtr->itbIDStr + " and performance for birth weight for animal " + cPtr->idStr, cPtr->idStr);
+                }
+              }
+              if(psTrait == CONSTANTS::CAE_INTERBEEFTRAIT){
+                if(cPtr->transformedCalvingScoreInt != CONSTANTS::INT_NA){
+                  datafile601<<cPtr->itbIDStr<<endl;
+                  outputDebug("outputInterbeef601()_BeefOnBeef, Animal has itbidStr " + cPtr->itbIDStr + " and performance for calving for animal " + cPtr->idStr, cPtr->idStr);
+                }
+              }
             }
           }else{
-            cout<<"mandant is not 3230 and categoryInterbeef "<<categoryInterbeef<<" is not corresponding to "<<CONSTANTS::INTERBEEF_CATEGORY_BEEFONBEEF<<", therefore file601 is not produced."<<endl;
-          }
+            cout<<"mandant is not 3230 and categoryInterbeef "<<categoryInterbeef<<" is not corresponding to "<<CONSTANTS::INTERBEEF_CATEGORY_BEEFONBEEF<<", therefore file601 is not produced."<<endl;          }
         }
       }
     }

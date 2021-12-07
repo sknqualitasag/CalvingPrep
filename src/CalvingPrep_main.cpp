@@ -133,12 +133,17 @@ int CalvingPrep_main(std::string paramFileName) {
   //Files for Interbeef
   if(prepareInterbeefFiles == CONSTANTS::INTERBEEF){
     //List for Pedigree File 601
-    cMap.outputInterbeef601(CONSTANTS::LM_INTERBEEFBREED,categoryInterbeef);
-    cMap.outputInterbeef601(CONSTANTS::SM_INTERBEEFBREED,categoryInterbeef);
-    cMap.outputInterbeef601(CONSTANTS::CH_INTERBEEFBREED,categoryInterbeef);
-    cMap.outputInterbeef601(CONSTANTS::AN_INTERBEEFBREED,categoryInterbeef);
-    cMap.outputInterbeef601(CONSTANTS::HH_INTERBEEFBREED,categoryInterbeef);
+    cMap.outputInterbeef601(CONSTANTS::LM_INTERBEEFBREED,CONSTANTS::BWT_INTERBEEFTRAIT,categoryInterbeef);
+    cMap.outputInterbeef601(CONSTANTS::SM_INTERBEEFBREED,CONSTANTS::BWT_INTERBEEFTRAIT,categoryInterbeef);
+    cMap.outputInterbeef601(CONSTANTS::CH_INTERBEEFBREED,CONSTANTS::BWT_INTERBEEFTRAIT,categoryInterbeef);
+    cMap.outputInterbeef601(CONSTANTS::AN_INTERBEEFBREED,CONSTANTS::BWT_INTERBEEFTRAIT,categoryInterbeef);
+    cMap.outputInterbeef601(CONSTANTS::HH_INTERBEEFBREED,CONSTANTS::BWT_INTERBEEFTRAIT,categoryInterbeef);
 
+    cMap.outputInterbeef601(CONSTANTS::LM_INTERBEEFBREED,CONSTANTS::CAE_INTERBEEFTRAIT,categoryInterbeef);
+    cMap.outputInterbeef601(CONSTANTS::SM_INTERBEEFBREED,CONSTANTS::CAE_INTERBEEFTRAIT,categoryInterbeef);
+    cMap.outputInterbeef601(CONSTANTS::CH_INTERBEEFBREED,CONSTANTS::CAE_INTERBEEFTRAIT,categoryInterbeef);
+    cMap.outputInterbeef601(CONSTANTS::AN_INTERBEEFBREED,CONSTANTS::CAE_INTERBEEFTRAIT,categoryInterbeef);
+    cMap.outputInterbeef601(CONSTANTS::HH_INTERBEEFBREED,CONSTANTS::CAE_INTERBEEFTRAIT,categoryInterbeef);
 
     //Performance File 602
     cMap.outputInterbeef602(CONSTANTS::SM_INTERBEEFBREED,CONSTANTS::BWT_INTERBEEFTRAIT,categoryInterbeef);
