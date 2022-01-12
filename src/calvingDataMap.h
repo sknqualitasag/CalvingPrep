@@ -40,7 +40,6 @@ public:
 
 
   // functions for reading calving-data-file
-  string getFileName(unsigned i, string name);
   void inputCalvingData(string fname, int lastYearToConsiderData, bool parSampling, int startYearSampling, int endYearSampling,\
                         bool parselectSplitMandantBeef, bool parselectSplitMandantDairy);
   // Verification function of the reading fields
