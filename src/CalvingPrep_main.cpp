@@ -41,7 +41,6 @@ int CalvingPrep_main(std::string paramFileName) {
   parmMap.inputParms();
 
   std::string dataFile                        = parmMap.getString("dataFileName");
-  unsigned numberDataFiles                    = parmMap.getUnsigned("numberDataFiles");
   int lastYearToConsiderData                  = parmMap.getInteger("lastYearToConsiderData");
   std::string outputPhenFile                  = parmMap.getString("outputPhenFile");
   std::string pedigreeFile                    = parmMap.getString("pedigreeFileName");
